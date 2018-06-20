@@ -6,3 +6,4 @@ Servers/
 .project
 Sellf/build/
 *.class
+Sellf/.classpath

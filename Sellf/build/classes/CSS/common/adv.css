@@ -1,0 +1,47 @@
+
+.containerAd {
+    position: relative;
+    width: 100%;
+    height: 120px;
+/*    max-width: 400px;*/
+   
+     margin-bottom: 20px;
+       padding:0px; 
+ 
+}
+
+.containerAd img {
+    width: 100%;
+     height: 120px;
+     margin: 0px;
+   
+}
+
+.containerAd .btn {
+    position: absolute;
+    top: 5.5%;
+    left: 99.3%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 0px;
+    text-align: center;
+}
+
+.containerAd .btn:hover {
+    background-color: red;
+}
+    
+#show {
+   display: none;
+   border: 2px solid white;
+   width: 40px;
+   height: 40px;
+   background:url(../../img/toggleBtn.PNG) no-repeat;
+   background-position: center; 
+}

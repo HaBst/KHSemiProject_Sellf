@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- Coded by JSB -->
+<html>
+<head>
+<style>
+.header {
+	background-color: darkorange;
+	height: 60px;
+}
+
+.container {
+	width: 1000px;
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+	background-color: darkorange;
+	height: 60px;
+}
+
+.sign-up-title {
+	display: inline-block;
+	font-size: 18px;
+	text-align: center;
+	width: 100%;
+	margin-top: 50px;
+	position: relative;
+}
+.sign-up-title>h4
+{
+	font-weight: 600;
+}
+
+.sign-up-title>p {
+	font-size: 14px;
+	color: gray;
+}
+
+#login{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#userId{
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+#userPwd{
+	margin-bottom: 10px;
+}
+.sublogin
+{
+	width:400px;
+	font-size: 12px;
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+#register
+{
+	border-right: 1px solid lightgray;
+	padding-right: 10px;
+}
+#findIdPwd
+{
+	padding-left: 10px;
+}
+.snsLogin {
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.snsLogin>h4 {
+	font-weight: 600;
+}
+
+.snsList {
+	display: block;
+	padding-left: 0px;
+}
+
+.snsList li {
+	display: inline-block;
+	width: 200px;
+	padding: 0px;
+}
+
+.snsBtn {
+	border: 0px;
+	background-color: white;
+}
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
+</head>
+
+<body>
+	<div class="header">헤더입니다.</div>
+	<div class="container">
+		<div class="sign-up-title">
+			<h4>로그인</h4>
+			<p>회원 로그인을 하시면 각종 혜택 및 정보를 제공 받으실 수 있습니다.
+		</div>
+		
+		<div id="login" align="center">
+		<input type="text" id="userId" name="userId"  style="height:40px; width:400px"><br>
+		<input type="password" id="userPwd" name="userPwd" style="height:40px; width:400px"><br>
+		<button onclick="login()" class="btn btn-primary btn-lg"
+				style="background-color: black; border-radius: 0px; width: 400px; height: 35px; padding: 0px; margin-bottom: 10px;">로그인</button><br>
+				<div class="sublogin">
+				<span id="register"><a href="/views/member/memberJoin.html">회원가입</a></span>
+				<span id="findIdPwd">아이디/비밀번호 찾기</span>
+				</div>
+		</div>
+		<div class="snsLogin">
+			<h4>SNS 계정으로 로그인</h4>
+			<ul class="snsList">
+				<li><button onclick="loginType('naver');" class="snsBtn"><img src="/img/loginByNaver.PNG" class="img-responsive"></button></li>
+				<br>
+				<li><button onclick="loginType('google');" class="snsBtn"><img src="/img/btn_google_signin_dark_normal_web.png"
+					class="img-responsive" width="200px"></button></li>
+			</ul>
+		</div>
+
+	<div class="footer">footer 입니다.</div>
+	</div>
+	<script type="text/javascript">
+		function loginType(type) {
+			location.href = "" + type;
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+
+</body>
+
+</html>

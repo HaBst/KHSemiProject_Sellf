@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+html, body {
+	font-family: 'Sunflower', sans-serif !important;
+}
+
+#wrapper{
+		font-family: 'Sunflower', sans-serif  !important;
+}
+#footerTest {
+	display: block;
+	clear: both;  
+	width: 100%;
+	height: 300px;
+	background-color: green;
+}
+  
+#titleSec {
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+}
+
+#orderStepSec {
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+}
+
+#orderComplete {
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+
+
+}
+
+#orderComplete h2 {
+	color: black;
+}
+
+#orderListInfo {
+	width: 100%;
+	height: auto;
+}
+
+#orderListInfo_detail {
+	width: 100%;
+	height: auto;
+	display: flex;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sign-up {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul {
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul li {
+	text-align: center;
+	margin: 0 10px;
+	display: inline-block;
+	width: 24%;
+	border-bottom: 3px solid gray;
+}
+
+.sign-up>ul li h3 {
+	font-weight: 600;
+	color: gray;
+}
+
+.sign-up>h4 {
+	font-weight: 600;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.sign-up li.active {
+	border-bottom: 3px solid black;
+}
+
+.sign-up li.active h3 {
+	color: black;
+}
+
+.sign-up li.active h3 small {
+	color: black;
+}

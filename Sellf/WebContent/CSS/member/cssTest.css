@@ -1,0 +1,134 @@
+@charset "UTF-8";
+#footerTest {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 300px;
+    background-color: green;
+}
+
+#titleSec {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+#orderStepSec {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: 1px solid black;
+  
+}
+
+.selectBtn1,
+ {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+  
+}
+
+.selectBtn1>input[type="button"] {
+    float: left;
+    margin-right: 10px;
+    width: 130px;
+    height: 40px;
+}
+
+#orderListInfo {
+    width: 100%;
+    height: auto;
+}
+
+#orderListInfo_detail {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.orderListInfo_1 {
+    flex: 2;
+}
+
+.orderListInfo_2 {
+    margin-left: 40px;
+    flex: 1;
+}
+
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+.sign-up {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul {
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul li {
+	text-align: center;
+	margin: 0 10px;
+	display: inline-block;
+	width: 24%;
+	border-bottom: 3px solid gray;
+}
+
+.sign-up>ul li h3 {
+	font-weight: 600;
+	color : gray;
+}
+
+.sign-up>h4 {
+	font-weight: 600;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+.sign-up li.active {
+	border-bottom: 3px solid black;
+}
+.sign-up li.active h3{
+	color:black;
+}
+
+.sign-up li.active h3 small{
+	color:black;
+}
+
+.orderGoodsInfo1{
+   float: left;
+}
+
+.orderGoodsInfo2{
+    
+     float: right;
+}
+
+.orderGoodsName{
+    margin-left: 5px;
+}
+
+.orderGoodsOption{
+    margin-left: 5px;
+}
+.purchase{
+    float: right;
+}
+#purchaseBtn{
+    width: 300px;
+    height: 80px;
+    margin-bottom: 100px;
+
+}
+.cart_billing_label,.cart_billing_price{
+float: right;
+    margin-left: 40px;
+   padding-bottom: 10px;
+}

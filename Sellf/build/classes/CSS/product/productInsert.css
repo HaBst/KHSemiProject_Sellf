@@ -1,0 +1,88 @@
+body {
+	margin: 0px;
+	width: 100%;
+	height: auto;
+}
+
+header {
+	text-align: center;
+	border: 1px solid black;
+	width: 100%;
+	height: 150px;
+}
+
+footer {
+	text-align: center;
+	border: 1px solid black;
+	width: 100%;
+	height: 150px;
+}
+/*바디부분 크기 */
+.bodyWrapper {
+	width: 80%;
+	margin: 1% auto 0px auto;
+}
+/*상품등록페이지 div */
+.insertTitle {
+	margin-top: 8px;
+	padding-top: 5%;
+}
+/* 상품등록페이지 h2 */
+#mainTitle {
+	padding-left: 2%;
+}
+/* 상세정보 랩퍼 */
+.dataWrapper {
+	width: auto;
+	margin: 5%;
+}
+/*상품 상세정보 span*/
+.dataWrapper>#dataTitle {
+	font-size: 25px;
+}
+/* 상세정보 내용 */
+.dataCon {
+	margin: 3%;
+}
+/* 상세정보 내용 폼 */
+#dataInsert {
+	margin: 1%;
+}
+/*상세설명 라벨*/
+#detaile {
+	padding-top: 4%;
+	padding-bottom: 1%;
+	margin: 1%;
+	font-size: 20px;
+}
+/* 작성 취소 버튼 div */
+.howSubmit {
+	padding-top: 1%;
+	padding-left: 80%;
+}
+/* 작성 취소 버튼 */
+.howSubmit button {
+	margin: 1%;
+	margin-right: 10%;
+}
+
+/*광고 */
+.ad {
+	padding-top: 6%;
+	margin-bottom: 5%;
+}
+/*판매가격 */
+#input {
+	float: left;
+}
+/*상세정보 분류제목 */
+#subTitle {
+	padding-left: 5%;
+}
+
+.thumb-image {
+	float: left;
+	width: 100px;
+	position: relative;
+	padding: 5px;
+}

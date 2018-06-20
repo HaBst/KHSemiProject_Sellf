@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-hk">
+	<head>
+		<meta charset="UTF-8">
+<!--		<meta name="robots" content="all" />-->
+<!--
+		<meta name="description" />
+		<meta name="keywords" />
+-->
+<!--		<meta name="format-detection" content="telephone=no" />-->
+    
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+		<link rel="stylesheet" href="http://fionna-chan.neocities.org/css/reset.css" type="text/css" />
+		<link rel="stylesheet" href="http://fionna-chan.neocities.org/css/fSlider.css" type="text/css" />
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="http://fionna-chan.neocities.org/js/common.js"></script>
+		<script type="text/javascript" src="http://fionna-chan.neocities.org/js/responsive.js"></script>
+		<script type="text/javascript" src="http://fionna-chan.neocities.org/js/fSlider.js"></script>
+
+		<title>Fionna's Slider</title>
+	
+	
+		<style type="text/css">
+			.sliderX .contentWrapper
+			{
+				padding: 80px 0;
+			}
+			h3 {
+				font-size: 40px;
+				font-weight: 700;
+				margin-bottom: 40px;
+			}
+			h4 {
+				margin: 60px auto 10px;
+			}
+			.multi4Slider .sliderItem {
+				padding: 20px;
+			}
+			code {
+				font-family: monospace;
+			}
+			.mobile pre, .desktop .onlyM {
+				display: none;
+			}
+			pre {
+			    display: block;
+				max-width: 1040px;
+				width: 100%;
+			    font-family: monospace;
+				background-color: #000000;
+				color: #ffffff;
+				padding: 20px;
+				text-align: left;
+				margin: 0 auto;
+				line-height: 1.2em;
+			}
+			pre span.comment {
+				color: #666666;
+			}
+			pre span.jQuery {
+				color: #e30f4a;
+			}
+			pre span.value {
+				color: #a576f4;
+			}
+			pre span.quot {
+				color: #f2dc45;
+			}
+			pre span.func {
+				color: #69c8ff;
+			}
+			pre span.green {
+				color: #6dff62;
+			}
+            .fSliderWrapper a[class|="fArrow"]:after {
+                  background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+            }
+            
+            a.fArrow-next{
+                
+                   background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+            }
+            .fSliderWrapper .fSlider .fSliderTrack .sliderItem img {
+               display: none;
+               background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+            }
+            
+        
+            
+            
+			a.sliderBtn {
+             
+				display: inline-block;
+				vertical-align: middle;
+				padding: 20px;
+				margin: 0 10px;
+				color: #000000;
+				text-decoration: none;
+			}
+			a.sliderBtn:hover {
+				background-color: #fc0;
+			}
+			.fSlider {
+				max-width: 855px;
+			}
+			p.remarks {
+				box-sizing: border-box;
+			    display: block;
+				max-width: 1080px;
+				width: 100%;
+			    font-family: monospace;
+			    font-size: 13px;
+				padding: 20px;
+				background-color: #eee;
+				margin: 0 auto;
+			}
+			.centerSlider {
+				max-width: 285px;
+			}
+			.gigaSlider {
+				max-width: 1425px; 
+			}
+			.gigaSlider .sliderItem {
+				width: 285px;
+			}
+			.gigaSlider img {
+				width: 100%;
+				display: block;
+			}
+            .fSliderWrapper .fArrow-prev {
+            left: 0;
+            border-right: 24px solid black; 
+                background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+            }
+            .fSliderWrapper .fArrow-prev:after {
+              left: 2px;
+                background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+              border-right: 0px; 
+            }
+           .fSliderWrapper .fArrow-next {
+            right: 0;
+            border-left: 24px solid black; 
+                background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+            }
+            .fSliderWrapper .fArrow-next:after {
+              left: 2px;
+                background:url(/TradingAgency/WebContent/img/arrow.png) no-repeat;
+              border-right: 0px; 
+            }
+            
+		</style>
+		
+	</head>
+	<body>
+            <div class="siblingsSlider">
+                <img class="sliderItem" src="http://dummyimage.com/285x285/005555/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/005555/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/005555/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550000/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/005500/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/000055/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/005555/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/555500/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/555555/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+                <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+            </div>
+
+		
+
+		<script type="text/javascript">
+			$(document).ready(init_fn);
+			
+			function init_fn(pEvent)
+			{
+				siblingsSlider = $('.siblingsSlider').fSlider({
+					numOfNextSlides: 2,
+					slidesToShow: 1,
+					responsive: false,
+					loop: true,
+					centerMode: true,
+					showSiblingsHowMuch: 2.5
+				});		
+			}
+		</script>
+	</body>
+</html>

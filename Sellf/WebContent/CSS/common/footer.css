@@ -1,0 +1,156 @@
+     a{
+            text-decoration-line: none;
+            text-decoration-color: black;
+        }
+       
+    
+        #footerTitle{
+            width:800px;
+            float:left;
+            margin-bottom: 10px;
+            margin-left: 280px;
+        }
+        #footerTitle div{
+            float:left;
+            display:inline-block;
+            margin-left: 20px;
+        }
+        .vlshort{
+            height: 25px;
+            width:2px;
+            background-color: gray;
+            margin-top:2px;
+        }
+        .vlLong{
+            height: 200px;
+            width:1px;
+            background-color: gray;
+            margin-top:2px;
+        }
+        
+        .hlLong{
+            height:1px;
+            width:100%;
+            background-color:lightgray;
+            clear:both;
+            margin-bottom: 20px;
+        }
+        #footerDetailGroup{
+            width:1200px;
+            overflow: auto;
+            margin-bottom:30px;
+            overflow-x: none; 
+            margin-left: 20px;
+
+        }
+        #footerDetailGroup div{
+            float:left;
+            margin-left:20px;
+            display:inline-block;
+        }
+        .infoBox{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        .corp_info{
+            list-style: none;
+        }
+        .detail.info{
+              list-style: none;
+             font-size: 12px;
+        }
+        .corp_detail_ul{
+            padding: 0;
+            margin: 0;
+        }
+        .footerBox{
+            overflow : auto;
+            background-color:black;
+        }
+        #csCenter{
+            width:20%;
+            height:200px;
+            background-color:white;   
+        }
+         #bankInfo{
+            width:30%;
+            height:200px;
+            background-color:white;   
+        }
+         #returnExchange{
+            width:24%;
+            height:200px;
+            background-color:white;   
+        }
+         #notice{
+            width:13%;
+            height:200px;
+            background-color:white;   
+        }
+          .pic1{
+            width:45px; 
+            height:45px;
+            background: url(../../img/text.PNG);
+            margin: 0;
+            
+        }
+       
+        .pic1:hover{
+            width:45px; 
+            height:45px;
+            background: url(../../img/itemask.png);
+            margin: 0;
+        }
+         .pic2{
+            width:45px; 
+            height:45px;
+            background: url(../../img/camera.png);
+            margin: 0;
+        }
+       
+        .pic2:hover{
+            width:45px; 
+            height:45px;
+            background: url(../../img/itemreview.png);
+            margin: 0;
+        }
+         .pic3{
+            width:45px; 
+            height:45px;
+            background: url(../../img/square.png);
+            margin: 0;
+        }
+       
+        .pic3:hover{
+            width:45px; 
+            height:45px;
+            background: url(../../img/fax.png);
+            margin: 0;
+        }
+           .detailList{            
+            overflow:auto;
+            margin-left:5%;
+        }
+        .detailList a{
+            float:left;
+           display:inline-block;
+           margin-left: 5%;
+            
+        }
+        .detailList  a> div{
+            display:inline-block;
+        }
+        #footerBottom{
+            overflow: auto;
+             width:1200px;
+            margin-left: -60px;
+        }
+        .bottombar{
+             overflow: auto;
+             float:left;
+          
+        }
+        .detail.info.last{
+            overflow: auto;
+        }

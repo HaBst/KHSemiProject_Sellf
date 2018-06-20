@@ -1,0 +1,205 @@
+@charset "UTF-8";
+#footerTest {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: 300px;
+    background-color: green;
+}
+
+#titleSec {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+#orderStepSec {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+
+}
+
+.cartListSec {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.selectBtn2 {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#orderListInfo {
+    width: 100%;
+    height: auto;
+}
+
+#orderListInfo_detail {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign-up {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.sign-up > ul {
+    padding: 0px;
+    margin-bottom: 30px;
+}
+
+.sign-up > ul li {
+    text-align: center;
+    margin: 0 10px;
+    display: inline-block;
+    width: 24%;
+    border-bottom: 3px solid gray;
+}
+
+.sign-up > ul li h3 {
+    font-weight: 600;
+    color: gray;
+}
+
+.sign-up > h4 {
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.sign-up li.active {
+    border-bottom: 3px solid black;
+}
+
+.sign-up li.active h3 {
+    color: black;
+}
+
+.sign-up li.active h3 small {
+    color: black;
+}
+
+#goodsName {
+    font-weight: 800;
+    font-size: 18px;
+
+}
+
+#reward > dt {
+    float: left;
+}
+
+.orderListInfo_2 > dt {
+    float: left;
+}
+
+#infoContainer {
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+    position: relative;
+
+}
+
+#deliveryInfo {
+    border: 1px solid black;
+    width: 60%;
+    height: auto;
+    padding: 30px;
+
+    float: left;
+    position: relative;
+
+}
+
+#orderListInfo {
+    border: 1px solid black;
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
+    float: left;
+    position: relative;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+
+}
+
+#orderListInfo > div {
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+.payButton {
+    background-color: white;
+    border-radius: 10px;
+    border-color: dodgerblue;
+    font-size: 17px;
+    width: 200px;
+    height: 80px;
+    margin: 10px;
+
+}
+
+#orderListInfoWrap {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+
+}
+
+#orderListInfoWrap > div {
+    border: 1px solid black;
+    width: 100%;
+    height: 60px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+#orderListInfoWrap > div > span:first-child {
+    border: 1px solid black;
+    width: 100%;
+    height: 60px;
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+#orderListInfoWrap > div > span:last-child {
+    border: 1px solid black;
+    width: 100%;
+    height: 60px;
+    flex: 2.5;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+
+
+#orderListInfoWrap > div:last-child {
+    border: 1px solid black;
+    width: 100%;
+    height: 60px;
+    padding-left: 18px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}

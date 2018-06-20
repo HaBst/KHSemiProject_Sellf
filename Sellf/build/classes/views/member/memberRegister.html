@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!-- Coded by JSB -->
+<html>
+
+<head>
+
+<style>
+.header {
+	background-color: darkorange;
+	height: 60px;
+}
+
+.container {
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+}
+
+.footer {
+	background-color: darkorange;
+	height: 60px;
+}
+
+.
+.sign-up {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul {
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul li {
+	text-align: center;
+	margin: 0 2px;
+	display: inline-block;
+	width: 24%;
+	border-bottom: 3px solid gray;
+}
+
+.sign-up>ul li h3 {
+	font-weight: 600;
+	color: gray;
+}
+
+.sign-up>h4 {
+	font-weight: 600;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.sign-up li.active {
+	border-bottom: 3px solid black;
+}
+
+.sign-up li.active h3 {
+	color: black;
+}
+
+.sign-up li.active h3 small {
+	color: black;
+}
+
+.sign-up-title {
+	display: inline-block;
+	font-size: 18px;
+	text-align: center;
+	width: 100%;
+	margin-top: 50px;
+	position: relative;
+}
+
+.sign-up-title>p {
+	font-size: 14px;
+	color: gray;
+}
+
+.register>h4 {
+	font-weight: 600;
+	padding-bottom: 20px;
+	border-bottom: 1px solid black;
+	margin-bottom: 0px;
+}
+
+#regi-input {
+	
+}
+
+.regi-tr {
+	height: 40px;
+}
+
+.regi-tr>td:nth-of-type(1) {
+	width: 200px;
+}
+
+.regi-tr>td:nth-of-type(2) {
+	width: 600px;
+}
+
+.check-img {
+	width: 12px;
+	height: 12px;
+}
+
+.regist
+{
+	margin-bottom: 30px;
+}
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<div class="header">헤더입니다.</div>
+	<div class="container">
+		<div class="sign-up-title">
+			회원가입
+			<p>회원이 되셔서 다양한 혜택을 누려보세요.
+		</div>
+		<div class="sign-up">
+			<ul>
+				<li><h3>
+						STEP1 <small>가입방법 선택</small>
+					</h3></li>
+				<li><h3>
+						STEP2 <small>이용약관 동의</small>
+					</h3></li>
+				<li class="active"><h3>
+						STEP3 <small>회원정보 입력</small>
+					</h3></li>
+				<li><h3>
+						STEP4 <small>회원가입 완료</small>
+					</h3></li>
+			</ul>
+		</div>
+		<div class="register">
+			<h4>회원정보 입력</h4>
+			<table id="regi-input" class="table table-bordered">
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 이름</td> 
+					<td><input type="text" name="userName"></td>
+				</tr>
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 아이디</td>
+					<td><input type="text" name="userId"><button onclick="checkId($('input[name=userId]').val());">중복확인</button> <span id="idcheck">공백 없는 영문,숫자 포함
+						6-20자 </span></td>
+				</tr>
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 비밀번호</td>
+					<td><input type="password" name="userPwd"><span id="pwdcheck"> 공백 없는 영문,숫자
+						포함 6-20자 </span></td>
+				</tr>
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 비밀번호 확인</td>
+					<td><input type="password" name="userPwdRe"> 비밀번호 확인을
+						위해 한번 더 입력하세요. <span id="pwdrecheck"></span></td>
+				</tr>
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 생년월일</td>
+					<td><select id="year">
+							<option>선택</option>
+					</select> <select id="month">
+							<option>선택</option>
+					</select> <select id="day">
+							<option>선택</option>
+					</select></td>
+				</tr>
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 성별</td>
+					<td><input type="radio" name="userGender" value="M">남자 
+					<input type="radio" name="userGender" value="F">여자 </td>
+				</tr>
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 이메일</td>
+					<td><input type="text" name="emailFirst"> @ 
+					<input type="text" name="emailSecond">
+					<select id="emailSelect" onchange="$('input[name=emailSecond]').val(this.value);">
+						<option>직접선택</option>
+						<option value="naver.com">naver.com</option>
+						<option value="daum.net">daum.net</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="nate.com">nate.com</option>
+					</select></td>
+				</tr>
+				
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 전화번호</td>
+					<td><input type="text" name="phone1" size="3" maxlength="3"> - 
+					<input type="text" name="phone2" size="4" maxlength="4"> - 
+					<input type="text" name="phone3" size="4" maxlength="4"></td>
+				</tr>
+				
+				<tr class="regi-tr">
+					<td><img src="/img/check.png" class="check-img"> 주소</td>
+					<td><input type="text" name="postNum" class="postcodify_postcode5" readonly="readonly"> <button onclick="findAddr();" id="postcodify_search_button">주소찾기</button><br>
+					<input type="text" name="addrInfo" class="postcodify_address" size="50" readonly="readonly">
+					<input type="text" name="addrDetail" class="postcodify_details" size="50"></td>
+				</tr>
+				<tr class="regi-tr">
+					<td>관심 분야</td>
+					<td>
+					<table>
+					<tr>
+						<td><input type="checkbox" name="userInter" value="inter1"> 전자제품</td>
+						<td><input type="checkbox" name="userInter" value="inter2"> 패션의류</td>
+						<td><input type="checkbox" name="userInter" value="inter3"> 패션잡화</td>
+						<td><input type="checkbox" name="userInter" value="inter4"> 화장품/미용</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="userInter" value="inter5"> 스포츠/레저</td>
+						<td><input type="checkbox" name="userInter" value="inter6"> 유아동/출산</td>
+						<td><input type="checkbox" name="userInter" value="inter7"> 완구/문구/취미</td>
+						<td><input type="checkbox" name="userInter" value="inter8"> 해외 명품/ 자동차</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="userInter" value="inter9"> 도서/음반/DVD</td>
+						<td><input type="checkbox" name="userInter" value="inter10"> 가구/인테리어</td>
+						<td><input type="checkbox" name="userInter" value="inter11"> 여행/문화</td>
+						<td><input type="checkbox" name="userInter" value="inter12"> 생활/건강</td>
+					</tr>
+						</table></td>
+				</tr>
+			</table>
+			<div class="regist" align="center">
+			<button onclick="register()" class="btn btn-primary btn-lg"
+				style="background-color: black; border-radius: 0px; width: 200px">회원가입</button>
+			<a href="" class="btn btn-default btn-lg "
+				style="background-color: lightgray; border-radius: 0px; width: 200px">취소</a>
+		</div>
+		</div>
+		<div class="footer">footer 입니다.</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function appendYear() {
+			var date = new Date();
+			var year = date.getFullYear();
+			var selectValue = document.getElementById("year");
+			var optionIndex = 0;
+
+			for (var i = year - 100; i <= year; i++) {
+				selectValue.add(new Option(i + "년", i), optionIndex++);
+			}
+		});
+
+		$(document).ready(function appendMonth() {
+			var selectValue = document.getElementById("month");
+			var optionIndex = 0;
+
+			for (var i = 1; i <= 12; i++) {
+				selectValue.add(new Option(i + "월", i), optionIndex++);
+			}
+		});
+
+		$(document).ready(function appendDay() {
+			var selectValue = document.getElementById("day");
+			var optionIndex = 0;
+
+			for (var i = 1; i <= 31; i++) {
+				selectValue.add(new Option(i + "일", i), optionIndex++);
+			}
+		});
+		
+		var reg = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; <!-- 검증용 -->
+		
+		<!-- ID 검증 -->
+		function checkId(id) {
+			window.open("/views/member/checkId.jsp?checkId="+id,"ID 중복확인","width=400px, height=300px, left=100, top=100");
+		}
+		
+		<!-- PW 검증 -->
+		var userPwd = $("input[name='userPwd']");
+		userPwd.blur(function(){
+			var upwd = $("input[name='userPwd']").val();
+			 if(!reg.test(upwd)){
+				 $('#pwdcheck').text("  잘못된 입력입니다.");
+				 $('#pwdcheck').css("color","red");
+				 }
+			 else{
+			 $('#pwdcheck').text("  가능합니다.");
+			 $('#pwdcheck').css("color","#00ff00");
+				}
+		});
+		
+		<!-- PW RE 검증 -->
+		var userPwdRe = $("input[name='userPwdRe']");
+		userPwdRe.blur(function(){
+			var upwdre = $("input[name='userPwdRe']").val();
+			var upwd = $("input[name='userPwd']").val();
+			 if(upwd != upwdre){
+				 $('#pwdrecheck').text("  일치하지 않습니다.");
+				 $('#pwdrecheck').css("color","red");
+				 }
+			 else{
+			 $('#pwdrecheck').text("  일치합니다.");
+			 $('#pwdrecheck').css("color","#00ff00");
+				}
+		});
+		
+		function register() {
+			location.href="/views/member/memberRegiComplete.html";
+		}
+	</script>
+	
+	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script> <!-- 주소 검색 -->
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script> <!-- 주소 api -->
+	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+
+</body>
+</html>

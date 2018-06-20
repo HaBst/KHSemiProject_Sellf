@@ -1,0 +1,55 @@
+*{
+        margin:0;
+        padding:0;
+ }
+section article {margin: 0 auto;}
+#wrapper{
+    width:100%;
+    height:auto;
+    overflow:auto;
+ 
+}
+#header{
+    width:100%;
+}
+#navigation{
+    width:100%;
+    height:50px;
+    background-color:darkorange;
+}
+#content{
+    width:1050px;
+    height:auto;
+    display:block;
+}
+#footer{
+	width:100%;
+	height:auto;
+	display:block;
+
+
+}
+#crossLine{
+	width:100%;
+	height:10px
+	background-color:gray;
+}
+body{
+    font-family: 'Nanum Gothic', sans-serif;
+    background-size:cover;
+}  
+h2{
+    color:red;
+}
+
+
+
+@media(max-width:400px){
+    wrapper {
+        display: block;
+    }
+    wrapper div{
+        width:100%;
+    }
+  
+}

@@ -1,0 +1,443 @@
+@charset "UTF-8";
+
+#productSection{
+	width : 100%;
+	height : auto;	
+	background-color : black;
+}
+#topLeftLink > a{
+	float:right;
+}
+#topLeftLink{
+	display:block;
+}
+/*移댄뀒怨좊━*/
+	#categorySelect{
+		overflow:auto;
+	}
+	#categoryBorder{
+		overflow:auto;
+		border:1px solid lightgray;
+		clear:both;
+		margin:0px;
+		padding:5px;
+	}
+	.categoryTitle{
+		float:left;
+		display:inline-block;
+		margin:0px;
+		width:10%;
+	}
+	.categoryTitleList{
+		float:left;
+		width:90%;
+		height:30%;
+		display:inline-block;
+	}
+	#categoryType{
+		margin:0px;
+		overflow:auto;
+	}
+	.category-btn {
+	    display: inline-block;
+	    float:left;
+	    height: 30px;
+	    font-size: 14px;
+	    line-height: 16px;
+	    padding: 6px 16px;
+	    border-radius: 14px;
+	    border: 1px solid #dbdbdb;
+	    margin: 0 8px 8px 0;
+	    color: #dbdbdb;
+	}
+	.productState-btn {
+	    display: inline-block;
+	    float:left;
+	    height: 30px;
+	    font-size: 14px;
+	    line-height: 16px;
+	    padding: 6px 16px;
+	    border-radius: 14px;
+	    border: 1px solid #dbdbdb;
+	    margin: 0 8px 8px 0;
+	    color: #dbdbdb;
+	}
+	#productState{
+		
+		width:100%;
+		clear:both;
+	}
+	
+	
+/**/
+
+#crossLine{
+	width:25px;
+	height:1px;
+	background-color:black;
+	display:block;
+	clear:both;
+	margin-bottom : 20px;
+}
+#productTitle{
+	margin-bottom:10px;
+	
+}
+#recommandProductTitle> strong{
+	float:left;
+	margin-bottom:10px;
+}
+#recommandProductContent{
+	clear:both;
+	overflow:auto;
+	margin-bottom:40px;	
+}
+
+
+#recommandProduct{
+	float:left;
+	width:23%;
+	margin-right:1%;
+	position:relative;
+}
+/*�젣�뭹�쐞�뿉 而ㅻ쾭濡� �꽕紐낇빐二쇰뒗 �쁺�뿭*/
+.productCoverBG{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;	
+	opacity:1;	
+}
+
+/*�젣�뭹�쐞�뿉 而ㅻ쾭濡� �꽕紐낇빐二쇰뒗 �쁺�뿭*/
+.productCoverExplain{
+	background-image:url("../../img/boxBlack.png");
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+		
+	opacity:0;
+     -webkit-animation: 0.5s  fadeOut;
+  	animation: 0.5s  fadeOut;
+}
+/*遺�紐� �샇踰꾨릱�쓣�븣 �젣�뭹�쐞�뿉 而ㅻ쾭濡� �꽕紐낇빐二쇰뒗 �쁺�뿭 �슚怨�*/
+.imgWrapper:hover .productCoverExplain{
+	 -webkit-animation: 0.5s fadeIn;
+  	animation: 0.5s fadeIn;
+  	opacity:1;
+}
+@keyframes fadeInLight {
+  from {
+    opacity:0;
+  }
+  
+  to {
+   	opacity:0.3;
+ }
+}
+@keyframes fadeOutLight {
+  from {
+    opacity:0.3;
+  }
+  
+  to {
+   	opacity:0;
+ }
+}
+
+
+a{
+	color:lightgray;
+    text-decoration-line: none;
+}
+a:link{
+    color: lightgray;
+    text-decoration-line: none;
+}
+a:visited{
+    color: lightgray;
+    text-decoration-line: none;
+}
+a:hover{
+    color: lightgray;
+    text-decoration-line: none;
+}
+a:active{
+    color: lightgray;
+    text-decoration-line: none;
+}
+
+/* �쟾泥� �긽�뭹 20媛� �븞履� 紐⑤몢*/
+#entireProduct{
+	width:100%;
+	height:auto;
+	clear:both;
+	display:block;
+	overflow:auto;
+}
+
+#entireProductTitle{
+	float:left;
+	margin-bottom:5px;
+}
+#crossLineLong{
+	clear:both;
+	width:100%;
+	height:1px;
+	background-color:gray;
+	margin-bottom:15px;
+}
+li {
+    list-style-type: none;
+}
+
+.float_wrap{
+	display:block;
+}
+.float_wrap li{
+	display:inline;
+}
+.sort_item a:link , visited,hover,active{
+    color: black;
+    text-decoration-line: none;
+}
+.sort_item>a:visited{
+	color:black;
+}
+
+/* 정렬 타입 버튼 */
+.sortBtn{
+    background-color: white;
+    border: white;
+}
+
+.left{
+	list-style-
+	color:black;
+	float:left;
+}
+.goods_list_style{
+	float:right;
+}
+.goods_list_style>li>a{
+	color:black;
+}
+.right{
+	float:right;
+}
+.productList{
+	clear:both;
+	margin-bottom:20px;
+	overflow:auto;
+}
+.productList ul{
+	height:auto;
+	list-style-type: none;
+	margin-bottom:5px;
+	clear:both;
+}
+.productWrap{
+	float:left;
+	width:24%;
+	height:100%;
+	margin-right:6px;
+}
+/************************************/
+.productBg{
+	width:100%;
+	height:400px;
+	background-color:white;
+	
+}
+.imgWrapper{
+	width:100%;
+	height:230px;
+	overflow:hidden;
+	position:relative;
+}
+
+/*�궡遺��씠誘몄� �솗��*/
+.imgWrapper:hover .productImgMain{
+    cursor: pointer;
+    -webkit-transform: scale(1.2);
+    /*  �겕濡� */
+    -moz-transform: scale(1.2);
+    /* FireFox */
+    -o-transform: scale(1.2);
+    /* Opera */
+    transform: scale(1.2);
+    transition: transform .50s;
+    -o-transition: transform .50s;
+    -moz-transition: transform .50s;
+    -webkit-transition: transform .50s;   
+}
+/*�궡遺��씠誘몄� 蹂듦�*/
+.productImgMain {
+	width:20px;
+	height:100%;
+    cursor: pointer;
+    -webkit-transform: scale(1);
+    /*  �겕濡� */
+    -moz-transform: scale(1);
+    /* FireFox */
+    -o-transform: scale(1);
+    /* Opera */
+    transform: scale(1);
+    transition: transform .50s;
+    -o-transition: transform .50s;
+    -moz-transition: transform .50s;
+    -webkit-transition: transform .50s;
+}
+
+
+/*�젣�뭹 由ъ뒪�듃 �궡遺�*/
+.productWrap{
+	position:relative;
+    margin-bottom: 15px;
+}
+#pagingArea{
+    display: inline-block;
+}
+.productImgMain{
+	width:100%;
+}
+.discountBg{
+	position:absolute;
+	width:60px;
+	height:60px;
+	top: 0;
+	left:0;
+	background-color:#333333;
+	color:white;
+	text-align:center;
+	
+	margin: auto;
+    padding: 7%;
+    
+    -webkit-transform : translate(0px,0px);  
+	-moz-transform : translate(0px,0px);     
+	-ms-transform : translate(0px,0px);       
+	-o-transform : translate(0px,0px); 	
+	
+	transition: transform .30s;
+    -o-transition: transform .30s;
+    -moz-transition: transform .30s;
+    -webkit-transition: transform .30s;
+}
+
+.imgWrapper:hover .discountBg{
+	-webkit-transform : translate(10px,10px);  
+	-moz-transform : translate(10px,10px);     
+	-ms-transform : translate(10px,10px);       
+	-o-transform : translate(10px,10px); 	
+	
+	transition: transform .30s;
+    -o-transition: transform .30s;
+    -moz-transition: transform .30s;
+    -webkit-transition: transform .30s;
+}
+
+.productSideMenu{
+	background-color: #f4f6f9;
+	overflow:auto;
+	position:absolute;
+	bottom: 5%;
+	right:0;
+
+	opacity:0;
+     -webkit-animation: 0.5s  fadeOut;
+  	animation: 0.5s  fadeOut;
+
+  	-webkit-transform : translate(0px,0px);  
+	-moz-transform : translate(0px,0px);     
+	-ms-transform : translate(0px,0px);       
+	-o-transform : translate(0px,0px); 	
+	
+	transition: transform .30s;
+    -o-transition: transform .30s;
+    -moz-transition: transform .30s;
+    -webkit-transition: transform .30s;	
+}
+
+.imgWrapper:hover .productSideMenu{
+	
+	 -webkit-animation: 0.5s fadeIn;
+  	animation: 0.5s fadeIn;
+  	opacity:1;
+	
+    -webkit-transform : translate(-5px,0px);  
+	-moz-transform : translate(-5px,0px);     
+	-ms-transform : translate(-5px,0px);       
+	-o-transform : translate(-5px,0px); 	
+	
+	transition: transform .30s;
+    -o-transition: transform .30s;
+    -moz-transition: transform .30s;
+    -webkit-transition: transform .30s;	
+}
+
+@keyframes fadeIn {
+  from {
+    opacity:0;
+  }
+  
+  to {
+   	opacity:1;
+ }
+}
+@keyframes fadeOut {
+  from {
+    opacity:1;
+  }
+  
+  to {
+   	opacity:0;
+ }
+}
+
+
+.productTitle{
+	width:100%;
+}
+.productExplain{
+	width:100%;
+	margin-bottom:3px;
+}
+.productExplainFont{
+	color:gray;
+  font-weight: light;
+}
+.priceOrigin{
+	width:100%;
+}
+.priceOrigin>s{
+	color:gray;
+}
+.myCheck{
+	width:100%;
+	height:30px;
+}
+.myCheck li:first-child{
+	margin-left:0;
+}
+.myCheck li{
+	height:20px;
+}
+.freeTransfor{
+	background-color:#f9fbff;
+	border:1px solid gray;
+	width:80px;
+	height:25px;
+}
+
+/****************/
+#footerTest{
+	display:block;
+	clear:both;
+	width:100%;
+	height:300px;
+	background-color:green;
+}

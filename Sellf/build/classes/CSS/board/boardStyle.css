@@ -1,0 +1,89 @@
+@charset "UTF-8";
+#boardContent {
+	overflow: auto;
+}
+
+#topLeftLink {
+	display: block;
+	overflow: auto;
+}
+
+#topLeftLink>a {
+	float: right;
+}
+
+#topMenu {
+	clear: both;
+	width: 100%;
+	height: 80px;
+	margin-top: 20px;
+}
+
+#BoardList {
+	float: left;
+	display: inline-block;
+	width: 100%;
+	/*overflow: auto;*/
+}
+
+.menuBtn {
+	border: 1px solid lightgray;
+	display: inline-block;
+	width: 150px;
+	height: 40px;
+	text-align: center;
+	padding-top: 7px;
+}
+#commentBtn{
+	border: 1px solid lightgray;
+	display: inline-block;
+	width: 150px;
+	height: 40px;
+	text-align: center;
+	padding-top: 7px;
+}
+.menuBtn span {
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+.noticeTab{
+	display:none;
+}
+.hlLongBold {
+	width: 100%;
+	height: 2px;
+	background-color: lightgray;
+	clear: both;
+}
+
+#bordTitle {
+	width: 100%;
+	margin-bottom: 15px;
+	overflow: auto;
+}
+
+#boardTable {
+	width: 100%;
+}
+
+tr {
+	border-top: 1px solid lightgray;
+	height: 50px;
+}
+
+tr>* {
+	text-align: center;
+}
+
+#boardItem {
+	width: 90%;
+	height: 80px;
+	background-color: gray;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#searchArea {
+	margin-bottom:50px;	
+}

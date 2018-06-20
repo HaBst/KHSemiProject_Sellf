@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <script>
+/* 그림추가부분-요리완성-전체  */
+    $(document).ready(function() {
+           $("#fileSucAll").on('change', function () {
+             //Get count of selected files
+             var countFiles = $(this)[0].files.length;/* 파일의 개수  */
+             var imgPath = $(this)[0].value;/* 값? 선택된 파일의 값? */
+             var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+             var imgFile_Suc_One = $('#imgFile_Suc_One'); var imgFile_Suc_Two = $('#imgFile_Suc_Two'); 
+             var imgFile_Suc_Thrid = $('#imgFile_Suc_Thrid');  var imgFile_Suc_Four = $('#imgFile_Suc_Four'); var imgFile_Suc_Five = $('#imgFile_Suc_Five');
+             /* imgFile_Suc_One.empty(); */
+             if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+               if (typeof(FileReader) != "undefined") {
+                 //loop for each file selected for uploaded.
+                 for (var i = 0; i < countFiles; i++) 
+                 {
+                    var reader = new FileReader();
+                    if(i==0){
+                   reader.onload = function(e) {
+                      imgFile_Suc_One.attr('src',e.target.result);}
+                   }else if(i==1){
+                      reader.onload = function(e) {
+                         imgFile_Suc_Two.attr('src',e.target.result);
+                      }
+                   }else if(i==2){
+                      reader.onload = function(e) {
+                         imgFile_Suc_Thrid.attr('src',e.target.result);
+                      }
+                   }else if(i==3){
+                      reader.onload = function(e) {
+                         imgFile_Suc_Four.attr('src',e.target.result);
+                      }
+                   }else if(i==4){
+                      reader.onload = function(e) {
+                         imgFile_Suc_Five.attr('src',e.target.result);
+                      }
+                   }
+                   reader.readAsDataURL($(this)[0].files[i]);
+                 }
+               } else {
+                 alert("This browser does not support FileReader.");
+               }
+             } else {
+               alert("Pls select only images");
+             }             
+           });
+         });
+        
+/* 그림추가부분-step*/
+   function readURL(input,stepImgNum) {
+
+       if (input.files && input.files[0]) {
+           var reader = new FileReader();
+    
+           reader.onload = function (e) {
+              $('#imgFile_Step_'+stepImgNum).attr('src', e.target.result);
+           }
+    
+           reader.readAsDataURL(input.files[0]);
+          }
+      };
+    </script>
+    <!-- 사진 업로드 끝-->
+</head>
+
+<body>
+<input id="stepImgFile0" multiple="multiple" type="file" style="display:none" onchange="readURL(this,0);" />
+               <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();">
+    
+<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
+               <div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+               <div class="row"><div class="col-md-12" id="successImgAll"><input id="fileSucAll" multiple="multiple" type="file" file_gubun="work" style="display:none"/>
+               <button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button></div></div></div>
+               <div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
+               <input id="fileSucOne" multiple="multiple" type="file" style="display:none"/>
+               <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_One" onclick="document.all.fileSucOne.click();"></div></div></div>
+               <div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgTwo">
+               <input id="fileSucTwo" multiple="multiple" type="file" style="display:none"/>
+               <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Two" onclick="document.all.fileSucTwo.click();"></div></div></div>
+               <div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgThrid">
+               <input id="fileSucThrid" multiple="multiple" type="file" style="display:none"/>
+               <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Thrid" onclick="document.all.fileSucThrid.click();"></div></div></div>
+               <div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgFour">
+               <input id="fileSucFour" multiple="multiple" type="file" style="display:none"/>
+               <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Four" onclick="document.all.fileSucFour.click();"></div></div></div>
+               <div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgFive">
+               <input id="fileSucFive" multiple="multiple" type="file" style="display:none"/>
+               <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Five" onclick="document.all.fileSucFive.click();"></div></div></div>
+               </div>
+    
+    
+</body>
+
+</html>
+

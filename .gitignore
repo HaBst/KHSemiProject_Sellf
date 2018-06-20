@@ -2,8 +2,11 @@
 /.recommenders/
 /.settings/
 Servers/
+Servers2/
 .classpath
 .project
 Sellf/build/
 *.class
 Sellf/.classpath
+Sellf/.settings/
+Servers/org.eclipse.wst.common.component

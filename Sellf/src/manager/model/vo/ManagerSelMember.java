@@ -11,9 +11,10 @@ public class ManagerSelMember { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï
 	private String userPhone; //È¸ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
 	private char userGender; //È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private Date userEnrollDate; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int userPoint; //ï¿½ï¿½ï¿½ï¿½Æ®
 	
 	public ManagerSelMember(String userEntireId, String userEntireName, String userGrade, String userPhone,
-			char userGender, Date userEnrollDate) {
+			char userGender, Date userEnrollDate, int userPoint) {
 		super();
 		this.userEntireId = userEntireId;
 		this.userEntireName = userEntireName;
@@ -21,6 +22,7 @@ public class ManagerSelMember { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï
 		this.userPhone = userPhone;
 		this.userGender = userGender;
 		this.userEnrollDate = userEnrollDate;
+		this.userPoint = userPoint;
 	}
 
 	public String getUserEntireId() {
@@ -69,6 +71,14 @@ public class ManagerSelMember { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï
 
 	public void setUserEnrollDate(Date userEnrollDate) {
 		this.userEnrollDate = userEnrollDate;
+	}
+	
+	public int getUserPoint() {
+		return userPoint;
+	}
+
+	public void setUserPoint(int userPoint) {
+		this.userPoint = userPoint;
 	}
 	
 	

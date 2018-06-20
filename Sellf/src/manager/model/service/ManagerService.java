@@ -1,6 +1,7 @@
 package manager.model.service;
 
 import manager.model.dao.ManagerDao;
+import manager.model.vo.ManagerMemberData;
 import manager.model.vo.ManagerSelMember;
 
 import java.sql.*;
@@ -17,11 +18,44 @@ public class ManagerService {
 		return list;
 	}
 
-	public ArrayList<ManagerSelMember> readBlackList() {
+	public ManagerMemberData readBlackList(int currentPage) {
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<ManagerSelMember>list = new ManagerDao().readBlackList(conn);
+		
+		int recordCountPerPage = 10; //1. 1페이지에 10개씩
+		int naviCountPerPage = 5; //2. 네비는 5개씩
+		
+		ArrayList<ManagerSelMember>list = new ManagerDao().getBlackList(conn,currentPage,recordCountPerPage);
+		String pageNavi = new ManagerDao().getBlackListPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
+		ManagerMemberData mmd = new ManagerMemberData();
+		
+		if(!list.isEmpty() && !pageNavi.isEmpty())
+		{
+			mmd.setList(list);
+			mmd.setPageNavi(pageNavi);
+		}
 		JDBCTemplate.close(conn);
-		return list;
+		return mmd;
 	}
+
+	public int bannedUnlock(String[] userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ManagerDao().bannedUnlock(conn,userId);
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public ArrayList<String> getSubCtg(String mainCtg) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<String>subCtg = new ManagerDao().getSubCtg(conn,mainCtg);
+		JDBCTemplate.close(conn);
+		return subCtg;
+	}
+	
 
 }

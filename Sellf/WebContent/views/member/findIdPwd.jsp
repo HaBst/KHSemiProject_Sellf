@@ -75,7 +75,7 @@
 					<div class="tab-pane active show" id="tab2">
 						<div class="title">아이디 찾기</div>
 						<br> <br>
-							<form action="/findIdPwd" method="post">
+							<!-- <form action="/findIdPwd" method="post">  -->
 						<div id="findIdContainer">
 							<div>
 								<h4>본인확인 이메일 인증</h4>
@@ -98,6 +98,7 @@
 											</td>
 										</tr>
 										<tr>
+										
 											<td>이메일주소</td>
 											<td>
 												<div class="input-group mb-3">
@@ -105,6 +106,7 @@
 														placeholder="메일 주소를 입력해주세요" aria-label="Username"
 														aria-describedby="basic-addon1" name="memberEmail_id"
 														id="memberEmail_id" style="width: 300px; height: 50px;">
+													
 												</div>
 											</td>
 											<td>
@@ -114,6 +116,7 @@
 													style="margin-bottom: 16px; height: 45px;"
 													onclick="IdcertificationBtn();">인증번호받기</button>
 											</td>
+										
 										</tr>
 										<tr>
 											<td></td>
@@ -131,6 +134,30 @@
 							<br>
 							<hr>
 							<br>
+							<script>
+							var authNumTemp ="";
+								function IdcertificationBtn()
+								{
+									var memberEmail = $("#memberEmail_id").val();
+									$.ajax({
+										url:"/findIdPwd", //서블릿
+										data : {userEmail : memberEmail}, 
+										type : "get",
+										success : function(data){
+											$("input[name='IDcertificationNum']").prop("disabled",false);
+											authNumTemp = data;
+											alert("버튼 눌렀을때 콜백되는 인증 " + authNumTemp );
+										}, 
+										error : function(){
+									
+										}  
+									
+									});
+								}
+							
+							</script>
+							
+							
 							<script type="text/javascript">
 								function findIDBtn() {
 									var memberName = $("#memberName_id").val();
@@ -153,6 +180,39 @@
 								<button class="btn btn-secondary" id="nextBtn"
 									onclick="return findIDBtn();">다음</button>
 							</div>
+							<script>
+								function findIDBtn()
+								{
+									var IDcertificationNum = $("#IDcertificationNum").val();
+									alert(IDcertificationNum);
+									$.ajax({
+										url:"/findIdPwd",
+										data : {sendMyAuth : IDcertificationNum}, 
+										type: "get", 
+										success : function(data){
+											
+											alert("성공 " +  IDcertificationNum +" 인증번호 " + data);
+											
+											 if(IDcertificationNum==data)
+												{
+													window.alert("이메일인증성공"); 
+													location.href ="/views/member/findIdComplete.jsp";
+												}
+											else
+												{
+													window.alert("이메일인증 실패");
+												} 
+										},
+										error: function(data){
+											alert("실패");
+										}
+									});
+								}
+							
+							
+							</script>
+
+
 
 							<br>
 								</form>

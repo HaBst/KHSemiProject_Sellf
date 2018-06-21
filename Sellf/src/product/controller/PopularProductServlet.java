@@ -3,6 +3,7 @@ package product.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import common.JDBCTemplate;
 import product.model.service.PopularProductService;
 import product.model.vo.Product;
 
@@ -38,15 +40,21 @@ public class PopularProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 			ArrayList<Product> popularProductList = new PopularProductService().popularProductList();
 			
+			ServletContext context = getServletContext();
+			String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+			JDBCTemplate.setDriverPath(fullPath);	
+			
 			response.setCharacterEncoding("utf-8");
-			JSONArray resultArray = new JSONArray(); // JSONarray ê°ì²´
-			// ì—¬ëŸ¬ëª…ì˜ ì •ë³´ë¥¼ ë‹´ì„ ê°ì²´ê°€ í•„ìš”í•˜ê¸° ë•Œë¬¸ì— array ë¡œ ë§Œë“¦
-			for (Product product : popularProductList) { // for : eachë¬¸ì„ ì‚¬ìš©í•´ì„œ ì „ì²´ ì¶œë ¥í•˜ê¸°
+			JSONArray resultArray = new JSONArray(); // JSONarray °´Ã¼
+			// ¿©·¯¸íÀÇ Á¤º¸¸¦ ´ãÀ» °´Ã¼°¡ ÇÊ¿äÇÏ±â ¶§¹®¿¡ array ·Î ¸¸µê
+			for (Product product : popularProductList) { // for : each¹®À» »ç¿ëÇØ¼­ ÀüÃ¼ Ãâ·ÂÇÏ±â
 				JSONObject result = new JSONObject();
 				result.put("name", product.getProduct_name());
 				result.put("price", product.getProduct_price());
+				result.put("image", product.getProduct_image());
+				result.put("detail", product.getProduct_detail());
+				System.out.println("ÀÎ±âÄ«Å×°í¸® ÃÖ½Å»óÇ° "+ resultArray);
 				resultArray.add(result);
-				System.out.println(result);
 			}
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");

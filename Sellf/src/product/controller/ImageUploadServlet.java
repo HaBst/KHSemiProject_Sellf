@@ -11,13 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import common.FileRename;
 import product.model.service.FileService;
 import product.model.vo.DataFile;
+import product.model.vo.ImageUpload;
 
 /**
  * Servlet implementation class ImageUploadServlet
@@ -38,17 +38,19 @@ public class ImageUploadServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ImageUpload imgup = (ImageUpload)request.getAttribute("imgupload");
 		// 파일 업로드르르 거ㅜ현하려면 몇가지 정보들이 필요함
 				//1. 사용자 계정명(업로드한 사람 정보가 있어야함, session객체에서 꺼냄)
-				HttpSession session = request.getSession();
+//				HttpSession session = request.getSession();
 				
-				String userId = (((Member)session.getAttribute("user")).getUserId());
-				
+//				String userId = (((Member)session.getAttribute("user")).getUserId());
+				String userId = imgup.getUserId();
+				System.out.println(userId);
 				//2. 최대 업로드 파일 사이즈 (설정)
 				int fileSizeLimit = 1024*1024*5;//Byte 단위(5MB)
 				
 				//3. 업로드 될 경로
-				String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile"; // getRealPath("/")-> WebContent
+				String uploadFilePath = getServletContext().getRealPath("/")+userId; // getRealPath("/")-> WebContent
 				
 				//4. 인코딩 타입(파일 인코딩 타입)
 				String enctype = "UTF-8";
@@ -58,7 +60,7 @@ public class ImageUploadServlet extends HttpServlet {
 				//MultipartRequest 객체가 생성되면 requst의 기능 이 사라짐(MultipartRequest로 합쳐짐)
 				//인자값 순서  : request, 파일경로, 파일최대 사이즈, 인코딩 타입, Policy
 				
-				MultipartRequest multi = new MultipartRequest(request,uploadFilePath,fileSizeLimit,enctype,new MyFileRenamePolicy());
+				MultipartRequest multi = new MultipartRequest(request,uploadFilePath,fileSizeLimit,enctype,new FileRename());
 				
 				// 파일 이름이 2가지가 저장되어야 함
 				// beforFileName 과 afterFileName 생성
@@ -79,8 +81,8 @@ public class ImageUploadServlet extends HttpServlet {
 //				System.out.println(fullFilePath);
 				
 				//3. 파일의 길이-크기 (length)
-				File file = new File(fullFilePath); // 해당 파일을 오픈
-				long fileSize = file.length();
+//				File file = new File(fullFilePath); // 해당 파일을 오픈
+//				long fileSize = file.length();
 //				System.out.println(fileSize);
 				// 파일 사이즈가 long인 이유?
 				// 파일 사이즈는 Byte 단위
@@ -96,10 +98,10 @@ public class ImageUploadServlet extends HttpServlet {
 				// Timestamp 패키지는 java.sql.Timestamp 로  가져와야 함
 				
 				//객체에 값 저장
-				DataFile df = new DataFile(beforeFileName,afterFileName, fullFilePath, fileSize, userId, uploadTime);
+				DataFile df = new DataFile(beforeFileName,afterFileName, fullFilePath, userId, uploadTime);
 				
 				//비즈니스 로직 처리
-				int result = new FileService().upload2File(df2);
+				int result = new FileService().uploadFile(df);
 				
 				if(result > 0) {
 					response.sendRedirect("/views/file/fileUploadSuccess.jsp");

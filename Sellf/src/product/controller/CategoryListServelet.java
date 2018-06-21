@@ -36,7 +36,7 @@ public class CategoryListServelet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
-		JDBCTemplate.setDriverPath(fullPath);		
+		JDBCTemplate.setDriverPath(fullPath);
 		ArrayList<Category> cateList = new CategoryService().getCateList();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

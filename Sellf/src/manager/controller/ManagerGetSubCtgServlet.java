@@ -1,7 +1,7 @@
 package manager.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import manager.model.dao.ManagerDao;
 import manager.model.service.ManagerService;
-import com.google.gson.Gson;
+
 /**
- * Servlet implementation class ManagerSellListCtgServlet
+ * Servlet implementation class ManagerGetSubCtgServlet
  */
-@WebServlet(name = "ManagerSellListCtg", urlPatterns = { "/managerSellListCtg" })
-public class ManagerSellListCtgServlet extends HttpServlet {
+@WebServlet(name = "ManagerGetSubCtg", urlPatterns = { "/managerGetSubCtg" })
+public class ManagerGetSubCtgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerSellListCtgServlet() {
+    public ManagerGetSubCtgServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +31,15 @@ public class ManagerSellListCtgServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//메인카테고리 선택에 따라 하위분류를 db에서 읽어오는 서블릿.
 		request.setCharacterEncoding("UTF-8");
-		
-		//상품검색에서 대분류에 따라 소분류를 가져오는 서블릿.
 		String mainCtg = request.getParameter("mainCtg");
-		//System.out.println(mainCtg);
-		ArrayList<String> subCtg = new ManagerService().getSubCtg(mainCtg);
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(subCtg,response.getWriter());
+		
+		HashMap<String, String> subCtg = new ManagerService().getSubCtg(mainCtg);
+		for(String subId:subCtg.keySet())
+		{
+			System.out.println("key:"+subId+",vlaue:"+subCtg.get(subId));
+		}
 	}
 
 	/**

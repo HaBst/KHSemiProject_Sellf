@@ -52,9 +52,9 @@ public class ManagerService {
 		return result;
 	}
 
-	public ArrayList<String> getSubCtg(String mainCtg) {
+	public HashMap<String, String> getSubCtg(String mainCtg) {
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<String>subCtg = new ManagerDao().getSubCtg(conn,mainCtg);
+		HashMap<String, String>subCtg = new ManagerDao().getSubCtg(conn,mainCtg);
 		JDBCTemplate.close(conn);
 		return subCtg;
 	}

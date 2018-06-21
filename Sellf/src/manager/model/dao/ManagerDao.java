@@ -231,18 +231,18 @@ public class ManagerDao {
 		return result;
 	}
 
-	public ArrayList<String> getSubCtg(Connection conn, String mainCtg) {
+	public HashMap<String, String> getSubCtg(Connection conn, String mainCtg) {
 		//대분류에 따른 소분류를 DB에서 가져옴.
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<String> subCtg = new ArrayList<String> ();
-		String query ="select product_category_sub_name from product_category_sub_tb where product_cate_sub_main_id_fk=?";
+		HashMap<String, String>subCtg = new HashMap<String,String>();
+		String query ="select product_category_sub_id, product_category_sub_name from product_category_sub_tb where product_cate_sub_main_id_fk=?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, mainCtg);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				subCtg.add(rset.getString("product_category_sub_name"));
+				subCtg.put(rset.getString("product_category_sub_id"), rset.getString("product_category_sub_name"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

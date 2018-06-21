@@ -2,14 +2,13 @@ package member.model.service;
 
 
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import member.model.dao.MemberDao;
-import member.model.vo.Grade;
 import member.model.vo.Member;
 import member.model.vo.purchaseHis;
 import member.model.vo.wishList;
+import product.model.vo.PageData;
 import product.model.vo.Product;
 
 public class MemberService {
@@ -22,7 +21,6 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-
     public int updateMember(Member m) {
         Connection conn = JDBCTemplate.getConnection();
         int result = new MemberDao().updateMember(conn,m);
@@ -71,41 +69,20 @@ public class MemberService {
 		return result;
 	}
 
-	public ArrayList<wishList> jjimList(String id) {
-		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<wishList> list = new MemberDao().jjimList(conn,id);
-		JDBCTemplate.close(conn);
-		return list;
-	}
-
-	public ArrayList<Product> jjimList2(ArrayList<wishList> list) {
-		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Product> list2 = new MemberDao().jjimList2(conn,list);
-		JDBCTemplate.close(conn);
-		return list2;
-	}
 
 	public wishList jjimDelete(String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		wishList w = new MemberDao().jjimDelete(conn,id);
-		JDBCTemplate.close(conn);
-		return w;
-	}
 
-	public int jjimDelete2(wishList w) {
-		 Connection conn =  JDBCTemplate.getConnection();
-		 int result = new MemberDao().jjimDelete2(w,conn);
-		 if(result>0)
-		 {
-			 JDBCTemplate.commit(conn);
-		 }
-		 else 
-		 {
-			 JDBCTemplate.rollback(conn);
-		 }
-		 JDBCTemplate.close(conn);
+	public int memberJoin(Member m, String fullPath) {
+		Connection conn = null;
+		conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().memberJoin(conn, m,fullPath);
+
+		JDBCTemplate.close(conn);
 		return result;
 	}
+
 
 	public Grade gradeInfo(String id) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -114,26 +91,44 @@ public class MemberService {
 		return g;
 	}
 
-	public ArrayList<purchaseHis> buy(String id) {
-		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<purchaseHis> list = new MemberDao().buy(conn,id);
-		JDBCTemplate.close(conn);
-		return list;
-	}
-
-	public ArrayList<Product> buy2(ArrayList<purchaseHis> list) {
-		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Product> list2 = new MemberDao().buy2(conn,list);
-		JDBCTemplate.close(conn);
-		return list2;
-	}
 
 	public ArrayList<Product> self(String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Product> list = new MemberDao().self(conn,id);
+
+	public int memberNaverJoin(Member m, String fullPath) {
+		Connection conn = null;
+		conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().memberNaverJoin(conn, m,fullPath);
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+	public ArrayList<Product> jjimlist(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Product> list = new MemberDao().jjimlist(conn,id);
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
+	public ArrayList<Product> Buy(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Product> list = new MemberDao().Buy(conn,id);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+
+
+
+	public Member memberLogin(String id, String pw, String fullPath) {
+		Connection conn = null;
+		conn = JDBCTemplate.getConnection();
+		Member m2 = new MemberDao().memberLogin(conn, id, pw,fullPath);
+		JDBCTemplate.close(conn);
+		return m2;
+	}
+
 }
-
-

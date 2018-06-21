@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import="product.model.vo.*"
+	%>
+<% 
+	Product p  = null;
+	SellerRate sellerRate = null;
+	if(request.getAttribute("productInfo") != null){
+		p = (Product)request.getAttribute("productInfo"); 
+	}
+	if(request.getAttribute("sellerScore") != null){
+		sellerRate = ((SellerRate)request.getAttribute("sellerScore"));
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<script src="../../JS/externalJs/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="../../JS/externalJs/cloud-zoom.1.0.2.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- 내부 링크건 CSS -->
@@ -28,7 +40,6 @@
 <script src="../../JS/product/productSel.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
-
 
 <!-- Header 링크파일 -->
 
@@ -59,15 +70,33 @@
 			</header>
 			<section id="content">
 			<div id="topLeftLink">
-				<a href="#">홈>LIVINGROOM</a>
+				<a href='/views/main/productList.jsp?orderType=updateOrder&category=<%=p.getProduct_entire_category_sub_id_fk()%>'> <%= p.getProduct_entire_category_main_id_fk()%></a>
+				<a href="/index.jsp">홈></a>
 			</div>
 			<div id="productTitle">
-				<h3>의자 판매합니다!</h3>
+				<h3><%=p.getProduct_name() %></h3><!-- 제목 -->
 			</div>
 			<div id="productContent">
-				<div id="productImage">
-					<img
-						src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" />
+				<div id="productImage">									
+					<div class="zoom-section">    	  
+						<div class="zoom-small-image">
+							<a href='../../img/테스트3.JPG' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">
+							<img src="../../img/테스트3.JPG" alt='' title="상품 확대" /></a>
+						</div>	
+						<div class="zoom-desc">
+							<a href='../../img/테스트3.JPG' class='cloud-zoom-gallery' title='Red' rel="useZoom: 'zoom1', smallImage: '../../img/테스트3.JPG' ">
+								<img class="zoom-tiny-image" src="../../img/테스트3.JPG" style="width:20%;"/>
+							</a>
+							<a href='../../img/테스트4.JPG' class='cloud-zoom-gallery' title='Blue' rel="useZoom: 'zoom1', smallImage: '../../img/테스트4.JPG'">
+								<img class="zoom-tiny-image" src="../../img/테스트4.JPG" style="width:20%;"/>
+							</a>
+							<a href='../../img/테스트5.JPG' class='cloud-zoom-gallery' title='Blue' rel="useZoom: 'zoom1', smallImage: '../../img/테스트5.JPG' ">
+								<img class="zoom-tiny-image" src="../../img/테스트5.JPG" style="width:20%;"/>
+							</a>
+						</div>				
+					</div>
+					
+					<!-- <img	src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" /> -->
 				</div>
 				<div id="productInfo">
 					<div class="hl"></div>
@@ -77,19 +106,21 @@
 						</div>
 						<div class="infoContent">
 							<div id="priceBox">
-								<div id="beforePrice">
+								<!--  <div id="beforePrice">
 									<s><h4 style="display: inline;">₩78,000</h4></s>
 									<div class="infoBox">할인내역</div>
-								</div>
+								</div>-->
 								<div>
-									<h3>₩62,000</h3>
+									<h3><%=p.getProduct_price() %></h3>
 								</div>
 							</div>
+							<!-- 할인율 적용됐을때만  
 							<div id="discountBox">
 								<div id="discountLabel">
 									<font color="white" size="4">23%</font>
 								</div>
 							</div>
+							-->
 
 						</div>
 					</div>
@@ -99,7 +130,7 @@
 							<span>판매자 ID</span>
 						</div>
 						<div class="infoContent">
-							<div id="sellerId">김준석</div>
+							<div id="sellerId"><%=p.getProduct_entire_user_entire_id_fk() %></div>
 						</div>
 					</div>
 					<div class="hlLight"></div>
@@ -110,12 +141,12 @@
 						<div class="infoContent">
 							<div id="sellerStarShow">
 								<ul>
-									<li class="star">★</li>
-									<li class="star">★</li>
-									<li class="star">★</li>
-									<li class="star">★</li>
-									<li class="star">★</li>
-									<li>(5/5)</li>
+									<li class="star"><%if(sellerRate.getAvr()>1){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>2){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>3){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>4){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>=5){ %>★  <%}else{%>☆<%} %></li>
+									<li>(<%=sellerRate.getAvr() %>/5)</li>
 								</ul>
 							</div>
 						</div>
@@ -127,7 +158,7 @@
 						</div>
 						<div class="infoContent">
 							<div id="totalPriceInfo">
-								<h3>￦62,000</h3>
+								<h3><%=p.getProduct_price() %></h3>
 							</div>
 						</div>
 					</div>
@@ -212,7 +243,7 @@
 							<div id="brokenState" class="productIconGroup">
 								<img class="stateIcon"
 									src="../../img/icoNoBreakage_3x_iev7l3.jpg" />
-								<div class="productStateTitle">없음</div>
+								<div class="productStateTitle">생활기스</div>
 								<div id="brokenStateDetail">
 									<div id="useStateTitle">
 										<h4>찍힘/깨짐</h4>
@@ -280,33 +311,7 @@
 						<hr style="clear: both;">
 						<div id="productInfoTextDetail">
 							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">상품상태</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain">사용</div>
-
-							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">제품정보
-								제목1</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain">제품정보
-								내용1</div>
-
-							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">제품정보
-								제목2</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain">제품정보
-								내용2</div>
-
-							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">제품정보
-								제목3</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain">제품정보
-								내용3</div>
-
-							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">제품정보
-								제목4</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain">제품정보
-								내용4</div>
-
-							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">제품정보
-								제목N</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain">제품정보
-								내용N</div>
-
+							<div id="productUseStateInfo1" class="productInfoTextExplain"><%=p.getProduct_detail() %></div>
 						</div>
 					</li>
 					<li class="tabContents" id="tab2">
@@ -317,17 +322,21 @@
 							<div id="productReviewAvr">
 								<div id="starReview">
 									<div class="star">
-										<h3><span id="starScore" style="font-size:20;">5.0</span></h3>
-										
-									    <span class="star-rating">
-									      <input type="radio" name="rating" value="1"><i></i>
+										<h3><span id="starScore" style="font-size:20;"><%=sellerRate.getAvr() %></span></h3>										
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>1){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>2){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>3){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>4){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=5){ %>★  <%}else{%>☆<%} %></h1>
+									  <!--   <span class="star-rating">
+									      <img type="radio" name="rating" value="1"><i></i>
 									      <input type="radio" name="rating" value="2"><i></i>
 									      <input type="radio" name="rating" value="3"><i></i>
 									      <input type="radio" name="rating" value="4"><i></i>
 									      <input type="radio" name="rating" value="5"><i></i>
-									    </span>
+									    </span> -->
 									    <br><br>
-										(<span id="starScore" style="font-size:20;">133</span> 명이 리뷰함)
+										(<span id="starScore" style="font-size:20;"><%=sellerRate.getTotalCount() %></span> 명이 리뷰함)
 									</div>
 									
 								</div>
@@ -354,90 +363,7 @@
 										</div>
 									</div>	
 								</div>
-								<div class="reviewerCommnet">
-									<div class="imageCircle">
-										<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>
-									</div>
-									<div class="reviewerStarGroup">
-										<div class="reivewerId">
-											JunSeokDaHatJyo
-										</div>
-										<div class="reviewerStar">								
-											<h3>★★★★☆</h3>
-										</div>
-									</div>
-									<div class="reviewContent">
-										<div class="reviewTitle">
-										애플 아이패드 프로 10.5인치 256GB WiFi
-										</div>
-										<div class="reviewComment">
-										만족해요.
-										</div>
-									</div>	
-								</div>
-								<div class="reviewerCommnet">
-									<div class="imageCircle">
-										<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>
-									</div>
-									<div class="reviewerStarGroup">
-										<div class="reivewerId">
-											JunSeokDaHatJyo
-										</div>
-										<div class="reviewerStar">								
-											<h3>★★★★☆</h3>
-										</div>
-									</div>
-									<div class="reviewContent">
-										<div class="reviewTitle">
-										애플 아이패드 프로 10.5인치 256GB WiFi
-										</div>
-										<div class="reviewComment">
-										만족해요.
-										</div>
-									</div>	
-								</div>
-								<div class="reviewerCommnet">
-									<div class="imageCircle">
-										<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>
-									</div>
-									<div class="reviewerStarGroup">
-										<div class="reivewerId">
-											JunSeokDaHatJyo
-										</div>
-										<div class="reviewerStar">								
-											<h3>★★★★☆</h3>
-										</div>
-									</div>
-									<div class="reviewContent">
-										<div class="reviewTitle">
-										애플 아이패드 프로 10.5인치 256GB WiFi
-										</div>
-										<div class="reviewComment">
-										만족해요.
-										</div>
-									</div>	
-								</div>
-								<div class="reviewerCommnet">
-									<div class="imageCircle">
-										<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>
-									</div>
-									<div class="reviewerStarGroup">
-										<div class="reivewerId">
-											JunSeokDaHatJyo
-										</div>
-										<div class="reviewerStar">								
-											<h3>★★★★☆</h3>
-										</div>
-									</div>
-									<div class="reviewContent">
-										<div class="reviewTitle">
-										애플 아이패드 프로 10.5인치 256GB WiFi
-										</div>
-										<div class="reviewComment">
-										만족해요.
-										</div>
-									</div>	
-								</div>
+								
 								
 							</div>
 							<hr style="clear: both; display:block;">

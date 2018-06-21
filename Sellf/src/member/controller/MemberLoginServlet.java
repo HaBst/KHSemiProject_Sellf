@@ -1,11 +1,17 @@
 package member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -27,7 +33,33 @@ public class MemberLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String id = request.getParameter("userId");
+		String pw = request.getParameter("userPwd");
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("login")!=null)
+		{
+			session.invalidate();
+		}
+		
+		ServletContext context = getServletContext();
+		String fullPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
+	      System.out.println(fullPath);
+		Member m= null;
+		m = new MemberService().memberLogin(id,pw, fullPath);
+		if(m!=null)
+		{
+			session = request.getSession();
+			System.out.println(session.getAttribute("login"));
+			session.setAttribute("login", m);
+			System.out.println(session.getAttribute("login"));
+			response.sendRedirect("/index.jsp");
+		}
+		else
+		{
+			response.sendRedirect("/views/member/memberLoginError.jsp");
+		}
 	}
 
 	/**

@@ -9,12 +9,12 @@ public class EmailConfirm {
 	public String connectEmail(String email){
 		String to1=email; // 인증위해 사용자가 입력한 이메일주소
 		String host="smtp.gmail.com"; // smtp 서버
-		String subject="인증번호 전달 메일입니다."; // 보내는 제목 설정
+		String subject="중고거래 말고 셀프하자! 셀프 인증번호 전달 메일입니다."; // 보내는 제목 설정
 		String fromName="관리자"; // 보내는 이름 설정
 		String from="sellfnegookay@gmail.com"; // 보내는 사람(구글계정)
 
 		String authNum=EmailConfirm.authNum(); // 인증번호 위한 난수 발생부분
-		String content="귀하의 인증번호는 ["+authNum+"]입니다."; // 이메일 내용 설정
+		String content="귀하의 인증번호는 ["+authNum+"]입니다. \n 오늘도 셀프를 찾아주셔서 감사합니다:) "; // 이메일 내용 설정
 		
         // SMTP 이용하기 위해 설정해주는 설정값들
 		try{

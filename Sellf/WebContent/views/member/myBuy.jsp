@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    <%@ page import="member.model.vo.*" import="java.util.ArrayList" %>
-     <%@ page import="product.model.vo.*" %>
-<% Product p = (Product)request.getAttribute("Product"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.*" 
+		 import="java.util.ArrayList"
+		 import="product.model.vo.*"%>
+<% Member m = (Member)session.getAttribute("user"); %> 
+<% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÆÇ¸Å³»¿ª</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>êµ¬ë§¤ë‚´ì—­</title>
 <style>
 body {
 	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
@@ -362,64 +364,69 @@ th.specalt {
 </head>
 <body align ="center">
 
-<div class="header">Çì´õ</div>
+<div class="header">í—¤ë”</div>
 <center>
         <div class="contents">
             <div class="mpMenuItems">
                       <div class="mpMenuTitle"><h1>My Page</h1></div>
 
-                <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active"><a href="/views/member/mySelf.jsp">ÆÇ¸Å³»¿ª</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myBuy.jsp">±¸¸Å³»¿ª</a></li>
-					<li role="presentation" class="active"><a href="/views/member/jjim.jsp">ÂòÇÑ »óÇ°</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">³» ÄíÆù</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">³» Á¤º¸</a></li>
-									<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">µî±Þº¸±â</a></li>
+                 <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active" id="selfb"><a href="/self">íŒë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="buyb"><a href="/buy">êµ¬ë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ì°œí•œ ìƒí’ˆ</a></li>
+					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">ë‚´ ì¿ í°</a></li>
+					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">ë‚´ ì •ë³´</a></li>
+					<li role="presentation" class="active"><a href="/Grade">ë“±ê¸‰ë³´ê¸°</a></li>
 				</ul>
             </div>
 
             <div class="MenuContents">
-                 <div class="MenuConTitle"><H2>±¸¸Å ³»¿ª</H2>
+                 <div class="MenuConTitle"><H2>êµ¬ë§¤ ë‚´ì—­</H2>
                 </div> <hr>
                 <div class="MenuCon">  <div class="table-users">
 
-<% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("userList"); %>
+
 <center>
-<%if(list!=null){ %>
+<%if(list2!=null){ %>
 <table>
       <tr>
-         <th width="200">»óÇ°ÀÌ¹ÌÁö</th>
-         <th width="150">»óÇ°¸í</th>
-         <th width="100">°¡°Ý</th>
-         <th width="100">°áÁ¦¿Ï·áÀÏÀÚ</th>
+         <th width="200">ìƒí’ˆì´ë¯¸ì§€</th>
+         <th width="150">ìƒí’ˆëª…</th>
+         <th width="100">ê°€ê²©</th>
+         <th width="100">ê²°ì œì™„ë£Œì¼ìž</th>
       </tr>
-   		<% for(Member m : list){%>
+   		<% for(Product p : list2){%>
       <tr>
          <td><img src="http://lorempixel.com/100/100/people/1" alt="" /></td>
-         <td>»çÁø</td>
-         <td>100000¿ø</td>
-         <td>ÆÇ¸ÅÁß</td>
-         <td>		<div><center><a href="#" class="delete">»èÁ¦</a></center><div> </td>
+         <td><%=p.getProduct_image() %></td>
+         <td><%=p.getProduct_name() %></td>
+         <td><%=p.getProduct_price() %></td>
+         <td><%=p.getProduct_state() %></td>
       </tr>
-     
     	 <%} %>
     	     </table>
-    	          </center>
-    	     
+    	          </center>   
 <%}else{ %>
-   <div>¾ÆÁ÷ ±¸¸Å³»¿ªÀÌ ¾ø½À´Ï´Ù. Sell:F ¿¡¼­ ½º¸¶Æ®ÇÏ°Ô ¼îÇÎÇØº¸¼¼¿ä..</div>
+   <div>ì•„ì§ êµ¬ë§¤ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤. Sell:F ì—ì„œ ìŠ¤ë§ˆíŠ¸í•˜ê²Œ ì‡¼í•‘í•´ë³´ì„¸ìš”..</div>
 <%} %>
 </div></div>
             </div>
-  <div class="menu-button"><i class="Qbtn"></i>
-	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
-	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
-	<a href="/views/member/myCart3.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
-</div>
+  <div class="menu-button">
+				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
+					style="background-image: url(/../../img/messageQbtn.png)"> <i
+					class="messageQbtn"></i>
+				</a> <a href="/index.jsp"
+					style="background-image: url(/../../img/homeQbtn.png)"> <i
+					class="homeQbtn"> </i>
+				</a> <a href="/views/member/myCart3.jsp"
+					style="background-image: url(/../../img/sayQbtn.png)"> <i
+					class="sayQbtn"> </i>
+				</a>
+			</div>
         </div>
     
         </center>
-<div class="footer">ÇªÅÍ</div>
+<div class="footer">í‘¸í„°</div>
 </body>
 
 </html>

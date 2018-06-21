@@ -12,16 +12,16 @@ import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class PasswordServlet
+ * Servlet implementation class deleteServlet
  */
-@WebServlet(name = "Password", urlPatterns = { "/Password" })
-public class PasswordServlet extends HttpServlet {
+@WebServlet(name = "delete", urlPatterns = { "/delete" })
+public class deleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PasswordServlet() {
+    public deleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +31,23 @@ public class PasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String userPwd = request.getParameter("userPwd");
-		Member m = new MemberService().myInfo(userPwd);
-		if(m!=null) //로그인 성공시
+		HttpSession session = request.getSession();
+		String userPwd = ((Member)session.getAttribute("user")).getUser_pwd();
+		String userId = ((Member)session.getAttribute("user")).getUser_id();
+		//3. 비즈니스 로직
+		int result2 = new MemberService().deleteSave(userId);//탈퇴정보저장
+		int result = new MemberService().deleteMember(userId,userPwd);//탈퇴
+		
+		if(result>0)
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("user", m);
-			response.sendRedirect("/views/member/myInfo.jsp");
-		}
-		else //로그인 실패시
+			session.invalidate(); //세션 파기
+			response.sendRedirect("/views/error/member/goodBye.html");
+		}else
 		{
-			response.sendRedirect("/views/error/member/PasswordError.html");
+			response.sendRedirect("/views/error/member/Error.html");
 		}
+
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

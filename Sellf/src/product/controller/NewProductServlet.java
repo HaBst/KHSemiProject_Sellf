@@ -3,6 +3,7 @@ package product.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import common.JDBCTemplate;
 import product.model.service.NewProductMainService;
 import product.model.vo.Product;
 
@@ -34,7 +36,9 @@ public class NewProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		
+		ServletContext context = getServletContext();
+		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+		JDBCTemplate.setDriverPath(fullPath);
 	
 		ArrayList<Product> newProductMainList = new NewProductMainService().updateNewProductImg();
 		System.out.println(newProductMainList.get(0).getProduct_name());

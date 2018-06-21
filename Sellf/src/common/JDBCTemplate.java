@@ -39,8 +39,8 @@ public class JDBCTemplate {
 	{
 		Connection conn = null;
 		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url,id,pass);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","sellfadmin","sellfadmin");
 			conn.setAutoCommit(false);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

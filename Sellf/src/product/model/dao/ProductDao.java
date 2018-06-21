@@ -10,6 +10,7 @@ import java.util.HashMap;
 import common.JDBCTemplate;
 import product.model.vo.ImageFile;
 import product.model.vo.Product;
+import product.model.vo.SellerRate;
 
 public class ProductDao {
 
@@ -123,6 +124,40 @@ public class ProductDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return p;
+	}
+
+	public SellerRate raputationAvr(Connection conn, String sellerId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		SellerRate sellerRate = null;
+		String query ="select count(*) as total, sum(USER_REVIEW_RATING) as score"
+				+ " from user_review_tb where USER_RV_USER_ENTIRE_ID_FK =?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, sellerId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+			{
+				sellerRate = new SellerRate();
+				sellerRate.setTotalCount(rset.getInt("total"));
+				int sumScore = rset.getInt("score");
+				sellerRate.setAvr(0);
+				if(sellerRate.getTotalCount()>0 && sumScore>0) {
+					sellerRate.setAvr(sumScore*1.0/sellerRate.getTotalCount());
+				}
+			}		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return sellerRate;
 	}
 
 }

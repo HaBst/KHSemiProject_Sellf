@@ -44,7 +44,7 @@ crossorigin="anonymous"></script>
 
 <!-- 내부 js파일 -->
 <script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
-<script type="text/javascript" src="../../JS/member/main.js"></script>
+<!-- <script type="text/javascript" src="../../JS/member/main.js"></script> -->
 <script type="text/javascript" src="../../JS/common/adv.js"></script>
 <!-- <script type="text/javascript" src="../../JS/bootstrap/bootstrap.min.js"></script> -->
 <!-- 구글 폰트 -->
@@ -54,6 +54,7 @@ crossorigin="anonymous"></script>
 <title>메인페이지</title>
 </head>
 <body>
+
 	<center>
 		<!-- Wrapper -->
 		<div id="wrapper" style="overflow: hidden;">
@@ -97,7 +98,8 @@ crossorigin="anonymous"></script>
 					</a>
 				</div>
 			</div>
-			<br> <br> <br>
+			<br> <br>
+
 			<!-- 인기카테고리 -->
 			
 			<script type="text/javascript">
@@ -115,7 +117,7 @@ crossorigin="anonymous"></script>
 							name[i]= data[i].categoryName;
 							imgPath[i]= data[i].categoryImagePath;
 						}
-						console.log(name[0]);
+						console.log("인기카테고리:"+name[0]);
 						console.log(imgPath[0]);
 						console.log(name[1]);
 						console.log(imgPath[1]);
@@ -213,7 +215,46 @@ crossorigin="anonymous"></script>
 			<div>
 			<br><br>
 			<hr>	
+		
+			<!-- 이미지 hover 섹션 -->
+			
+				<div id="imghoverSec" style="overflow:hidden;">
+				<div id="imghoverSec_title">
+					<div id="imghoverSec_title1" style="font-size:36px; font-weight:600;">내가 제일 잘나가</div>
+					<div id="imghoverSec_title2" style="font-size:20px; font-weight:600;">SELL:F 인기 상품</div>
+				</div>	
+					<div class="container">
 
+						<div class="row">
+							<div class="col-xs-4" style="width: 30%;">
+								<div class="shadow">
+									<a href="#"><img
+										src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+										width="100%" height="100%"></a>
+								</div>
+							</div>
+							<div class="col-xs-4" style="width: 30%;">
+								<div class="shadow">
+									<a href="#"><img
+										src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+										width="100%" height="100%"></a>
+								</div>
+							</div>
+							<div class="col-xs-4" style="width: 30%;">
+								<div class="shadow">
+									<a href="#"><img
+										src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
+										width="100%" height="100%"></a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+			
+				</div>
+			</div>
+			<br> <br>
+			
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$.ajax({
@@ -1287,98 +1328,523 @@ crossorigin="anonymous"></script>
 
 				<br> <br><br> <br>
 
-				<!-- 이미지 hover 섹션 -->
-				<div id="imghoverSec" style="overflow:hidden">
+				
+			<!-- 중간광고 -->
+<!-- 
+			<div id="middleAdSec">
+
+				<div id="carouselExampleFade" class="carousel slide carousel-fade"
+					data-ride="carousel">
+					<div class="carousel-inner" style="width: 100%;">
+						<div class="carousel-item active">
+							<a href="#"><img class="d-block w-100"
+								src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+								alt="First slide"></a>
+						</div>
+						<div class="carousel-item">
+							<a href="#"> <img class="d-block w-100"
+								src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+								alt="Second slide"></a>
+						</div>
+						<div class="carousel-item">
+							<a href="#"><img class="d-block w-100"
+								src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
+								alt="Third slide"></a>
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleFade"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleFade"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
+			</div> -->
+<!-- 
+			<div id="content">
+				<br> <br>
+				 베스트 아이템 구역
+
+				<div id="bestItemSec">
+					<h1>BEST ITEM</h1>
 					<div class="container">
 
+						<br>
 						<div class="row">
-							<div class="col-xs-4" style="width: 30%;">
-								<div class="shadow">
-									<a href="#"><img
-										src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
-										width="100%" height="100%"></a>
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+													onmouseover="this.src='img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg'"
+													onmouseout="this.src='img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg'"
+													alt="Card image cap">
+												</a>
+
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">product explanation</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-4" style="width: 30%;">
-								<div class="shadow">
-									<a href="#"><img
-										src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
-										width="100%" height="100%"></a>
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+													onmouseover="this.src='img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg'"
+													onmouseout="this.src='img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg'"
+													alt="Card image cap"></a>
+
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">product explanation</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-4" style="width: 30%;">
-								<div class="shadow">
-									<a href="#"><img
-										src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
-										width="100%" height="100%"></a>
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
+													onmouseover="this.src='img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg'"
+													onmouseout="this.src='img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg'"
+													alt="Card image cap"></a>
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a> </a>
+													<p class="card-text">product explanation</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+													onmouseover="this.src='img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg'"
+													onmouseout="this.src='img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg'"
+													alt="Card image cap"></a>
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">product explanation</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-
 					</div>
 				</div>
-			</div>
-			<br> <br>
+
+				<div id="bestItemSec2">
+
+					<div class="container">
+
+
+						<div class="row">
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+													onmouseover="this.src='img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg'"
+													onmouseout="this.src='img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg'"
+													alt="Card image cap">
+												</a>
+
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">product explanation</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+													onmouseover="this.src='img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg'"
+													onmouseout="this.src='img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg'"
+													alt="Card image cap"></a>
+
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">product explanation</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
+													onmouseover="this.src='img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg'"
+													onmouseout="this.src='img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg'"
+													alt="Card image cap"></a>
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a> </a>
+													<p class="card-text">product explanation</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-3" style="width: 23%;">
+								<div class="productList">
+									<div class="productWrap">
+										<div class="productBg">
+											<div class="imgWrapper">
+												<a href="#"> <img class="card-img-top"
+													id="productImgMain"
+													src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+													onmouseover="this.src='img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg'"
+													onmouseout="this.src='img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg'"
+													alt="Card image cap"></a>
+												<div class="productSideMenu">
+													<div class="display_quickview">
+														<a href="#"><img src="img/thumb_quickview.png"
+															alt="미리보기"></a>
+													</div>
+													<div class="display_option">
+														<a href="#"><img src="img/thumb_option.png" alt="옵션보기"></a>
+														<div class="hide display_opt_bak" act=""></div>
+													</div>
+													<div class="display_send">
+														<a href="#"> <img src="img/thumb_send.png"
+															alt="SNS보내기"></a>
+													</div>
+													<div class="display_zzim">
+														<a href="#"> <img src="img/thumb_zzim_off.png"
+															alt="찜하기"><img src="img/thumb_quickview.png"
+															style="display: none" alt="찜하기">
+													</div>
+												</div>
+												<div class="card-body">
+													<a href="#">
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">product explanation</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		<!-- 	<div id="content">
+				<div id="popularInterestSec">
+					<div id="popularInterestSec_title">
+						<h1>인기관심사</h1>
+					</div>
+					<br>
+					<div class="container">
+						<div class="row" style="overflow: hidden;">
+							<div class="col-sm">
+								<img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									style="width: 100%; height: 100%;">디비에서이미지
+							</div>
+							<div class="col-sm">
+								<img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									style="width: 100%; height: 100%;">디비에서이미지
+							</div>
+							<div class="col-sm">
+								<img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									style="width: 100%; height: 100%;">디비에서이미지
+							</div>
+							<div class="col-sm">
+								<img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									style="width: 100%; height: 100%;">디비에서이미지
+							</div>
+							<div class="col-sm">
+								<img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									style="width: 100%; height: 100%;">디비에서이미지
+							</div>
+							<div class="col-sm">
+								<img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									style="width: 100%; height: 100%;">디비에서이미지
+							</div>
+						</div>
+					</div>
+					<br>
+				</div>
+				<br>
+				<br>
+			</div> -->
 		</div>	
 		<br><br>
 		<hr>	
 		<br>
 	<!-- 고객 리뷰 가져오기 -->
 			<div id="content">			
-			<script type="text/javascript">
+		 	<script type="text/javascript">
 			$(document).ready(function(){
 				$.ajax({
-					url : "/mainUserReview",
-					type : "get",
+					url : "/mainUserReview1",
+					type : "post",
 					success : function(data) {
 						var writeDate = [];
 						var comment = [];
-							for (var i = 0; i < data.length; i++) {
-								comment[i]= data[i].comment;
-								writeDate[i] =data[i].date;	
+						console.log(data);
+						for (var i = 0; i < data.length; i++) {
+								comment[i]= data[i].userReviewComment;
+								writeDate[i] =data[i].userReviewDate;
 								console.log("코멘트  "+[i] +":" + comment[i]);
-							}	
-							console.log("코멘트 ??? " + comment[0]);
-							$("#review1_content").text(comment[0]);
-							$("#review2_content").text(comment[1]);
-							$("#review3_content").text(comment[2]);
-		
-							$("#review1_title").text(name[0]);
-							$("#review2_title").text(name[1]);
-							$("#review3_title").text(name[2]);
+							}	 
+				
+		/* 				var start = comment[1].indexOf("좋")-1;
+						var end =comment[1].indexOf(start+6);
+						console.log("end"+end);
+					
+						var list = comment[1].substring(start, end);  
+						console.log(list); */
+							$("#review1_content>div").text(comment[0]);
+							$("#review2_content>div").text(comment[1]);
+							$("#review3_content>div").text(comment[2]);
+						
+							$("#review1_title>div").text(writeDate[0]+ " 작성한 리뷰~!!");
+							$("#review2_title>div").text(writeDate[1]+ " 작성한 리뷰~!!");
+							$("#review3_title>div").text(writeDate[2]+ " 작성한 리뷰~!!");
 					},
 					error : function() { 
 						console.log("리뷰가져오기 실행 실패");	
 					}
 				}); 	
 			});	
-			</script>
+			</script> 
 		
 				<div id="reviewSec">
-					<div id="review_title"><h1>1000만이 넘는 사용자들이 생길 예정입니다.</h1></div>
+					<div id="review_title">1000만이 넘는 사용자들이 생길 예정입니다.</div>
 					<div id ="reviewContent">
 						<div class="review1">
-							<div id="review1_title"></div>
-							<div id="review1_content"></div>
-						</div>
+							<div id="review1_title"><div></div></div>
+							<div id="review1_content"><div></div></div>
+						</div>	
 						<div class="review2">
-							<div id="review2_title"></div>
-							<div id="review2_content"></div>
+							<div id="review2_title"><div></div></div>
+							<div id="review2_content"><div></div></div>
 						</div>
 						<div class="review3">
-							<div id="review3_title"></div>
-							<div id="review3_content"></div>
+							<div id="review3_title"><div></div></div>
+							<div id="review3_content"><div></div></div>
 						</div>
 						
 					</div>
-				</div>
-			</div>
+				</div>   
+			</div> 
+		
 			<br><br>
 		<!-- footer -->
-			<footer id="footer"> <%@include file="/views/common/footer.jsp"%></footer>	
+			
 	
-	</div>		 	
+	</div>
+	<footer id="footer"> <%@include file="/views/common/footer.jsp"%></footer>			 	
 	</center>
 
 </body>

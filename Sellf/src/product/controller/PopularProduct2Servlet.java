@@ -20,14 +20,14 @@ import product.model.vo.Product;
 /**
  * Servlet implementation class PopularProductServlet
  */
-@WebServlet(name = "PopularProduct", urlPatterns = { "/popularProduct" })
-public class PopularProductServlet extends HttpServlet {
+@WebServlet(name = "PopularProduct2", urlPatterns = { "/popularProduct2" })
+public class PopularProduct2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PopularProductServlet() {
+	public PopularProduct2Servlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -38,11 +38,11 @@ public class PopularProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			ArrayList<Product> popularProductList = new PopularProductService().popularProductList();
-			
-			ServletContext context = getServletContext();
-			String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
-			JDBCTemplate.setDriverPath(fullPath);	
+		ServletContext context = getServletContext();
+		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+		JDBCTemplate.setDriverPath(fullPath);	
+		
+		ArrayList<Product> popularProductList = new PopularProductService().popularProductList2();
 			
 			response.setCharacterEncoding("utf-8");
 			JSONArray resultArray = new JSONArray(); // JSONarray 객체
@@ -52,9 +52,8 @@ public class PopularProductServlet extends HttpServlet {
 				result.put("name", product.getProduct_name());
 				result.put("price", product.getProduct_price());
 				result.put("image", product.getProduct_image());
-				result.put("detail", product.getProduct_detail());
-				System.out.println("인기카테고리 최신상품 "+ resultArray);
 				resultArray.add(result);
+				System.out.println(result);
 			}
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");

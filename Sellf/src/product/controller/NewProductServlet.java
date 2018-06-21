@@ -35,20 +35,20 @@ public class NewProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
-		// 비즈니스 로직 처리 
+	
 		ArrayList<Product> newProductMainList = new NewProductMainService().updateNewProductImg();
 		System.out.println(newProductMainList.get(0).getProduct_name());
 		
-		// 1.인코딩
+	
 		response.setCharacterEncoding("utf-8");
-		JSONArray resultArray = new JSONArray(); // JSONarray 객체
-		// 여러명의 정보를 담을 객체가 필요하기 때문에 array 로 만듦
-		for (Product product : newProductMainList) { // for : each문을 사용해서 전체 출력하기
+		JSONArray resultArray = new JSONArray(); // JSONarray 媛앹껜
+		
+		for (Product product : newProductMainList) { 
 			JSONObject result = new JSONObject();
 			result.put("name", product.getProduct_name());
 			result.put("price", product.getProduct_price());
+			result.put("image", product.getProduct_image());
 			resultArray.add(result);
-			System.out.println(result);
 		}
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");

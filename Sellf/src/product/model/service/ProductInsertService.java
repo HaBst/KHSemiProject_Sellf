@@ -101,6 +101,13 @@ public class ProductInsertService {
 		
 	}
 
+	public ProductInsert fileDelete(String userId, String productName) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		new ProductInsertDao().fileDelete(conn,userId,productName);
+		return null;
+	}
+
 	
 
 }

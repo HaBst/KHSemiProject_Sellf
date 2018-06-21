@@ -233,6 +233,13 @@ public class ProductInsertDao {
 		
 	}
 
+	public void fileDelete(Connection conn, String userId, String productName) {
+		PreparedStatement pstmt = null;
+		Resultset rset = null;
+		
+		
+	}
+
 	
 
 }

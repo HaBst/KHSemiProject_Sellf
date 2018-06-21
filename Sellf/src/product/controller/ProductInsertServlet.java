@@ -2,6 +2,7 @@ package product.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -136,6 +137,8 @@ public class ProductInsertServlet extends HttpServlet {
 		if(result > 0) {
 			response.sendRedirect("/views/error/product/productInsertSuccess.jsp");
 		}else {
+			response.sendRedirect("/fileRemove?userId="+productEntireUserIdFK+"&productName="+productName);
+			
 			response.sendRedirect("/views/error/product/productInsertError.jsp");
 		}
 	}

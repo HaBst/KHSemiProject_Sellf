@@ -417,6 +417,11 @@ input[type="date"]::-webkit-inner-spin-button {
         }
     </script>
     
+    <script>
+    var extraInfo = ['','',''];
+    
+    </script>
+    
 
 
 

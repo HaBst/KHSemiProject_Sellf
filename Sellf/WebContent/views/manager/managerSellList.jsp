@@ -57,7 +57,7 @@
 									<option value="M12">자동차</option>
 									<option value="M13">해외명품</option>
 								</select>
-							 	<button type="button">1818</button>
+							 	
 							 	<select id="productItem" >
 								<!-- 카테고리에 딸린 소분류를 db에서 읽어와서 출력. -->
 								<option disabled>-소분류 선택-</option>

@@ -8,14 +8,19 @@ function chan()
 		dataType : "json",
 		success : function(data)
 		{
-			console.log(data);
+			for(var i=0;i<data.length;i++)
+				{
+				var opt = $("<option value=")
+				$("#productItem")
+				}
+			
 		},
 		error : function()
 		{
 			console.log("18");
 		}
 	
-	})
+	});
 }
 
 

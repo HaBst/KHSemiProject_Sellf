@@ -1,28 +1,25 @@
 package manager.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import manager.model.service.ManagerService;
 
 /**
- * Servlet implementation class ManagerBannedUnlockServlet
+ * Servlet implementation class ManagerBadUnlockServlet
  */
-@WebServlet(name = "ManagerBannedUnlock", urlPatterns = { "/managerBannedUnlock" })
-public class ManagerBannedUnlockServlet extends HttpServlet {
+@WebServlet(name = "ManagerBadUnlock", urlPatterns = { "/managerBadUnlock" })
+public class ManagerBadUnlockServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerBannedUnlockServlet() {
+    public ManagerBadUnlockServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +29,7 @@ public class ManagerBannedUnlockServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId[] = request.getParameterValues("items");
-		 
+		int result = new ManagerService().bannedUnlock(userId);
 		
 	}
 

@@ -13,9 +13,6 @@ public class ManagerDao {
 		
 		ArrayList<ManagerSelMember> list = new ArrayList<ManagerSelMember>();
 		String query = "";
-		
-		
-	
 		try {
 			if(selInfo.equals("userName")) {
 				query = "select user_id, user_name, user_entire_user_grade_id_fk,"+ 
@@ -240,7 +237,6 @@ public class ManagerDao {
 		ResultSet rset = null;
 		ArrayList<String> subCtg = new ArrayList<String> ();
 		String query ="select product_category_sub_name from product_category_sub_tb where product_cate_sub_main_id_fk=?";
-		System.out.println(mainCtg);
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, mainCtg);

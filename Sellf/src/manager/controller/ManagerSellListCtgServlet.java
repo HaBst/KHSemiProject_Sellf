@@ -34,7 +34,7 @@ public class ManagerSellListCtgServlet extends HttpServlet {
 		
 		//상품검색에서 대분류에 따라 소분류를 가져오는 서블릿.
 		String mainCtg = request.getParameter("mainCtg");
-		System.out.println(mainCtg);
+		//System.out.println(mainCtg);
 		ArrayList<String> subCtg = new ManagerService().getSubCtg(mainCtg);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

@@ -1,22 +1,25 @@
 
 function unlock(){
 	var items = [];
-	$('input:checkbox[id=unlock]:checked').each(function(){
+	$("input:checkbox[id='unlock']:checked").each(function(){
 		items.push($(this).val());
 	});
-	jQuery.ajaxSettings.traditional = true;
+	 
+	$.ajaxSettings.traditional = true;
 
 	 $.ajax({
-		url:"/managerBannedUnlock",
-		data:items,
+		url:"/managerBadUnlock",
+		data:{"items":items},
 		type:"POST",
 		success:function(data)
 		{
-			console.log(items);
+			console.log(data);
 		},
 		error:function()
 		{
-			console.log("fail");
+			alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+
+	
 		}
 	 });
     }

@@ -43,8 +43,10 @@ public class ManagerService {
 		if(result>0)
 		{
 			JDBCTemplate.commit(conn);
+			System.out.println("커밋");
 		}else {
 			JDBCTemplate.rollback(conn);
+			System.out.println("tlqckd");
 		}
 		JDBCTemplate.close(conn);
 		return result;

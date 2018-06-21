@@ -1,5 +1,8 @@
+<%@page import="product.model.vo.Product"%>
+<%@page import = "java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,6 +56,7 @@ crossorigin="anonymous">
 <body>
 
 	<center>
+		<%ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("myCartList");%>
 		<div id="wrapper" style="overflow:hidden;">
 			<!-- header -->
 			<header id="header"> <%@include
@@ -146,13 +150,14 @@ crossorigin="anonymous">
 						<br>
 						<h2>결제상품</h2>
 						<hr>
+						
 						<div id="goodsInfo">
 							<img
-								src="../../img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
+								src="<%=list.get(1).getProduct_image()%>"
 								style="width: 100px; height: 100px; float: left;">
 
-							<div id="goodsName">[새상품] 삼성 22인치 모니터 S22F350</div>
-							<div id="goodsPrice">151,000원</div>
+							<div id="goodsName"><%=list.get(1).getProduct_name() %></div>
+							<div id="goodsPrice"><%=list.get(1).getProduct_price() * list.get(1).getProduct_amount() %></div>
 						</div>
 
 						<script type="text/javascript">

@@ -53,7 +53,10 @@ public class PopularProductServlet extends HttpServlet {
 				result.put("price", product.getProduct_price());
 				result.put("image", product.getProduct_image());
 				result.put("detail", product.getProduct_detail());
-				System.out.println("인기카테고리 최신상품 "+ resultArray);
+				result.put("productNo", product.getProduct_entire_pk()); // 상품고유인덱스번호
+				result.put("subCateId", product.getProduct_entire_category_sub_id_fk()); // 상품소분류인덱스
+				//System.out.println("인기카테고리 최신상품 "+ resultArray);
+				System.out.println("인기서브아이디:"+product.getProduct_entire_category_sub_id_fk());
 				resultArray.add(result);
 			}
 			response.setContentType("application/json");

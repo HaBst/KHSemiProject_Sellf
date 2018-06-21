@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import common.JDBCTemplate;
 import member.model.service.MyCartService;
 import member.model.vo.UserCartList;
+import product.model.vo.Product;
 
 /**
  * Servlet implementation class MyCartServlet
@@ -33,12 +36,16 @@ public class MyCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");	 // 한글 인코딩 ( 받아오는 값은 없으니 지워도 되겠지 ? )
+			ServletContext context = getServletContext();
+			String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+			JDBCTemplate.setDriverPath(fullPath);
+		
+			request.setCharacterEncoding("utf-8");	 // 한글 인코딩 ( 받아오는 값은 없으니 지워도 되겠지 ? )
 			//HttpSession session = request.getSession(false); // 세션에서 ID값 추출
 		
 	
-			ArrayList<UserCartList> list = new MyCartService().myCartList();
-			System.out.println("카트입니다." +list);
+			ArrayList<Product> list = new MyCartService().myCartList();
+			System.out.println("카트입니다." +list.get(0).getProduct_amount());
 			RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart.jsp");
 			request.setAttribute("myCartList", list);
 			view.forward(request, response);

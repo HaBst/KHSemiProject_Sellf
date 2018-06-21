@@ -9,31 +9,31 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import member.model.vo.UserCartList;
+import product.model.vo.Product;
 
 public class MyCartDao {
 
-	public ArrayList<UserCartList> myCartList(Connection conn) {
+	public ArrayList<Product> myCartList(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset =  null;
-		ArrayList<UserCartList> list = new ArrayList<UserCartList>();
-		UserCartList userCart = null;
-		String query = "SELECT * FROM USER_CART_LIST";
-		// String query = "SELECT * FROM USER_CART_LIST WHERE USER_ENTIRE_PK  = ?";
+		ArrayList<Product> list = new ArrayList<Product>();
+		Product cartListProduct = null;
+		String query = "SELECT *FROM PRODUCT_ENTIRE_TB JOIN USER_WISHLIST_TB ON (USER_WL_PRODUCT_ENTIRE_FK = PRODUCT_ENTIRE_PK) WHERE USER_WISHLIST_TB.USER_WL_USER_ENTIRE_ID_FK = 'mslove11'";
+ 		//String query = "SELECT USER_WISHLIST_TB.USER_WL_USER_ENTIRE_ID_FK, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_AMOUNT, PRODUCT_STATE, PRODUCT_ENTIRE_USER_ID_FK FROM PRODUCT_ENTIRE_TB  JOIN USER_WISHLIST_TB ON (USER_WL_PRODUCT_ENTIRE_FK = PRODUCT_ENTIRE_PK) WHERE USER_WISHLIST_TB.USER_WL_USER_ENTIRE_ID_FK = SELECT USER_WISHLIST_TB.USER_WL_USER_ENTIRE_ID_FK, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_AMOUNT, PRODUCT_STATE, PRODUCT_ENTIRE_USER_ID_FK FROM PRODUCT_ENTIRE_TB  JOIN USER_WISHLIST_TB ON (USER_WL_PRODUCT_ENTIRE_FK = PRODUCT_ENTIRE_PK) WHERE USER_WISHLIST_TB.USER_WL_USER_ENTIRE_ID_FK = 'mslove11'";
 		
 		try {
 			stmt = conn.createStatement();
 			rset= stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				userCart = new UserCartList();
-				userCart.setImage(rset.getString("PRUDUCT_IMAGE"));
-				userCart.setPrice(rset.getString("PRODUCT_PRICE"));
-				userCart.setUserEntirePk(rset.getString("USER_ENTIRE_PK"));
-				userCart.setProductAmount(rset.getInt("PRODUCT_AMOUNT"));
-				userCart.setProductDetail(rset.getString("PRODUCT_DETAIL"));
-				userCart.setProductEntireFk(rset.getInt("PRODUCT_ENTIRE_FK"));
-				userCart.setProductName(rset.getString("PRODUCT_NAME"));
-				list.add(userCart);
+				cartListProduct = new Product();
+				cartListProduct.setProduct_image(rset.getString("PRUDUCT_IMAGE"));
+				cartListProduct.setProduct_price(rset.getInt("PRODUCT_PRICE"));
+				cartListProduct.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
+				cartListProduct.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				cartListProduct.setProduct_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK"));
+				cartListProduct.setProduct_name(rset.getString("PRODUCT_NAME"));
+				list.add(cartListProduct);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

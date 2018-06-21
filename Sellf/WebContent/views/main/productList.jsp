@@ -170,7 +170,7 @@
 									alt="">														
 								
 								<div class="productCoverExplain">
-									<br><br><br>				
+					   				<br><br><br>				
 									<ul>
 										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
 										<li style="color:gray;overflow:auto;">	 제품설명1<br> 제품설명2</li>

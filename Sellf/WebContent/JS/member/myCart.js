@@ -8,8 +8,14 @@ $(document).ready(function() {
 		}
 	});
 });
-
+var num = 1;
 $(document).ready(function() {
+	btnInit();
+
+});
+
+function btnInit()
+{
 	$("#quantityUp").hide();
 	$("#quantityDown").hide();
 	$("#changeBtn").click(function() {
@@ -17,20 +23,14 @@ $(document).ready(function() {
 		$("#quantityUp").show();
 		$("#quantityDown").show();
 	});
-});
-var num = 1;
-$(document).ready(function() {
 
 	$("#quantityUp").click(function() {
-		if (num < 10) {
+		if (num < 10) {	
 			num++;
 		}
 		$("#orderQuantity").text(num);
-
 	});
-});
-$(document).ready(function() {
-
+	
 	$("#quantityDown").click(function() {
 		if (num > 1) {
 			num--;
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		$("#orderQuantity").text(num);
 
 	});
-});
+}
 
 var flag = true;
 function selectAllChk() {

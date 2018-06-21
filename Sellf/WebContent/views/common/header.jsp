@@ -108,6 +108,17 @@
 							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S0308" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S0308">여행용 가방/소품</a></li>
 							<li role="menuitem" tabindex="-1" class="detailcategory"><a id="S0309" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S0309">기타잡화</a></li>
 
+							<li role="presentation" class="divider"></li>
+							<h4 class="dropdown-header">해외명품</h4>
+
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1301" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1301">명품가방</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1302" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1302">명품지갑</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1303" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1303">명품시계</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1304" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1304">명품신발</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1305" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1305">명품액세서리</a></li>
+
+
+					
 						</ul></li>
 					<li role="presentation" class="dropdown"><a id="drop6" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
 							화장품/미용 <span class="caret"></span>

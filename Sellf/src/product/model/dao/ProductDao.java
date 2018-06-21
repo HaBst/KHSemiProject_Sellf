@@ -109,10 +109,10 @@ public class ProductDao {
 				p.setProduct_entire_category_sub_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_SUB_ID_FK"));
 				p.setProduct_name(rset.getString("PRODUCT_NAME"));
 				p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
-				p.setProduct_image(rset.getString("PRUDUCT_IMAGE")==null?"":rset.getString("PRUDUCT_IMAGE"));
+//				p.setProduct_image(rset.getString("PRUDUCT_IMAGE")==null?"":rset.getString("PRUDUCT_IMAGE"));
 				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
-				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+//				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

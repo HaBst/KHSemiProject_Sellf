@@ -9,6 +9,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <!-- Bootstrap  -->
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -52,6 +53,14 @@ crossorigin="anonymous"></script>
 
 </style>
 <title>메인페이지</title>
+
+<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-9029956828399072",
+          enable_page_level_ads: true
+     });
+</script> -->
 </head>
 <body>
 

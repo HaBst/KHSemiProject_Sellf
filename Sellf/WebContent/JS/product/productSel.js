@@ -8,6 +8,8 @@ window.onload = function()
 	
 	hideAllTab();
 	infoTabArr[0].style.display = "block";
+	
+	$('.magnify-image').magnify();
 }
 function hideAllTab()
 {

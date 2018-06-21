@@ -16,25 +16,12 @@ import product.model.vo.CateSmall;
 import product.model.vo.ProductInsert;
 
 public class ProductInsertDao {
-//	private Properties prop = new Properties();
-//	public ProductInsertDao() {
-//		try {
-//			prop.load(new FileReader("resource/query.properties")); //properties 파일 경로
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 	
 	public int productInsert(Connection conn, ProductInsert pi) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
-//		String query = prop.getProperty("insertProduct");
-		String query = "insert into product_entire_tb values(product_entire_tb_SEQ.NEXTVAL,?,?,?,?,?,이미지,?,S,?,?)";
-		
-		System.out.println(query);
-//		(?,?,?,?,?,?,sysdate,?,?,?,?,?)
+		String query = "insert into product_entire_tb values(product_entire_tb_SEQ.NEXTVAL,?,?,?,?,?,?,?,'S',?,?)";
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, pi.getProductEntireUserIdFK());
@@ -42,14 +29,13 @@ public class ProductInsertDao {
 			pstmt.setString(3, pi.getProductEntireCateSubIdFK());
 			pstmt.setString(4, pi.getProductName());
 			pstmt.setInt(5, pi.getProductPrice());
-			
-			pstmt.setInt(6, pi.getProductAmount());
-			
-			pstmt.setString(7, pi.getProductGrade());
-			pstmt.setString(8,pi.getProductDetail());
+			pstmt.setString(6, pi.getProductImage().getImgArr().toString());
+			pstmt.setInt(7, pi.getProductAmount());
+			System.out.println(pi.getProductImage().getImgArr().toString());
+			pstmt.setString(8, pi.getProductGrade());
+			pstmt.setString(9,pi.getProductDetail());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("result"+result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

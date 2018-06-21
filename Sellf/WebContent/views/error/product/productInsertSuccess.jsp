@@ -8,8 +8,8 @@
 </head>
 <script>
 	window.onload = function(){
-		alert("등록 실패하였습니다.");
-		location.href = "index.jsp";
+		alert("회원가입이 완료되었습니다.");
+		location.href="/test1.html"
 	}
 </script>
 <body>

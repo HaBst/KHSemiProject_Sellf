@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "product.model.vo.*" import = "java.util.*" %>
+<%
+	ArrayList<CateBig>listB = (ArrayList<CateBig>)request.getAttribute("listBig");
+	ArrayList<CateSmall>listS = (ArrayList<CateSmall>)request.getAttribute("listSmall");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -317,10 +322,12 @@ input[type="date"]::-webkit-inner-spin-button {
 	<script>
         function check() {
             var bCategory = $("#bCategory option:selected").val();
+            var bCategory = $("#bcategory option:selected").value;
             var sCategory = $("#sCategory option:selected").text();
             var productName = document.getElementById('productName').value;
             var number = $("#number option:selected").text();
             var grade = $("#grade option:selected").val();
+            var image = $("#imgOne").val();
             var price = document.getElementById('price').value;
             var detail = $("#detail").text();
             var fileUpload1 = $("#fileUpload1").val();
@@ -336,7 +343,7 @@ input[type="date"]::-webkit-inner-spin-button {
             } else if (sCategory == "소분류선택") {
                 alert("소분류 선택");
                 return false;
-            } else if (!(/^[가-힣a-zA-Z0-9]+$/).test(productName)) {
+            } else if (!(/[가-힣a-zA-Z0-9]+/).test(productName)) {
                 alert("제목입력");
                 return false;
             } else if (grade == 0){
@@ -350,7 +357,12 @@ input[type="date"]::-webkit-inner-spin-button {
             } else if (!(/[0-9]+/).test(price)) {
                 alert("가격을 입력하세요");
                 return false;
-            } else if (!(/[가-힣A-Za-z0-9]+/).test(detail)) {
+            }
+            else if(image == ""){
+            	alert("이미지를 최소1장을 올려야합니다.");
+            	return false;
+            }
+            else if (!(/[가-힣A-Za-z0-9]+/).test(detail)) {
                 alert("상세설명을 입력하세요");
                 return false;
             }
@@ -364,6 +376,7 @@ input[type="date"]::-webkit-inner-spin-button {
             $('#bCategory').on("change", function() {
                 console.log($("#bCategory option:selected").val());
                 console.log($("#bCategory option:selected").text());
+                console.log($("#imgFile_Suc_1").val());
             });
             $('#sCategory').on("change", function() {
                 console.log($("#sCategory option:selected").val());
@@ -374,54 +387,36 @@ input[type="date"]::-webkit-inner-spin-button {
                 console.log($("#grade option:selected").text());
             });
             $('#number').on("change", function() {
+            	console.log($("#number option:selected").val());
                 console.log($("#number option:selected").text());
-                console.log($("#date").val());
+                
+            });
+            $('#imgFile_Suc_1').on("change",function(){
+            	console.log($("#imgOne").val());
             });
         });
     </script>
 
 	<script>
         function Category(e) {
-            var sCate_1 = ["소분류선택", "스마트폰", "태블릿PC", "노트북/PC", "노트북/PC 주변기기", "카메라", "음향가전/학습기기", "게임/타이틀", "웨어러블", "영상가전", "생활/주방/미용가전", "자동차기기", "기타 전자기기"];
-            var sCate_2 = ["소분류선택", "여성의류", "남성의류", "언더웨어/잠옷"];
-            var sCate_3 = ["소분류선택", "신발", "여성가방", "남성가방", "지갑", "시계", "주얼리", "모자", "여행용 가방/소품", "기타잡화"];
-            var sCate_4 = ["소분류선택", "스킨케어", "선케어", "베이스메이크업", "색조메이크업", "클렌징", "마스크/팩", "헤어케어", "헤어스타일링", "바디케어", "네일케어", "남성화장품", "향수", "뷰티소품"];
-            var sCate_5 = ["소분류선택", "캠핑", "등산", "골프", "자전거/오토바이/스쿠터", "스키/보드", "낚시", "수영/헬스/요가", "스케이트/보드/롤러", "축구/야구/농구", "기타 스포츠 용품"];
-            var sCate_6 = ["소분류선택", "유모차/카시트", "완구/교육/교구", "수유/이유용품", "외출용품", "유아기구", "목욕/스킨케어", "위생/건강/세제", "임부복", "유아동 의류/잡화", "안전용품", "기저귀/물티슈", "분유/이유식/간식"];
-            var sCate_7 = ["소분류선택", "문구/사무용품", "화방용품", "악기", "피규어"];
-            var sCate_8 = ["소분류선택", "명품가방", "명품지갑", "명품시계", "명품신발", "명품악세서리"];
-            var sCate_9 = ["소분류선택", "자동차"];
-            var sCate_10 = ["소분류선택", "도서", "DVD/음반"];
-            var sCate_11 = ["소분류선택", "침실가구", "거실/주방가구", "수납가구", "침구단품", "커튼", "서재/사무용가구", "DIY자재/용품", "침구세트", "아동/주니어가구", "인테리어소품", "베개/솜류", "수예", "카페트/러그"];
-            var sCate_12 = ["소분류선택", "지류/카드상품권", "공연/티켓", "모바일쿠폰/상품권", "여행/항공권", "레저이용권"];
-            var sCate_13 = ["소분류선택", "자동차용품", "주방용품", "세탁용품", "수납/정리용품", "공구", "애완", "식품"];
-
-            var target = document.getElementById("sCategory");
-
-            if (e.value == "전자제품") var d = sCate_1;
-            else if (e.value == "패션의류") var d = sCate_2;
-            else if (e.value == "패션잡화") var d = sCate_3;
-            else if (e.value == "화장품/미용") var d = sCate_4;
-            else if (e.value == "스포츠/레저") var d = sCate_5;
-            else if (e.value == "유아동/출산") var d = sCate_6;
-            else if (e.value == "완구/문구/취미") var d = sCate_7;
-            else if (e.value == "해외명품") var d = sCate_8;
-            else if (e.value == "자동차") var d = sCate_9;
-            else if (e.value == "도서/음반/DVD") var d = sCate_10;
-            else if (e.value == "가구/인테리어") var d = sCate_11;
-            else if (e.value == "여행/문화") var d = sCate_12;
-            else if (e.value == "생활/건강") var d = sCate_13;
-
-            target.options.length = 0;
-
-            for (x in d) {
-                var opt = document.createElement("option");
-                opt.value = d[x];
-                opt.innerHTML = d[x];
-                target.appendChild(opt);
-            }
+			var bCategory = $('#bCategory').val();
+			$.ajax({
+				url : "/productSmallCate",
+				data : {
+					bCategory : bCategory
+				},
+				type : "get",
+				success : function(data){
+					
+					$('#sCategory').find("option").remove();
+					for (var i = 0; i < data.length; i++){
+						$("#sCategory").append("<option value = '"+data[i].ScateId+"'>"+data[i].ScateName+"</option");
+					}
+				}
+			});
         }
     </script>
+    
 
 
 
@@ -433,6 +428,8 @@ input[type="date"]::-webkit-inner-spin-button {
 	</div>
 	</header>
 <body>
+
+
 	<div id="allWrapper">
 		<section class="bodyWrapper">
 		<div class="shadow p-3 mb-5 bg-white rounded">
@@ -452,19 +449,10 @@ input[type="date"]::-webkit-inner-spin-button {
 									<select name="bCategory" id="bCategory" class="form-control"
 										onchange="Category(this)">
 										<option selected value="0">카테고리를 선택</option>
-										<option value="전자제품">전자제품</option>
-										<option value="패션의류">패션의류</option>
-										<option value="패션잡화">패션잡화</option>
-										<option value="화장품/미용">화장품/미용</option>
-										<option value="스포츠/레저">스포츠/레저</option>
-										<option value="유아동/출산">유아동/출산</option>
-										<option value="완구/문구/취미">완구/문구/취미</option>
-										<option value="해외명품">해외명품</option>
-										<option value="자동차">자동차</option>
-										<option value="도서/음반/DVD">도서/음반/DVD</option>
-										<option value="가구/인테리어">가구/인테리어</option>
-										<option value="여행/문화">여행/문화</option>
-										<option value="생활/건강">생활/건강</option>
+  										<%for (CateBig cb : listB) {%>
+										<option value="<%=cb.getProductCategoryId()%>"><%=cb.getProductCateGoryName()%></option>
+										<%} %>
+
 									</select>
 
 								</div>
@@ -486,11 +474,9 @@ input[type="date"]::-webkit-inner-spin-button {
 									<label id="subTitle">상품 상태</label> <select name="grade"
 										id="grade" class="form-control" onchange="grade">
 										<option selected value="0">등급선택</option>
-										<option value="S">최상</option>
-										<option value="A">상</option>
-										<option value="B">중</option>
-										<option value="C">중하</option>
-										<option value="D">하</option>
+										<option value="N">새 제품</option>
+										<option value="O">중고</option>
+										
 									</select>
 								</div>
 
@@ -549,8 +535,8 @@ input[type="date"]::-webkit-inner-spin-button {
  															<input id="fileSucOne" type="file" name="upfile1"
 															style="display: none" onchange="readURL(this,0);" /> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
-															height="130" id="imgFile_Suc_1"
-															onclick="document.all.fileSucOne.click();"> <input
+															height="130" id="imgFile_Suc_1" 
+															onclick="document.all.fileSucOne.click();" > <input
 															type="hidden" id="imgOne" name="imgOne" value="">
  
  

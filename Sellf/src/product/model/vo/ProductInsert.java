@@ -8,6 +8,7 @@ public class ProductInsert {
 	private String productEntireCateSubIdFK;
 	private String productName;
 	private int productPrice;
+	private ImageUpload productImage;
 //	private String productImage;
 	private int productAmount;
 //	private String productState;
@@ -17,17 +18,16 @@ public class ProductInsert {
 	public ProductInsert() {}
 
 	public ProductInsert(String productEntireUserIdFK, String productEntireCateMainIdFK,
-			String productEntireCateSubIdFK, String productName, int productPrice,
+			String productEntireCateSubIdFK, String productName, int productPrice, ImageUpload productImage,
 			int productAmount, String productGrade, String productDetail) {
-
+		super();
 		this.productEntireUserIdFK = productEntireUserIdFK;
 		this.productEntireCateMainIdFK = productEntireCateMainIdFK;
 		this.productEntireCateSubIdFK = productEntireCateSubIdFK;
 		this.productName = productName;
 		this.productPrice = productPrice;
-//		this.productImage = productImage;
+		this.productImage = productImage;
 		this.productAmount = productAmount;
-//		this.productState = productState;
 		this.productGrade = productGrade;
 		this.productDetail = productDetail;
 	}
@@ -72,13 +72,13 @@ public class ProductInsert {
 		this.productPrice = productPrice;
 	}
 
-//	public String getProductImage() {
-//		return productImage;
-//	}
-//
-//	public void setProductImage(String productImage) {
-//		this.productImage = productImage;
-//	}
+	public ImageUpload getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(ImageUpload productImage) {
+		this.productImage = productImage;
+	}
 
 	public int getProductAmount() {
 		return productAmount;
@@ -103,7 +103,8 @@ public class ProductInsert {
 	public void setProductDetail(String productDetail) {
 		this.productDetail = productDetail;
 	}
-	
+
+
 	
 	
 	

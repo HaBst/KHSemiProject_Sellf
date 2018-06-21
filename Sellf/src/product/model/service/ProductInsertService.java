@@ -17,7 +17,6 @@ public class ProductInsertService {
 	public int productInsert(ProductInsert pi) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = 0;
-		System.out.println(conn);
 		result = new ProductInsertDao().productInsert(conn, pi);
 		
 		if(result > 0) {

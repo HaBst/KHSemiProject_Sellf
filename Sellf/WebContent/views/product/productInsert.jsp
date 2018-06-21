@@ -327,6 +327,7 @@ input[type="date"]::-webkit-inner-spin-button {
             var productName = document.getElementById('productName').value;
             var number = $("#number option:selected").text();
             var grade = $("#grade option:selected").val();
+            var image = $("#imgOne").val();
             var price = document.getElementById('price').value;
             var detail = $("#detail").text();
             var fileUpload1 = $("#fileUpload1").val();
@@ -342,7 +343,7 @@ input[type="date"]::-webkit-inner-spin-button {
             } else if (sCategory == "소분류선택") {
                 alert("소분류 선택");
                 return false;
-            } else if (!(/^[가-힣a-zA-Z0-9]+$/).test(productName)) {
+            } else if (!(/[가-힣a-zA-Z0-9]+/).test(productName)) {
                 alert("제목입력");
                 return false;
             } else if (grade == 0){
@@ -356,7 +357,12 @@ input[type="date"]::-webkit-inner-spin-button {
             } else if (!(/[0-9]+/).test(price)) {
                 alert("가격을 입력하세요");
                 return false;
-            } else if (!(/[가-힣A-Za-z0-9]+/).test(detail)) {
+            }
+            else if(image == ""){
+            	alert("이미지를 최소1장을 올려야합니다.");
+            	return false;
+            }
+            else if (!(/[가-힣A-Za-z0-9]+/).test(detail)) {
                 alert("상세설명을 입력하세요");
                 return false;
             }
@@ -370,6 +376,7 @@ input[type="date"]::-webkit-inner-spin-button {
             $('#bCategory').on("change", function() {
                 console.log($("#bCategory option:selected").val());
                 console.log($("#bCategory option:selected").text());
+                console.log($("#imgFile_Suc_1").val());
             });
             $('#sCategory').on("change", function() {
                 console.log($("#sCategory option:selected").val());
@@ -380,8 +387,12 @@ input[type="date"]::-webkit-inner-spin-button {
                 console.log($("#grade option:selected").text());
             });
             $('#number').on("change", function() {
+            	console.log($("#number option:selected").val());
                 console.log($("#number option:selected").text());
-                console.log($("#date").val());
+                
+            });
+            $('#imgFile_Suc_1').on("change",function(){
+            	console.log($("#imgOne").val());
             });
         });
     </script>
@@ -406,13 +417,6 @@ input[type="date"]::-webkit-inner-spin-button {
         }
     </script>
     
-    <script>
-    function readURL(input,stepImgNum) {
-		
-       };
-    
-    
-    </script>
 
 
 
@@ -470,11 +474,9 @@ input[type="date"]::-webkit-inner-spin-button {
 									<label id="subTitle">상품 상태</label> <select name="grade"
 										id="grade" class="form-control" onchange="grade">
 										<option selected value="0">등급선택</option>
-										<option value="S">최상</option>
-										<option value="A">상</option>
-										<option value="B">중</option>
-										<option value="C">중하</option>
-										<option value="D">하</option>
+										<option value="N">새 제품</option>
+										<option value="O">중고</option>
+										
 									</select>
 								</div>
 
@@ -533,8 +535,8 @@ input[type="date"]::-webkit-inner-spin-button {
  															<input id="fileSucOne" type="file" name="upfile1"
 															style="display: none" onchange="readURL(this,0);" /> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
-															height="130" id="imgFile_Suc_1"
-															onclick="document.all.fileSucOne.click();"> <input
+															height="130" id="imgFile_Suc_1" 
+															onclick="document.all.fileSucOne.click();" > <input
 															type="hidden" id="imgOne" name="imgOne" value="">
  
  

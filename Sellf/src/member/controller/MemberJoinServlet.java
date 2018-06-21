@@ -8,22 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberLoginServlet
+ * Servlet implementation class MemberJoinServlet
  */
-@WebServlet(name = "MemberLogin", urlPatterns = { "/memberLogin" })
-public class MemberLoginServlet extends HttpServlet {
+@WebServlet("/memberJoin")
+public class MemberJoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginServlet() {
+    public MemberJoinServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,32 +32,30 @@ public class MemberLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("userId");
-		String pw = request.getParameter("userPwd");
-		
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("login")!=null)
-		{
-			session.invalidate();
-		}
+		request.setCharacterEncoding("UTF-8");
+		Member m = new Member();
+		m.setUser_id(request.getParameter("memberId"));
+		m.setUser_name(request.getParameter("memberName"));
+		m.setUser_pwd(request.getParameter("memberPwd"));
+		m.setUser_birth(request.getParameter("memberBirth"));
+		m.setUser_gender(request.getParameter("memberGender"));
+		m.setUser_email(request.getParameter("memberEmail"));
+		m.setUser_phone(request.getParameter("memberPhone"));
+		m.setUser_addr(request.getParameter("memberAddr"));
+		m.setUser_interest(request.getParameter("memberInter"));
 		
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
 	      System.out.println(fullPath);
-		Member m= null;
-		m = new MemberService().memberLogin(id,pw, fullPath);
-		if(m!=null)
+		int result = 0;
+		result = new MemberService().memberJoin(m, fullPath);
+		if(result==1)
 		{
-			session = request.getSession();
-			System.out.println(session.getAttribute("login"));
-			session.setAttribute("login", m);
-			System.out.println(session.getAttribute("login"));
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect("/views/member/memberRegiComplete.html");
 		}
-		else
+		else if(result==0)
 		{
-			response.sendRedirect("/views/member/memberLoginError.jsp");
+			response.sendRedirect("/views/member/memberRegister.html");
 		}
 	}
 

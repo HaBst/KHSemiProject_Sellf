@@ -13,3 +13,4 @@ RemoteSystemsTempFiles/.project
 Sellf/build/
 Sellf/.classpath
 *.class
+.recommenders/

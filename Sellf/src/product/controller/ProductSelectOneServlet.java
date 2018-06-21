@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.JDBCTemplate;
 import product.model.service.ProductService;
 import product.model.vo.Product;
+import product.model.vo.SellerRate;
 
 /**
  * Servlet implementation class ProductSelectOneServlet
@@ -36,15 +37,19 @@ public class ProductSelectOneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
-		JDBCTemplate.setDriverPath(fullPath);		
+		JDBCTemplate.setDriverPath(fullPath);	
+		
 		
 		request.setCharacterEncoding("utf-8");
 		int productPk = Integer.parseInt(request.getParameter("productId"));
 		Product p = new ProductService().selectOneProduct(productPk);
 		if(p!=null)
 		{
+			SellerRate sellerRate = new ProductService().raputationAvr(p.getProduct_entire_user_entire_id_fk());
+			
 			RequestDispatcher view = request.getRequestDispatcher("/views/product/productSelect.jsp");
 			request.setAttribute("productInfo", p);
+			request.setAttribute("sellerScore", sellerRate);
 			view.forward(request, response);
 		}
 		else

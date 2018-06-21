@@ -8,3 +8,8 @@ Sellf/.settings/org.eclipse.jdt.core.prefs
 Servers/
 RemoteSystemsTempFiles/.project
 *.prefs
+.classpath
+.project
+Sellf/build/
+Sellf/.classpath
+*.class

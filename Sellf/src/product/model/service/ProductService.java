@@ -34,10 +34,11 @@ public class ProductService {
 		JDBCTemplate.close(conn);
 		return resultList;	
 	}
-	public Product selectOneProduct() {
+	public Product selectOneProduct(int productPk) {
 		Connection conn = JDBCTemplate.getConnection();
-		System.out.println("테스트");
-		return null;
+		Product p = new ProductDao().selectOneProduct(conn, productPk);	
+		JDBCTemplate.close(conn);
+		return p;
 	}
 
 }

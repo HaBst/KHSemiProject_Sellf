@@ -135,58 +135,7 @@ public class MemberDao {
 	        return result;
 	    }
 
-	public ArrayList<wishList> jjimList(Connection conn, String id) {
-		ArrayList<wishList> list = new ArrayList<wishList>();
-		Statement stmt = null;
-		ResultSet rset = null;
-		String query = "SELECT USER_WL_PRODUCT_ENTIRE_FK FROM USER_WISHLIST_TB WHERE USER_WL_USER_ENTIRE_ID_FK='"+id+"'";  
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			while(rset.next()){
-			wishList w = new wishList();
-			w.setUSER_WL_PRODUCT_ENTIRE_FK(rset.getInt("USER_WL_PRODUCT_ENTIRE_FK"));
-			list.add(w);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally		{
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
-		}
-		
-		return list;
-	}
 
-	public ArrayList<Product> jjimList2(Connection conn, ArrayList<wishList> list) {
-		ArrayList<Product> list2 = new ArrayList<Product>();
-		Statement stmt = null;
-		ResultSet rset = null;
-		System.out.println("list2 사이즈:"+list.size());
-		System.out.println("list2 :"+list);
-		String query ="select product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from product_entire_tb where PRODUCT_ENTIRE_PK="+list.size();  
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			while(rset.next()){
-			Product p = new Product();
-			p.setProduct_name(rset.getString("PRODUCT_NAME"));
-			p.setProduct_image(rset.getString("PRUDUCT_IMAGE"));
-			p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
-			p.setProduct_state(rset.getString("PRODUCT_STATE"));
-			p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
-			list2.add(p);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		finally		
-		{
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
-		}
-		return list2;
-	}
 
 	public wishList jjimDelete(Connection conn, String id) {
 		wishList w = new wishList();
@@ -250,55 +199,7 @@ public class MemberDao {
 		return g;
 	}
 
-	public ArrayList<purchaseHis> buy(Connection conn, String id) {
-		ArrayList<purchaseHis> list = new ArrayList<purchaseHis>();
-		purchaseHis ph = new purchaseHis();
-		Statement stmt = null;
-		ResultSet rset = null;
-		String query = "select * from USER_PURCHASE_HIS_TB WHERE USER_PUR_HIS_USER_ENTIRE_ID_FK='"+id+"'";   
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			while(rset.next()){
-			ph.setUSER_PUR_HIS_ENTIRE_FK(rset.getInt("USER_PUR_HIS_ENTIRE_FK"));
-			list.add(ph);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally		{
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
-		}
-		return list;
-	}
 
-	public ArrayList<Product> buy2(Connection conn, ArrayList<purchaseHis> list) {
-		ArrayList<Product> list2 = new ArrayList<Product>();
-		Statement stmt = null;
-		ResultSet rset = null;
-		String query ="select product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from product_entire_tb where PRODUCT_ENTIRE_PK="+list.size(); 
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			while(rset.next()){
-			Product p = new Product();
-			p.setProduct_name(rset.getString("PRODUCT_NAME"));
-			p.setProduct_image(rset.getString("PRUDUCT_IMAGE"));
-			p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
-			p.setProduct_state(rset.getString("PRODUCT_STATE"));
-			p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
-			list2.add(p);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		finally		
-		{
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
-		}
-		return list2;
-	}
 	public ArrayList<Product> self(Connection conn, String id) {
 		ArrayList<Product> list = new ArrayList<Product>();
 		Statement stmt = null;
@@ -326,4 +227,186 @@ public class MemberDao {
 		}
 		return list;
 	}
+
+	public ArrayList<Product> jjimlist(Connection conn, String id) {
+		ArrayList<Product> list = new ArrayList<Product>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query ="select product_entire_pk, product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from (select * from user_wishlist_tb, product_entire_Tb where user_wl_product_entire_fk = product_entire_pk) where user_wl_user_entire_id_fk='"+id+"'";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()){
+			Product p = new Product();
+			p.setProduct_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK")); //상품인덱스
+			p.setProduct_name(rset.getString("PRODUCT_NAME"));  //이름
+			p.setProduct_image(rset.getString("PRUDUCT_IMAGE")); //이미지
+			p.setProduct_price(rset.getInt("PRODUCT_PRICE"));  //가격
+			p.setProduct_state(rset.getString("PRODUCT_STATE"));  //상태
+			p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));  //갯수
+			list.add(p);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		finally		
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
+	}
+
+	public String getPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
+		
+				int recordTotalCount = 0;
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				String query="SELECT count(*)AS totalCount FROM NOTICE";
+				
+				try {
+					pstmt = conn.prepareStatement(query);
+					rset = pstmt.executeQuery();
+					if(rset.next())
+					{
+					recordTotalCount = rset.getInt("totalCount");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					JDBCTemplate.close(rset);
+					JDBCTemplate.close(pstmt);
+				}
+				
+				//124 -> navi 13
+				
+				int pageTotalCount  = 0; // navi 토탈 카운트
+
+				if(recordTotalCount%recordCountPerPage!=0) {
+					pageTotalCount = recordTotalCount / recordCountPerPage +1;
+				}else
+				{
+					pageTotalCount = recordTotalCount / recordCountPerPage;
+				}
+
+				if(currentPage<1) {
+					currentPage=1;
+				}else if(currentPage>pageTotalCount) {
+					currentPage = pageTotalCount;
+				}
+
+				int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+
+				int endNavi = startNavi + naviCountPerPage -1;
+				
+
+				if(endNavi>pageTotalCount) {
+					endNavi = pageTotalCount;
+				}
+
+				boolean needPrev = true;
+				boolean needNext = true;
+				if(startNavi==1) {
+					needPrev = false;
+				}
+				if(endNavi==pageTotalCount) {
+					needNext=false;
+				}
+				
+				// 여기까지 기본적인 구조는 끝남
+				StringBuilder sb = new StringBuilder(); //오랜만이야..
+				
+				if(needPrev) { //시작이 1페이지가 아니라면!
+					sb.append("<a href='/notice?currentPage="+(startNavi-1)+"'> < </a>");
+				}
+				for(int i=startNavi;i<=endNavi;i++) {
+					if(i==currentPage) {
+						sb.append("<a href='/notice?currentPage="+i+"'><B> "+i+" </B></a>");
+					}else {
+						sb.append("<a href='/notice?currentPage="+i+"'> "+i+" </a>");
+					}
+				}
+				if(needNext) { // 끝페이지가 아니라면!
+					sb.append("<a href='/notice?currentPage="+(endNavi+1)+"'> > </a>");
+				}
+				
+				return sb.toString();
+			}
+
+	public ArrayList<Product> getCurrentPage(Connection conn, int currentPage, int recordCountPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+	
+		
+		
+		//끝 게시물 계산
+		int end = currentPage*recordCountPerPage;
+
+		
+		String query = "SELECT * FROM" 
+				+ "(select product_entire_Tb.*,row_number() "
+				+ "over(order by product_entire_pk desc)as num "
+				+ "from product_entire_Tb)" 
+				+ "WHERE num between ? and ?";	
+		ArrayList<Product> list = new ArrayList<Product>();
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,start);
+			pstmt.setInt(2,end);
+			rset= pstmt.executeQuery();
+			while(rset.next()) {
+				Product p = new Product();
+				p.setProduct_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK")); //상품인덱스
+				p.setProduct_name(rset.getString("PRODUCT_NAME"));  //이름
+				p.setProduct_image(rset.getString("PRUDUCT_IMAGE")); //이미지
+				p.setProduct_price(rset.getInt("PRODUCT_PRICE"));  //가격
+				p.setProduct_state(rset.getString("PRODUCT_STATE"));  //상태
+				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));  //갯수
+				list.add(p);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+		
+		
+		
+	}
+
+	public ArrayList<Product> Buy(Connection conn, String id) {
+		ArrayList<Product> list = new ArrayList<Product>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query ="select product_entire_pk, product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from (select * from user_purchase_his_tb, product_entire_Tb where user_pur_his_product_fk = product_entire_pk) where user_pur_his_user_entire_id_fk='"+id+"'";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()){
+			Product p = new Product();
+			p.setProduct_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK")); //상품인덱스
+			p.setProduct_name(rset.getString("PRODUCT_NAME"));  //이름
+			p.setProduct_image(rset.getString("PRUDUCT_IMAGE")); //이미지
+			p.setProduct_price(rset.getInt("PRODUCT_PRICE"));  //가격
+			p.setProduct_state(rset.getString("PRODUCT_STATE"));  //상태
+			p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));  //갯수
+			list.add(p);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		finally		
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
+	}
+	
 }

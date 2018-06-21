@@ -14,7 +14,7 @@
 <script src="http://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../../CSS/common.css" type="text/css" />
+
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
 	rel="stylesheet">
 
@@ -40,13 +40,11 @@
 <link rel="stylesheet" type="text/css" href="/CSS/manager/manager.css">
 <script src="/JS/manager/manager.js"></script>
 
-<title>BlackList</title>
+<title></title>
 
 
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -154,7 +152,7 @@
                                         </a>
                                     </li>
                                      <li>
-                                        <a href="/views/manager/managerBlackList.jsp">블랙리스트</a>
+                                        <a href="/managerBlackList">블랙리스트</a>
                                     </li>
                                 </ul>
                             </div>
@@ -167,7 +165,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="/views/manager/managerBoard.jsp">게시판 현황</a>
+                                        <a href="/managerNoticeBoard">게시판 현황</a>
                                     </li>
                                     <li>
                                         <a href="/views/manager/managerQnABoard.jsp">Panels</a>
@@ -240,9 +238,7 @@
                 <!-- sidebar-menu  -->
            
 				<!-- sidebar-content  -->
-
+				</div>	
 			</nav>
-		</div>
-
 </body>
 </html>

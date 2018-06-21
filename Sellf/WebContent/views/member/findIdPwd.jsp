@@ -75,7 +75,7 @@
 					<div class="tab-pane active show" id="tab2">
 						<div class="title">아이디 찾기</div>
 						<br> <br>
-							<!-- <form action="/findIdPwd" method="post">  -->
+						
 						<div id="findIdContainer">
 							<div>
 								<h4>본인확인 이메일 인증</h4>
@@ -215,7 +215,7 @@
 
 
 							<br>
-								</form>
+								
 						</div>
 						
 

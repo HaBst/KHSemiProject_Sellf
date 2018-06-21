@@ -133,13 +133,15 @@ public class ProductInsertServlet extends HttpServlet {
 			int result = 0;
 			System.out.println("처음 result"+result);
 			result = new ProductInsertService().productInsert(pi);
-			System.out.println("결과"+result);
+			
+			result = 0;
+			System.out.println("result 0셋팅"+result);
 		if(result > 0) {
 			response.sendRedirect("/views/error/product/productInsertSuccess.jsp");
 		}else {
-			response.sendRedirect("/fileRemove?userId="+productEntireUserIdFK+"&productName="+productName);
+			response.sendRedirect("/fileRemove?productImage="+pi.getProductImage());
 			
-			response.sendRedirect("/views/error/product/productInsertError.jsp");
+//			response.sendRedirect("/views/error/product/productInsertError.jsp");
 		}
 	}
 

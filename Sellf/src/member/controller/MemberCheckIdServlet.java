@@ -32,10 +32,14 @@ public class MemberCheckIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
+		System.out.println(id);
 		ServletContext context = getServletContext();
 	    String fullPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
 	      System.out.println(fullPath);
 		int result = new MemberService().checkId(id,fullPath);
+		System.out.println("result : " + result);
+		response.getWriter().println(result);
+		response.getWriter().close();
 	}
 
 	/**

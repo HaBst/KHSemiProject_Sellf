@@ -8,6 +8,8 @@ window.onload = function()
 	
 	hideAllTab();
 	infoTabArr[0].style.display = "block";
+	
+	$('.magnify-image').magnify();
 }
 function hideAllTab()
 {
@@ -29,3 +31,4 @@ function changeTab(tabInfo, name)
 //	    document.getElementById(name).style.display = "block";
 	 }
 }
+

@@ -26,7 +26,7 @@
 					<a href="">JOIN</a>
 				</div>
 				<div>
-					<a href="">CART</a>
+					<a href="/myCart">CART</a>
 				</div>
 				<div>
 					<a href="">ORDER</a>
@@ -44,7 +44,7 @@
 			<div id="searchBox">
 				<form action="#" method="get">
 					<div id="searchText">
-						<input type="text" id="search" name="searchquery"
+						<input type="text" style="text-aling:center;" id="search" name="searchquery"
 							placeholder="상품명으로 검색해보세요">
 					</div>
 					<div id="searchIcon">

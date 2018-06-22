@@ -36,8 +36,7 @@
 							<tr>
 								<th>개인정보</th>
 								<td colspan="3">
-									<select id="selInfo" onchange="able();">  <!-- option의 value값은 하기 편한걸로!!  -->
-	 									<option value=null>-선택안함-</option>
+									<select id="selInfo">  <!-- option의 value값은 하기 편한걸로!!  -->
 	 									<option value="userName">이름</option>
 										<option value="userId">아이디</option>
 									</select> 
@@ -47,7 +46,6 @@
 							<tr><th>회원등급</th>
 								<td>
 								<select id="selGrade">
-									<option value=null selected>-선택하시오-</option>
 									<option value="G01">브론즈</option>
 									<option value="G02">실버</option>
 									<option value="G03">골드</option>
@@ -56,8 +54,7 @@
 								</td>
 								<th>성별</th>
 								<td>
-										<input type="radio" name="gender" value="" checked>전체
-										<input type="radio" name="gender" value="M">남   
+										<input type="radio" name ="gender" value="M">남   
 										<input type="radio" name="gender" value="F">여
 								</td>
 							</tr>
@@ -88,7 +85,7 @@
 							
 						</table>
 						<br>
-						<button type="button" class="btn btn-danger btn-sm" onclick="();">불량회원 설정</button>
+						<button type="button" class="btn btn-danger btn-sm">불량회원 설정</button>
 						<hr>
 						<h5>추가 설정</h5>
 						<br>
@@ -96,10 +93,9 @@
 							<tr>
 								<th>회원 등급 변경</th>
 								<td>선택된 회원을 <select name="changeGrd">
-										<option value="G01">브론즈</option>
-										<option value="G02">실버</option>
-										<option value="G03">골드</option>
-										<option value="G04">다이아몬드</option>
+										<option>브론즈</option>
+										<option>실버</option>
+										<option>골드</option>
 								</select>로
 									<button type="button" class="btn btn-outline-warning"> 등급변경</button>합니다.
 								</td>

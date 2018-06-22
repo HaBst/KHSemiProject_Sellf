@@ -30,20 +30,19 @@
 							<tr>
 								
 								<th>검색분류</th>
-								<td><select id="searchType"> <!-- value값은 차차 생각!! -->
-										<option value=null selected>-선택안함-</option>
+								<td><select id="searchProduct"> <!-- value값은 차차 생각!! -->
 										<option value="1">상품명</option>
 										<option value="2">카테고리</option>
 										<option value="3">판매자</option>
 										<option value="4">상품번호</option>
 										
-								</select><input type="text" id="getSearch" /></td>
+								</select><input type="text" name="getSearch" /></td>
 							</tr>
 							<tr>
 								<th>상품 분류</th> 
 								<td>
 								<select id="productCategory" onchange="chan();" >
-									<option value=null selected>-선택안함-</option>
+									<option value=null>-대분류 선택-</option>
 									<option value="M01">전자제품</option>
 									<option value="M02">패션의류</option>
 									<option value="M03">패션잡화</option>
@@ -61,17 +60,17 @@
 							 	
 							 	<select id="productItem" >
 								<!-- 카테고리에 딸린 소분류를 db에서 읽어와서 출력. -->
-								<option value=null selected>-선택 안함-</option>
+								<option disabled>-소분류 선택-</option>
 								
 							</select>
 						</td>
 						</tr>
 							<tr>
 								<th>상품 상태</th>
-								<td> <input type="radio" name="status" value=null checked />전체 
+								<td> <input type="radio" name="status" value="all" checked />전체 
 									 <input type="radio" name="status" value="a" />상  
 									 <input type="radio" name="status" value="b" />중상  
-									 <input type="radio" name="status" value="c" />중  
+									 <input type="radio" name="status" value="b" />중  
 									 <input type="radio" name="status" value="d" />중하  
 									 <input type="radio" name="status" value="e" />하 
 								</td>
@@ -79,10 +78,11 @@
 							</tr>
 						</table>
 						<center>
-							<button type="button" class="btn btn-outline-warning btn-sm" onclick = "sellSearch()">검색!</button> 
-							<button type="button" class="btn btn-outline-secondary btn-sm" onclick = "reset();" >초기화</button>	
+							<button type=button class="btn btn-outline-warning btn-sm" onclick="sellSearch()"  >검색</button> 
+							<button type="button"
+								class="btn btn-outline-secondary btn-sm" onckick="reset();">초기화</button>
 						</center>
-				
+					
 					<hr>
 					<br><br>
 					<div id="searchResult">
@@ -92,7 +92,7 @@
 					 			<option value="30">30</option>
 					 			<option value="50">50</option>
 					 		</select></label>개 씩 보기
-						<table class="table" id="searchResultSell">
+						<table class="table">
 							<tr>
 								<th>상품번호</th>
 								<th>상품코드</th>
@@ -100,7 +100,13 @@
 								<th>판매가</th>
 								<th>회원정보</th>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
 							<!-- 조회결과 출력 -->
 						</table>
 						<button type="button" class="btn btn-outline-warning btn-sm">삭제</button>

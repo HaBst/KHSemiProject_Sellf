@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<!-- Coded by JSB -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 
 <style>
@@ -113,13 +113,21 @@
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sell:F 회원가입</title>
 <link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/common.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">	
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">	
 </head>
 
 <body>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<div class="header">헤더입니다.</div>
+	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
+	<script type="text/javascript" src="../../JS/common/adv.js"></script>
+	<header id="header"> <%@include
+				file="/views/common/header.jsp"%> </header><br>
 	<div class="container">
 		<div class="sign-up-title">
 			회원가입
@@ -252,7 +260,12 @@
 				</form>
 		</div>
 		</div>
-		<div class="footer">footer 입니다.</div>
+		<!-- footer -->
+		<div align="center">
+		<footer>
+			<%@include file="../../views/common/footer.jsp" %>
+		</footer>
+	</div>
 	</div>
 
 	<script type="text/javascript">
@@ -292,16 +305,16 @@
 			}
 		});
 		
-		var reg = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; <!-- 검증용 -->
+		var reg = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //검증용
 		
-		<!-- ID 검증 -->
+		// ID 검증
 		function checkId() {
 			var id = $('input[name=userId]').val();
 			//console.log(id);
 			window.open("/views/member/checkId.jsp?checkId="+id,"ID 중복확인","width=700px, height=300px, left=100, top=100");
 		}
 		
-		<!-- PW 검증 -->
+		// PW 검증
 		var userPwd = $("input[name='userPwd']");
 		userPwd.blur(function(){
 			var upwd = $("input[name='userPwd']").val();
@@ -316,7 +329,7 @@
 				}
 		});
 		
-		<!-- PW RE 검증 -->
+		// PWID 검증
 		var userPwdRe = $("input[name='userPwdRe']");
 		userPwdRe.blur(function(){
 			var upwdre = $("input[name='userPwdRe']").val();
@@ -479,7 +492,6 @@
 	
 	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script> <!-- 주소 검색 -->
 	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script> <!-- 주소 api -->
-	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
 
 </body>
 </html>

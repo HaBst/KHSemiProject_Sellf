@@ -25,7 +25,6 @@
 	height: 60px;
 }
 
-.
 .sign-up {
 	display: block;
 	margin-top: 30px;
@@ -43,6 +42,7 @@
 	display: inline-block;
 	width: 24%;
 	border-bottom: 3px solid gray;
+	margin-bottom: 30px;
 }
 
 .sign-up>ul li h3 {
@@ -155,6 +155,7 @@ html,body{
 </style>
 <meta charset="UTF-8">
 <title>Sell:F 회원가입</title>
+
 <link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/common.css">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
@@ -163,6 +164,8 @@ html,body{
 </head>
 
 <body>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/common/adv.js"></script>
 <script type="text/javascript"	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"	charset="utf-8"></script>
@@ -215,27 +218,25 @@ html,body{
 		    apiURL += "&state=" + state;
 		    session.setAttribute("state", state);
 		 	%>
-				<li><a href="<%=apiURL%>"><img src="/img/loginByNaver.PNG" class="img-responsive"></a></li>
-
-				<li><button onclick="memberType('google');" class="snsBtn"><img src="/img/btn_google_signin_dark_normal_web.png"
-					class="img-responsive" width="200px"></button></li>
+				<br><li><a href="<%=apiURL%>"><img src="/img/loginByNaver.PNG" class="img-responsive"></a></li>
 			</ul>
 		</div>
 	</div>
 	
 	<!-- footer -->
+	<div align="center">
 	<footer>
 					<%@include file="../../views/common/footer.jsp" %>
-			</footer>
+	</footer>
+	</div>
 	</div>
 	<script type="text/javascript">
 		/*	회원가입 방법에따라 값 넣어서 전송		*/
 		function memberType(type) {
-			location.href="/views/member/memberTerms.html?memberType="+type;
+			location.href="/views/member/memberTerms.jsp?memberType="+type;
 		}
 	</script>
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+	
 
 </body>
 

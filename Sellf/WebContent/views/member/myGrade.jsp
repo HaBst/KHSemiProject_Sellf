@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.*"%>
 <% Member m = (Member)session.getAttribute("user"); %>  
 <%Grade g = (Grade)request.getAttribute("userGrade"); %>
@@ -6,27 +6,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>È¸¿øµî±Ş</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>íšŒì›ë“±ê¸‰</title>
+<!-- ë‚´ë¶€ ë§í¬ê±´ CSS -->
+<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<!-- í—¤ë” ë -->
 <style>
+body {
+	 font-family: 'Sunflower';
+}
 
- div{background-color: white;}
-    
-.header{border:3px solid white;
-       background-color: #7151FC;
-        width: auto;
-        height: 100px;}
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
-    .footer{border:3px solid white;
-    background-color: #7151FC;
-    width: auto;
-    height: 120px;
-    }
+
     .mpMenuItems{border: 1px solid white;
     float: left;
     width: auto;
@@ -56,8 +58,6 @@ ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
 background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;}
 .mpMenuTitle {
 	width: auto;
-	margin-top:55px;
-	height: 5%;
 	animation: background 1s linear infinite;
 	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
 		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
@@ -101,7 +101,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
     }
     .MenuConTitle
     {
-    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
@@ -136,11 +135,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
         height: 50%;
         font-size: 20px;
     }
-body {
-  font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
-  color: #404040;
-  background: white;
-}
 
 .container {
   margin: 50px auto;
@@ -579,7 +573,7 @@ p.caption {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #7151FC;
+  background-color: #9B9BA7;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -673,7 +667,7 @@ p.caption {
 </head>
 <body align ="center">
 
-<div class="header">Çì´õ</div>
+	<div class="header"><%@include file="../../views/common/header.jsp"%></div>	
 <center>
         <div class="contents">
             <div class="mpMenuItems">
@@ -681,31 +675,31 @@ p.caption {
                <h1>My Page</h1>
                </div>
                 <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">ÆÇ¸Å³»¿ª</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">±¸¸Å³»¿ª</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ÂòÇÑ »óÇ°</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">³» ÄíÆù</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">³» Á¤º¸</a></li>
-					<li role="presentation" class="active"><a href="/Grade">µî±Şº¸±â</a></li>
+					<li role="presentation" class="active" id="selfb"><a href="/self">íŒë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="buyb"><a href="/buy">êµ¬ë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ì°œí•œ ìƒí’ˆ</a></li>
+					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">ë‚´ ì¿ í°</a></li>
+					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">ë‚´ ì •ë³´</a></li>
+					<li role="presentation" class="active"><a href="/Grade">ë“±ê¸‰ë³´ê¸°</a></li>
 				</ul>
             </div>
             <div class="MenuContents">
-                 <div class="MenuConTitle"><H2>È¸¿øµî±Ş</H2></div><hr>
+                 <div class="MenuConTitle"><H2>íšŒì›ë“±ê¸‰</H2></div><hr>
        		<div class="bluelight">
        		<%if(grade.equals("Bronze")){%>
-       		<a href="/index.jsp">ºê·ĞÁî <img alt="" src="/../../img/bronze.png"></a>;
+       		<a href="/index.jsp">ë¸Œë¡ ì¦ˆ <img alt="" src="/../../img/bronze.png"></a>;
        		<%}else if(grade.equals("Silver")){%>
-       		<a href="/index.jsp">½Ç¹ö<img alt="" src="/../../img/silver.png"></a>;
+       		<a href="/index.jsp">ì‹¤ë²„<img alt="" src="/../../img/silver.png"></a>;
        		<%}else if(grade.equals("Gold")){%>
-			<a href="/index.jsp">°ñµå<img alt="" src="/../../img/gold.png"></a>;
+			<a href="/index.jsp">ê³¨ë“œ<img alt="" src="/../../img/gold.png"></a>;
 			<%}else if(grade.equals("Diamond")){%>
-       		<a href="/index.jsp">´ÙÀÌ¾Æ<img alt="" src="/../../img/diamond.png"></a>;
+       		<a href="/index.jsp">ë‹¤ì´ì•„<img alt="" src="/../../img/diamond.png"></a>;
        		<%}else{%>
-       		<a href="/index.jsp">ºí·¢<img alt="" src="/../../img/banned.png"></a>;
+       		<a href="/index.jsp">ë¸”ë™<img alt="" src="/../../img/banned.png"></a>;
        		<%} %>
 			</div>
 
-				<h2> È¸¿ø´ÔÀÇ ¼ö¼ö·á : 
+				<h2> íšŒì›ë‹˜ì˜ ìˆ˜ìˆ˜ë£Œ : 
 				<%=g.getUser_grade_fees() %> %</h2>
 
 				
@@ -725,7 +719,7 @@ p.caption {
 			</div>
       </center>
       
-<div class="footer">ÇªÅÍ</div>
+	<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>
 
 </html>

@@ -35,7 +35,7 @@ public class MemberCheckIdServlet extends HttpServlet {
 		System.out.println(id);
 		ServletContext context = getServletContext();
 	    String fullPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
-	      System.out.println(fullPath);
+//	      System.out.println(fullPath);
 		int result = new MemberService().checkId(id,fullPath);
 		System.out.println("result : " + result);
 		response.getWriter().println(result);

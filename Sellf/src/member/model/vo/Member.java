@@ -36,12 +36,7 @@ public class Member {
 	private int user_ePoint;
 	
 	
-	public int getUser_ePoint() {
-		return user_ePoint;
-	}
-	public void setUser_ePoint(int user_ePoint) {
-		this.user_ePoint = user_ePoint;
-	}
+	
 	
 	public Member() {
 		super();
@@ -137,5 +132,10 @@ public class Member {
 	public void setUser_enrolldate(Date user_enrolldate) {
 		this.user_enrolldate = user_enrolldate;
 	}
-	
+	public int getUser_ePoint() {
+		return user_ePoint;
+	}
+	public void setUser_ePoint(int user_ePoint) {
+		this.user_ePoint = user_ePoint;
+	}
 }

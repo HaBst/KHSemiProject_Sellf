@@ -18,6 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 import common.FileRename;
 import product.model.service.ProductInsertService;
 import product.model.vo.ImageUpload;
+import product.model.vo.ProductDetail;
 import product.model.vo.ProductInsert;
 
 /**
@@ -104,21 +105,40 @@ public class ProductInsertServlet extends HttpServlet {
 			iu.setImgFour(afterFileNameFour);
 			iu.setImgFive(afterFileNameFive);
 			
+			
+			
+			ProductDetail pd = new ProductDetail();
+			String productGrade = multi.getParameter("productGrade");
+			String productScratch = multi.getParameter("scratch");
+			String productRefund = multi.getParameter("refund");
+			String productExtra = multi.getParameter("extra");
+			String productDetail = multi.getParameter("detail");
+			pd.setProductGrade(productGrade);
+			pd.setProductScratch(productScratch);
+			pd.setProductRefund(productRefund);
+			pd.setProductExtra(productExtra);
+			pd.setProductDetail(productDetail);
+			
+			
+			
 			String productEntireUserIdFK = "mslove11";
 			String productEntireCateMainIdFK = multi.getParameter("bCategory"); //카테고리 대분류
-//			System.out.println("카테고리"+productEntireCateMainIdFK);
+			System.out.println("카테고리"+productEntireCateMainIdFK);
 			String productEntireCateSubIdFK = multi.getParameter("sCategory"); //카테고리 소분류
-//			System.out.println("소분류"+productEntireCateSubIdFK);
+			System.out.println("소분류"+productEntireCateSubIdFK);
 			String productName = multi.getParameter("productName"); //상품이름
-//			System.out.println("상품이름"+productName);
-			int productPrice = Integer.parseInt(multi.getParameter("price")); // 상품 가격
-//			System.out.println("상품가격"+productPrice);
+			System.out.println("상품이름"+productName);
+//			String productState = multi.getParameter("state");
+//			System.out.println("상품상태"+productState);
 			int productAmount = Integer.parseInt(multi.getParameter("productCount")); //상품 수량
-//			System.out.println("상품수량"+productAmount);
-			String productGrade = multi.getParameter("grade"); //상품 등급
-//			System.out.println("상품등급"+productGrade);
-			String productDetail = multi.getParameter("detail"); //상세설명
-//			System.out.println("상세설명"+productDetail);
+			System.out.println("상품수량"+productAmount);
+			int productPrice = Integer.parseInt(multi.getParameter("price")); // 상품 가격
+			System.out.println("상품가격"+productPrice);
+			
+			String productOldNew = multi.getParameter("state"); //상품 등급
+			System.out.println("상품등급"+productOldNew);
+
+			
 
 			ProductInsert pi = new ProductInsert();
 			pi.setProductEntireUserIdFK(productEntireUserIdFK);
@@ -128,8 +148,8 @@ public class ProductInsertServlet extends HttpServlet {
 			pi.setProductPrice(productPrice);
 			pi.setProductImage(iu);
 			pi.setProductAmount(productAmount);
-			pi.setProductGrade(productGrade);
-			pi.setProductDetail(productDetail);
+			pi.setProductOldNew(productOldNew);
+			pi.setProductDetail(pd);
 			
 			
 			

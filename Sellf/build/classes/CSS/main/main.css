@@ -166,15 +166,15 @@ div[id*="text"] {
 	background-color: #D9E5FF;
 
 }
-#review .col-sm{
-	padding-top:15px;
-	height:200px;
-	background-color:white;
+.title_userId{
 	font-size:20px;
 	font-weight:600;
-	
 }
-
+#review .col-sm{
+	padding-top:15px;
+	height:250px;
+	background-color:white;	
+}
 #review{
 	width:80% !important;
 }

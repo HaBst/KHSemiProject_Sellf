@@ -133,7 +133,7 @@ crossorigin="anonymous"></script>
 						$("#popularCategorySec #text4").text(name[3]);
 						$("#popularCategorySec #text5").text(name[4]);
 						$("#popularCategorySec #text6").text(name[5]);
-						$("#sellExpectedSec1_title>div:first-child").text("인기카테고리 "+name[0]);
+						$("#sellExpectedSec1_title>div:first-child").text(name[0]);
 						$("#sellExpectedSec2_title>div:first-child").text(name[1]);
 						$("#sellExpectedSec3_title>div:first-child").text(name[2]);
 						
@@ -194,34 +194,66 @@ crossorigin="anonymous"></script>
 			</div>
 			<br><br>  
 			<hr>	
+			
+				<script type="text/javascript">
+			$(document).ready(function(){
+				$.ajax({
+					url : "/notOpenProduct",
+					type : "post",
+					success : function(data) {
+						var productName = [];
+						var img = [];
+						var productPk = [];
+						
+						console.log(data);
+						for (var i = 0; i < data.length; i++) {
+							img[i]= data[i].product_image;
+							productName[i] =data[i].product_name;
+							productPk[i] =data[i].product_entire_pk;
+							}	
+							console.log("상품인덱스:"+productPk[0]);
+							
+						$("#imghoverSec .shadow img:eq(0)").attr("src",img[0]);
+							$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
+							$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
+							
+							$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
+							$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
+							$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
+					},
+					error : function() { 
+						console.log("미개봉상품가져오기 실행 실패");	
+					}
+				}); 	
+			});	
+			</script> 
 			<!-- 이미지 hover 섹션 -->
 				<div id="imghoverSec" style="overflow:hidden">
 					<div id="imghoverSec_title">
-					<h1 style="font-weight:600;">SELL:F  내가 제일 잘나가 ~</h1>
+					<h1 style="font-weight:600;">SELL:F 미개봉 중고</h1>
 					</div> 
 					<br><br>
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-3" style="width: 30%;">
 								<div class="shadow">
-									<a href="#">
-								 <img
-									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									<a href="">
+									 <img
+									src=""
 									width="100%" height="100%"> 
 									</a>
 								</div>
 							</div>
 							<div class="col-xs-3" style="width: 30%;">
 								<div class="shadow">
-									<a href="#"><img
-									src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+									<a href=""><img src=""
 									width="100%" height="100%"></a>
 								</div>
 							</div>
 							<div class="col-xs-3" style="width: 30%;">
 							<div class="shadow">
-								<a href="#"><img
-									src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
+								<a href=""><img
+									src=""
 									width="100%" height="100%"></a>
 							</div>
 						</div>
@@ -1280,8 +1312,10 @@ crossorigin="anonymous"></script>
 					$(".mdProduct4").attr("href","/productSelectOne?productId="+productNo4[3]);
 					$("#mdProduct4").attr("href","/productSelectOne?productId="+productNo4[3]);
 					
-					
-					
+					$("#col_container .col-xs-3:first-child h4").text(name[0]);
+					$("#col_container .col-xs-3:nth-child(2) h4").text(name[1]);
+					$("#col_container .col-xs-3:nth-child(3) h4").text(name[2]);
+					$("#col_container .col-xs-3:nth-child(4) h4").text(name[3]);
 				},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!꺄~~~~~
 				error : function() {
 					console.log("실패");
@@ -1306,7 +1340,7 @@ crossorigin="anonymous"></script>
 									<div class="caption">
 										<div class="blur"></div>
 										<div class="caption-text">
-											<h3 style="padding: 10px;">상품설명</h3>
+											<h4 style="padding: 10px;">추천</h4>
 											<p align="center" style="padding: 10px;"></p>
 											<a class=" btn btn-default" href="#" id="mdProduct1">가격:<span id="price1" class="glyphicon glyphicon-plus"></span>원</a>		
 										</div>
@@ -1324,7 +1358,7 @@ crossorigin="anonymous"></script>
 									<div class="caption">
 										<div class="blur"></div>
 										<div class="caption-text">
-											<h3 style="padding: 10px;">상품설명</h3>
+											<h4 style="padding: 10px;">추천상품</h4>
 											<p align="center" style="padding: 10px;"></p>
 												<a class=" btn btn-default" href="#" id="mdProduct2">가격:<span id="price2" class="glyphicon glyphicon-plus"></span>원</a>
 										</div>
@@ -1341,7 +1375,7 @@ crossorigin="anonymous"></script>
 									<div class="caption">
 										<div class="blur"></div>
 										<div class="caption-text">
-											<h3 style="padding: 10px;">상품설명</h3>
+										<h4 style="padding: 10px;">추천상품</h4>
 											<p align="center" style="padding: 10px;"></p>
 												<a class=" btn btn-default" href="#" id="mdProduct3">가격:<span id="price3" class="glyphicon glyphicon-plus"></span>원</a>
 										</div>
@@ -1361,7 +1395,7 @@ crossorigin="anonymous"></script>
 											<div class="blur"></div>
 											<div class="caption-text" >
 					
-												<h3 style="padding: 10px;">상품설명</h3>
+											<h4 style="padding: 10px;">추천상품</h4>
 												<p align="center" style="padding: 10px;"></p>
 													<a class=" btn btn-default" href="#" id="mdProduct4">가격:<span id="price4" class="glyphicon glyphicon-plus"></span>원</a>
 											</div>
@@ -1847,12 +1881,12 @@ crossorigin="anonymous"></script>
 							}	
 						console.log("코멘트  :" + comment[0]);
 						console.log("구매자아이디  :" + userId[0]);
-							$("#review .col-sm:eq(0)").text(userId[0]+ "님이 작성한 리뷰입니다~!!  "+ comment[0]);
-							$("#review .col-sm:eq(1)").text(userId[1]+ "님이 작성한 리뷰입니다~!!  "+ comment[1]);
-							$("#review .col-sm:eq(2)").text(userId[2]+ "님이 작성한 리뷰입니다~!!  "+ comment[2]);
-							$("#review1_title>div").text();
-							$("#review2_title>div").text(writeDate[1]+ " 작성한 리뷰~!!");
-							$("#review3_title>div").text(writeDate[2]+ " 작성한 리뷰~!!");
+							$("#review .col-sm:eq(0)>div:last-child").text(comment[0]);
+							$("#review .col-sm:eq(1)>div:last-child").text(comment[1]);
+							$("#review .col-sm:eq(2)>div:last-child").text(comment[2]);
+							$("#review .col-sm:eq(0)>div:first-child").text(userId[0]+ "님이 작성한 리뷰입니다~!!  ");
+							$("#review .col-sm:eq(1)>div:first-child").text(userId[1]+ "님이 작성한 리뷰입니다~!!  ");
+							$("#review .col-sm:eq(2)>div:first-child").text(userId[2]+ "님이 작성한 리뷰입니다~!!  ");
 					},
 					error : function() { 
 						console.log("리뷰가져오기 실행 실패");	
@@ -1863,17 +1897,25 @@ crossorigin="anonymous"></script>
 			<div id="content" class="reviewContent">
 			 	<div id="reviewTitle"><h1 style="font-weight:600;">1000만 사용자가 생길 예정입니다.</h1></div>
 			 	<br>
-				<div class="container" id="review">
+			 	
+				<div class="container" id="review" style="overflow:hidden;">
 				  <div class="row">
 				  	
 				    <div class="col-sm">
+				    	<div class="title_userId"></div>
+				    	<hr>
+				    	<div></div>
 				    
 				    </div>
 				    <div class="col-sm">
-				    
+						<div class="title_userId"></div>
+						<hr>				   
+						<div></div>
 				    </div>
 				    <div class="col-sm">
-				    
+						<div class="title_userId"></div>
+						<hr>				    	
+						<div></div>
 				    </div>
 				  </div>
 				</div>	

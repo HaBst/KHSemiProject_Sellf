@@ -384,7 +384,7 @@ public class MemberDao {
 		ArrayList<Product> list = new ArrayList<Product>();
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query ="select product_entire_pk, product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from (select * from user_purchase_his_tb, product_entire_Tb where user_pur_his_product_fk = product_entire_pk) where user_pur_his_user_entire_id_fk='"+id+"'";
+		String query ="select product_entire_pk, product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from (select * from order_tb, product_entire_Tb where order_product_entire_fk = product_entire_pk) where order_user_entire_id_fk='"+id+"'";
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);

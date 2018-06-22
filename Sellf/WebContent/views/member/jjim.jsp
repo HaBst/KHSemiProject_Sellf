@@ -22,6 +22,19 @@
 <style>
 body {
 	 font-family: 'Sunflower';
+	 
+}
+.cartBtn{
+ background:url(/../../img/jjim.png); 
+ border:0px transparent solid;
+ width:100px;
+ height:100px;
+}
+.deleteBtn{
+ background:url(/../../img/trash.png); 
+ border:0px transparent solid;
+ width:100px;
+ height:100px;
 }
 .contents {
 	position: relative;
@@ -38,7 +51,7 @@ height: 100%;
 .mpMenuAll{border: 1px solid #F2F2F2;
 margin-bottom:10px;
 list-style-type:none;
-font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
+font: 15px/40px 'Sunflower', Verdana, sans-serif;	
 }
 ul.mpMenuAll li{
 margin:0;padding:0;border-top:1px solid #F2F2F2;
@@ -73,7 +86,7 @@ background-size: 1000% 100%;
         padding: inherit;
         border:3px solid none;
         width: 100%;
-        height: 39%; 
+        height: 40%; 
         text-align: justify;
 }  
 .MenuContents{
@@ -394,11 +407,16 @@ th.spec {
 					<td>
 					<input type="" value="<%=p.getProduct_amount()%>"></td>
 					<td>
-					<a href="/myCart"><img alt="" src="/../../img/jjim.png" style="width:100px;"></a>
+					<form action="/jjimCart" method="post" style="display:inline;">
+					<input type="hidden" name="cartNo" value="<%=p.getProduct_entire_pk() %>"/>
+					<input type="submit" class="cartBtn" value="" />
+					</form>
 					</td>
-									
 					<td class="actions">
-					<a><img alt="" src="/../../img/trash.png" onclick="jjimdelete();"style="width:100px;"></a>
+					<form action="/jjimDelete" method="post" style="display:inline;">
+					<input type="hidden" name="deleteNo" value="<%=p.getProduct_entire_pk() %>"/>
+					<input type="submit" class="deleteBtn" value="" />
+					</form>
 					</td>
 					</tr>
 					</tbody><%}%>
@@ -424,7 +442,6 @@ th.spec {
 			</div>
 		</div>
 	</center>
-<script>var swi = false;function jjimdelete(){if(swi==false){var result = window.confirm("정말 삭제하시겠습니까?");if(result){location.href="/jjimDelete";}else{alert('취소했어양!! ^ㅅ^');}}else{return true;}return false;}</script>
 <script type="text/javascript" href="../../JS/common/header.js?ver=1"></script>
 <div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>

@@ -1,51 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ page import="member.model.vo.*" import="java.util.ArrayList"%>
-<% Member m = (Member)session.getAttribute("user"); %>  
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.*" 
+		 import="java.util.ArrayList"
+		 import="product.model.vo.*"%>
+<% Member m = (Member)session.getAttribute("user"); %> 
+<% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÂòÇÑ »óÇ°</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ì°œí•œ ìƒí’ˆ</title>
+<!-- ë‚´ë¶€ ë§í¬ê±´ CSS -->
+<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<!-- í—¤ë” ë -->
 <style>
 body {
-	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
-	color: #404040;
-	background: white;
+	 font-family: 'Sunflower';
+	 
 }
-div{background-color: white;}
-    
-.header{border:3px solid white;
-       background-color: #7151FC;
-        width: auto;
-        height: 100px;}
+.cartBtn{
+ background:url(/../../img/jjim.png); 
+ border:0px transparent solid;
+ width:100px;
+ height:100px;
+}
+.deleteBtn{
+ background:url(/../../img/trash.png); 
+ border:0px transparent solid;
+ width:100px;
+ height:100px;
+}
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
-    .footer{border:3px solid white;
-    background-color: #7151FC;
-    width: auto;
-    height: 120px;
-    }
-    .mpMenuItems{border: 1px solid white;
-    float: left;
-    width: auto;
-    height: 100%;
-    }
-    
-    
-    .mpMenuAll{border: 1px solid #F2F2F2;
-    margin-bottom:10px;
-	list-style-type:none;
-	font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
-    }
-    ul.mpMenuAll li{
-	margin:0;padding:0;border-top:1px solid #F2F2F2;
-	border-bottom:1px solid white;
+.mpMenuItems{
+border: 1px solid white;
+float: left;
+width: auto;
+height: 100%;
+}
+.mpMenuAll{border: 1px solid #F2F2F2;
+margin-bottom:10px;
+list-style-type:none;
+font: 15px/40px 'Sunflower', Verdana, sans-serif;	
+}
+ul.mpMenuAll li{
+margin:0;padding:0;border-top:1px solid #F2F2F2;
+border-bottom:1px solid white;
 }
 ul.mpMenuAll li a{
 	display:block;text-decoration:none;color:black;
@@ -55,94 +65,57 @@ ul.mpMenuAll li a:hover{
 	background:#F2F2F2 url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;
 	color:#7151FC;
 }
-
 ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
 background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;}
 .mpMenuTitle {
-	width: auto;
-	margin-top:55px;
-	height: 5%;
-	animation: background 1s linear infinite;
-	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
-		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
-		rgba(74, 165, 168, 1) 30%, rgba(89, 90, 165, 1) 40%,
-		rgba(84, 16, 67, 1) 50%, rgba(28, 58, 63, 1) 60%,
-		rgba(82, 175, 183, 1) 70%, rgba(78, 170, 76, 1) 80%,
-		rgba(150, 48, 30, 1) 90%, rgba(199, 201, 88, 1) 100%);
-	background-size: 1000% 100%;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+width: auto;
+animation: background -0.1s linear infinite;
+background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
+			rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
+			rgba(74, 165, 168, 1) 30%, rgba(89, 90, 165, 1) 40%,
+			rgba(84, 16, 67, 1) 50%, rgba(28, 58, 63, 1) 60%,
+			rgba(82, 175, 183, 1) 70%, rgba(78, 170, 76, 1) 80%,
+			rgba(150, 48, 30, 1) 90%, rgba(199, 201, 88, 1) 100%);
+background-size: 1000% 100%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
-    .mpMenuAll
-    {
+.mpMenuAll
+{
         position: static;
         padding: inherit;
         border:3px solid none;
         width: 100%;
-        height: 39%; 
+        height: 40%; 
         text-align: justify;
-    }  
-    .MenuContents
-    {
+}  
+.MenuContents{
         position: static;
         width: 70%;
         height: 100%;
         float:inherit;
-    }
-    .MenuConTitle
+}
+.MenuConTitle
     {
-    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
  		text-align: justify;
-    }
-    .MenuCon
+}
+.MenuCon
     {
         width: 100%;
         height: 80%;
         float: inherit;
     }
-.delete {
-	float: left;
-	position: relative;
-	width: 100px;
-	display: inline-block;
-	color: #ecf0f1;
-	text-decoration: none;
-	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
-	text-align: center;
-	padding: 16px 18px 14px;
-	margin: 12px;
-	font-size: 25px;
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	-webkit-box-shadow: 0px 6px 0px rebeccapurple;
-	-moz-box-shadow: 0px 6px 0px rebeccapurple;
-	box-shadow: 0px 0px 0px rebeccapurple;
-}
-
-.delete:active {
-	-webkit-box-shadow: 0px 2px 0px rebeccapurple;
-	-moz-box-shadow: 0px 2px 0px rebeccapurple;
-	box-shadow: 0px 2px 0px rebeccapurple;
-	position: relative;
-	top: 4px;
-}
-
 .container {
 	margin: 50px auto;
 	width: 580px;
 	text-align: center;
 }
-
 .container>.button {
 	margin: 12px;
 }
-
 .button {
 	position: relative;
 	display: inline-block;
@@ -164,7 +137,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px
 		rgba(255, 255, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-
 .button:before {
 	content: '';
 	position: absolute;
@@ -207,6 +179,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	width: 700px;
 	padding: 0;
 	margin: 0;
+	overflow:auto;
 }
 
 caption {
@@ -260,15 +233,6 @@ th.spec {
 	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 }
 
-th.specalt {
-	border-left: 1px solid #F2F2F2;
-	border-top: 0;
-	background: #f5fafa url(/data/201011/IJ12896448126037/bullet2.gif)
-		no-repeat;
-	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	color: #797268;
-}
-
 .menu-button {
 	-webkit-transition: 0.4s;
 	-moz-transition: 0.4s;
@@ -281,7 +245,7 @@ th.specalt {
 	text-align: center;
 	line-height: 60px;
 	border-radius: 50%;
-	background-color: #7151FC;
+	background-color: #9B9BA7;
 	color: #FFFFFF;
 	font-size: 24px;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0
@@ -390,10 +354,8 @@ th.specalt {
 }
 </style>
 </head>
-
 <body align="center">
-
-	<div class="header">Çì´õ</div>
+	<div class="header"><%@include file="../../views/common/header.jsp"%></div>
 	<center>
 		<div class="contents">
 			<div class="mpMenuItems">
@@ -401,102 +363,73 @@ th.specalt {
 					<h1>My Page</h1>
 				</div>
 				<div></div>
-				<ul class="mpMenuAll" role="tablist" style="">
-					<li role="presentation" class="active"><a
-						href="/views/member/mySelf.jsp">ÆÇ¸Å³»¿ª</a></li>
-					<li role="presentation" class="active"><a
-						href="/views/member/myBuy.jsp">±¸¸Å³»¿ª</a></li>
-					<li role="presentation" class="active"><a
-						href="/views/member/jjim.jsp">ÂòÇÑ »óÇ°</a></li>
-					<li role="presentation" class="active"><a
-						href="/views/member/myCoupon.jsp">³» ÄíÆù</a></li>
-					<li role="presentation" class="active"><a
-						href="/views/member/myInfoQuiz.jsp">³» Á¤º¸</a></li>
-										<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">µî±Şº¸±â</a></li>
+				  <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active" id="selfb"><a href="/self">íŒë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="buyb"><a href="/buy">êµ¬ë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ì°œí•œ ìƒí’ˆ</a></li>
+					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">ë‚´ ì¿ í°</a></li>
+					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">ë‚´ ì •ë³´</a></li>
+					<li role="presentation" class="active"><a href="/Grade">ë“±ê¸‰ë³´ê¸°</a></li>
 				</ul>
 			</div>
 			<div class="MenuContents">
-				<div class="MenuConTitle">
-					<H2>ÂòÇÑ »óÇ°</H2>
-				</div>
-				<hr>
+				<div class="MenuConTitle"><H2>ì°œí•œ ìƒí’ˆ</H2></div><hr>
 				<div class="MenuCon">
-					<div class="table-users">
-						<%
-							ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("userList");
-						%>
-						<center>
-							<%
-								if (list != null) {
-							%>
-							<table id="cart" class="table table-hover table-condensed">
-								<thead>
-									<tr>
-										<th style="width: 50%">ÂòÇÑ »óÇ°</th>
-										<th style="width: 10%">°¡°İ</th>
-										<th style="width: 8%">¼ö·®</th>
-										<th style="width: 22%" class="text-center">ÃÑ °¡°İ</th>
-										<th style="width: 10%">»èÁ¦</th>
-									</tr>
-
-								</thead>
-								<%
-									for (Member m : list) {
-								%>
-								<tbody>
-									<tr>
-										<td data-th="Product">
-											<div class="row">
-												<div class="col-sm-2 hidden-xs">
-													<img src="http://placehold.it/100x100" alt="..."
-														class="img-responsive" />
-												</div>
-												<div class="col-sm-10">
-													<h4 class="nomargin">ÁÖ¤Ñ¤Ñ¤Ñ¸à</h4>
-													<p>ÁÖ¸àÀº ´ëÇÑ¹Î±¹ ¿øÅ¾ °ø°İ¼öÀÔ´Ï´Ù ^¤µ^</p>
-												</div>
-											</div>
-										</td>
-										<td data-th="Price" id="Price">1000¿ø</td>
-										<td data-th="Quantity"><input type="number"
-											class="form-control text-center" value="1"></td>
-										<td data-th="Subtotal" class="text-center">¸ô¶ó.. ¤Ğ_¤Ğ</td>
-										<td class="actions" data-th="">
-
-											<button class="delete" onclick="jjimdelete();">»èÁ¦
-											</button>
-										</td>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td><a href="#" class="btn btn-warning"><i
-												class="fa fa-angle-left"></i>Shopping</a></td>
-										<td colspan="2" class="hidden-xs"></td>
-										<td class="hidden-xs text-center"><strong>ÃÑÇÕ :
-												102313¿ø</strong></td>
-										<td><a href="#" class="btn btn-success btn-block">Àå¹Ù±¸´Ï¿¡
-												Ãß°¡ <i class="fa fa-angle-right"></i>
-										</a></td>
-									</tr>
-								</tfoot>
-								<%
-									}
-								%>
-							</table>
-						</center>
-						<%
-							} else {
-						%>
-						<div>»ì±î¸»±î °í¹ÎµÇ´Â ¹°°ÇÀ» ÂòÇØº¸¼¼¿ä!</div>
-						<%
-							}
-						%>
+				<div class="table-users" style="overflow:auto; width:1000px; height:550px;">
+				<center>
+				<%if(list2 != null){%>
+				
+				<table id="cart" class="table table-hover table-condensed"><thead>
+				<tr>
+					<th style="width: 40%">ìƒí’ˆì´ë¯¸ì§€</th>
+					<th style="width: 20%">ìƒí’ˆì •ë³´</th>
+					<th style="width: 10%">ìˆ˜ëŸ‰</th>
+					<th style="width: 10%" class="text-center">ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€</th>
+					<th style="width: 10%" class="text-center">ì‚­ì œ</th>
+				</tr>
+				</thead>
+				<%for (Product p : list2){%>
+				<tbody>
+				<tr>
+					<td><div class="row"><div class="col-sm-2 hidden-xs">
+					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+					<div class="col-sm-10">
+					</td>
+					<td><%=p.getProduct_price()%>	<h4 class="nomargin"><%=p.getProduct_name() %></h4>
+					<h5>    <% String state = p.getProduct_state(); %>
+       		 <%if(state.equals("S")){%>
+         	  <h4  style="color: blue">íŒë§¤ì¤‘</h4>
+         	 <%}else if(state.equals("T")) {%>
+         	  <h4  style="color: orange">ê±°ë˜ì¤‘</h4>
+         	 <%}else if(state.equals("E")) {%>
+         	  <h4  style="color: red">íŒë§¤ì™„ë£Œ</h4>
+         	 <%} %></h5></div></div></td>
+					<td>
+					<input type="" value="<%=p.getProduct_amount()%>"></td>
+					<td>
+					<form action="/jjimCart" method="post" style="display:inline;">
+					<input type="hidden" name="cartNo" value="<%=p.getProduct_entire_pk() %>"/>
+					<input type="submit" class="cartBtn" value="" />
+					</form>
+					</td>
+					<td class="actions">
+					<form action="/jjimDelete" method="post" style="display:inline;">
+					<input type="hidden" name="deleteNo" value="<%=p.getProduct_entire_pk() %>"/>
+					<input type="submit" class="deleteBtn" value="" />
+					</form>
+					</td>
+					</tr>
+					</tbody><%}%>
+					</table>
+					</center>
+						<%} else {%>
+						<div>ì‚´ê¹Œë§ê¹Œ ê³ ë¯¼ë˜ëŠ” ë¬¼ê±´ì„ ì°œí•´ë³´ì„¸ìš”!</div>
+						<%}%>
 					</div>
 				</div>
 			</div>
 			<div class="menu-button">
-				<i class="Qbtn"></i> <a href="/views/member/myCart.jsp"
+				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
 					style="background-image: url(/../../img/messageQbtn.png)"> <i
 					class="messageQbtn"></i>
 				</a> <a href="/index.jsp"
@@ -509,6 +442,7 @@ th.specalt {
 			</div>
 		</div>
 	</center>
-	<div class="footer">ÇªÅÍ</div>
+<script type="text/javascript" href="../../JS/common/header.js?ver=1"></script>
+<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>
 </html>

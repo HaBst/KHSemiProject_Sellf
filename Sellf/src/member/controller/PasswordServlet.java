@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import member.model.service.MemberService;
+import member.model.service.myInfoService;
 import member.model.vo.Member;
 
 /**
@@ -32,8 +31,7 @@ public class PasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String userPwd = request.getParameter("userPwd");
-		Member m = new MemberService().myInfo(userPwd);
-		System.out.println("여긴오냐?");
+		Member m = new myInfoService().myInfo(userPwd);
 		if(m!=null) //로그인 성공시
 		{
 			HttpSession session = request.getSession();

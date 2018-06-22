@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import manager.model.dao.ManagerDao;
 import manager.model.service.ManagerService;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class ManagerGetSubCtgServlet
@@ -34,14 +35,19 @@ public class ManagerGetSubCtgServlet extends HttpServlet {
 		//메인카테고리 선택에 따라 하위분류를 db에서 읽어오는 서블릿.
 		request.setCharacterEncoding("UTF-8");
 		String mainCtg = request.getParameter("mainCtg");
+		System.out.println(mainCtg);
 		
-		HashMap<String, String> subCtg = new ManagerService().getSubCtg(mainCtg);
-		for(String subId:subCtg.keySet())
-		{
-			System.out.println("key:"+subId+",vlaue:"+subCtg.get(subId));
-		}
-	}
+        HashMap<String, String> subCtg = new ManagerService().getSubCtg(mainCtg); //DB에서 읽어온 소분류를 저장.
+//      for(String subId:subCtg.keySet())
+//      {
+//          System.out.println("key:"+subId+",value:"+subCtg.get(subId)); // 값 읽어온거 테스트
+//      }
+      //hash-map을 Gson이용하여 script로 넘김.
+      response.setCharacterEncoding("UTF-8");
+      response.setContentType("application/json");
+      new Gson().toJson(subCtg,response.getWriter());
 
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

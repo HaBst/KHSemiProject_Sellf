@@ -28,7 +28,7 @@
 					
 						<table class="table table-bordered">
 							<tr>
-								<form action="" method="post">
+								
 								<th>검색분류</th>
 								<td><select id="searchProduct"> <!-- value값은 차차 생각!! -->
 										<option value="1">상품명</option>
@@ -42,7 +42,7 @@
 								<th>상품 분류</th> 
 								<td>
 								<select id="productCategory" onchange="chan();" >
-									<option disabled>-대분류 선택-</option>
+									<option value=null>-대분류 선택-</option>
 									<option value="M01">전자제품</option>
 									<option value="M02">패션의류</option>
 									<option value="M03">패션잡화</option>
@@ -68,18 +68,19 @@
 							<tr>
 								<th>상품 상태</th>
 								<td> <input type="radio" name="status" value="all" checked />전체 
-									 <input type="radio" name="status" value="top" />상  
-									 <input type="radio" name="status" value="middleTop" />중상  
-									 <input type="radio" name="status" value="middle" />중  
-									 <input type="radio" name="status" value="middleBottom" />중하  
-									 <input type="radio" name="status" value="bottom" />하 
+									 <input type="radio" name="status" value="a" />상  
+									 <input type="radio" name="status" value="b" />중상  
+									 <input type="radio" name="status" value="b" />중  
+									 <input type="radio" name="status" value="d" />중하  
+									 <input type="radio" name="status" value="e" />하 
 								</td>
-								</form>
+								
 							</tr>
 						</table>
 						<center>
-							<input type="submit" class="btn btn-outline-warning btn-sm" value="검색" /> <input type="reset"
-								class="btn btn-outline-secondary btn-sm" value="초기화" />
+							<button type=button class="btn btn-outline-warning btn-sm" onclick="sellSearch()"  >검색</button> 
+							<button type="button"
+								class="btn btn-outline-secondary btn-sm" onckick="reset();">초기화</button>
 						</center>
 					
 					<hr>

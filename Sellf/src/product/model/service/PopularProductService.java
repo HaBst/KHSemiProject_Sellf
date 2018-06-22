@@ -49,4 +49,11 @@ public class PopularProductService {
 		
 	}
 
+	public ArrayList<Product> notOpenProduct() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Product> list = new PopularProductDao().notOpenProduct(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

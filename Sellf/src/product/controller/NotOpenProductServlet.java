@@ -1,31 +1,30 @@
-package member.controller;
+package product.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import member.model.service.MyCartService;
-import member.model.vo.wishList;
+import com.google.gson.Gson;
+
+import product.model.service.PopularProductService;
 import product.model.vo.Product;
 
 /**
- * Servlet implementation class MyCart2Servlet
+ * Servlet implementation class NotOpenProductServlet
  */
-@WebServlet(name = "MyCart2", urlPatterns = { "/myCart2" })
-public class MyCart2Servlet extends HttpServlet {
+@WebServlet(name = "NotOpenProduct", urlPatterns = { "/notOpenProduct" })
+public class NotOpenProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyCart2Servlet() {
+    public NotOpenProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,16 +33,10 @@ public class MyCart2Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		String list = (request.getParameter("productInfo"));
-		System.out.println("mycart2:"+list);
-	
-		RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart2.jsp");
-		request.setAttribute("myCartList", list);
-		view.forward(request, response);
-
-		
+		ArrayList<Product> list= new PopularProductService().notOpenProduct();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

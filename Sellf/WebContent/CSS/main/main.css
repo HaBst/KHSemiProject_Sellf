@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 #wrapper {	
 	background-color: white;
@@ -94,7 +94,9 @@ div[id*="text"] {
 }
 
 #imgSliderSec img {
-	height: 100%;
+	width: 100%;
+	height: 500px;
+
 }
 
 #middleAdSec img {
@@ -102,25 +104,6 @@ div[id*="text"] {
 	height: 100%;
 }
 
-/* #sellExpectedSec1_row img {
-	width: 500px;
-	height: 500px;
-}
-
-#sellExpectedSec2_row img {
-	width: 500px;
-	height: 300px;
-}
-
-#sellExpectedSec3_row img {
-	width: 500px;
-	height: 300px;
-}
-
-#newProductSec_row img {
-	width: 500px;  
-	height: 300px;
-} */
 #newProduct_title, #popularCategory_title, #popularInterestSec_title,
 	#sellExpectedSec1_title, #sellExpectedSec2_title,
 	#sellExpectedSec3_title{
@@ -161,19 +144,20 @@ div[id*="text"] {
 }
 .reviewContent{
 	width:100% !important;
-	height:400px !important;
+	height:600px !important;
 	background-color: #D9E5FF;
 
 }
-#review .col-sm{
-	padding-top:15px;
-	height:200px;
-	background-color:white;
+.title_userId{
 	font-size:20px;
 	font-weight:600;
-	
+	font-color:#D9E5FF;
 }
-
+#review .col-sm{
+	padding-top:15px;
+	height:250px;
+	background-color:white;	
+}
 #review{
 	width:80% !important;
 }

@@ -56,8 +56,10 @@ crossorigin="anonymous">
 <body>
 
 	<center>
-		<%ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("myCartList");%>
+		
 		<div id="wrapper" style="overflow:hidden;">
+		<%String list = (String)request.getAttribute("myCartList");%>
+		<%="리스트"+list %>
 			<!-- header -->
 			<header id="header"> <%@include
 				file="/views/common/header.jsp"%> </header>

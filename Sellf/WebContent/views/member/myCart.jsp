@@ -107,33 +107,33 @@ crossorigin="anonymous">
 						</thead>
 
 				
-				
+<%-- 				<c:forEach var="b" items="${list}" begin="0" step="1" varStatus="i"> --%>
 					<tbody>
-					<% for (int i = 0 ; i <list.size(); i++) { %>
+						<%for(int i = 0 ; i<list.size(); i++){ %>
 							<tr style="height: auto;" id="infoSelectTr">
 									<td scope="row" style="width: 10%;">
 									<input type="checkbox" style="margin-top: 50px;" name="chk" id="oneCheckBox" /></td>	
 									<td style="width: 30%;">
 										<div class="orderGoodsInfo1"> <!-- 주문상품 정보 : 상품이미지  -->
-										<img src="<%=list.get(i).getProduct_image()%>" 
+										<img src="<%=list.get(i).getProduct_image() %>" 
 												style="width: 100px; height: 100px; margin-top: 10px;" id="cartGoodsImg" name="cartGoodsImg" />
 										</div>
 										<div class="orderGoodsInfo2">  <!-- 주문상품 정보 : 상품명,상품옵션  -->
 											<div class="orderGoodsName" style="margin-top: 30px;">
-												<a href="#" style="font-size: 13px;">상품명:<span id="cartGoodsName"  name ="cartGoodsName" value="상품명"><%=list.get(i).getProduct_name()%></span></a>									
+												<a href="#" style="font-size: 13px;">상품명:<span id="cartGoodsName"  name ="cartGoodsName" value="상품명"><%=list.get(i).getProduct_name() %></span></a>									
 											</div>
-											<div class="cartGoodsOption" name="cartGoodsOption"> <%=list.get(i).getProduct_detail()%></div>
+											<div class="cartGoodsOption" name="cartGoodsOption"><%=list.get(i).getProduct_detail() %></div>
 										</div>
 									</td>
-									<td style="padding-top: 50px;"><span style="font-size: 15px;" id="orderQuantity" name = "orderQuantity"><%=list.get(i).getProduct_amount()%></span> <br>
+									<td style="padding-top: 50px;"><span style="font-size: 15px;" id="orderQuantity" name = "orderQuantity"><%=list.get(i).getProduct_amount() %></span> <br>
 										<button type="button" class="btn btn-info" id="quantityUp" 		style="font-size: 10px;">+</button>
 										<button type="button" class="btn btn-info" id="quantityDown" 	style="font-size: 10px;">-</button>
 										<button type="button" class="btn btn-info" id="changeBtn" style="font-size: 10px;">변경</button></td>
-									<td style="padding-top: 60px;"><span style="font-size: 15px;" id="goodsPrice" name="goodsPrices"><%=list.get(i).getProduct_price()%></span>원</td>
+									<td style="padding-top: 60px;"><span style="font-size: 15px;" id="goodsPrice" name="goodsPrices"><%=list.get(i).getProduct_price() %></span>원</td>
 								</tr>
-							<%} %>
+						<% } %>
 						</tbody>
-					
+						<%-- </c:forEach> --%>
 					</table>
 			
 					<br><br>
@@ -146,11 +146,10 @@ crossorigin="anonymous">
 				 } %>
 				<div id="dontHaveGoodsList"></div>
 				<hr>
-				<div class="selectBtn1">
-					<button type="button" class="btn btn-info" style="float: left;"
-						id="allSelectBtn" onclick="selectAllChk();">전체선택/해제</button>
-					<button type="button" class="btn btn-info" id="deleteOneBtn"
-						onclick="deleteOneBtn();" style="float: left; margin-left: 5px;">선택상품삭제</button>
+				<div class="selectBtn1"> 
+					<button type="button" class="btn btn-info" style="float: left;" id="allSelectBtn" onclick="selectAllChk();">전체선택/해제</button>
+					<button type="button" class="btn btn-info" id="deleteOneBtn" onclick="deleteOneBtn();" style="float: left; margin-left: 5px;">선택상품삭제</button>
+						
 				</div>
 				<br>
 				<div class="purchase">
@@ -161,7 +160,7 @@ crossorigin="anonymous">
 				</div>
 				<br><br><br>				
 				<div class="purchase">
-					<input type="hidden" name ="productInfo" id = "productInfo" value =? />
+					<input type="hidden" name ="productInfo" id ="productInfo" value="<%=list%>"/>
 					<button type="submit" class="btn btn-info" id="purchaseBtn" name ="purchaseBtn">구매하기</button>						
 				</div>
 			
@@ -169,9 +168,11 @@ crossorigin="anonymous">
 				<script> 
 				
 				function submit(){
-					var listArr = $("#productInfo").html();
+					var listArr = $("#productInfo").val();
 					var cartGoodsImg  = $("#cartGoodsImg").html();
-					console.log(cartGoodsImg);
+					listArr.push(cartGoodsImg);
+					alert(cartGoodsImg);
+					
 				}
 					function myCartListPurchase(){
 						var chkResult = $('input[name="chk"]:checked');

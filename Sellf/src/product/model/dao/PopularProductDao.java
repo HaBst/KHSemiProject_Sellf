@@ -196,4 +196,43 @@ public class PopularProductDao {
 		}
 		return adImage;
 	}
+
+	public ArrayList<Product> notOpenProduct(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		Product p = null;
+		ArrayList<Product> list = new ArrayList<Product>();
+		String query ="SELECT * FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_STATE = 'S' AND PRODUCT_GRADE = 'N'";
+		// 미개봉에 상품상태는 판매중 상태 제품 
+
+
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+
+			while (rset.next()) {
+				p = new Product();
+				p.setProduct_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK"));
+				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
+				p.setProduct_entire_category_main_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_MAIN_ID_FK"));
+				p.setProduct_entire_category_sub_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_SUB_ID_FK"));
+				p.setProduct_entire_user_entire_id_fk(rset.getString("PRODUCT_ENTIRE_USER_ID_FK"));
+				p.setProduct_name(rset.getString("PRODUCT_NAME"));
+				p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
+				p.setProduct_state(rset.getString("PRODUCT_STATE"));
+				p.setProduct_image(rset.getString("PRUDUCT_IMAGE"));
+				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+
+				list.add(p);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return list;
+	}
 }

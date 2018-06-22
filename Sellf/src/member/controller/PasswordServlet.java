@@ -32,7 +32,8 @@ public class PasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String userPwd = request.getParameter("userPwd");
-		Member m = null;//new MemberService().myInfo(userPwd);
+		Member m = new MemberService().myInfo(userPwd);
+		System.out.println("여긴오냐?");
 		if(m!=null) //로그인 성공시
 		{
 			HttpSession session = request.getSession();
@@ -41,7 +42,7 @@ public class PasswordServlet extends HttpServlet {
 		}
 		else //로그인 실패시
 		{
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect("/views/error/member/PasswordError.html");
 		}
 	}
 	

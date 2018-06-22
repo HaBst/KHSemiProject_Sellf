@@ -12,17 +12,14 @@ public class ManagerBoardDao {
 	public ArrayList<ManagerBoard> getCurrentPage(Connection conn, int currentPage, int recordCountPerPage) {
 		PreparedStatement pstmt = null; //���� ������ ������ ������
 		ResultSet rset = null;
-		ArrayList <ManagerBoard>list = new ArrayList<ManagerBoard>();
+		ArrayList <ManagerBoard> boardList = new ArrayList<ManagerBoard>();
 		ManagerBoard mb = null;
 		
 		int start = currentPage*recordCountPerPage-(recordCountPerPage-1); //���������� ���
 		int end = currentPage*recordCountPerPage;	//�������� ���
-		
-		
-		String query = "select notice_pk, notice_main_admin_id_fk,notice_subject,notice_content,notice_registration_date from " + 
+		String query = "select notice_pk, notice_main_admin_id_fk,notice_subject,notice_content,notice_registration_date, notice_views_count from " + 
 				"(select board_notice_tb.*,row_number() over(order by notice_pk  desc) as num from board_notice_tb) " + 
 				"where num between  ? and ?";
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1,start);
@@ -37,7 +34,8 @@ public class ManagerBoardDao {
 				mb.setSubject(rset.getString("notice_subject"));
 				mb.setContent(rset.getString("notice_content"));
 				mb.setWriteDate(rset.getDate("notice_registration_date"));
-				list.add(mb);
+				mb.setViewsCount(rset.getInt("notice_views_count"));
+				boardList.add(mb);
 			}
 			
 		} catch (SQLException e) {
@@ -48,7 +46,7 @@ public class ManagerBoardDao {
 			JDBCTemplate.close(pstmt);
 		}
 		
-		return list;
+		return boardList;
 	}
 
 	public String getPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
@@ -62,7 +60,7 @@ public class ManagerBoardDao {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
 			rset.next();
-			recordCountPerPage = rset.getInt("totalCount");
+			recordTotalCount = rset.getInt("totalCount");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +70,7 @@ public class ManagerBoardDao {
 		}
 	
 		int pageTotalCount = 0; //navi ��Ż ī��Ʈ
-		if(recordTotalCount%recordCountPerPage!=0)
+		if(recordTotalCount % recordCountPerPage!=0)
 		{
 			pageTotalCount = recordTotalCount / recordCountPerPage+1;
 		}else
@@ -135,7 +133,7 @@ public class ManagerBoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ManagerBoard mb =null;
-		String query = "select notice_pk,notice_subject,notice_content,notice_registration_date from board_notice_tb where notice_pk=?";
+		String query = "select notice_pk,notice_subject,notice_content,notice_registration_date,notice_views_count from board_notice_tb where notice_pk=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -150,6 +148,7 @@ public class ManagerBoardDao {
 				mb.setSubject(rset.getString("notice_subject"));
 				mb.setContent(rset.getString("notice_content"));
 				mb.setWriteDate(rset.getDate("notice_registration_date"));
+				mb.setViewsCount(rset.getInt("notice_views_count"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

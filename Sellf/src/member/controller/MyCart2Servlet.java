@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import member.model.service.MyCartService;
+import member.model.vo.wishList;
 import product.model.vo.Product;
 
 /**
@@ -34,21 +36,13 @@ public class MyCart2Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		String list = (request.getParameter("productInfo"));
+		System.out.println("mycart2:"+list);
+	
+		RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart2.jsp");
+		request.setAttribute("myCartList", list);
+		view.forward(request, response);
 
-
-		HttpSession session =  request.getSession(false);
-		if(session.getAttribute("user")!=null) {
-	
-			 RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart2.jsp");
-			 request.setAttribute("myCartList", list);
-			 view.forward(request, response);
-			 
-		}else {
-			System.out.println("myCart2.jsp로 보내기 실패 ");
-		}
-	
-	
-		
 		
 	}
 

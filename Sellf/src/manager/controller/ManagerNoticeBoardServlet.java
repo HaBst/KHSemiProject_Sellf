@@ -15,7 +15,7 @@ import manager.model.vo.ManagerBoardPageData;
 /**
  * Servlet implementation class ManagerFreeBoardServlet
  */
-@WebServlet(name = "ManagerNoticeBoard", urlPatterns = { "/managerNoticeBoard" }) //�������� �Խ��� ����¡ó���ϴ� ����
+@WebServlet(name = "ManagerNoticeBoard", urlPatterns = { "/managerNoticeBoard" }) 
 public class ManagerNoticeBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

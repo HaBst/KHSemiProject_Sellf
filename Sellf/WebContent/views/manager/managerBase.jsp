@@ -40,13 +40,11 @@
 <link rel="stylesheet" type="text/css" href="/CSS/manager/manager.css">
 <script src="/JS/manager/manager.js"></script>
 
-<title>BlackList</title>
+<title></title>
 
 
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -76,10 +74,7 @@
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
 								aria-pressed="true" href="#">Help</a></li>
-							<li class="nav-item"><a
-								class="btn btn-primary btn-sm active" role="button"
-								aria-pressed="true" href="">몰라</a></li>
-							<form class="navbar-form" action="" method="post">
+							
 								<!-- 검색어에 따라  -->
 								<input type="text" class="form-control" placeholder="검색 내용 입력!">
 							</form>
@@ -132,11 +127,7 @@
                                         <a href="/views/manager/managerSellList.jsp">상품 정보 조회
                                             <span class="badge badge-pill badge-success">Pro</span>
                                         </a>
-                                    </li>
-                                  
-                                    <li>
-                                        <a href="#">Dashboard 3</a>
-                                    </li>
+                                    </li>          
                                 </ul>
                             </div>
                         </li>
@@ -154,7 +145,7 @@
                                         </a>
                                     </li>
                                      <li>
-                                        <a href="/views/manager/managerBlackList.jsp">블랙리스트</a>
+                                        <a href="/managerBlackList">블랙리스트</a>
                                     </li>
                                 </ul>
                             </div>
@@ -167,13 +158,10 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="/views/manager/managerBoard.jsp">게시판 현황</a>
+                                        <a href="/managerNoticeBoard">게시판 현황</a>
                                     </li>
                                     <li>
-                                        <a href="/views/manager/managerQnABoard.jsp">Panels</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tables</a>
+                                        <a href="/views/manager/managerQnABoard.jsp">상담게시판</a>
                                     </li>
                                     
                                 </ul>
@@ -206,43 +194,13 @@
                                 <span>통계</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-folder"></i>
-                                <span>Examples</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Documentation</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
-                 <div class="sidebar-footer"> 
-                <a href="#">
-                    <i class="fas fa-angle-up"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-envelope"></i>
-                    <span class="badge badge-pill badge-success notification">7</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-cog"></i>
-                    <span class="badge-sonar"></span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-power-off"></i>
-                </a>
-            </div>
+                 
                 <!-- sidebar-menu  -->
            
 				<!-- sidebar-content  -->
-
+				</div>	
 			</nav>
-		</div>
-
 </body>
 </html>

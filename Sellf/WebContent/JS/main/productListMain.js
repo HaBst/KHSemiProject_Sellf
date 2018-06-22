@@ -157,6 +157,7 @@ function selectProduct(productId)
 {
 	//"/productSelectOne?productId="+productId;
 	location.href ="/productSelectOne?productId="+productId;//"/views/product/productSelect.jsp";
+
 }
 
 

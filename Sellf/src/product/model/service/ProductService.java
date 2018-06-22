@@ -8,6 +8,7 @@ import common.JDBCTemplate;
 import product.model.dao.ProductDao;
 import product.model.vo.ImageFile;
 import product.model.vo.Product;
+import product.model.vo.SellerRate;
 
 public class ProductService {
 
@@ -34,10 +35,17 @@ public class ProductService {
 		JDBCTemplate.close(conn);
 		return resultList;	
 	}
-	public Product selectOneProduct() {
+	public Product selectOneProduct(int productPk) {
 		Connection conn = JDBCTemplate.getConnection();
-		System.out.println("테스트");
-		return null;
+		Product p = new ProductDao().selectOneProduct(conn, productPk);	
+		JDBCTemplate.close(conn);
+		return p;
+	}
+	public SellerRate raputationAvr(String sellerId) {
+		Connection conn = JDBCTemplate.getConnection();
+		SellerRate sellerRate = new ProductDao().raputationAvr(conn, sellerId);
+		JDBCTemplate.close(conn);
+		return sellerRate;
 	}
 
 }

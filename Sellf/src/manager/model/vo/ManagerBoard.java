@@ -11,14 +11,18 @@ public class ManagerBoard {
 	private String writeId;//�۾���
 	private String content;//����
 	private Date writeDate;//�ۼ���
+	private int viewsCount; //��ȸ��
 	
-	public ManagerBoard(int boardNo, String subject, String writeId,String content, Date writeDate) {
+	
+
+	public ManagerBoard(int boardNo, String subject, String writeId,String content, Date writeDate, int viewsCount) {
 		super();
 		this.boardNo = boardNo;
 		this.subject = subject;
 		this.writeId = writeId;
 		this.content = content;
 		this.writeDate = writeDate;
+		this.viewsCount = viewsCount;
 	}
 
 	public int getBoardNo() {
@@ -59,6 +63,14 @@ public class ManagerBoard {
 
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
+	}
+	
+	public int getViewsCount() {
+		return viewsCount;
+	}
+
+	public void setViewsCount(int viewsCount) {
+		this.viewsCount = viewsCount;
 	}
 	
 }

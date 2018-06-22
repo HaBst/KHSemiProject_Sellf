@@ -31,7 +31,6 @@ public class NoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		int currentPage;
 		//첫페이지는 요청값이 없음. 따라서 첫페이지만 1로 셋팅하고 그외 페이지라면 해당 페이지값을 셋팅

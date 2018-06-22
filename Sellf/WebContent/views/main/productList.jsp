@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"
  	import="product.model.vo.*" import="java.util.ArrayList"
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -170,7 +171,7 @@
 									alt="">														
 								
 								<div class="productCoverExplain">
-									<br><br><br>				
+					   				<br><br><br>				
 									<ul>
 										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
 										<li style="color:gray;overflow:auto;">	 제품설명1<br> 제품설명2</li>

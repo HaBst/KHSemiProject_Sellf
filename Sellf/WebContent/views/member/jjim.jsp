@@ -10,46 +10,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>찜한 상품</title>
-
-
+<!-- 내부 링크건 CSS -->
+<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<!-- 헤더 끝 -->
 <style>
 body {
-	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
-	color: #404040;
-	background: white;
+	 font-family: 'Sunflower';
 }
-div{background-color: white;}
-    
-.header{border:3px solid white;
-       background-color: #7151FC;
-        width: auto;
-        height: 100px;}
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
-    .footer{border:3px solid white;
-    background-color: #7151FC;
-    width: auto;
-    height: 120px;
-    }
-    .mpMenuItems{border: 1px solid white;
-    float: left;
-    width: auto;
-    height: 100%;
-    }
-    
-    
-    .mpMenuAll{border: 1px solid #F2F2F2;
-    margin-bottom:10px;
-	list-style-type:none;
-	font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
-    }
-    ul.mpMenuAll li{
-	margin:0;padding:0;border-top:1px solid #F2F2F2;
-	border-bottom:1px solid white;
+.mpMenuItems{
+border: 1px solid white;
+float: left;
+width: auto;
+height: 100%;
+}
+.mpMenuAll{border: 1px solid #F2F2F2;
+margin-bottom:10px;
+list-style-type:none;
+font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
+}
+ul.mpMenuAll li{
+margin:0;padding:0;border-top:1px solid #F2F2F2;
+border-bottom:1px solid white;
 }
 ul.mpMenuAll li a{
 	display:block;text-decoration:none;color:black;
@@ -59,94 +52,57 @@ ul.mpMenuAll li a:hover{
 	background:#F2F2F2 url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;
 	color:#7151FC;
 }
-
 ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
 background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;}
 .mpMenuTitle {
-	width: auto;
-	margin-top:55px;
-	height: 5%;
-	animation: background 1s linear infinite;
-	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
-		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
-		rgba(74, 165, 168, 1) 30%, rgba(89, 90, 165, 1) 40%,
-		rgba(84, 16, 67, 1) 50%, rgba(28, 58, 63, 1) 60%,
-		rgba(82, 175, 183, 1) 70%, rgba(78, 170, 76, 1) 80%,
-		rgba(150, 48, 30, 1) 90%, rgba(199, 201, 88, 1) 100%);
-	background-size: 1000% 100%;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+width: auto;
+animation: background -0.1s linear infinite;
+background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
+			rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
+			rgba(74, 165, 168, 1) 30%, rgba(89, 90, 165, 1) 40%,
+			rgba(84, 16, 67, 1) 50%, rgba(28, 58, 63, 1) 60%,
+			rgba(82, 175, 183, 1) 70%, rgba(78, 170, 76, 1) 80%,
+			rgba(150, 48, 30, 1) 90%, rgba(199, 201, 88, 1) 100%);
+background-size: 1000% 100%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
-    .mpMenuAll
-    {
+.mpMenuAll
+{
         position: static;
         padding: inherit;
         border:3px solid none;
         width: 100%;
         height: 39%; 
         text-align: justify;
-    }  
-    .MenuContents
-    {
+}  
+.MenuContents{
         position: static;
         width: 70%;
         height: 100%;
         float:inherit;
-    }
-    .MenuConTitle
+}
+.MenuConTitle
     {
-    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
  		text-align: justify;
-    }
-    .MenuCon
+}
+.MenuCon
     {
         width: 100%;
         height: 80%;
         float: inherit;
     }
-.delete {
-	float: left;
-	position: relative;
-	width: 100px;
-	display: inline-block;
-	color: #ecf0f1;
-	text-decoration: none;
-	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
-	text-align: center;
-	padding: 16px 18px 14px;
-	margin: 12px;
-	font-size: 25px;
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	-webkit-box-shadow: 0px 6px 0px rebeccapurple;
-	-moz-box-shadow: 0px 6px 0px rebeccapurple;
-	box-shadow: 0px 0px 0px rebeccapurple;
-}
-
-.delete:active {
-	-webkit-box-shadow: 0px 2px 0px rebeccapurple;
-	-moz-box-shadow: 0px 2px 0px rebeccapurple;
-	box-shadow: 0px 2px 0px rebeccapurple;
-	position: relative;
-	top: 4px;
-}
-
 .container {
 	margin: 50px auto;
 	width: 580px;
 	text-align: center;
 }
-
 .container>.button {
 	margin: 12px;
 }
-
 .button {
 	position: relative;
 	display: inline-block;
@@ -168,7 +124,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px
 		rgba(255, 255, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-
 .button:before {
 	content: '';
 	position: absolute;
@@ -211,6 +166,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	width: 700px;
 	padding: 0;
 	margin: 0;
+	overflow:auto;
 }
 
 caption {
@@ -264,15 +220,6 @@ th.spec {
 	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 }
 
-th.specalt {
-	border-left: 1px solid #F2F2F2;
-	border-top: 0;
-	background: #f5fafa url(/data/201011/IJ12896448126037/bullet2.gif)
-		no-repeat;
-	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	color: #797268;
-}
-
 .menu-button {
 	-webkit-transition: 0.4s;
 	-moz-transition: 0.4s;
@@ -285,7 +232,7 @@ th.specalt {
 	text-align: center;
 	line-height: 60px;
 	border-radius: 50%;
-	background-color: #7151FC;
+	background-color: #9B9BA7;
 	color: #FFFFFF;
 	font-size: 24px;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0
@@ -394,10 +341,8 @@ th.specalt {
 }
 </style>
 </head>
-
 <body align="center">
-
-	<div class="header">헤더</div>
+	<div class="header"><%@include file="../../views/common/header.jsp"%></div>
 	<center>
 		<div class="contents">
 			<div class="mpMenuItems">
@@ -417,16 +362,17 @@ th.specalt {
 			<div class="MenuContents">
 				<div class="MenuConTitle"><H2>찜한 상품</H2></div><hr>
 				<div class="MenuCon">
-				<div class="table-users">
+				<div class="table-users" style="overflow:auto; width:1000px; height:550px;">
 				<center>
 				<%if(list2 != null){%>
+				
 				<table id="cart" class="table table-hover table-condensed"><thead>
 				<tr>
-					<th style="width: 50%">찜한 상품</th>
-					<th style="width: 10%">가격</th>
-					<th style="width: 8%">수량</th>
-					<th style="width: 22%" class="text-center">장바구니 추가</th>
-					<th style="width: 10%">삭제</th>
+					<th style="width: 40%">상품이미지</th>
+					<th style="width: 20%">상품정보</th>
+					<th style="width: 10%">수량</th>
+					<th style="width: 10%" class="text-center">장바구니 추가</th>
+					<th style="width: 10%" class="text-center">삭제</th>
 				</tr>
 				</thead>
 				<%for (Product p : list2){%>
@@ -435,7 +381,8 @@ th.specalt {
 					<td><div class="row"><div class="col-sm-2 hidden-xs">
 					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
 					<div class="col-sm-10">
-					<h4 class="nomargin"><%=p.getProduct_name() %></h4>
+					</td>
+					<td><%=p.getProduct_price()%>	<h4 class="nomargin"><%=p.getProduct_name() %></h4>
 					<h5>    <% String state = p.getProduct_state(); %>
        		 <%if(state.equals("S")){%>
          	  <h4  style="color: blue">판매중</h4>
@@ -443,18 +390,15 @@ th.specalt {
          	  <h4  style="color: orange">거래중</h4>
          	 <%}else if(state.equals("E")) {%>
          	  <h4  style="color: red">판매완료</h4>
-         	 <%} %></h5></div></div>
-					</td>
-					<td><%=p.getProduct_price()%></td>
+         	 <%} %></h5></div></div></td>
 					<td>
-					<input type="number" value="<%=p.getProduct_amount()%>"></td>
+					<input type="" value="<%=p.getProduct_amount()%>"></td>
 					<td>
-					<a href="/views/member/myCart.jsp"><img alt="" src="/../../img/wow.gif" style="width:150px;"></a>
+					<a href="/myCart"><img alt="" src="/../../img/jjim.png" style="width:100px;"></a>
 					</td>
 									
 					<td class="actions">
-					<button class="delete" onclick="jjimdelete();">삭제
-					</button>
+					<a><img alt="" src="/../../img/trash.png" onclick="jjimdelete();"style="width:100px;"></a>
 					</td>
 					</tr>
 					</tbody><%}%>
@@ -480,22 +424,8 @@ th.specalt {
 			</div>
 		</div>
 	</center>
-	<script>
-var swi = false;
-function jjimdelete(){
-	if(swi==false){
-		var result = window.confirm("정말 삭제하시겠습니까?");
-		if(result){
-			location.href="/jjimDelete";
-		}else{
-		alert('취소했어양!! ^ㅅ^');
-		}
-	}else{
-	return true;
-}
-	return false;
-}
-</script>
-	<div class="footer">푸터</div>
+<script>var swi = false;function jjimdelete(){if(swi==false){var result = window.confirm("정말 삭제하시겠습니까?");if(result){location.href="/jjimDelete";}else{alert('취소했어양!! ^ㅅ^');}}else{return true;}return false;}</script>
+<script type="text/javascript" href="../../JS/common/header.js?ver=1"></script>
+<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>
 </html>

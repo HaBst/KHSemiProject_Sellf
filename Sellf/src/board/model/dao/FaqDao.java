@@ -47,11 +47,11 @@ public class FaqDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println("여기서야???"+f_list.get(0).getFaq_subject());
+//		System.out.println("여기서야???"+f_list.get(0).getFaq_subject());
 		return f_list;
 	}
 
-	public String getFaqPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
+	public String getPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null;
 		

@@ -33,6 +33,7 @@ public class PasswordServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String userPwd = request.getParameter("userPwd");
 		Member m = new MemberService().myInfo(userPwd);
+		System.out.println("여긴오냐?");
 		if(m!=null) //로그인 성공시
 		{
 			HttpSession session = request.getSession();

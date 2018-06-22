@@ -3,7 +3,10 @@ package board.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import board.model.dao.FaqDao;
 import board.model.dao.NoticeDao;
+import board.model.vo.Faq;
+import board.model.vo.FaqPageData;
 import board.model.vo.Notice;
 import board.model.vo.NoticeComment;
 import board.model.vo.NoticePageData;
@@ -47,5 +50,6 @@ public NoticeService() {}
 		JDBCTemplate.close(conn);
 		return list; 
 	}
+	
 	
 }

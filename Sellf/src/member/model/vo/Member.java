@@ -1,6 +1,9 @@
 package member.model.vo;
 
-import java.sql.Date;
+
+import java.util.Date;
+
+import oracle.sql.DATE;
 
 public class Member {
 	/*
@@ -16,6 +19,7 @@ public class Member {
 	USER_EMAIL	VARCHAR2(30 BYTE)
 	USER_INTEREST	NVARCHAR2(10 CHAR)
 	USER_ENROLLDATE	DATE
+	USER_EPOINT NUMBER;
 	*/
 	private int user_entire_pk;
 	private String user_id;
@@ -29,11 +33,18 @@ public class Member {
 	private String user_email;
 	private String user_interest;
 	private Date user_enrolldate;
-	private int user_epoint;
-	public Member() {}
+	private int user_ePoint;
+	
+	
+	
+	
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Member(int user_entire_pk, String user_id, String user_name, String user_pwd, String user_phone,
 			String user_birth, String user_gender, String user_addr, String user_user_entire_user_grade_id_fk,
-			String user_email, String user_interest, Date user_enrolldate, int user_epoint) {
+			String user_email, String user_interest, Date user_enrolldate, int user_ePoint) {
 		super();
 		this.user_entire_pk = user_entire_pk;
 		this.user_id = user_id;
@@ -47,114 +58,84 @@ public class Member {
 		this.user_email = user_email;
 		this.user_interest = user_interest;
 		this.user_enrolldate = user_enrolldate;
-		this.user_epoint = user_epoint;
+		this.user_ePoint = user_ePoint;
 	}
-
 	public int getUser_entire_pk() {
 		return user_entire_pk;
 	}
-
 	public void setUser_entire_pk(int user_entire_pk) {
 		this.user_entire_pk = user_entire_pk;
 	}
-
 	public String getUser_id() {
 		return user_id;
 	}
-
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-
 	public String getUser_name() {
 		return user_name;
 	}
-
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-
 	public String getUser_pwd() {
 		return user_pwd;
 	}
-
 	public void setUser_pwd(String user_pwd) {
 		this.user_pwd = user_pwd;
 	}
-
 	public String getUser_phone() {
 		return user_phone;
 	}
-
 	public void setUser_phone(String user_phone) {
 		this.user_phone = user_phone;
 	}
-
 	public String getUser_birth() {
 		return user_birth;
 	}
-
 	public void setUser_birth(String user_birth) {
 		this.user_birth = user_birth;
 	}
-
 	public String getUser_gender() {
 		return user_gender;
 	}
-
 	public void setUser_gender(String user_gender) {
 		this.user_gender = user_gender;
 	}
-
 	public String getUser_addr() {
 		return user_addr;
 	}
-
 	public void setUser_addr(String user_addr) {
 		this.user_addr = user_addr;
 	}
-
 	public String getUser_user_entire_user_grade_id_fk() {
 		return user_user_entire_user_grade_id_fk;
 	}
-
 	public void setUser_user_entire_user_grade_id_fk(String user_user_entire_user_grade_id_fk) {
 		this.user_user_entire_user_grade_id_fk = user_user_entire_user_grade_id_fk;
 	}
-
 	public String getUser_email() {
 		return user_email;
 	}
-
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-
 	public String getUser_interest() {
 		return user_interest;
 	}
-
 	public void setUser_interest(String user_interest) {
 		this.user_interest = user_interest;
 	}
-
 	public Date getUser_enrolldate() {
 		return user_enrolldate;
 	}
-
 	public void setUser_enrolldate(Date user_enrolldate) {
 		this.user_enrolldate = user_enrolldate;
 	}
-
-	public int getUser_epoint() {
-		return user_epoint;
+	public int getUser_ePoint() {
+		return user_ePoint;
 	}
-
-	public void setUser_epoint(int user_epoint) {
-		this.user_epoint = user_epoint;
+	public void setUser_ePoint(int user_ePoint) {
+		this.user_ePoint = user_ePoint;
 	}
-
-	
-	
-	
 }

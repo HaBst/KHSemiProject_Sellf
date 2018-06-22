@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import common.JDBCTemplate;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 import member.model.vo.purchaseHis;
@@ -35,21 +37,21 @@ public class buyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		ServletContext context = getServletContext();
+		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+		JDBCTemplate.setDriverPath(fullPath);
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		String id = ((Member)session.getAttribute("user")).getUser_id();
-		ArrayList<purchaseHis> list = new MemberService().buy(id);
+		ArrayList<Product> list = new MemberService().Buy(id);
 		if(list.size()>0) 
 		{
-		ArrayList<Product> list2 =  new MemberService().buy2(list);
-		System.out.println("if 서블릿에서 list2:"+list2.size());
 		RequestDispatcher view = request.getRequestDispatcher("/views/member/myBuy.jsp");
-		request.setAttribute("product", list2);
+		request.setAttribute("product", list);
 		view.forward(request, response);
 		}
 		else 
 		{
-		System.out.println("else로 옴");
 		response.sendRedirect("/views/member/myBuy.jsp");
 		}
 	}

@@ -29,7 +29,7 @@ public class NewProductMainDao {
 			p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 			p.setProduct_entire_category_main_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_MAIN_ID_FK"));
 			p.setProduct_entire_category_sub_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_SUB_ID_FK"));
-			p.setProduct_entire_user_entire_id_fk(rset.getString("PRODUCT_ENTIRE_USER_ID_FK"));
+			p.setProduct_entire_user_entire_id_fk(rset.getString("PRODUCT_ENTIRE_USER_ID_FK")); // 판매자 아이디
 			p.setProduct_name(rset.getString("PRODUCT_NAME"));
 			p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
 			p.setProduct_state(rset.getString("PRODUCT_STATE"));
@@ -37,6 +37,7 @@ public class NewProductMainDao {
 
 			list.add(p);
 			}
+			System.out.println(list.get(0).getProduct_entire_pk());
 		} catch (SQLException e) {
 	
 			e.printStackTrace();

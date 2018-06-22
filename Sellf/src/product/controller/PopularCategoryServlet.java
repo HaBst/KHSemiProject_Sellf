@@ -17,6 +17,8 @@ import org.json.simple.JSONObject;
 import com.google.gson.Gson;
 
 import common.JDBCTemplate;
+import member.model.service.MainUserReviewService1;
+import member.model.vo.UserReview;
 import product.model.service.NewProductMainService;
 import product.model.service.PopularCategoryService;
 import product.model.vo.Product;
@@ -47,20 +49,11 @@ public class PopularCategoryServlet extends HttpServlet {
 		JDBCTemplate.setDriverPath(fullPath);
 		
 		ArrayList<ProductCategorySubTb> list= new PopularCategoryService().popularCategoryList();
-	
-		JSONArray resultArray = new JSONArray(); // JSONarray 객체
-		// 여러명의 정보를 담을 객체가 필요하기 때문에 array 로 만듦/
-		for (ProductCategorySubTb pST : list) { // for : each문을 사용해서 전체 출력하기
-			JSONObject result = new JSONObject();
-			result.put("categoryName", pST.getProductCategorySubName()); // 상품 대분류 가져옴 
-			result.put("categoryImagePath", "/img/categoryImgGroup/" +pST.getProductCategorySubId() +".JPG");
-			resultArray.add(result);
-		}
 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		response.getWriter().print(resultArray);
-		response.getWriter().close();
+		new Gson().toJson(list, response.getWriter());
+
 	}
 		
 

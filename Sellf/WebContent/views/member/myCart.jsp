@@ -1,13 +1,13 @@
-<%@page import="member.model.vo.UserCartList"%>
+<%@page import="product.model.vo.Product"%>
 <%@page import = "java.util.*" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <!-- Bootstrap  -->
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -42,7 +42,7 @@ crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">	
 <!-- 내부 js파일 -->
 <script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
-<script type="text/javascript" src="../../JS/member/myCart.js"></script>
+<script type="text/javascript" src="../../JS/member/myCart.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/common/adv.js"></script>
 <script type="text/javascript" src="../../JS/bootstrap/bootstrap.min.js"></script>
 <!-- 구글 폰트 -->
@@ -52,26 +52,20 @@ crossorigin="anonymous">
 </head>
 
 <body>
-	<center>
-	
-				
-		
-			
 
-	
-			
+	<center>
+	<%ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("myCartList");%>
+
 		<div id="wrapper" style="overflow:hidden;">
 
-			<header id="header"> <%@include 	file="/views/common/header.jsp"%> </header>
+			<header id="header"> <%@include file="/views/common/header.jsp"%> </header>
 			<br>
 			<div id="content">
 				<div id="titleSec">
 					<div id="title">
-						<% ArrayList<UserCartList> userCart =( ArrayList<UserCartList> ) request.getAttribute("myCartList"); %>
-						<%=userCart.get(0).getPrice()%>
-						
-						
+		
 					<h1>장바구니</h1>
+				
 					</div>
 					<div id="explan"></div>
 				</div>
@@ -98,39 +92,8 @@ crossorigin="anonymous">
 					</div>
 				</div>
 				<br> <br>
-<!-- 	
-				<script>
-				function myCartListPurchase(){
-					var check = $("input:checkbox[name='chk']:checked");	
-					console.log("check:" + check.length	);
-						if (check.length == 0) {
-								alert("주문상품을 체크해주세요 ");
-								location.reload();
-								return false;
-							
-							
-						} else if (check.length > 1) {
-							alert("주문상품을 하나만 체크해주세요");
-							location.reload();
-							return false;
-					
-						}else{ 
-							alert("주문페이지 넘기기 성공");
-						}
-					
-				}
 				
-
-				function submit() {
-					myCartForm.selectedValue.value= $("#cartGoodsName").val(); 
-					document.myCartForm.submit();
-				}
-				</script>
-				
-		 -->
-
-			
-				<form action = "/myCart" method = "post" name = "myCartForm" id ="myCartForm">	
+			<form action = "/myCart2" method = "post" name = "myCartForm"  onsubmit = "return myCartListPurchase();" >	
 				<div id="cartListSec">
 					<table class="table"
 						style="table-layout: fixed; margin: auto; text-align: center;">
@@ -143,36 +106,44 @@ crossorigin="anonymous">
 							</tr>
 						</thead>
 
-						<tbody>
-					
-						<c:forEach begin="0" end= "0" step="1"> 
-								<tr style="height: auto;" id="infoSelectTr">
+				
+				
+					<tbody>
+					<% for (int i = 0 ; i <list.size(); i++) { %>
+							<tr style="height: auto;" id="infoSelectTr">
 									<td scope="row" style="width: 10%;">
-									<input type="checkbox" style="margin-top: 50px;" name="chk" id="oneCheckBox" name ="oneCheckBox"/></td>	
+									<input type="checkbox" style="margin-top: 50px;" name="chk" id="oneCheckBox" /></td>	
 									<td style="width: 30%;">
 										<div class="orderGoodsInfo1"> <!-- 주문상품 정보 : 상품이미지  -->
-											<img src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+										<img src="<%=list.get(i).getProduct_image()%>" 
 												style="width: 100px; height: 100px; margin-top: 10px;" id="cartGoodsImg" name="cartGoodsImg" />
 										</div>
 										<div class="orderGoodsInfo2">  <!-- 주문상품 정보 : 상품명,상품옵션  -->
 											<div class="orderGoodsName" style="margin-top: 30px;">
-												<a href="#" style="font-size: 13px;">상품명:<span id="cartGoodsName"  name ="cartGoodsName" value="상품명">상품이름입력하세요</span></a>									
+												<a href="#" style="font-size: 13px;">상품명:<span id="cartGoodsName"  name ="cartGoodsName" value="상품명"><%=list.get(i).getProduct_name()%></span></a>									
 											</div>
-											<div class="cartGoodsOption" name="cartGoodsOption" value = "dd"> (옵션:색상-그레이)</div>
+											<div class="cartGoodsOption" name="cartGoodsOption"> <%=list.get(i).getProduct_detail()%></div>
 										</div>
 									</td>
-									<td style="padding-top: 50px;"><span style="font-size: 15px;" id="orderQuantity">1</span> <br>
+									<td style="padding-top: 50px;"><span style="font-size: 15px;" id="orderQuantity" name = "orderQuantity"><%=list.get(i).getProduct_amount()%></span> <br>
 										<button type="button" class="btn btn-info" id="quantityUp" 		style="font-size: 10px;">+</button>
 										<button type="button" class="btn btn-info" id="quantityDown" 	style="font-size: 10px;">-</button>
 										<button type="button" class="btn btn-info" id="changeBtn" style="font-size: 10px;">변경</button></td>
-									<td style="padding-top: 60px;"><span style="font-size: 15px;" id="goodsPrice" name="goodsPrices">10000</span>원</td>
+									<td style="padding-top: 60px;"><span style="font-size: 15px;" id="goodsPrice" name="goodsPrices"><%=list.get(i).getProduct_price()%></span>원</td>
 								</tr>
-							<!-- 	</c:forEach> -->
+							<%} %>
 						</tbody>
+					
 					</table>
 			
 					<br><br>
 				</div>
+				<%!int totalPrice = 0;%>
+				<% for (int i = 0 ; i<list.size();i++){
+				
+				totalPrice += list.get(i).getProduct_amount() * list.get(i).getProduct_price();
+				
+				 } %>
 				<div id="dontHaveGoodsList"></div>
 				<hr>
 				<div class="selectBtn1">
@@ -185,21 +156,45 @@ crossorigin="anonymous">
 				<div class="purchase">
 					<div class="cart_billing_label"
 						style="float: left; font-size: 20px; margin-right:40px;" >결제 금액 합계</div>
-					<div class="cart_billing_price" style="float: right;" id="totalPrice">????????</div>
+						
+					<div class="cart_billing_price" style="float: right;" id="totalPrice"  name = "totalPrice"><%=totalPrice%></div>
 				</div>
 				<br><br><br>				
 				<div class="purchase">
-					<button type="submit" class="btn btn-info" id="purchaseBtn" name ="purchaseBtn" onclick = "return myCartListPurchase();" value="${selectedValue}"">구매하기</button>
+					<input type="hidden" name ="productInfo" id = "productInfo" value =? />
+					<button type="submit" class="btn btn-info" id="purchaseBtn" name ="purchaseBtn">구매하기</button>						
 				</div>
+			
+			
+				<script> 
+				
+				function submit(){
+					var listArr = $("#productInfo").html();
+					var cartGoodsImg  = $("#cartGoodsImg").html();
+					console.log(cartGoodsImg);
+				}
+					function myCartListPurchase(){
+						var chkResult = $('input[name="chk"]:checked');
+						if(chkResult.is(':checked')){
+							console.log(chkResult);
+							return true;
+						}else{
+							console.log("체크가안됐어");
+							return false;
+						}
+					}
+				
+				</script>
 			</form>
-			</div>	
-
+			
+			</div></div>
 			<br><br><br>
 			<footer>
-					<%@include file="../../views/common/footer.jsp" %>
+				<%@include file="/views/common/footer.jsp" %>
 			</footer>
+			
 	</center>
 	
-	
+		
 </body>
 </html>

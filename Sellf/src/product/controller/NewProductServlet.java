@@ -40,20 +40,23 @@ public class NewProductServlet extends HttpServlet {
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 	
-		ArrayList<Product> newProductMainList = new NewProductMainService().updateNewProductImg();
-		System.out.println(newProductMainList.get(0).getProduct_name());
-		
-	
+		ArrayList<Product> newProductMainList = new NewProductMainService().updateNewProductImg();	
 		response.setCharacterEncoding("utf-8");
 		JSONArray resultArray = new JSONArray(); // JSONarray 媛앹껜
 		
 		for (Product product : newProductMainList) { 
 			JSONObject result = new JSONObject();
+			result.put("id", product.getProduct_entire_pk());
 			result.put("name", product.getProduct_name());
 			result.put("price", product.getProduct_price());
 			result.put("image", product.getProduct_image());
+			result.put("productEntireNo",product.getProduct_entire_pk()); //상품고유 인덱스 번호
+			System.out.println("상품금액:"+product.getProduct_price());
+			System.out.println("상품고유번호 :"+product.getProduct_entire_pk());
 			resultArray.add(result);
 		}
+		
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().print(resultArray);

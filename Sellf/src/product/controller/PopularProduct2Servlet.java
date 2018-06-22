@@ -52,6 +52,7 @@ public class PopularProduct2Servlet extends HttpServlet {
 				result.put("name", product.getProduct_name());
 				result.put("price", product.getProduct_price());
 				result.put("image", product.getProduct_image());
+				result.put("productNo", product.getProduct_entire_pk());
 				resultArray.add(result);
 				System.out.println(result);
 			}

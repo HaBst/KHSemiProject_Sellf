@@ -44,9 +44,9 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="/CSS/common/footer.css">
 
 <!-- 내부 js파일 -->
-<script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
+<script type="text/javascript" src="/JS/common/header.js?ver=1"></script>
 <!-- <script type="text/javascript" src="../../JS/member/main.js"></script> -->
-<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<script type="text/javascript" src="/JS/common/adv.js"></script>
 <!-- <script type="text/javascript" src="../../JS/bootstrap/bootstrap.min.js"></script> -->
 <!-- 구글 폰트 -->
 <style>
@@ -70,6 +70,7 @@ crossorigin="anonymous"></script>
 		
 			<!-- header -->
 			<header id="header"> <%@include file="/views/common/header.jsp"%></header>
+			
 			<!-- 메인 광고 이미지 슬라이더 -->
 			<div id="imgSliderSec">
 				<div id="carouselExampleIndicators" class="carousel slide"
@@ -79,20 +80,20 @@ crossorigin="anonymous"></script>
 						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 					</ol>
-					<div class="carousel-inner" style="width: 100%;">
+					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<a href="index.jsp"><img class="d-block w-100"
-								src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+								src="img/categoryImgGroup/노트북광고.JPG"
 								alt="첫번째 슬라이드"></a>
 						</div>
 						<div class="carousel-item">
-							<a href="index.jsp"><img class="d-blockw-100"
-								src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+							<a href="index.jsp"><img class="d-block w-100"
+								src="img/categoryImgGroup/수익광고2.JPG"
 								alt="두번째 슬라이드"></a>
 						</div>
 						<div class="carousel-item">
-							<a href="index.jsp"><img class="d-block w-100"
-								src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
+							<a href="index.jsp"><img class="d-block"
+								src="img/categoryImgGroup/광고이어폰.JPG" style="width:960px;"
 								alt="세번째 슬라이드"></a>
 						</div>
 					</div>
@@ -107,10 +108,9 @@ crossorigin="anonymous"></script>
 					</a>
 				</div>
 			</div>
-			<br> <br>
+			<br><br>
 
 			<!-- 인기카테고리 -->
-			
 			<script type="text/javascript">
 				$(document).ready(function(){
 				$.ajax({
@@ -119,24 +119,23 @@ crossorigin="anonymous"></script>
 					type : "get",
 					success : function(data) { // list가 넘어옴 
 						console.log("성공");
-						var result = "";
+						
 						var name = [];
 						var imgPath =[];
+						var categorySubId = [];
 						for (var i = 0; i < data.length; i++) {
-							name[i]= data[i].categoryName;
-							imgPath[i]= data[i].categoryImagePath;
+							name[i]= data[i].productCategorySubName;
+							imgPath[i]= data[i].productCategorySubId;
+							categorySubId[i] = data[i].productCategorySubId;
 						}
-						console.log("인기카테고리:"+name[0]);
-						console.log(imgPath[0]);
-						console.log(name[1]);
-						console.log(imgPath[1]);
 	
-						$("#popularCategorySec .col-sm:eq(0)>div>a>img").attr("src", imgPath[0]);
-					 	$("#popularCategorySec .col-sm:eq(1)>div>a>img").attr("src", imgPath[1]);;			
-						$("#popularCategorySec .col-sm:eq(2)>div>a>img").attr("src", imgPath[2]);
-						$("#popularCategorySec .col-sm:eq(3)>div>a>img").attr("src", imgPath[3]);
-						$("#popularCategorySec .col-sm:eq(4)>div>a>img").attr("src", imgPath[4]);;
-						$("#popularCategorySec .col-sm:eq(5)>div>a>img").attr("src", imgPath[5]);;
+					
+						$("#popularCategorySec .col-sm:eq(0)>div>a>img").attr("src", "/img/categoryImgGroup/"+imgPath[0]+".JPG");
+					 	$("#popularCategorySec .col-sm:eq(1)>div>a>img").attr("src", "/img/categoryImgGroup/"+imgPath[1]+".JPG");;			
+						$("#popularCategorySec .col-sm:eq(2)>div>a>img").attr("src", "/img/categoryImgGroup/"+imgPath[2]+".JPG");
+						$("#popularCategorySec .col-sm:eq(3)>div>a>img").attr("src", "/img/categoryImgGroup/"+imgPath[3]+".JPG");
+						$("#popularCategorySec .col-sm:eq(4)>div>a>img").attr("src", "/img/categoryImgGroup/"+imgPath[4]+".JPG");;
+						$("#popularCategorySec .col-sm:eq(5)>div>a>img").attr("src", "/img/categoryImgGroup/"+imgPath[5]+".JPG");;
 						$("#popularCategorySec #text1").text(name[0]);
 						$("#popularCategorySec #text2").text(name[1]);
 						$("#popularCategorySec #text3").text(name[2]);
@@ -146,42 +145,21 @@ crossorigin="anonymous"></script>
 						$("#sellExpectedSec1_title>div:first-child").text("인기카테고리 "+name[0]);
 						$("#sellExpectedSec2_title>div:first-child").text(name[1]);
 						$("#sellExpectedSec3_title>div:first-child").text(name[2]);
+						
+						$("#popularCategorySec a:eq(0)").attr("href","/views/main/productList.jsp?orderType=updateOrder&amp;category=" + categorySubId[0]);
+						$("#popularCategorySec a:eq(1)").attr("href","/views/main/productList.jsp?orderType=updateOrder&amp;category=" + categorySubId[1]);
+						$("#popularCategorySec a:eq(2)").attr("href","/views/main/productList.jsp?orderType=updateOrder&amp;category=" + categorySubId[2]);
+						$("#popularCategorySec a:eq(3)").attr("href","/views/main/productList.jsp?orderType=updateOrder&amp;category=" + categorySubId[3]);
+						$("#popularCategorySec a:eq(4)").attr("href","/views/main/productList.jsp?orderType=updateOrder&amp;category=" + categorySubId[4]);
+						$("#popularCategorySec a:eq(5)").attr("href","/views/main/productList.jsp?orderType=updateOrder&amp;category=" + categorySubId[5]);
+						
 						},
 						error : function() {
-							console.log("실패");
-							$("#test1").text("ggggg");
+							console.log("인기카테고리 실패");
 						}
 					}); 	
 				});	
-				
-				function test12() {
-
-					$.ajax({
-
-						url : "/test12",
-						type : "get",
-						success : function(data) {
-							
-							var result = "";
-							var keys = Object.keys(data);
-							for (var i = 0; i < keys.length; i++) {
-								result += "이름 :" + data[keys[i]].name + "나이: "
-										+ data[keys[i]].age + "주소 : "
-										+ data[keys[i]].addr;
-							}
-							
-							$("#result12").html(result);
-							console.log("성공");
-						},
-						error : function() {
-							console.log("실패");
-						}
-					});
-
-				}
-
 				</script>
-	
 			<div id="content">
 				<div id="popularCategorySec">
 					<div id="popularCategory_title">
@@ -217,53 +195,51 @@ crossorigin="anonymous"></script>
 								<div><a href="#"><img src="" style="width: 100%; height: 100%;"></a></div>
 								<div id="text6"></div>	
 							</div>	
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-			<br><br>
-			<hr>	
 		
-			<!-- 이미지 hover 섹션 -->
-			
-				<div id="imghoverSec" style="overflow:hidden;">
-				<div id="imghoverSec_title">
-					<div id="imghoverSec_title1" style="font-size:36px; font-weight:600;">내가 제일 잘나가</div>
-					<div id="imghoverSec_title2" style="font-size:20px; font-weight:600;">SELL:F 인기 상품</div>
-				</div>	
-					<div class="container">
-
-						<div class="row">
-							<div class="col-xs-4" style="width: 30%;">
-								<div class="shadow">
-									<a href="#"><img
-										src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
-										width="100%" height="100%"></a>
-								</div>
-							</div>
-							<div class="col-xs-4" style="width: 30%;">
-								<div class="shadow">
-									<a href="#"><img
-										src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
-										width="100%" height="100%"></a>
-								</div>
-							</div>
-							<div class="col-xs-4" style="width: 30%;">
-								<div class="shadow">
-									<a href="#"><img
-										src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
-										width="100%" height="100%"></a>
-								</div>
-							</div>
-
+							
 						</div>
 					</div>
-			
 				</div>
 			</div>
-			<br> <br>
+			<br><br>  
+			<hr>	
+			<!-- 이미지 hover 섹션 -->
+				<div id="imghoverSec" style="overflow:hidden">
+					<div id="imghoverSec_title">
+					<h1 style="font-weight:600;">SELL:F  내가 제일 잘나가 ~</h1>
+					</div> 
+					<br><br>
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-3" style="width: 30%;">
+								<div class="shadow">
+									<a href="#">
+								 <img
+									src="img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+									width="100%" height="100%"> 
+									</a>
+								</div>
+							</div>
+							<div class="col-xs-3" style="width: 30%;">
+								<div class="shadow">
+									<a href="#"><img
+									src="img/11_tmp_606d17707165b62f4acf9cb1f07275399075large.jpg"
+									width="100%" height="100%"></a>
+								</div>
+							</div>
+							<div class="col-xs-3" style="width: 30%;">
+							<div class="shadow">
+								<a href="#"><img
+									src="img/12_tmp_d8bfc4e19d83e16b58504a5271a05bfe9565large.jpg"
+									width="100%" height="100%"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			
+			<br> <br>
+			<hr>
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$.ajax({
@@ -274,10 +250,12 @@ crossorigin="anonymous"></script>
 						var name = [];
 						var price = [];
 						var img = [];	
+						var productNo = [];
 						for (var i = 0; i < data.length; i++) {
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
 							img[i] = data[i].image;
+							productNo[i] = data[i].productEntireNo;
 						}
 					$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
 					$("#newProductSec .card-img-top:eq(1)").attr("src",img[1]);
@@ -319,67 +297,79 @@ crossorigin="anonymous"></script>
 					$("#newProductSec .card-text:eq(10)").text(price[10]+"원");
 					$("#newProductSec .card-text:eq(11)").text(price[11]+"원");
 					$("#newProductSec .card-text:eq(12)").text(price[12]+"원");
-				},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!!꺄~~~~~
+					
+					$("#newProductSec .pageLocationNo:eq(0)").attr("href","/productSelectOne?productId="+productNo[0]);
+					$("#newProductSec .pageLocationNo:eq(1)").attr("href","/productSelectOne?productId="+productNo[1]);
+					$("#newProductSec .pageLocationNo:eq(2)").attr("href","/productSelectOne?productId="+productNo[2]);
+					$("#newProductSec .pageLocationNo:eq(3)").attr("href","/productSelectOne?productId="+productNo[3]);
+					$("#newProductSec .pageLocationNo:eq(4)").attr("href","/productSelectOne?productId="+productNo[4]);
+					$("#newProductSec .pageLocationNo:eq(5)").attr("href","/productSelectOne?productId="+productNo[5]);
+					$("#newProductSec .pageLocationNo:eq(6)").attr("href","/productSelectOne?productId="+productNo[6]);
+					$("#newProductSec .pageLocationNo:eq(7)").attr("href","/productSelectOne?productId="+productNo[7]);
+					$("#newProductSec .pageLocationNo:eq(8)").attr("href","/productSelectOne?productId="+productNo[8]);
+					$("#newProductSec .pageLocationNo:eq(9)").attr("href","/productSelectOne?productId="+productNo[9]);
+					$("#newProductSec .pageLocationNo:eq(10)").attr("href","/productSelectOne?productId="+productNo[10]);
+					$("#newProductSec .pageLocationNo:eq(11)").attr("href","/productSelectOne?productId="+productNo[11]);
+					$("#newProductSec .pageLocationNo:eq(12)").attr("href","/productSelectOne?productId="+productNo[12]);
+					
+					},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!!꺄~~~~~
 				error : function() {
 					console.log("newProduct 실행 실패");
 				}
+				
+				
 			}); 	
 		});	
 		</script>
 	
-				<div id="content">
-				<br> <br>
+			<div id="content">
 				<!-- 새로운제품 섹션  -->
 				<div id="newProductSec">
 					<div id="newProduct_title">
 						<div><h1  style="font-weight:600;">새로 등록된 상품</h1></div>
-						<div><a href="#">전체보기</a></div>
+						<div><a href="/views/main/productList.jsp">전체보기</a></div>
 					</div>
 					<br>	
-					<div id="carouselExampleControls" class="carousel slide"
-						data-ride="carousel">
+					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 						<div class="container">
 							<div class="carousel-inner">
 									<div class="carousel-item active">
 										<div class="container">
 											<div class="row" style="margin-left: 15px;">
 												<div class="col-xs-3" style="width: 25%;">
-													<a href="#"><img class="card-img-top" src=""></a>
+													<a href="" class="pageLocationNo"><img class="card-img-top" src=""></a>
 													<div class="card-body">
-														<a href="#">
-														<h5 class="card-title">${newProductMainList[0].productName} </h5>
-														</a><p class="card-text">${newProductMainList[0].productPrice}원 </p>
+														<a href="">
+														<h5 class="card-title">ge</h5>
+														</a><p class="card-text"></p>
 
 													</div>
 												</div>
 												<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 													<div class="card-body">
 														<a href="#">
-															<h5 class="card-title">${newProductMainList[1].productName} </h5>
-														</a>
-														<p class="card-text">${newProductMainList[1].productPrice} 원</p>
+														<h5 class="card-title">ge</h5>
+														</a><p class="card-text"></p>
 
 													</div>
 												</div>
 
 												<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 													<div class="card-body">
 														<a href="#">
-															<h5 class="card-title">${newProductMainList[2].productName} </h5>
-														</a>
-														<p class="card-text">${newProductMainList[2].productPrice} 원</p>
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 													</div>
 												</div>
 												<div class="col-xs-3" style="width: 25%;">
-														<a href="#"> <img class="card-img-top" src=""></a>
+														<a href="#" class="pageLocationNo" > <img class="card-img-top" src=""></a>
 											
 													<div class="card-body">
 														<a href="#">
-															<h5 class="card-title">${newProductMainList[3].productName} </h5>
-														</a>
-														<p class="card-text">${newProductMainList[3].productPrice}원 </p>
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 													</div>
 												</div>
 											</div>
@@ -392,42 +382,37 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
-														<h5 class="card-title">${newProductMainList[4].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[4].productPrice}원</p>
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 												<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
-														<h5 class="card-title">${newProductMainList[4].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[4].productPrice}원</p>
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
-														<h5 class="card-title">${newProductMainList[6].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[6].productPrice}원</p>
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 										
 												<div class="card-body">
 													<a href="#">
-														<h5 class="card-title">${newProductMainList[7].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[7].productPrice}원</p>
-
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 										</div>
@@ -439,44 +424,37 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 												<a href="#">
-														<h5 class="card-title">${newProductMainList[8].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[8].productPrice}원</p>
-
+														<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
-														<h5 class="card-title">${newProductMainList[9].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[9].productPrice}원</p>
+													<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 												<a href="#">
-														<h5 class="card-title">${newProductMainList[10].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[10].productPrice}원</p>
-
+													<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#" class="pageLocationNo"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 												<a href="#">
-														<h5 class="card-title">${newProductMainList[11].productName}</h5>
-													</a>
-													<p class="card-text">${newProductMainList[11].productPrice}원</p>
-
+													<h5 class="card-title"></h5>
+														</a><p class="card-text"></p>
 												</div>
 											</div>
 
@@ -506,7 +484,7 @@ crossorigin="anonymous"></script>
 				</div>
 			<hr>
 
-			
+	
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$.ajax({
@@ -518,17 +496,24 @@ crossorigin="anonymous"></script>
 					var price = [];
 					var img = [];
 					var detail =[];
+					var productNo1 =[];
+					var subCateId = [];
 					for (var i = 0; i < data.length; i++) {
 						name[i]= data[i].name;
 						price[i] =data[i].price;	
 						img[i]= data[i].image;
 						detail[i] = data[i].detail;
+						productNo1[i] = data[i].productNo;
+						subCateId[i] = data[i].subCateId;
 						console.log("인기카테고리순위1 " + name[i]);
-						console.log("인기카테고리순위1이미지 " + img[i]);
-					}				
 				
+						
+						
+					}	
+					console.log("인기카테고리순위1이미지 " + subCateId[0]);
+					console.log("인기카테1::::"+productNo1[0]);
+					
 					$("#sellExpectedSec1 .card-img-top:eq(0)").attr("src",img[0]);
-					console.log(img[0]);
 					$("#sellExpectedSec1 .card-img-top:eq(1)").attr("src",img[1]);
 					$("#sellExpectedSec1 .card-img-top:eq(2)").attr("src",img[2]);
 					$("#sellExpectedSec1 .card-img-top:eq(3)").attr("src",img[3]);
@@ -569,6 +554,22 @@ crossorigin="anonymous"></script>
 					$("#sellExpectedSec1 .card-text:eq(10)").text(price[10]+"원");
 					$("#sellExpectedSec1 .card-text:eq(11)").text(price[11]+"원");
 					$("#sellExpectedSec1 .card-text:eq(12)").text(price[12]+"원");
+					
+					$(".popularCate:eq(0)").attr("href","/productSelectOne?productId="+productNo1[0]);
+					$(".popularCate:eq(1)").attr("href","/productSelectOne?productId="+productNo1[1]);
+					$(".popularCate:eq(2)").attr("href","/productSelectOne?productId="+productNo1[2]);
+					$(".popularCate:eq(3)").attr("href","/productSelectOne?productId="+productNo1[3]);
+					$(".popularCate:eq(4)").attr("href","/productSelectOne?productId="+productNo1[4]);
+					$(".popularCate:eq(5)").attr("href","/productSelectOne?productId="+productNo1[5]);
+					$(".popularCate:eq(6)").attr("href","/productSelectOne?productId="+productNo1[6]);
+					$(".popularCate:eq(7)").attr("href","/productSelectOne?productId="+productNo1[7]);
+					$(".popularCate:eq(8)").attr("href","/productSelectOne?productId="+productNo1[8]);
+					$(".popularCate:eq(9)").attr("href","/productSelectOne?productId="+productNo1[9]);
+					$(".popularCate:eq(10)").attr("href","/productSelectOne?productId="+productNo1[10]);
+					$(".popularCate:eq(11)").attr("href","/productSelectOne?productId="+productNo1[11]);
+					$(".popularCate:eq(12)").attr("href","/productSelectOne?productId="+productNo1[12]);
+					
+					
 				},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!!꺄~~~~~
 				error : function() {
 				console.log("인기상품1 가져오기 실패 ")
@@ -582,7 +583,7 @@ crossorigin="anonymous"></script>
 					<div id="sellExpectedSec1_title">
 						<div></div>
 						<br>
-						<div><a href="#">전체보기</a></div>
+						<div><a href="/views/main/productList.jsp">전체보기</a></div>
 					</div>
 					<br><br><br>
 					<div id="carouselExampleControls1" class="carousel slide"
@@ -595,19 +596,19 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" 	src="" 	alt="Card image cap"></a>
+												<a href="#"  class="popularCate">  <img class="card-img-top" src=""></a>
 												<div class="card-body">
-													<a href="#">
-														<h5 class="card-title"></h5>
+													<a href="#" >
+														<h5 class="card-title">Card title</h5>
 													</a>
-													<p class="card-text"></p>
+													<p class="card-text">product explanation</p>
 
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#"  class="popularCate">  <img class="card-img-top" src=""></a>
 												<div class="card-body">
-													<a href="#">
+													<a href="#" >
 														<h5 class="card-title">Card title</h5>
 													</a>
 													<p class="card-text">product explanation</p>
@@ -616,7 +617,7 @@ crossorigin="anonymous"></script>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -625,7 +626,7 @@ crossorigin="anonymous"></script>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												</a>
 												<div class="card-body">
 													<a href="#">
@@ -644,7 +645,7 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -654,7 +655,7 @@ crossorigin="anonymous"></script>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -664,7 +665,7 @@ crossorigin="anonymous"></script>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -673,7 +674,7 @@ crossorigin="anonymous"></script>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -691,7 +692,7 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -701,7 +702,7 @@ crossorigin="anonymous"></script>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -711,7 +712,7 @@ crossorigin="anonymous"></script>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-													<a href="#"> <img class="card-img-top" src=""></a>
+													<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -722,7 +723,7 @@ crossorigin="anonymous"></script>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"> <img class="card-img-top" src=""></a>
+												<a href="#"  class="popularCate"> <img class="card-img-top" src=""></a>
 												</a>
 												<div class="card-body">
 													<a href="#">
@@ -769,14 +770,18 @@ crossorigin="anonymous"></script>
 					var name = [];
 					var price = [];
 					var img = [];
+					var productNo2 = [];
 					
 					for (var i = 0; i < data.length; i++) {
 						name[i]= data[i].name;
 						price[i] =data[i].price;	
 						img[i]= data[i].image;
-						console.log("인기카테고리순위1 " + name[i]);
-						console.log("인기카테고리순위1이미지 " + img[i]);
-					}				
+						productNo2[i] = data[i].productNo;
+					}	
+					console.log("인기카테고리순위2 " + name[0]);
+					console.log("인기카테고리순위2이미지 " + img[0]);
+					console.log("인기카테고리순위2상품인덱스 : " + productNo2[0]);
+					
 					$("#sellExpectedSec2 .card-img-top:eq(0)").attr("src",img[0]);
 					$("#sellExpectedSec2 .card-img-top:eq(1)").attr("src",img[1]);
 					$("#sellExpectedSec2 .card-img-top:eq(2)").attr("src",img[2]);
@@ -817,10 +822,24 @@ crossorigin="anonymous"></script>
 					$("#sellExpectedSec2 .card-text:eq(10)").text(price[10]+"원");
 					$("#sellExpectedSec2 .card-text:eq(11)").text(price[11]+"원");
 					$("#sellExpectedSec2 .card-text:eq(12)").text(price[12]+"원");
+					
+					$(".popularCate2:eq(0)").attr("href","/productSelectOne?productId="+productNo2[0]);
+					$(".popularCate2:eq(1)").attr("href","/productSelectOne?productId="+productNo2[1]);
+					$(".popularCate2:eq(2)").attr("href","/productSelectOne?productId="+productNo2[2]);
+					$(".popularCate2:eq(3)").attr("href","/productSelectOne?productId="+productNo2[3]);
+					$(".popularCate2:eq(4)").attr("href","/productSelectOne?productId="+productNo2[4]);
+					$(".popularCate2:eq(5)").attr("href","/productSelectOne?productId="+productNo2[5]);
+					$(".popularCate2:eq(6)").attr("href","/productSelectOne?productId="+productNo2[6]);
+					$(".popularCate2:eq(7)").attr("href","/productSelectOne?productId="+productNo2[7]);
+					$(".popularCate2:eq(8)").attr("href","/productSelectOne?productId="+productNo2[8]);
+					$(".popularCate2:eq(9)").attr("href","/productSelectOne?productId="+productNo2[9]);
+					$(".popularCate2:eq(10)").attr("href","/productSelectOne?productId="+productNo2[10]);
+					$(".popularCate2:eq(11)").attr("href","/productSelectOne?productId="+productNo2[11]);
+					$(".popularCate2:eq(12)").attr("href","/productSelectOne?productId="+productNo2[12]);
+					
 				},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!!꺄~~~~~
 				error : function() {
-					console.log("실패");
-					$("#test1").text("ggggg");
+					console.log("인기카테고리2 실패");
 				}
 			}); 	
 		});	
@@ -843,7 +862,7 @@ crossorigin="anonymous"></script>
 									<div class="container">
 										<div class="row" style="margin-left: 15px;">
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -851,7 +870,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -859,7 +878,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -867,7 +886,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -884,7 +903,7 @@ crossorigin="anonymous"></script>
 
 										<div class="row" style="margin-left: 15px;">
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -892,7 +911,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -900,7 +919,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -908,7 +927,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -925,7 +944,15 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 										<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2" ><img class="card-img-top"	src="" ></a>
+												<div class="card-body">
+													<a href="#" >
+														<h5 class="card-title">Card title</h5>
+													</a>
+													<p class="card-text">6 explanation</p>
+												</div>
+											</div><div class="col-xs-3" style="width: 25%;">
+												<a href="#" class="popularCate2" ><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -933,7 +960,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -941,15 +968,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
-												<div class="card-body">
-													<a href="#">
-														<h5 class="card-title">Card title</h5>
-													</a>
-													<p class="card-text">6 explanation</p>
-												</div>
-											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate2"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -985,22 +1004,22 @@ crossorigin="anonymous"></script>
 		$(document).ready(function(){
 			$.ajax({
 				url : "/popularProduct3",
-				data:{},
 				type : "get",
 				success : function(data) { // list가 넘어옴 
 					var name = [];
 					var price = [];
 					var img = [];
-					
+					var productNo3 = [];
 					for (var i = 0; i < data.length; i++) {
 						name[i]= data[i].name;
 						price[i] =data[i].price;	
 						img[i]= data[i].image;
+						productNo3[i] = data[i].productNo;
 						console.log("인기카테고리순위3 " + name[i]);
 						console.log("인기카테고리순위3이미지 : " + img[i]);		
 					}	
 					
-				$("#sellExpectedSec3 .card-img-top:eq(0)").attr("src",img[0]);
+					$("#sellExpectedSec3 .card-img-top:eq(0)").attr("src",img[0]);
 					$("#sellExpectedSec3 .card-img-top:eq(1)").attr("src",img[1]);
 					$("#sellExpectedSec3 .card-img-top:eq(2)").attr("src",img[2]);
 					$("#sellExpectedSec3 .card-img-top:eq(3)").attr("src",img[3]);
@@ -1039,11 +1058,26 @@ crossorigin="anonymous"></script>
 					$("#sellExpectedSec3 .card-text:eq(9)").text(price[9]+"원");
 					$("#sellExpectedSec3 .card-text:eq(10)").text(price[10]+"원");
 					$("#sellExpectedSec3 .card-text:eq(11)").text(price[11]+"원");
-					$("#sellExpectedSec3 .card-text:eq(12)").text(price[12]+"원"); 
-				},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!꺄~~~~~
+					$("#sellExpectedSec3 .card-text:eq(12)").text(price[12]+"원");
+					
+					console.log("인기카테고리3:"+productNo3[0]);
+					$(".popularCate3:eq(0)").attr("href","/productSelectOne?productId="+productNo3[0]);
+					$(".popularCate3:eq(1)").attr("href","/productSelectOne?productId="+productNo3[1]);
+					$(".popularCate3:eq(2)").attr("href","/productSelectOne?productId="+productNo3[2]);
+					$(".popularCate3:eq(3)").attr("href","/productSelectOne?productId="+productNo3[3]);
+					$(".popularCate3:eq(4)").attr("href","/productSelectOne?productId="+productNo3[4]);
+					$(".popularCate3:eq(5)").attr("href","/productSelectOne?productId="+productNo3[5]);
+					$(".popularCate3:eq(6)").attr("href","/productSelectOne?productId="+productNo3[6]);
+					$(".popularCate3:eq(7)").attr("href","/productSelectOne?productId="+productNo3[7]);
+					$(".popularCate3:eq(8)").attr("href","/productSelectOne?productId="+productNo3[8]);
+					$(".popularCate3:eq(9)").attr("href","/productSelectOne?productId="+productNo3[9]);
+					$(".popularCate3:eq(10)").attr("href","/productSelectOne?productId="+productNo3[10]);
+					$(".popularCate3:eq(11)").attr("href","/productSelectOne?productId="+productNo3[11]);
+					$(".popularCate3:eq(12)").attr("href","/productSelectOne?productId="+productNo3[12]);
+				},
 				error : function() {
-					console.log("실패");
-					$("#test1").text("ggggg");
+					console.log("인기카테고리 3실패");
+				;
 				}
 			}); 	
 		});	
@@ -1054,7 +1088,7 @@ crossorigin="anonymous"></script>
 					<div id="sellExpectedSec3_title">
 						<div></div>
 						<br>
-						<div><a href="#">전체보기</a></div>
+						<div><a href="/views/main/productList.jsp">전체보기</a></div>
 					</div>
 					<br><br><br>
 					<div id="carouselExampleControls3" class="carousel slide"
@@ -1065,7 +1099,7 @@ crossorigin="anonymous"></script>
 									<div class="container">
 										<div class="row" style="margin-left: 15px;">
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3" ><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1073,7 +1107,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1081,7 +1115,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1089,7 +1123,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1105,9 +1139,9 @@ crossorigin="anonymous"></script>
 									<div class="container">
 										<div class="row" style="margin-left: 15px;">
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
-													<a href="#">
+													<a href="#" >
 														<h5 class="card-title">Card title</h5>
 													</a>
 													<p class="card-text">6 explanation</p>
@@ -1115,7 +1149,7 @@ crossorigin="anonymous"></script>
 											</div>
 											
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1125,7 +1159,7 @@ crossorigin="anonymous"></script>
 											</div>
 
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1134,7 +1168,7 @@ crossorigin="anonymous"></script>
 												</div>
 											</div>
 											<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1151,7 +1185,7 @@ crossorigin="anonymous"></script>
 										<div class="row" style="margin-left: 15px;">
 
 										<div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1159,7 +1193,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1167,7 +1201,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1175,7 +1209,7 @@ crossorigin="anonymous"></script>
 													<p class="card-text">6 explanation</p>
 												</div>
 											</div><div class="col-xs-3" style="width: 25%;">
-												<a href="#"><img class="card-img-top"	src="" ></a>
+												<a href="#" class="popularCate3"><img class="card-img-top"	src="" ></a>
 												<div class="card-body">
 													<a href="#">
 														<h5 class="card-title">Card title</h5>
@@ -1219,16 +1253,16 @@ crossorigin="anonymous"></script>
 					var price = [];
 					var img = [];
 					var detail = [];
+					var productNo4 = [];
 					for (var i = 0; i < data.length; i++) {
 						name[i]= data[i].name;
 						price[i] =data[i].price;	
 						img[i]= data[i].image;
 						detail[i] = data[i].detail;
-						console.log("컬렉션 " + name[i]);
-						console.log("컬렉션이미지 : " + img[i]);
-						console.log("컬렉션설명: " + detail[i]);
+						productNo4[i] = data[i].productNo;
+			
 					}	
-					
+					console.log("MD추천 상품인덱스: " + productNo4[0]);		
 			
 					$("#collectionSec .img-responsive:eq(0)").attr("src",img[0]);
 					$("#collectionSec .img-responsive:eq(1)").attr("src",img[1]);
@@ -1246,6 +1280,17 @@ crossorigin="anonymous"></script>
 					$("#collectionSec #price3").text(price[2]);
 					$("#collectionSec #price4").text(price[3]);
 
+					$(".mdProduct1").attr("href","/productSelectOne?productId="+productNo4[0]);
+					$("#mdProduct1").attr("href","/productSelectOne?productId="+productNo4[0]);
+					$(".mdProduct2").attr("href","/productSelectOne?productId="+productNo4[1]);
+					$("#mdProduct2").attr("href","/productSelectOne?productId="+productNo4[1]);
+					$(".mdProduct3").attr("href","/productSelectOne?productId="+productNo4[2]);
+					$("#mdProduct3").attr("href","/productSelectOne?productId="+productNo4[2]);
+					$(".mdProduct4").attr("href","/productSelectOne?productId="+productNo4[3]);
+					$("#mdProduct4").attr("href","/productSelectOne?productId="+productNo4[3]);
+					
+					
+					
 				},// ★ 배열은 인덱스번호 i값!!!!!!!!!!!!!!!꺄~~~~~
 				error : function() {
 					console.log("실패");
@@ -1263,17 +1308,16 @@ crossorigin="anonymous"></script>
 						<div class="row">
 							<div class="col-xs-3" style="width: 23%;">
 								<!-- 이미지 캡션 -->
-								<div class="cuadro_intro_hover"
-									style="background-color: #cccccc;">
-									<p style="text-align: center; margin-top: 0px;">
-										<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;">	
+								<div class="cuadro_intro_hover" style="background-color: #cccccc;">
+									<p style="text-align: center; margin-top: 0px;">		
+									<a href ="#" class="mdProduct1"><img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
 									</p>
 									<div class="caption">
 										<div class="blur"></div>
 										<div class="caption-text">
 											<h3 style="padding: 10px;">상품설명</h3>
 											<p align="center" style="padding: 10px;"></p>
-												<a class=" btn btn-default" href="#">가격:<span id="price1" class="glyphicon glyphicon-plus">ggs=</span>원</a>
+											<a class=" btn btn-default" href="#" id="mdProduct1">가격:<span id="price1" class="glyphicon glyphicon-plus"></span>원</a>		
 										</div>
 									</div>
 								</div>
@@ -1282,32 +1326,33 @@ crossorigin="anonymous"></script>
 								<!-- 이미지 캡션 -->
 								<div class="cuadro_intro_hover"
 									style="background-color: #cccccc;">
-									<p style="text-align: center; margin-top: 0px;">
-										<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;">	
+									<p style="text-align: center; margin-top: 0px;" >
+										<a href ="" class = "mdProduct2">
+											<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
 									</p>
 									<div class="caption">
 										<div class="blur"></div>
 										<div class="caption-text">
 											<h3 style="padding: 10px;">상품설명</h3>
 											<p align="center" style="padding: 10px;"></p>
-												<a class=" btn btn-default" href="#">가격:<span id="price2" class="glyphicon glyphicon-plus"></span>원</a>
+												<a class=" btn btn-default" href="#" id="mdProduct2">가격:<span id="price2" class="glyphicon glyphicon-plus"></span>원</a>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="col-xs-3" style="width: 23%;">
 								<!-- 이미지 캡션 -->
-								<div class="cuadro_intro_hover"
-									style="background-color: #cccccc;">
-									<p style="text-align: center; margin-top: 0px;">
-										<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;">	
+								<div class="cuadro_intro_hover" style="background-color: #cccccc;">
+									<p style="text-align: center; margin-top: 0px;" >
+										<a href ="" class = "mdProduct3">
+											<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
 									</p>
 									<div class="caption">
 										<div class="blur"></div>
 										<div class="caption-text">
 											<h3 style="padding: 10px;">상품설명</h3>
 											<p align="center" style="padding: 10px;"></p>
-												<a class=" btn btn-default" href="#">가격:<span id="price3" class="glyphicon glyphicon-plus"></span>원</a>
+												<a class=" btn btn-default" href="#" id="mdProduct3">가격:<span id="price3" class="glyphicon glyphicon-plus"></span>원</a>
 										</div>
 									</div>
 								</div>
@@ -1318,14 +1363,16 @@ crossorigin="anonymous"></script>
 									<div class="cuadro_intro_hover"
 										style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;">
-											<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;">	
+										<a href ="" class = "mdProduct4">
+											<img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
 										</p>
 										<div class="caption">
 											<div class="blur"></div>
-											<div class="caption-text">
+											<div class="caption-text" >
+					
 												<h3 style="padding: 10px;">상품설명</h3>
 												<p align="center" style="padding: 10px;"></p>
-													<a class=" btn btn-default" href="#">가격:<span id="price4" class="glyphicon glyphicon-plus"></span>원</a>
+													<a class=" btn btn-default" href="#" id="mdProduct4">가격:<span id="price4" class="glyphicon glyphicon-plus"></span>원</a>
 											</div>
 										</div>
 									</div>
@@ -1786,12 +1833,10 @@ crossorigin="anonymous"></script>
 				<br>
 				<br>
 			</div> -->
-		</div>	
-		<br><br>
-		<hr>	
-		<br>
-	<!-- 고객 리뷰 가져오기 -->
-			<div id="content">			
+			</div>	
+	
+			<!-- 고객 리뷰 가져오기 -->
+			
 		 	<script type="text/javascript">
 			$(document).ready(function(){
 				$.ajax({
@@ -1800,24 +1845,21 @@ crossorigin="anonymous"></script>
 					success : function(data) {
 						var writeDate = [];
 						var comment = [];
+						var userId = [];
 						console.log(data);
 						for (var i = 0; i < data.length; i++) {
 								comment[i]= data[i].userReviewComment;
 								writeDate[i] =data[i].userReviewDate;
-								console.log("코멘트  "+[i] +":" + comment[i]);
-							}	 
-				
-		/* 				var start = comment[1].indexOf("좋")-1;
-						var end =comment[1].indexOf(start+6);
-						console.log("end"+end);
-					
-						var list = comment[1].substring(start, end);  
-						console.log(list); */
-							$("#review1_content>div").text(comment[0]);
-							$("#review2_content>div").text(comment[1]);
-							$("#review3_content>div").text(comment[2]);
-						
-							$("#review1_title>div").text(writeDate[0]+ " 작성한 리뷰~!!");
+								userId[i] = data[i].userReviewUserEntireIdFk;
+								
+								
+							}	
+						console.log("코멘트  :" + comment[0]);
+						console.log("구매자아이디  :" + userId[0]);
+							$("#review .col-sm:eq(0)").text(userId[0]+ "님이 작성한 리뷰입니다~!!  "+ comment[0]);
+							$("#review .col-sm:eq(1)").text(userId[1]+ "님이 작성한 리뷰입니다~!!  "+ comment[1]);
+							$("#review .col-sm:eq(2)").text(userId[2]+ "님이 작성한 리뷰입니다~!!  "+ comment[2]);
+							$("#review1_title>div").text();
 							$("#review2_title>div").text(writeDate[1]+ " 작성한 리뷰~!!");
 							$("#review3_title>div").text(writeDate[2]+ " 작성한 리뷰~!!");
 					},
@@ -1827,34 +1869,36 @@ crossorigin="anonymous"></script>
 				}); 	
 			});	
 			</script> 
-		
-				<div id="reviewSec">
-					<div id="review_title">1000만이 넘는 사용자들이 생길 예정입니다.</div>
-					<div id ="reviewContent">
-						<div class="review1">
-							<div id="review1_title"><div></div></div>
-							<div id="review1_content"><div></div></div>
-						</div>	
-						<div class="review2">
-							<div id="review2_title"><div></div></div>
-							<div id="review2_content"><div></div></div>
-						</div>
-						<div class="review3">
-							<div id="review3_title"><div></div></div>
-							<div id="review3_content"><div></div></div>
-						</div>
-						
-					</div>
-				</div>   
-			</div> 
-		
-			<br><br>
-		<!-- footer -->
+			<div id="content" class="reviewContent">
+			 	<div id="reviewTitle"><h1 style="font-weight:600;">1000만 사용자가 생길 예정입니다.</h1></div>
+			 	<br>
+				<div class="container" id="review">
+				  <div class="row">
+				  	
+				    <div class="col-sm">
+				    
+				    </div>
+				    <div class="col-sm">
+				    
+				    </div>
+				    <div class="col-sm">
+				    
+				    </div>
+				  </div>
+				</div>	
 			
+			</div>							
+			<br><br>
+				<!-- footer -->
+			<div id="footer"> <%@include file="/views/common/footer.jsp"%></div>
+		</div>
 	
-	</div>
-	<footer id="footer"> <%@include file="/views/common/footer.jsp"%></footer>			 	
-	</center>
+		</center>				
+	
+	
+	 	
+	 	
+
 
 </body>
 

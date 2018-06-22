@@ -3,31 +3,27 @@ package member.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import com.google.gson.Gson;
-
-import member.model.service.MainUserReviewService1;
-import member.model.vo.UserReview;
+import product.model.vo.Product;
 
 /**
- * Servlet implementation class MainUserReviewServlet
+ * Servlet implementation class MyCart2Servlet
  */
-@WebServlet(name = "MainUserReview1", urlPatterns = { "/mainUserReview1" })
-public class MainUserReview1Servlet extends HttpServlet {
+@WebServlet(name = "MyCart2", urlPatterns = { "/myCart2" })
+public class MyCart2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainUserReview1Servlet() {
+    public MyCart2Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,12 +32,24 @@ public class MainUserReview1Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		
-		ArrayList<UserReview> list= new MainUserReviewService1().MainUserReviewList();
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-		new Gson().toJson(list, response.getWriter());
+
+
+		HttpSession session =  request.getSession(false);
+		if(session.getAttribute("user")!=null) {
 	
+			 RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart2.jsp");
+			 request.setAttribute("myCartList", list);
+			 view.forward(request, response);
+			 
+		}else {
+			System.out.println("myCart2.jsp로 보내기 실패 ");
+		}
+	
+	
+		
+		
 	}
 
 	/**

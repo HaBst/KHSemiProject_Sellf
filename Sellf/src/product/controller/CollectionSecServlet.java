@@ -37,14 +37,15 @@ public class CollectionSecServlet extends HttpServlet {
 		ArrayList<Product> CollectionSecRandomList = new PopularProductService().CollectionSecRandomList();
 		
 		response.setCharacterEncoding("utf-8");
-		JSONArray resultArray = new JSONArray(); // JSONarray 객체
-		// 여러명의 정보를 담을 객체가 필요하기 때문에 array 로 만듦
-		for (Product collectionRandom : CollectionSecRandomList) { // for : each문을 사용해서 전체 출력하기
+		JSONArray resultArray = new JSONArray();
+	
+		for (Product collectionRandom : CollectionSecRandomList) { 
 			JSONObject result = new JSONObject();
 			result.put("name", collectionRandom.getProduct_name());
 			result.put("price", collectionRandom.getProduct_price());
 			result.put("image", collectionRandom.getProduct_image());
 			result.put("detail", collectionRandom.getProduct_detail());
+			result.put("productNo",collectionRandom.getProduct_entire_pk()); // 상품 고유 인덱스
 			resultArray.add(result);
 		}
 			response.setContentType("application/json");

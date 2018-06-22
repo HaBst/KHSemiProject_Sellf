@@ -1,6 +1,8 @@
 package manager.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +33,10 @@ public class ManagrNoticeSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		ManagerBoard mb = new ManagerBoardService().noticeSelect(noticeNo);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/views/manager/managerBoardRead.jsp");
+		request.setAttribute("notice", mb);
+		view.forward(request, response);
 	}
 
 	/**

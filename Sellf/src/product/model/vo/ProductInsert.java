@@ -2,25 +2,25 @@ package product.model.vo;
 
 public class ProductInsert {
 	
-	private int productEntirePK;
+//	private int productEntirePK;
 	private String productEntireUserIdFK;
 	private String productEntireCateMainIdFK;
 	private String productEntireCateSubIdFK;
 	private String productName;
 	private int productPrice;
-	private String productImage;
+	private ImageUpload productImage;
+//	private String productImage;
 	private int productAmount;
-	private String productState;
+//	private String productState;
 	private String productGrade;
 	private String productDetail;
 	
 	public ProductInsert() {}
 
-	public ProductInsert(int productEntirePK, String productEntireUserIdFK, String productEntireCateMainIdFK,
-			String productEntireCateSubIdFK, String productName, int productPrice, String productImage,
-			int productAmount, String productState, String productGrade, String productDetail) {
+	public ProductInsert(String productEntireUserIdFK, String productEntireCateMainIdFK,
+			String productEntireCateSubIdFK, String productName, int productPrice, ImageUpload productImage,
+			int productAmount, String productGrade, String productDetail) {
 		super();
-		this.productEntirePK = productEntirePK;
 		this.productEntireUserIdFK = productEntireUserIdFK;
 		this.productEntireCateMainIdFK = productEntireCateMainIdFK;
 		this.productEntireCateSubIdFK = productEntireCateSubIdFK;
@@ -28,17 +28,8 @@ public class ProductInsert {
 		this.productPrice = productPrice;
 		this.productImage = productImage;
 		this.productAmount = productAmount;
-		this.productState = productState;
 		this.productGrade = productGrade;
 		this.productDetail = productDetail;
-	}
-
-	public int getProductEntirePK() {
-		return productEntirePK;
-	}
-
-	public void setProductEntirePK(int productEntirePK) {
-		this.productEntirePK = productEntirePK;
 	}
 
 	public String getProductEntireUserIdFK() {
@@ -81,11 +72,11 @@ public class ProductInsert {
 		this.productPrice = productPrice;
 	}
 
-	public String getProductImage() {
+	public ImageUpload getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(String productImage) {
+	public void setProductImage(ImageUpload productImage) {
 		this.productImage = productImage;
 	}
 
@@ -95,14 +86,6 @@ public class ProductInsert {
 
 	public void setProductAmount(int productAmount) {
 		this.productAmount = productAmount;
-	}
-
-	public String getProductState() {
-		return productState;
-	}
-
-	public void setProductState(String productState) {
-		this.productState = productState;
 	}
 
 	public String getProductGrade() {
@@ -120,7 +103,8 @@ public class ProductInsert {
 	public void setProductDetail(String productDetail) {
 		this.productDetail = productDetail;
 	}
-	
+
+
 	
 	
 	

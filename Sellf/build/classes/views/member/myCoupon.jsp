@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import="member.model.vo.*" import="java.util.ArrayList" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -545,13 +544,13 @@ table tr:hover td {
             <div class="mpMenuItems">
                             <div class="mpMenuTitle"><h1>My Page</h1></div>
 
-              <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">판매내역</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">구매내역</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">찜한 상품</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
-					<li role="presentation" class="active"><a href="/Grade">등급보기</a></li>
+                <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active"><a href="/views/member/mySelf.jsp">판매내역</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myBuy.jsp">구매내역</a></li>
+					<li role="presentation" class="active"><a href="/views/member/jjim.jsp">찜한 상품</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">등급보기</a></li>
 				</ul>
             </div>
             <div class="MenuContents">
@@ -595,18 +594,11 @@ table tr:hover td {
                 </div>
                 </div>
             </div>
- <div class="menu-button">
-				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
-					style="background-image: url(/../../img/messageQbtn.png)"> <i
-					class="messageQbtn"></i>
-				</a> <a href="/index.jsp"
-					style="background-image: url(/../../img/homeQbtn.png)"> <i
-					class="homeQbtn"> </i>
-				</a> <a href="/views/member/myCart3.jsp"
-					style="background-image: url(/../../img/sayQbtn.png)"> <i
-					class="sayQbtn"> </i>
-				</a>
-			</div>
+  <div class="menu-button"><i class="Qbtn"></i>
+	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
+	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
+	<a href="/views/member/myCart3.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
+</div>
   </div>
 
   </center>

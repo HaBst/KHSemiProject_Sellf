@@ -41,13 +41,13 @@ public class ProductSortCategoryServlet extends HttpServlet {
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
-		
+
 		request.setCharacterEncoding("utf-8");
 		String mainCategory = request.getParameter("mainCategory");
 		String subCategory = request.getParameter("subCategory");
 		String orderType = request.getParameter("orderType");
-		int onePageShowProduct = Integer.parseInt(request.getParameter("onePageShowProduct"));
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int onePageShowProduct = 8;//Integer.parseInt(request.getParameter("onePageShowProduct"));
+		int currentPage = 0;//Integer.parseInt(request.getParameter("currentPage"));
 		
 		ArrayList<Product> list = new ProductService().productSortCategory(mainCategory,subCategory,onePageShowProduct,currentPage,orderType);
 		response.setContentType("application/json");

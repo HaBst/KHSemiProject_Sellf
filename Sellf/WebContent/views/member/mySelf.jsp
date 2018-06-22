@@ -4,76 +4,57 @@
 		 import="java.util.ArrayList"
 		 import="product.model.vo.*"%>
 <% Member m = (Member)session.getAttribute("user"); %> 
-<% ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("product"); %>
-
+<% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>판매내역</title>
+<title>구매내역</title>
+<!-- 내부 링크건 CSS -->
+<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<!-- 헤더 끝 -->
 <style>
 body {
-	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
-	color: #404040;
-	background: white;
+	 font-family: 'Sunflower';
 }
-div{background-color: white;}
-    
-.header{border:3px solid white;
-       background-color: #7151FC;
-        width: auto;
-        height: 100px;}
-
-
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
-.footer{border:3px solid white;
-    background-color: #7151FC;
-    width: auto;
-    height: 120px;
-    }
-.mpMenuItems{border: 1px solid white;
+    .mpMenuItems{border: 1px solid white;
     float: left;
     width: auto;
     height: 100%;
     }
-.mpMenuAll{border: 1px solid #F2F2F2;
-    margin-bottom:10px;
+    .mpMenuAll{border: 1px solid #F2F2F2;
 	list-style-type:none;
 	font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
     }
-ul.mpMenuAll li{
+    ul.mpMenuAll li{
 	margin:0;padding:0;border-top:1px solid #F2F2F2;
 	border-bottom:1px solid white;
 }
-	ul.mpMenuAll li #selfb{
-	display:block;
-	text-decoration:none;
-	color:#7151FC;
-	background:#F2F2F2;
-	padding:5px 0 5px 20px;
-	width:140px;
-}
 ul.mpMenuAll li a{
-	display:block;
-	text-decoration:none;
-	color:black;
-	background:white;
-	padding:5px 0 5px 20px;
-	width:140px;
+	display:block;text-decoration:none;color:black;
+	background:white;padding:5px 0 5px 20px;width:140px;
 }
 ul.mpMenuAll li a:hover{
 	background:#F2F2F2 url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;
 	color:#7151FC;
 }
+
+ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
+background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;}
 .mpMenuTitle {
 	width: auto;
-	margin-top:55px;
-	height: 5%;
 	animation: background 1s linear infinite;
 	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
 		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
@@ -85,7 +66,7 @@ ul.mpMenuAll li a:hover{
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-.mpMenuAll
+    .mpMenuAll
     {
         position: static;
         padding: inherit;
@@ -103,7 +84,6 @@ ul.mpMenuAll li a:hover{
     }
     .MenuConTitle
     {
-    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
@@ -144,8 +124,6 @@ ul.mpMenuAll li a:hover{
 	position: relative;
 	top: 4px;
 }
-    
-
 .container {
   margin: 50px auto;
   width: 580px;
@@ -201,9 +179,6 @@ ul.mpMenuAll li a:hover{
   content: none;
 }
 
-a {
-	color: #c75f3e;
-}
 
 #mytable {
 	width: 700px;
@@ -279,7 +254,7 @@ th.specalt {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #7151FC;
+  background-color: #9B9BA7;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -374,7 +349,8 @@ th.specalt {
 </head>
 <body align ="center">
 
-<div class="header">헤더</div>
+
+	<div class="header"><%@include file="../../views/common/header.jsp"%></div>	
 <center>
         <div class="contents">
             <div class="mpMenuItems">
@@ -389,47 +365,54 @@ th.specalt {
 					<li role="presentation" class="active"><a href="/Grade">등급보기</a></li>
 				</ul>
             </div>
-            <div class="MenuContents">
-                 <div class="MenuConTitle" margin-top=10px><H2>판매 내역</H2></div>
-                 <HR>
-                <div class="MenuCon">  <div class="table-users"  style="overflow:auto; height:550px;">
-<center>
-<%if(list!=null){ %>
-<table>
-      <tr>
-         <th width="200">상품이미지</th>
-         <th width="150">상품명</th>
-         <th width="100">가격</th>
-         <th width="100">개수</th>
-         <th width="100">상태</th>
-      </tr>
-   		<% for(Product p : list){%>
 
-      <tr>
-         <td><%=p.getProduct_image() %></td>
-         <td><%=p.getProduct_name() %></td>
-         <td><%=p.getProduct_price() %></td>
-         <td><%=p.getProduct_amount() %></td>
-         <td>
-         <% String state = p.getProduct_state(); %>
-        	 <%if(state.equals("S")){%>
+            <div class="MenuContents">
+                 <div class="MenuConTitle"><H2>판매내역</H2>
+                </div> <hr>
+                <div class="MenuCon">  <div class="table-users" style="overflow:auto; width:800px; height:550px;">
+
+
+<center>
+<%if(list2!=null){ %>
+<table>
+  				<tr>
+					<th style="width: 40%">상품사진</th>
+					<th style="width: 20%">상품내용</th>
+					<th style="width: 20%">가격</th>
+					<th style="width: 20%">수량</th>
+				</tr>
+				</thead>
+				<%for (Product p : list2){%>
+				<tbody>
+				<tr>
+					<td><div class="row"><div class="col-sm-2 hidden-xs">
+					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+					</div>
+					</td>
+					<td><h4 class="nomargin"><%=p.getProduct_name() %></h4>
+					<h5>    <% String state = p.getProduct_state(); %>
+       		 <%if(state.equals("S")){%>
          	  <h4  style="color: blue">판매중</h4>
          	 <%}else if(state.equals("T")) {%>
          	  <h4  style="color: orange">거래중</h4>
          	 <%}else if(state.equals("E")) {%>
          	  <h4  style="color: red">판매완료</h4>
-         	 <%} %>
-         </td>
-      </tr>
-      	 <%} %>
-</table>
-</center>  	     
-<%}else{ %>
-   <div>아직 판매내역이 없습니다.</div>
-<%} %>
-</div></div>
-            </div>
- <div class="menu-button">
+         	 <%} %></h5></td>
+					<td><%=p.getProduct_price()%></td>
+					<td>
+					<input type="" value="<%=p.getProduct_amount()%>"></td>
+			
+					</tr>
+					</tbody><%}%>
+					</table>
+					</center>
+						<%} else {%>
+						<div>살까말까 고민되는 물건을 찜해보세요!</div>
+						<%}%>
+					</div>
+				</div>
+			</div>
+  <div class="menu-button">
 				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
 					style="background-image: url(/../../img/messageQbtn.png)"> <i
 					class="messageQbtn"></i>
@@ -444,7 +427,7 @@ th.specalt {
         </div>
     
         </center>
-<div class="footer">푸터</div>
+<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>
 
 </html>

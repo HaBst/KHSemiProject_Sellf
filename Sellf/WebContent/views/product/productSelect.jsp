@@ -182,12 +182,12 @@ $(document).ready(function() {
 					<div id="purchaseBtnGroup">
 						<div class="purchaseBtn">
 							<div>
-								<a href="">위시리스트</a>
+								<a href="/views/member/jjim.jsp">위시리스트</a>
 							</div>
 						</div>
 						<div class="purchaseBtn">
 							<div>
-								<a href="">장바구니</a>
+								<a href="/myCart">장바구니</a>
 							</div>
 						</div>
 						<div class="purchaseBtn">

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import member.model.service.MemberService;
 import member.model.service.UserReviewService;
 import member.model.vo.ReviewPageData;
@@ -32,18 +34,25 @@ public class UserReviewInProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-int currentPage;// �쁽�옱 �럹�씠吏� 媛믪쓣 ���옣�븯�뒗 蹂��닔
+		int currentPage;
+		String id = request.getParameter("userId");
 		
+		System.out.println("서블릿 " + id);
 		if(request.getParameter("currentPage")==null) currentPage = 1;
 		else currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
-		ReviewPageData pd = new UserReviewService().sellerReviewAll(currentPage);
+		
+		ReviewPageData pd = new UserReviewService().sellerReviewAll(currentPage,id);
+		System.out.println(pd.getReviewList().size());
 		
 		if(pd!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/notice/notice.jsp");
-			request.setAttribute("pageData", pd);
-			view.forward(request, response);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(pd, response.getWriter());
+//			RequestDispatcher view = request.getRequestDispatcher("/views/notice/notice.jsp");
+//			request.setAttribute("pageData", pd);
+//			view.forward(request, response);
 		}
 		else
 		{

@@ -10,16 +10,16 @@ import member.model.vo.UserReview;
 
 public class UserReviewService {
 
-	public ReviewPageData sellerReviewAll(int currentPage) {
+	public ReviewPageData sellerReviewAll(int currentPage, String id) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int recordCountPerPage = 5;
 		
 		int naviCountPerPage = 5;
 		
-		ArrayList<UserReview> reviewList = new UserReviewDao().getCurrnetPage(conn, currentPage, recordCountPerPage);
+		ArrayList<UserReview> reviewList = new UserReviewDao().getCurrnetPage(conn, currentPage, recordCountPerPage,id);
 		
-		String pageNavi = new UserReviewDao().getPageNavi(conn, currentPage, recordCountPerPage,naviCountPerPage);
+		String pageNavi = new UserReviewDao().getPageNavi(conn, currentPage, recordCountPerPage,naviCountPerPage,id);
 
 		ReviewPageData rpd = null;
 		if(!reviewList.isEmpty() && !pageNavi.isEmpty())

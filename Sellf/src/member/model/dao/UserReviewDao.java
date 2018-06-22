@@ -11,7 +11,7 @@ import member.model.vo.UserReview;
 
 public class UserReviewDao {
 
-	public ArrayList<UserReview> getCurrnetPage(Connection conn, int currentPage, int recordCountPerPage) {
+	public ArrayList<UserReview> getCurrnetPage(Connection conn, int currentPage, int recordCountPerPage, String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -20,13 +20,14 @@ public class UserReviewDao {
 		int end = currentPage * recordCountPerPage;
 		String 	query = "select * from ("+
 					"select user_review_tb.* , row_number() over(order by user_rv_pk desc) as num from user_review_tb) "+
-							"where num between ? and ?";
+							"where num between ? and ? and USER_RV_USER_ENTIRE_ID_FK=?";
 //			System.out.println(query);
 		ArrayList<UserReview> list = new ArrayList<UserReview>();
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
+			pstmt.setString(3, id);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) 
@@ -53,15 +54,16 @@ public class UserReviewDao {
 		return list;
 	}
 
-	public String getPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
+	public String getPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage, String id) {
 				int recordTotalCount = 0;
 			
-				String query = "select count(*) as total from user_review_tb";
+				String query = "select count(*) as total from user_review_tb where USER_RV_USER_ENTIRE_ID_FK=?";
 
 				PreparedStatement pstmt = null;
 				ResultSet rset = null;
 				try {
 					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, id);
 					rset = pstmt.executeQuery();
 					
 					if(rset.next())

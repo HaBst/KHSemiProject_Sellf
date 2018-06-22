@@ -50,7 +50,7 @@ $(document).ready(function() {
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
 
-<script src="../../JS/product/productSel.js?ver=1"></script>
+<script src="../../JS/product/productSel.js"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
 
@@ -200,9 +200,9 @@ $(document).ready(function() {
 			</div>
 			<div id="productDetailExplain">
 				<ul class="nav nav-tabs">
-					<li id="firstLi" onclick="changeTab(this,tab1);" class="active"><a>상품정보</a></li>
-					<li onclick="changeTab(this,tab2);"><a>상품후기</a></li>
-					<li onclick="changeTab(this,tab3);"><a>상품문의</a></li>
+					<li id="li1" onclick="changeTab(this,tab1);" class="active"><a>상품정보</a></li>
+					<li id="li2" onclick='changeTab(this,tab2,"<%=p.getProduct_entire_user_entire_id_fk()%>");'><a>상품후기</a></li>
+					<li id="li3" onclick="changeTab(this,tab3);"><a>상품문의</a></li>
 					<!-- <li onclick="changeTab(this,tab4);"><a>교환/반품/배송정보</a></li> -->
 				</ul>
 
@@ -335,7 +335,7 @@ $(document).ready(function() {
 							<h3 style="float: left; margin-left: 20px;">상품후기</h3>
 							<hr style="clear: both;">
 							<!-- 리뷰 통계-->
-							<%-- <div id="productReviewAvr">
+							 <div id="productReviewAvr">
 								<div id="starReview">
 									<div class="star">
 										<h3><span id="starScore" style="font-size:20;"><%=sellerRate.getAvr() %></span></h3>										
@@ -359,35 +359,7 @@ $(document).ready(function() {
 							</div>
 							<div id="productReviewList">
 							
-								<%for(UserReview ur : reviewList){ %>
-									<div class="reviewerCommnet">
-									<div class="imageCircle">
-										<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>
-									</div>
-									<div class="reviewerStarGroup">
-										<div class="reivewerId">
-											<%=ur.getUserReviewUserEntireReviewedIdFk() %>
-										</div>
-										<div class="reviewerStar">								
-											<h3 style="color:#ffd53d; display:inline-block"><%if(ur.getUserReviewRating()>1){ %>★  <%}else{%>☆<%} %></h3>
-											<h3 style="color:#ffd53d; display:inline-block"><%if(ur.getUserReviewRating()>2){ %>★  <%}else{%>☆<%} %></h3>
-											<h3 style="color:#ffd53d; display:inline-block"><%if(ur.getUserReviewRating()>3){ %>★  <%}else{%>☆<%} %></h3>
-											<h3 style="color:#ffd53d; display:inline-block"><%if(ur.getUserReviewRating()>4){ %>★  <%}else{%>☆<%} %></h3>
-											<h3 style="color:#ffd53d; display:inline-block"><%if(ur.getUserReviewRating()>=5){ %>★  <%}else{%>☆<%} %></h3>
-							  				
-										</div>
-									</div>
-									<div class="reviewContent">
-										<div class="reviewTitle">
-										애플 아이패드 프로 10.5인치 256GB WiFi
-										</div>
-										<div class="reviewComment">
-										만족해요.
-										</div>
-									</div>	
-								</div>
-								<%} %>
-								<label><%=pageNavi %></label> --%>
+								
 								<!-- <div class="reviewerCommnet">
 									<div class="imageCircle">
 										<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>
@@ -408,10 +380,11 @@ $(document).ready(function() {
 										만족해요.
 										</div>
 									</div>	
-								</div> -->
+								</div> 
 								
-								
+							-->	
 							</div>
+							
 							<hr style="clear: both; display:block;">
 						</div>
 					</li>

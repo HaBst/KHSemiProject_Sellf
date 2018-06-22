@@ -37,7 +37,7 @@ crossorigin="anonymous"></script>
 	
 <!-- 내부 링크건 CSS -->
 <link rel="stylesheet" href="/CSS/bootstrap/bootstrap.min.css" /> 
-<link rel="stylesheet" type="text/css" href="/CSS/main/main.css">
+<link rel="stylesheet" type="text/css" href="/CSS/main/main.css?ver=1">
 <link rel="stylesheet" type="text/css" href="/CSS/common/common.css">
 <link rel="stylesheet" type="text/css" href="/CSS/common/header.css">
 <link rel="stylesheet" type="text/css" href="/CSS/common/adv.css">
@@ -80,21 +80,27 @@ crossorigin="anonymous"></script>
 						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 					</ol>
-					<div class="carousel-inner">
+					<div class="carousel-inner" style="height:400px;">
 						<div class="carousel-item active">
-							<a href="index.jsp"><img class="d-block w-100"
-								src="img/categoryImgGroup/노트북광고.JPG"
-								alt="첫번째 슬라이드"></a>
+							<a href="index.jsp">
+								<img class="d-block w-100"
+								src="img/categoryImgGroup/노트북광고.JPG"	
+								alt="첫번째 슬라이드" >
+							</a>
 						</div>
 						<div class="carousel-item">
-							<a href="index.jsp"><img class="d-block w-100"
+							<a href="index.jsp">
+								<img class="d-block w-100"
 								src="img/categoryImgGroup/수익광고2.JPG"
-								alt="두번째 슬라이드"></a>
+								alt="두번째 슬라이드" >
+							</a>
 						</div>
 						<div class="carousel-item">
-							<a href="index.jsp"><img class="d-block"
-								src="img/categoryImgGroup/광고이어폰.JPG" style="width:960px;"
-								alt="세번째 슬라이드"></a>
+							<a href="index.jsp">
+								<img class="d-block"
+									src="img/categoryImgGroup/광고이어폰.JPG"
+									alt="세번째 슬라이드">
+							</a>
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleIndicators"

@@ -37,6 +37,7 @@
 								<th>개인정보</th>
 								<td colspan="3">
 									<select id="selInfo">  <!-- option의 value값은 하기 편한걸로!!  -->
+										<option value=null selected>-선택 안함-</option>
 	 									<option value="userName">이름</option>
 										<option value="userId">아이디</option>
 									</select> 
@@ -46,6 +47,7 @@
 							<tr><th>회원등급</th>
 								<td>
 								<select id="selGrade">
+									<option value=null  selected>-선택안함</option>
 									<option value="G01">브론즈</option>
 									<option value="G02">실버</option>
 									<option value="G03">골드</option>
@@ -53,8 +55,8 @@
 								</select>
 								</td>
 								<th>성별</th>
-								<td>
-										<input type="radio" name ="gender" value="M">남   
+								<td>	<input type="radio" name="gender" value=null checked>전체
+										<input type="radio" name="gender" value="M">남   
 										<input type="radio" name="gender" value="F">여
 								</td>
 							</tr>

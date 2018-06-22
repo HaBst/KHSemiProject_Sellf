@@ -24,7 +24,11 @@
 
 
 <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
+<script>
+window.onload(function(){
+	location.href="/managerFirstLoad";
+})
+</script>
 </head>
 
 <body>

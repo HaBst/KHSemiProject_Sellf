@@ -10,30 +10,30 @@ public class ManagerDao {
 		//조건에 따라 회원 정보를 DB에서검색하여 jsp로 보냄. 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		ArrayList<ManagerSelMember> list = new ArrayList<ManagerSelMember>();
 		String query = "";
 		try {
 			if(selInfo.equals("userName")) {
 				query = "select user_id, user_name, user_entire_user_grade_id_fk,"+ 
 						"user_phone, user_gender, user_enrollDate from user_entire_tb where user_name like'%?%' and user_entire_user_grade_id_fk =? and user_gender = ?";
-			pstmt = conn.prepareStatement(query);
-			
-			pstmt.setString(1, memberInfo);
-			pstmt.setString(2, selGrade);
-			pstmt.setLong(3, gender);
-			rset = pstmt.executeQuery();
+				pstmt = conn.prepareStatement(query);
+
+				pstmt.setString(1, memberInfo);
+				pstmt.setString(2, selGrade);
+				pstmt.setLong(3, gender);
+				rset = pstmt.executeQuery();
 			}else if(selInfo.equals("userId")) {
 				query = "select user_id, user_name, user_entire_user_grade_id_fk,"+ 
 						"user_phone, user_gender, user_enrollDate from user_entire_tb where user_id like'%?%' and user_entire_user_grade_id_fk like ? and user_gender = ?";
 				pstmt = conn.prepareStatement(query);
-				
+
 				pstmt.setString(1, memberInfo);
 				pstmt.setString(2, selGrade);
 				pstmt.setLong(3, gender);
 				rset = pstmt.executeQuery();
 			}
-			
+
 			while(rset.next())
 			{
 				ManagerSelMember msm  = new ManagerSelMember();
@@ -61,13 +61,13 @@ public class ManagerDao {
 		ResultSet rset = null;
 		ManagerSelMember msm = null;
 		ArrayList<ManagerSelMember> list = new ArrayList<ManagerSelMember>();
-		
+
 
 		try {
 			pstmt = conn.prepareStatement("select user_id, user_name, user_entire_user_grade_id_fk," + 
 					" user_phone, user_gender, user_enrollDate from user_entire_tb where user_entire_user_grade_id_fk='G00'");
 			rset = pstmt.executeQuery();
-		
+
 			while(rset.next())
 			{
 				msm = new ManagerSelMember();
@@ -94,10 +94,10 @@ public class ManagerDao {
 		ResultSet rset = null;
 		ArrayList<ManagerSelMember>list = new ArrayList<ManagerSelMember>();
 		ManagerSelMember msm = null;
-		
+
 		int start = currentPage*recordCountPerPage-(recordCountPerPage-1); //시작페이지 계산
 		int end = currentPage*recordCountPerPage;	//끝페이지 계산
-		
+
 		String query = "select user_id, user_name, user_entire_user_grade_id_fk , user_phone, user_gender, user_enrollDate,user_epoint from "+ 
 				" (select user_entire_tb.*,row_number() over(order by user_entire_pk desc) as num from user_entire_tb) "+ 
 				" where num between  ? and ? and user_entire_user_grade_id_fk='G00'";
@@ -106,7 +106,7 @@ public class ManagerDao {
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rset = pstmt.executeQuery();
-			
+
 			while(rset.next())
 			{
 				msm = new ManagerSelMember();
@@ -119,7 +119,7 @@ public class ManagerDao {
 				msm.setUserPoint(rset.getInt("user_epoint"));
 				list.add(msm);
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,10 +133,10 @@ public class ManagerDao {
 	public String getBlackListPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		int recordTotalCount = 0;
 		String query = "select count(*)as totalCount from user_entire_tb where user_entire_user_grade_id_fk='G00'";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -149,7 +149,7 @@ public class ManagerDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		int pageTotalCount = 0; //navi 토탈 카운트
 		if(recordTotalCount % recordCountPerPage!=0)
 		{
@@ -158,7 +158,7 @@ public class ManagerDao {
 		{
 			pageTotalCount = recordTotalCount / recordCountPerPage;	
 		}
-		
+
 		if(currentPage<1)
 		{
 			currentPage = 1;
@@ -166,32 +166,32 @@ public class ManagerDao {
 		{
 			currentPage = pageTotalCount;
 		}
-		
+
 		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
 		int endNavi = startNavi+naviCountPerPage-1;
-		
+
 		if(endNavi>pageTotalCount)
 		{
 			endNavi = pageTotalCount;
 		}
-		
+
 		boolean needPrev = true;
 		boolean needNext = true;
-		
+
 		if(startNavi==1)
 		{
 			needPrev = false;
 		}
-		
+
 		if(endNavi==pageTotalCount)
 		{
 			needNext = false;
 		}
-		
+
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) //시작이 1페이지가 아니면?
 		{
-		 sb.append("<a href='/managerBlackList?currentPage="+(startNavi-1)+"'> < </a>");	
+			sb.append("<a href='/managerBlackList?currentPage="+(startNavi-1)+"'> < </a>");	
 		}
 		for(int i=startNavi;i<=endNavi;i++)
 		{
@@ -213,7 +213,7 @@ public class ManagerDao {
 	public int bannedUnlock(Connection conn, String[] userId) { //불량등급 해제할 ID가져와서 등급 변경.
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		try {
 			for(int i=0;i<userId.length;i++)
 			{
@@ -222,10 +222,10 @@ public class ManagerDao {
 				result = pstmt.executeUpdate();
 			}
 		}
-			catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
@@ -237,6 +237,8 @@ public class ManagerDao {
 		ResultSet rset = null;
 		HashMap<String, String>subCtg = new HashMap<String,String>();
 		String query ="select product_category_sub_id, product_category_sub_name from product_category_sub_tb where product_cate_sub_main_id_fk=?";
+
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, mainCtg);
@@ -253,4 +255,6 @@ public class ManagerDao {
 		}
 		return subCtg;
 	}
+
 }
+

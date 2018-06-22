@@ -43,10 +43,10 @@ public class ManagerService {
 		if(result>0)
 		{
 			JDBCTemplate.commit(conn);
-			System.out.println("커밋");
+			
 		}else {
 			JDBCTemplate.rollback(conn);
-			System.out.println("tlqckd");
+	
 		}
 		JDBCTemplate.close(conn);
 		return result;
@@ -57,6 +57,12 @@ public class ManagerService {
 		HashMap<String, String>subCtg = new ManagerDao().getSubCtg(conn,mainCtg);
 		JDBCTemplate.close(conn);
 		return subCtg;
+	}
+
+	public void getMemberStatus() {
+		// 회원 가입수, 탈퇴수 등 메인에 보여줄 데이터를 가져옴.
+		 Connection conn = JDBCTemplate.getConnection();
+		 new ManagerDao().getMemberStatus(conn);
 	}
 	
 

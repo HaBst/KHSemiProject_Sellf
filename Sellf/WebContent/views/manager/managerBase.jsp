@@ -64,10 +64,10 @@
 						<ul class="nav nav nav-pills">
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
-								aria-pressed="true" href="#">Dashboard</a></li>
+								aria-pressed="true" href="/views/main/manager.jsp">Home</a></li>
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
-								aria-pressed="true" href="#">Sell:F 이동</a></li>
+								aria-pressed="true" href="/index.jsp" target="_blank">Sell:F 이동</a></li>
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
 								aria-pressed="true" href="#">Profile</a></li>

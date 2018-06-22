@@ -2,7 +2,7 @@ function memberSelect()
 {
 	$('#result').remove();
 	var selInfo = $("#selInfo option:selected").val();
-	var memberInfo = $("#memberInfo").val();
+	var memberInfo = $("#memberInfo").text();
 	var selGrade = $("#selGrade option:selected").val();
 	var gender = $(':input:radio[name=gender]:checked').val();
 	$.ajax({

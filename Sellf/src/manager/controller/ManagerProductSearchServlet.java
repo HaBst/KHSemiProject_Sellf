@@ -48,7 +48,12 @@ public class ManagerProductSearchServlet extends HttpServlet {
 		mss.setGetSearch(request.getParameter("getSearch"));
 		mss.setMainCtg(request.getParameter("MainCtg"));
 		mss.setSubCtg(request.getParameter("subCtg"));
-		mss.setGradeStatus(request.getParameter("gradeStatus").charAt(0));
+		mss.setGradeStatus(request.getParameter("gradeStatus"));
+		System.out.println(mss.getSearchType());
+		System.out.println(mss.getGetSearch());
+		System.out.println(mss.getMainCtg());
+		System.out.println(mss.getSubCtg());
+		System.out.println(mss.getGradeStatus());
 		new ManagerProductService().getSellSearch(mss);
 //		System.out.println(mss.getSearchType());
 //		System.out.println(mss.getGetSearch());

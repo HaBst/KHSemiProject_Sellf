@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import common.JDBCTemplate;
 import member.model.dao.findIdPwdDao;
+import member.model.vo.Member;
 
 
 public class FindIdPwdService {
@@ -39,10 +40,25 @@ public class FindIdPwdService {
 		return result;
 		
 	}
-
-	public int changePwd(String resetPwd1) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int changePwd(String memberId, String pwd1) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new findIdPwdDao().changePwd(conn, memberId, pwd1);
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+		}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
+	public Member showId(String memberEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member m = new findIdPwdDao().showId(conn, memberEmail);
+		JDBCTemplate.close(conn);
+		return m;
+	}
 }

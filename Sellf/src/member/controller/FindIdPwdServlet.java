@@ -63,15 +63,17 @@ public class FindIdPwdServlet extends HttpServlet{
 		}
 		else// 사용자가 다음버튼을 눌렀을때.
 		{
-			String sendMyAuth=request.getParameter("sendMyAuth");
+			String sendMyAuth = request.getParameter("sendMyAuth");
+			String memberEmail = request.getParameter("memberEmail");
 			// 인증번호 일치
 			if(sendMyAuth.equals(authReturn))
 			{
 //				response.sendRedirect("/views/member/findIdComplete.jsp");
-				System.out.println("인증성공");
-				response.setCharacterEncoding("utf-8");
-				response.getWriter().print("인증성공");
+				
+				response.getWriter().print(memberEmail);
 				response.getWriter().close();
+				System.out.println("인증성공");
+				
 				
 			}
 			else // 인증번호 불일치

@@ -7,19 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import member.model.service.FindIdPwdService;
 import member.model.vo.*;
+
 /**
- * Servlet implementation class ResetPwdServlet
+ * Servlet implementation class FindIdCompleteServlet
  */
-@WebServlet(name = "ResetPwd", urlPatterns = { "/resetPwd" })
-public class ResetPwdServlet extends HttpServlet {
+@WebServlet(name = "FindIdComplete", urlPatterns = { "/findIdComplete" })
+public class FindIdCompleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResetPwdServlet() {
+    public FindIdCompleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +32,19 @@ public class ResetPwdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		request.setCharacterEncoding("utf-8");
-	
-		String pwd1 = request.getParameter("pwd1");
-		String memberId = request.getParameter("memberId");
-
-		int result = new FindIdPwdService().changePwd(memberId, pwd1);
-
-		if(result>0)
+		String memberEmail = request.getParameter("memberEmail");
+		Member m = new FindIdPwdService().showId(memberEmail);
+		//m.getUser_id();
+		if(m!=null)
 		{
-			response.sendRedirect("/index.jsp");
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(m,response.getWriter());
 		}
 		else
 		{
-			response.sendRedirect("/views/member/resetPwd.jsp");
+			System.out.println("해당하는 정보가 없어요");
 		}
-		
-		
 	}
 
 	/**

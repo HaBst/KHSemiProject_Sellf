@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.*" %>
+<% String memberId = request.getParameter("memberId");%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -71,6 +74,7 @@ crossorigin="anonymous">
 					<div class="title_1"></div>
 					<br>
 					<div id="container">
+					
 						<table border="0">
 							<tr>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -78,6 +82,7 @@ crossorigin="anonymous">
 								<td>&nbsp;&nbsp;&nbsp;</td>
 								
 								<td>
+									
 									<div class="input-group mb-3">
 										<input type="password" class="form-control"
 											placeholder="비밀번호를 입력해주세요" aria-label="Username"
@@ -96,6 +101,8 @@ crossorigin="anonymous">
 											placeholder="비밀번호를 재 입력해주세요" aria-label="Username"
 											aria-describedby="basic-addon1" name="resetPwdNum2"
 											id="resetPwdNum2" style="width: 300px; height: 50px;">
+										<input type="hidden" id="memberId" name="memberId" value ="<%=memberId%>" >  
+										
 									</div>
 								</td>
 							</tr>
@@ -106,35 +113,18 @@ crossorigin="anonymous">
 								<td><div id="result"></div></td>
 							</tr>
 						</table>
-			
+						
 						<hr>
-						<button type="button" class="btn btn-secondary" id="resetPwdBtn" onclick="changePwdBtn();">비밀번호 재설정</button>
+						<button class="btn btn-secondary" id="resetPwdBtn">비밀번호 재설정</button>
 						<button type="button" class="btn btn-secondary" onclick="cancleBtn();">취소</button>
 					</div>
 					<br>
-					<script>
+<!-- 					<script>
 						function changePwdBtn()
 						{
-							var resetPwdNum1 = $("#resetPwdNum1");
-							var resetPwdNum2 = $("#resetPwdNum2");
-							$.ajax({
-								url:"/resetPwd",
-								data: {resetPwd1:resetPwdNum1, resetPwd2:resetPwdNum2},
-								type: "post",
-								success : function(data){
-									alert("성공 ");
-									window.open("/views/member/changePwdSuccess.html","비밀번호 재설정 성공","width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
-								},
-								error: function(data){
-									alert("실패"); 
-									window.open("/views/member/changePwdFail.html","비밀번호 재설정 실패","width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
-								}
-							});
-							
+							alert("테스트");
 						}
-					
-					
-					</script>
+					</script> -->
 				</div>
 			</div>
 				<footer id="footer">

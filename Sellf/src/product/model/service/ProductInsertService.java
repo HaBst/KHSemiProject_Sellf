@@ -17,7 +17,6 @@ public class ProductInsertService {
 	public int productInsert(ProductInsert pi) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = 0;
-		System.out.println(conn);
 		result = new ProductInsertDao().productInsert(conn, pi);
 		
 		if(result > 0) {
@@ -100,6 +99,13 @@ public class ProductInsertService {
 			return list;
 		}
 		
+	}
+
+	public ProductInsert fileDelete(String userId, String productName) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		new ProductInsertDao().fileDelete(conn,userId,productName);
+		return null;
 	}
 
 	

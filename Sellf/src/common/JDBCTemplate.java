@@ -16,6 +16,7 @@ public class JDBCTemplate {
 	private static String url;
 	private static String id;
 	private static String pass;
+	
 	public static void setDriverPath(String path)
 	{
 		if(driver.equals("")) {

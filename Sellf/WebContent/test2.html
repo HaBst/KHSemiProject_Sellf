@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+var optArr = ["사용", "등급", "생활기스","구성품","환불가능"];
+    
+var use = ["사용","미사용"];
+var grade = ["S","A","B","C","D"];
+var scratch = ["있음","없음"];
+var other = ["있음","없음"];
+var refund = ["가능","불가능"];
+var count = 1;
+var selectOption = "";
+var changeItem= "";
+
+    
+/*
+    1. select 생성
+    2. select 기본값 배열 1번째로.
+    3. 새로 만들기를 눌렀을때. 배열에서 삭제
+*/
+    
+ 
+function createSelectBox() {
+    if(optArr.length>1){
+        var obj = document.createElement("SELECT");
+        var obj2 = document.createElement("SELECT");
+
+        if(selectOption=="")
+        {
+            selectOption =optArr[0];
+            console.log(selectOption);
+        }
+        for(var i = 0; i<optArr.length;i++)
+        {
+            if(optArr[i]==selectOption) 
+            {
+                optArr.splice(i,1); 
+                selectOption = "";
+            }
+        }
+
+        obj.onchange = function () {
+            selectOption = this.value; 
+            console.log(selectOption);
+            
+            if(selectOption == "사용"){
+             changeItem = use;
+            }else if(selectOption == "등급"){
+             changeItem = grade;
+            }else if(selectOption == "생활기스"){
+             changeItem = scratch;
+            }else if(selectOption == "구성품"){
+             changeItem = other;
+            }else if(selectOption == "환불가능"){
+             changeItem = refund;
+            }
+            $('#itemBox'+count).empty();
+    
+             for(var count = 0; count < changeItem.size(); count++){
+                 var option = $("<option>"+changeItem[count]+"</option>");
+                 $('#itemBox'+count).append(option);
+             }
+        };
+//        selectArr.push(obj);
+//        var result = "";
+//        for(var i = 0; i<optArr.length;i++)
+//        {
+//             result += ('<option value="'+optArr[i]+'" onclick="selectOption(this);" >'+ optArr[i]+'</option>');
+//             
+//        }
+    //     obj.innerHTML = result;
+        for(var i = 0; i<optArr.length;i++) {
+
+            var opt = document.createElement("OPTION");
+
+            opt.value = optArr[i];
+
+            opt.text = optArr[i];
+
+            obj.options.add(opt);
+        }
+
+        obj.id = 'iSelectBox'+count;
+
+        document.getElementById("detailInfoBox").appendChild(obj);
+        document.getElementById("iSelectBox"+count).appendChild(obj2);
+
+
+    count++;
+    }
+}
+function selectOption(optionObj)
+{
+        console.log("옵션 선택");
+    /*배열안에 있을때*/
+    if(selectOption in optArr)
+    {
+        optArr.slice(selectOption,1);       
+    }
+    else{ /*배열안에 없을때.*/
+        optArr.push(selectOption,1);
+    }
+     selectOption = optionObj.value;
+    console.log("선택한 옵션 " + selectOption );
+      
+    
+}
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+function removeOptionSelectBox() {
+    
+    var obj = document.getElementById('iSelectBox');
+
+    obj.remove();
+
+}
+
+</script>
+
+
+
+<button onclick="createSelectBox()">SelectBox 생성</button>
+
+
+<button onclick="removeOptionSelectBox()">SelectBox 마지막옵션삭제</button>
+    
+<div id="detailInfoBox">
+    <select id="iSelectBox">
+        <option value="등급">사용</option>
+        <option value="등급">등급</option>
+        <option value="생활기스">생활기스</option>
+        <option value="구성품">구성품</option>
+        <option value="환불가능">환불가능</option>
+    </select>
+    <select id = "itemBox">
+    </select>
+</div>
+
+
+</body>
+</html>

@@ -42,6 +42,7 @@ public class ProductSortCategoryServlet extends HttpServlet {
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 
+		
 		request.setCharacterEncoding("utf-8");
 		String mainCategory = request.getParameter("mainCategory");
 		String subCategory = request.getParameter("subCategory");

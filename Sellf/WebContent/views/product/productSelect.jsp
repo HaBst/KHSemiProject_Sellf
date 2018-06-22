@@ -66,7 +66,7 @@ $(document).ready(function() {
 <link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
 <link rel="stylesheet" type="text/css"
 	href="../../CSS/common/footer.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/externalCss/magnify.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/externalCss/magnify.css?ver=1">
 
 
 <title>상품 선택 화면</title>
@@ -93,7 +93,7 @@ $(document).ready(function() {
 			<div id="productContent">
 				<div id="productImage">		
 				
-					<img src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" class="magnify-image" data-magnify-src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" />						
+					<img src="<%=p.getProduct_image() %>" class="magnify-image" data-magnify-src="<%=p.getProduct_image() %>" />						
 					<!-- <div class="zoom-section">    	  
 						<div class="zoom-small-image">
 							<a href='../../img/테스트3.JPG' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">

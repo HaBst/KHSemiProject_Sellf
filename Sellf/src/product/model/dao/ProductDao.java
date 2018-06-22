@@ -54,13 +54,14 @@ public class ProductDao {
 			case "manyReviewOrder": orderQuery = " order by product_entire_pk desc ";  break;		
 		}
 		String query = "select * from product_entire_tb"
-				+ " where PRODUCT_ENTIRE_CATE_MAIN_ID_FK = ? and PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? "+
+				+ " where PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? "+
 				orderQuery;
+		
+		System.out.println("서브 " + subCategory );
 			
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, mainCategory);
-			pstmt.setString(2, subCategory);
+			pstmt.setString(1, subCategory);
 //			pstmt.setInt(3, currentPage*onePageShowProduct);
 //			pstmt.setInt(4, currentPage*onePageShowProduct + onePageShowProduct);
 			rset = pstmt.executeQuery();

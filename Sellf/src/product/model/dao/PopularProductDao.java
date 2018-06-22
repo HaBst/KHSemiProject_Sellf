@@ -202,8 +202,8 @@ public class PopularProductDao {
 		ResultSet rset = null;
 		Product p = null;
 		ArrayList<Product> list = new ArrayList<Product>();
-		String query ="SELECT * FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_STATE = 'S' AND PRODUCT_GRADE = 'N'";
-		// ¹Ì°³ºÀ¿¡ »óÇ°»óÅÂ´Â ÆÇ¸ÅÁß »óÅÂ Á¦Ç° 
+		String query ="SELECT * FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_STATE = 'S' AND PRODUCT_OLDNEW = 'N'";
+		// ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Â´ï¿½ ï¿½Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° 
 
 
 		try {

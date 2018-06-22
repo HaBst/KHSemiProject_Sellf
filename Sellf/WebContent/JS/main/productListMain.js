@@ -40,7 +40,8 @@ function loadSelectCategory()
 	var totalProductList = $(".productList");//$("#productLine");
 	$.ajax({
 		url:"/productSortCategory",
-		data : {mainCategory : mainCategory,
+		data : {
+				mainCategory : mainCategory,
 				subCategory : subCategory,
 				onePageShowProduct :onePageShowProduct,
 				currentPage :currentPage,
@@ -64,17 +65,26 @@ function loadSelectCategory()
 			}
 //			totalProductSize.html("전체상품 " +  keys.length + "개");
 			
+
+			
 			for(var i = currentPage*onePageShowProduct; i<maxLength;i++)
-			{
-				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk +');"';
+			{			
+				var str = '{"1":"https://d7gbrm2kdcmco.cloudfront.net/t_w768_limit_jpg/j0bxdcsa3bun0shd2b9h.jpg","2":"https://d103rzmewwjpod.cloudfront.net/t_w768_limit_jpg/im54btsw22fgedxblt9c.jpg","3":"https://d7gbrm2kdcmco.cloudfront.net/t_w768_limit_jpg/genn4blq8lpo36dqiw82.jpg","4":null,"5":null}';
+				var imgJsonObj = Object.keys(str);
+				console.log("이미지 json " + imgJsonObj);
+				for(var j = 0;j<imgJsonObj.length;j++ ){					
+			        console.log("이미지 키값 " + imgJsonObj[i]);
+			    }
+//				console.log("이미지 데이터 " + data[keys[i]].product_image[1]);
+				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
 				totalProductList.append(
 				'<li class="productWrap">'+
 				'<div class="productBg"' +link +'>'+
 					'<div class="imgWrapper">'+
-						'<img class="productImgMain" src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg">'+
-						'<% if (discountRate > 0) { %>'+						
-						'<div class="discountBg">10%</div>'+
-						'<% }%>'+
+						'<img class="productImgMain" src="'+data[keys[i]].product_image+'">'+
+//						'<% if (discountRate > 0) { %>'+						
+//						'<div class="discountBg">10%</div>'+
+//						'<% }%>'+
 						'<div class="productSideMenu">'+
 						'<div class="display_newwin hide">'+
 						'<img src="../../img/thumb_quickview.png" alt="">'+

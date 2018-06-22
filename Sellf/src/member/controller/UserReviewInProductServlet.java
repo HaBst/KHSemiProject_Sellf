@@ -50,9 +50,6 @@ public class UserReviewInProductServlet extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			new Gson().toJson(pd, response.getWriter());
-//			RequestDispatcher view = request.getRequestDispatcher("/views/notice/notice.jsp");
-//			request.setAttribute("pageData", pd);
-//			view.forward(request, response);
 		}
 		else
 		{

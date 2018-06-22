@@ -38,11 +38,11 @@ public class ProductSelectOneServlet extends HttpServlet {
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);	
-		
-		
+				
 		request.setCharacterEncoding("utf-8");
 		int productPk = Integer.parseInt(request.getParameter("productId"));
 		Product p = new ProductService().selectOneProduct(productPk);
+		
 		if(p!=null)
 		{
 			SellerRate sellerRate = new ProductService().raputationAvr(p.getProduct_entire_user_entire_id_fk());

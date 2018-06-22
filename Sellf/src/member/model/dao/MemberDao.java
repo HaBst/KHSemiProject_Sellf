@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import common.JDBCTemplate;
 import member.model.vo.Member;
+import member.model.vo.wishList;
 import product.model.vo.Product;
 
 
@@ -117,7 +118,7 @@ public class MemberDao {
                 m.setUser_email(rset.getString("USER_EMAIL"));
                 m.setUser_interest(rset.getString("USER_INTEREST"));
                 m.setUser_enrolldate(rset.getDate("USER_ENROLLDATE"));
-                m.setUser_epoint(rset.getInt("USER_EPOINT"));
+                m.setUser_ePoint(rset.getInt("USER_EPOINT"));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -158,14 +159,15 @@ public class MemberDao {
 			rset = stmt.executeQuery(query);
 			while(rset.next()){
 			w.setUSER_WL_PRODUCT_ENTIRE_FK(rset.getInt("USER_WL_PRODUCT_ENTIRE_FK"));
-		} catch (SQLException e) {
+		}
+			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(stmt);
 		}
-		return result;
+		return w;
 	}
 
 	public int memberJoin(Connection conn, Member m, String fullPath) {
@@ -206,8 +208,7 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally		{
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return g;
 	}
@@ -244,7 +245,7 @@ public class MemberDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		String query ="select product_entire_pk, product_name,PRUDUCT_IMAGE,product_price,product_state,product_amount from (select * from user_wishlist_tb, product_entire_Tb where user_wl_product_entire_fk = product_entire_pk) where user_wl_user_entire_id_fk='"+id+"'";
-
+	}
 	public ArrayList<Product> self(Connection conn, String id) {
 		ArrayList<Product> list = new ArrayList<Product>();
 		Statement stmt = null;

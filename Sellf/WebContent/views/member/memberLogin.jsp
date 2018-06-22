@@ -99,12 +99,22 @@
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sell:F 로그인</title>
 <link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/common.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">	
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">	
 </head>
 
 <body>
-	<div class="header">헤더입니다.</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+	<script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
+	<script type="text/javascript" src="../../JS/common/adv.js"></script>
+	<script type="text/javascript"	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"	charset="utf-8"></script>
+	<header id="header"> <%@include
+				file="/views/common/header.jsp"%> </header><br>
 	<div class="container">
 		<div class="sign-up-title">
 			<h4>로그인</h4>
@@ -137,23 +147,24 @@
 		    session.setAttribute("state", state);
 		 	%>
 			<ul class="snsList">
+			<br>
 				<li><a href="<%=apiURL%>"><img src="/img/loginByNaver.PNG" class="img-responsive"></a></li>
 				<br>
-				<li><button onclick="loginType('google');" class="snsBtn"><img src="/img/btn_google_signin_dark_normal_web.png"
-					class="img-responsive" width="200px"></button></li>
 			</ul>
 		</div>
 
-	<div class="footer">footer 입니다.</div>
+	<!-- footer -->
+	<div align="center">
+	<footer>
+					<%@include file="../../views/common/footer.jsp" %>
+	</footer>
+	</div>
 	</div>
 	<script type="text/javascript">
 		function loginType(type) {
 			location.href = "" + type;
 		}
 	</script>
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
-
 </body>
 
 </html>

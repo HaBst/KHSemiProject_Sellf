@@ -1,4 +1,4 @@
-package product.model.dao;
+package product.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

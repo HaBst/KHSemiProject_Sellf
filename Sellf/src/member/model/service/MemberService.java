@@ -98,8 +98,13 @@ public class MemberService {
 	public ArrayList<Product> self(String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Product> list = new MemberDao().self(conn,id);
+<<<<<<< HEAD
 	}
 
+=======
+
+	}
+>>>>>>> e69c08929f9ae0d756bc3d0299d773d88e6148bc
 	public int memberNaverJoin(Member m, String fullPath) {
 		Connection conn = null;
 		conn = JDBCTemplate.getConnection();
@@ -124,6 +129,12 @@ public class MemberService {
 	}
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> e69c08929f9ae0d756bc3d0299d773d88e6148bc
 	public Member memberLogin(String id, String pw, String fullPath) {
 		Connection conn = null;
 		conn = JDBCTemplate.getConnection();

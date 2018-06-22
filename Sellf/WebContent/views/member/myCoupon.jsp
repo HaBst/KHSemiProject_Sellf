@@ -1,17 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.*" import="java.util.ArrayList" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- ¿ÜºÎ jsÆÄÀÏ -->
+<!-- ì™¸ë¶€ jsíŒŒì¼ -->
 <script type="text/javascript" src="../../JS/common/header.js"></script>
 
-<title>³» ÄíÆù</title>
+<title>ë‚´ ì¿ í°</title>
+<!-- ë‚´ë¶€ ë§í¬ê±´ CSS -->
+<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<!-- í—¤ë” ë -->
 <style>
+body {
+	 font-family: 'Sunflower';
+}
 .couponcolor{
   background-color:#F2F2F2;
 }
@@ -157,23 +169,15 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
     width:400px;
   }
 }
-div{background-color: white;}
-    
-.header{border:3px solid white;
-       background-color: #7151FC;
-        width: auto;
-        height: 100px;}
+
+
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
-    .footer{border:3px solid white;
-    background-color: #7151FC;
-    width: auto;
-    height: 120px;
-    }
+
     .mpMenuItems{border: 1px solid white;
     float: left;
     width: auto;
@@ -204,8 +208,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
     
 .mpMenuTitle {
 	width: auto;
-	margin-top:55px;
-	height: 5%;
 	animation: background 1s linear infinite;
 	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
 		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
@@ -248,7 +250,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
     }
      .MenuConTitle
     {
-    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
@@ -264,11 +265,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
    height:40%;
    float: right;
    }
-    body {
-  font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
-  color: #404040;
-  background: white;
-}
+
 .container {
   margin: 50px auto;
   width: 580px;
@@ -445,7 +442,7 @@ table tr:hover td {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #7151FC;
+  background-color: #9B9BA7;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -539,27 +536,27 @@ table tr:hover td {
 </head>
 <body align ="center">
 
-<div class="header">Çì´õ</div>
+<div class="header"><%@include file="../../views/common/header.jsp"%></div>	
 <center>
         <div class="contents">
             <div class="mpMenuItems">
                             <div class="mpMenuTitle"><h1>My Page</h1></div>
 
               <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">ÆÇ¸Å³»¿ª</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">±¸¸Å³»¿ª</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ÂòÇÑ »óÇ°</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">³» ÄíÆù</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">³» Á¤º¸</a></li>
-					<li role="presentation" class="active"><a href="/Grade">µî±Şº¸±â</a></li>
+					<li role="presentation" class="active" id="selfb"><a href="/self">íŒë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="buyb"><a href="/buy">êµ¬ë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ì°œí•œ ìƒí’ˆ</a></li>
+					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">ë‚´ ì¿ í°</a></li>
+					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">ë‚´ ì •ë³´</a></li>
+					<li role="presentation" class="active"><a href="/Grade">ë“±ê¸‰ë³´ê¸°</a></li>
 				</ul>
             </div>
             <div class="MenuContents">
             
-                <div class="MenuConTitle"><H2>³» ÄíÆù</H2></div>
+                <div class="MenuConTitle"><H2>ë‚´ ì¿ í°</H2></div>
                 <hr>
 
-<div class="MenuCon1"><!-- Å×ÀÌºíÃ¢ -->
+<div class="MenuCon1"><!-- í…Œì´ë¸”ì°½ -->
 <div class="table-users">
 <% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("userList"); %>
 <center>
@@ -567,14 +564,14 @@ table tr:hover td {
  <table>  
       <tr>
 
-         <th width="100">ÄíÆùÀÌ¸§</th>
-         <th width="100">ÇÒÀÎÀ²</th>
-         <th width="100">»ç¿ë¿©ºÎ</th>
+         <th width="100">ì¿ í°ì´ë¦„</th>
+         <th width="100">í• ì¸ìœ¨</th>
+         <th width="100">ì‚¬ìš©ì—¬ë¶€</th>
       </tr>
  		<% for(Member m : list){%>
 
 	<tr class="even">
-			<td>½Å±ÔÈ¸¿ø ÄíÆù</td>
+			<td>ì‹ ê·œíšŒì› ì¿ í°</td>
 			<td>10%</td>
 			<td>No</td>
 	</tr>
@@ -583,15 +580,15 @@ table tr:hover td {
     	    </table>
     	    </center>
 <%}else{ %>
-   <div>Áö±ŞµÈ ÄíÆùÀÌ ¾ø½À´Ï´Ù.   </div>
+   <div>ì§€ê¸‰ëœ ì¿ í°ì´ ì—†ìŠµë‹ˆë‹¤.   </div>
 <%} %>
 </div>
 </div>
-                <div class="MenuCon2"><!-- ¾È³»Ã¢ -->
+                <div class="MenuCon2"><!-- ì•ˆë‚´ì°½ -->
                 <div>
-                - ÀÌ¹Ì »ç¿ëÇÏ¿´°Å³ª À¯È¿±â°£ÀÌ ¸¸·áµÈ ÄíÆùÀº 3°³¿ù ÈÄ ÀÚµ¿ »èÁ¦µË´Ï´Ù.<br>
-                - ÄíÆùÀº Áßº¹»ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. 1È¸ °áÁ¦½Ã 1°³ÀÇ ÄíÆù¸¸ »ç¿ë °¡´ÉÇÕ´Ï´Ù.<br>
-                - ¸ğµç ÄíÆùÀº ¼¿ÀÕ °ËÁõ »óÇ°¿¡¸¸ »ç¿ë °¡´ÉÇÕ´Ï´Ù. (»óÇ°±Ç Á¦¿Ü)
+                - ì´ë¯¸ ì‚¬ìš©í•˜ì˜€ê±°ë‚˜ ìœ íš¨ê¸°ê°„ì´ ë§Œë£Œëœ ì¿ í°ì€ 3ê°œì›” í›„ ìë™ ì‚­ì œë©ë‹ˆë‹¤.<br>
+                - ì¿ í°ì€ ì¤‘ë³µì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. 1íšŒ ê²°ì œì‹œ 1ê°œì˜ ì¿ í°ë§Œ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.<br>
+                - ëª¨ë“  ì¿ í°ì€ ì…€ì‡ ê²€ì¦ ìƒí’ˆì—ë§Œ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤. (ìƒí’ˆê¶Œ ì œì™¸)
                 </div>
                 </div>
             </div>
@@ -610,7 +607,7 @@ table tr:hover td {
   </div>
 
   </center>
-<div class="footer">ÇªÅÍ</div>
+<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>
 
 </html>

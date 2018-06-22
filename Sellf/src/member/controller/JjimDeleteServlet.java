@@ -38,15 +38,19 @@ public class JjimDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
-		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+	    String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		String id = ((Member)session.getAttribute("user")).getUser_id();
 		wishList w  = new MemberService().jjimDelete(id);
+		System.out.println("id:"+id);
 		int result = new MemberService().jjimDelete2(w);
+		System.out.println("result"+result);
+		
 		if(result>0)
 		{
+			System.out.println("이리오너라");
 			response.sendRedirect("/views/member/jjim.jsp");
 		}
 		else

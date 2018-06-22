@@ -8,24 +8,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>내 정보</title>
    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- 내부 링크건 CSS -->
+<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<!-- 헤더 끝 -->
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+
+
 <style>
-div{background-color: white;}
-    
-.header{border:3px solid white;
-       background-color: #7151FC;
-        width: auto;
-        height: 100px;}
+body {
+	 font-family: 'Sunflower';
+}
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
-    .footer{border:3px solid white;
-    background-color: #7151FC;
-    width: auto;
-    height: 120px;
-    }
     .mpMenuItems{border: 1px solid white;
     float: left;
     width: auto;
@@ -46,7 +53,7 @@ ul.mpMenuAll li a{
 }
 ul.mpMenuAll li a:hover{
 	background:#F2F2F2 url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;
-	color:#7151FC;
+	color:#9B9BA7;
 }
 
 ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
@@ -56,8 +63,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 
 .mpMenuTitle {
 	width: auto;
-	margin-top:55px;
-	height: 5%;
 	animation: background 1s linear infinite;
 	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
 		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
@@ -101,7 +106,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 
     .MenuConTitle
     {
-    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
@@ -284,8 +288,8 @@ float:left;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	text-align: center;
 	padding: 16px 18px 14px;
 	font-size: 15px;
@@ -318,8 +322,8 @@ float:left;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	text-align: center;
 	padding: 16px 18px 14px;
 	margin-right: 150px;
@@ -354,12 +358,6 @@ float:left;
 	border-color: #733aab #8040be #8040be;
 }
 
-body {
-	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
-	color: #404040;
-	background: white;
-}
-
 .container {
 	margin: 50px auto;
 	width: 580px;
@@ -374,8 +372,8 @@ text-align:center;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	padding: 16px 18px 14px;
 	margin: 12px;
 	font-size: 20px;
@@ -402,8 +400,8 @@ text-align:center;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	text-align: center;
 	padding: 16px 18px 14px;
 	margin: 12px;
@@ -436,7 +434,7 @@ text-align:center;
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #7151FC;
+  background-color: #9B9BA7;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -533,7 +531,7 @@ text-align:center;
 </head>
 <body align="center">
 
-	<div class="header">헤더</div>
+	<div class="header"><%@include file="../../views/common/header.jsp"%></div>
 <center>
 	<div class="contents">
 		<div class="mpMenuItems">
@@ -590,9 +588,17 @@ text-align:center;
 						<input type="text" style="width: 220px; height: 40px;"
 								style="border:1px solid maroon;background:transparent;" 
 								name="point" readonly class="point" value="<%=m.getUser_epoint()%> 원">
-						<input type="button" value="충전" class="pointBtn"> 
+						<input type="button" value="충전" data-toggle="modal" data-target=".bs-example-modal-sm" class="pointBtn"> 
 						</div>
-						
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      충전금액을 입력해주세요
+      <input type="text" placeholder="100원 이상" name="price"/>원 <input type="button" value="충전하기" onclick="pay();"> <input type="reset" value="취소">
+      </form>
+    </div>
+  </div>
+</div>
 						
 						
 						<!-- 이메일 div end -->
@@ -723,9 +729,50 @@ function deletecheck(){
 }
 	return false;
 }
-</script>
 
+
+window.onload = function(){
+    var IMP = window.IMP; // 생략가능
+    IMP.init('imp75493546'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+}
+var $menuEle = $('dt'); // 탭메뉴를 변수에 지정
+$menuEle.click(function() { // 탭메뉴 클릭 이벤트
+    $('dd').addClass('hidden');
+    $(this).next().removeClass('hidden');
+})
+   
+   function pay()
+   {
+       IMP.request_pay({
+            pg : 'inicis', // version 1.1.0부터 지원.
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name : 'Sellf 갤럭시 S7',
+            amount : '$(''#price').innerHTML',
+            buyer_email : 'iamport@siot.do',
+            buyer_name : '곽영훈',
+            buyer_tel : '010-1234-5678',
+            buyer_addr : '서울특별시 강남구 삼성동',
+            buyer_postcode : '123-456',
+            m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+        }, function(rsp) {
+            if ( rsp.success ) {
+                var msg = '결제가 완료되었습니다.';
+                msg += '고유ID : ' + rsp.imp_uid;
+                msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '카드 승인번호 : ' + rsp.apply_num;
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+            }
+            alert(msg);
+        });
+   }
+   
+
+</script>
 	</center>
-	<div class="footer">푸터</div>
+<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
 </body>
 </html>

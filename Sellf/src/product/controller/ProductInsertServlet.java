@@ -1,14 +1,17 @@
 package product.controller;
 
+import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -103,19 +106,19 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			String productEntireUserIdFK = "mslove11";
 			String productEntireCateMainIdFK = multi.getParameter("bCategory"); //카테고리 대분류
-			System.out.println("카테고리"+productEntireCateMainIdFK);
+//			System.out.println("카테고리"+productEntireCateMainIdFK);
 			String productEntireCateSubIdFK = multi.getParameter("sCategory"); //카테고리 소분류
-			System.out.println("소분류"+productEntireCateSubIdFK);
+//			System.out.println("소분류"+productEntireCateSubIdFK);
 			String productName = multi.getParameter("productName"); //상품이름
-			System.out.println("상품이름"+productName);
+//			System.out.println("상품이름"+productName);
 			int productPrice = Integer.parseInt(multi.getParameter("price")); // 상품 가격
-			System.out.println("상품가격"+productPrice);
+//			System.out.println("상품가격"+productPrice);
 			int productAmount = Integer.parseInt(multi.getParameter("productCount")); //상품 수량
-			System.out.println("상품수량"+productAmount);
+//			System.out.println("상품수량"+productAmount);
 			String productGrade = multi.getParameter("grade"); //상품 등급
-			System.out.println("상품등급"+productGrade);
+//			System.out.println("상품등급"+productGrade);
 			String productDetail = multi.getParameter("detail"); //상세설명
-			System.out.println("상세설명"+productDetail);
+//			System.out.println("상세설명"+productDetail);
 
 			ProductInsert pi = new ProductInsert();
 			pi.setProductEntireUserIdFK(productEntireUserIdFK);
@@ -131,17 +134,50 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			
 			int result = 0;
-			System.out.println("처음 result"+result);
 			result = new ProductInsertService().productInsert(pi);
 			
-			result = 0;
-			System.out.println("result 0셋팅"+result);
 		if(result > 0) {
 			response.sendRedirect("/views/error/product/productInsertSuccess.jsp");
 		}else {
-			response.sendRedirect("/fileRemove?productImage="+pi.getProductImage());
 			
-//			response.sendRedirect("/views/error/product/productInsertError.jsp");
+			JSONObject jsonObj = pi.getProductImage().getImgArr();
+
+			String value1 = (String)jsonObj.get("1");
+			String value2 = (String)jsonObj.get("2");
+			String value3 = (String)jsonObj.get("3");
+			String value4 = (String)jsonObj.get("4");
+			String value5 = (String)jsonObj.get("5");
+			
+			System.out.println("키 1값 : "  + value1);
+			System.out.println("키 2값 : "  + value2);
+			System.out.println("키 3값 : "  + value3);
+			System.out.println("키 4값 : "  + value4);
+			System.out.println("키 5값 : "  + value5);
+			
+
+			
+			if(value1 != null) {
+				File file1 = new File(fullFilePathOne);
+				file1.delete();
+			}
+			if(value2 != null) {
+				File file2 = new File(fullFilePathTwo);
+				file2.delete();
+			}
+			if(value3 != null) {
+				File file3 = new File(fullFilePathThree);
+				file3.delete();
+			}
+			if(value4 != null) {
+				File file4 = new File(fullFilePathFour);
+				file4.delete();
+			}
+			if (value5 != null) {
+				File file5 = new File(fullFilePathFive);
+				file5.delete();
+			}
+			
+			response.sendRedirect("/views/error/product/productInsertError.jsp");
 		}
 	}
 

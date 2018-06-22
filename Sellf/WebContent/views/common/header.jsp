@@ -3,7 +3,7 @@
 <div class="content">
 	<div class="containerAd" id="div2">
 		<div id="advertising">
-			<img id="exerImg2" src="../../img/join_coupon.PNG" height="120px" ;/>
+			<img id="exerImg2" src="../../img/join_coupon.PNG" height="120px";/>
 			<button class="btn" id="hideBtn">x</button>
 		</div>
 
@@ -13,33 +13,33 @@
 	</center>
 	<div id="headerDetailGroup">
 		<div id="logoarea">
-			<img id="logoimg" src="../../img/logo.jpg" height="120px"
-				width="270px" alt="셀프이미지"; />
+			<a href="/index.jsp"><img id="logoimg" src="../../img/logo.jpg" height="120px"
+				width="270px" alt="셀프이미지"; /></a>
 		</div>
 		<div id="middleTwoBox">
 			<div id="headerTitle">
 				<!--중간 첫번째 윗부분-->
 				<div>
-					<a href="">LOGIN</a>
+					<a href="/views/member/memberLogin.jsp">LOGIN</a>
 				</div>
 				<div>
-					<a href="">JOIN</a>
+					<a href="/views/member/memberJoin.jsp">JOIN</a>
 				</div>
 				<div>
 					<a href="/myCart">CART</a>
 				</div>
+		<!-- 		<div>
+					<a href="/views/member/주문내역??.jsp">ORDER</a>
+				</div> -->
 				<div>
-					<a href="">ORDER</a>
+					<a href="/views/member/myInfo.jsp">MYPAGE</a>
 				</div>
 				<div>
-					<a href="">MYPAGE</a>
+					<a href="/views/board/board.jsp">CSCENTER</a>
 				</div>
-				<div>
-					<a href="">CSCENTER</a>
-				</div>
-				<div>
+		<!-- 		<div>
 					<a href="" id="bookmark">+BOOKMARK</a>
-				</div>
+				</div> -->
 			</div>
 			<div id="searchBox">
 				<form action="#" method="get">
@@ -63,7 +63,7 @@
 				<ul class="nav nav-pills" role="tablist">
 					<!--            <li role="presentation" class="active"><a href="#">전체 카테고리</a></li>-->
 					<li role="presentation" class="dropdown"><a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false"> 전자기기
-							<span class="caret"></span>
+							<span class="caret" ></span>
 					</a>
 
 						<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">

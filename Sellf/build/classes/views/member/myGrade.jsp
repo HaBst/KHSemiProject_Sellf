@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"    pageEncoding="EUC-KR"%>
 <%@ page import="member.model.vo.*"%>
 <% Member m = (Member)session.getAttribute("user"); %>  
-<%Grade g = (Grade)request.getAttribute("userGrade"); %>
-<%String grade = g.getUser_grade_name();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -681,22 +679,23 @@ p.caption {
                <h1>My Page</h1>
                </div>
                 <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">판매내역</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">구매내역</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">찜한 상품</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
-					<li role="presentation" class="active"><a href="/Grade">등급보기</a></li>
+					<li role="presentation" class=""><a href="/views/member/mySelf.jsp">판매내역</a></li>
+					<li role="presentation" class=""><a href="/views/member/myBuy.jsp">구매내역</a></li>
+					<li role="presentation" class=""><a href="/views/member/jjim.jsp">찜한 상품</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">등급보기</a></li>
 				</ul>
             </div>
             <div class="MenuContents">
                  <div class="MenuConTitle"><H2>회원등급</H2></div><hr>
        		<div class="bluelight">
+       		<% String grade = m.getUser_entire_user_grade(); %>
        		<%if(grade.equals("Bronze")){%>
-       		<a href="/index.jsp">브론즈 <img alt="" src="/../../img/bronze.png"></a>;
+       		<a href="/index.jsp">브론즈<img alt="" src="/../../img/bronze.png"></a>;
        		<%}else if(grade.equals("Silver")){%>
        		<a href="/index.jsp">실버<img alt="" src="/../../img/silver.png"></a>;
-       		<%}else if(grade.equals("Gold")){%>
+       		<%}else if(grade.equals("G02")){%>
 			<a href="/index.jsp">골드<img alt="" src="/../../img/gold.png"></a>;
 			<%}else if(grade.equals("Diamond")){%>
        		<a href="/index.jsp">다이아<img alt="" src="/../../img/diamond.png"></a>;
@@ -704,25 +703,14 @@ p.caption {
        		<a href="/index.jsp">블랙<img alt="" src="/../../img/banned.png"></a>;
        		<%} %>
 			</div>
-
-				<h2> 회원님의 수수료 : 
-				<%=g.getUser_grade_fees() %> %</h2>
-
-				
+			  <link rel="stylesheet" href="/SRC2/btnshare/style.css">
             </div>
             
- <div class="menu-button">
-				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
-					style="background-image: url(/../../img/messageQbtn.png)"> <i
-					class="messageQbtn"></i>
-				</a> <a href="/index.jsp"
-					style="background-image: url(/../../img/homeQbtn.png)"> <i
-					class="homeQbtn"> </i>
-				</a> <a href="/views/member/myCart3.jsp"
-					style="background-image: url(/../../img/sayQbtn.png)"> <i
-					class="sayQbtn"> </i>
-				</a>
-			</div>
+ <div class="menu-button"><i class="Qbtn"></i>
+	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
+	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
+	<a href="/views/member/mySay.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
+</div>
       </center>
       
 <div class="footer">푸터</div>

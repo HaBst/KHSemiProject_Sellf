@@ -26,7 +26,7 @@
 					<a href="">JOIN</a>
 				</div>
 				<div>
-					<a href="">CART</a>
+					<a href="/myCart">CART</a>
 				</div>
 				<div>
 					<a href="">ORDER</a>

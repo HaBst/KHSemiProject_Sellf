@@ -22,12 +22,12 @@ public class ProductDao {
 		try {
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, imgFile.getFileNewName());
-			pstmt.setString(2, imgFile.getFileOriginName());
-			pstmt.setString(3, imgFile.getFilePath());
-			pstmt.setLong(4, imgFile.getFileSize());
-			pstmt.setString(5, imgFile.getUserId());
-			pstmt.setTimestamp(6, imgFile.getUploadTime());			
+//			pstmt.setString(1, imgFile.getFileNewName());
+//			pstmt.setString(2, imgFile.getFileOriginName());
+//			pstmt.setString(3, imgFile.getFilePath());
+//			pstmt.setLong(4, imgFile.getFileSize());
+//			pstmt.setString(5, imgFile.getUserId());
+//			pstmt.setTimestamp(6, imgFile.getUploadTime());			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -109,10 +109,10 @@ public class ProductDao {
 				p.setProduct_entire_category_sub_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_SUB_ID_FK"));
 				p.setProduct_name(rset.getString("PRODUCT_NAME"));
 				p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
-//				p.setProduct_image(rset.getString("PRUDUCT_IMAGE")==null?"":rset.getString("PRUDUCT_IMAGE"));
+				p.setProduct_image(rset.getString("PRUDUCT_IMAGE")==null?"":rset.getString("PRUDUCT_IMAGE"));
 				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
-//				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

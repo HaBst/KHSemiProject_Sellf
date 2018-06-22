@@ -51,11 +51,11 @@ public class MemberJoinServlet extends HttpServlet {
 		result = new MemberService().memberJoin(m, fullPath);
 		if(result==1)
 		{
-			response.sendRedirect("/views/member/memberRegiComplete.html");
+			response.sendRedirect("/views/member/memberRegiComplete.jsp");
 		}
 		else if(result==0)
 		{
-			response.sendRedirect("/views/member/memberRegister.html");
+			response.sendRedirect("/views/member/memberRegister.jsp");
 		}
 	}
 

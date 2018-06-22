@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<!-- Coded by JSB -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 
 <style>
@@ -98,13 +98,22 @@
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sell:F 회원가입</title>
 <link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/common.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
+<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">	
+<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">	
 </head>
 
 <body>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<div class="header">헤더입니다.</div>
+	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
+<script type="text/javascript" src="../../JS/common/adv.js"></script>
+	
+	<header id="header"> <%@include
+				file="/views/common/header.jsp"%> </header><br>
 	<div class="container">
 		<div class="sign-up-title">
 			회원가입
@@ -412,7 +421,11 @@
 			<a href="/views/member/memberJoin.html" class="btn btn-default btn-lg "
 				style="background-color: lightgray; border-radius: 0px; width: 200px">취소</a>
 		</div>
-		<div class="footer">footer 입니다.</div>
+		<div align="center">
+		<footer>
+			<%@include file="../../views/common/footer.jsp" %>
+		</footer>
+	</div>
 	</div>
 	
 	<script type="text/javascript">
@@ -439,7 +452,7 @@
 			var memberType = get['memberType'];	// memberType
 			if(agree1=="Yes" && agree2=="Yes")	// 약관 전부 동의해야 가능
 			{
-				location.href="/views/member/memberRegister.html?memberType="+memberType;
+				location.href="/views/member/memberRegister.jsp?memberType="+memberType;
 			}
 			else
 				{
@@ -447,8 +460,5 @@
 				}
 		}
 	</script>
-	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
-
 </body>
-
 </html>

@@ -136,7 +136,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	position: relative;
 	top: 4px;
 }
-
 .container {
 	margin: 50px auto;
 	width: 580px;
@@ -211,6 +210,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	width: 700px;
 	padding: 0;
 	margin: 0;
+	overflow:auto;
 }
 
 caption {
@@ -392,6 +392,7 @@ th.specalt {
 	transition-delay: 0s;
 	background: yellow;
 }
+
 </style>
 </head>
 
@@ -417,9 +418,10 @@ th.specalt {
 			<div class="MenuContents">
 				<div class="MenuConTitle"><H2>찜한 상품</H2></div><hr>
 				<div class="MenuCon">
-				<div class="table-users">
+				<div class="table-users" style="overflow:auto; width:1000px; height:550px;">
 				<center>
 				<%if(list2 != null){%>
+				
 				<table id="cart" class="table table-hover table-condensed"><thead>
 				<tr>
 					<th style="width: 50%">찜한 상품</th>
@@ -495,7 +497,10 @@ function jjimdelete(){
 }
 	return false;
 }
+
 </script>
+
+
 	<div class="footer">푸터</div>
 </body>
 </html>

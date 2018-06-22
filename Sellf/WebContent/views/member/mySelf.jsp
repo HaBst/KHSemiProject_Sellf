@@ -392,7 +392,7 @@ th.specalt {
             <div class="MenuContents">
                  <div class="MenuConTitle" margin-top=10px><H2>판매 내역</H2></div>
                  <HR>
-                <div class="MenuCon">  <div class="table-users">
+                <div class="MenuCon">  <div class="table-users"  style="overflow:auto; height:550px;">
 <center>
 <%if(list!=null){ %>
 <table>

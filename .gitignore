@@ -1,12 +1,10 @@
-.metadata/
-Sellf/.settings/org.eclipse.wst.jsdt.ui.superType.name
-Sellf/.settings/.jsdtscope
-Sellf/.settings/org.eclipse.wst.jsdt.ui.superType.container
-Sellf/.settings/org.eclipse.wst.common.project.facet.core.xml
-Sellf/.settings/org.eclipse.wst.common.component
-Sellf/.settings/org.eclipse.jdt.core.prefs
+/.metadata/
+/.recommenders/
+/.settings/
 Servers/
-<<<<<<< HEAD
+.classpath
+.project
+Sellf/build/
 Servers2/
 .classpath
 .project
@@ -15,7 +13,6 @@ Sellf/build/
 Sellf/.classpath
 Sellf/.settings/
 Servers/org.eclipse.wst.common.component
-=======
 RemoteSystemsTempFiles/.project
 *.prefs
 .classpath
@@ -24,4 +21,3 @@ Sellf/build/
 Sellf/.classpath
 *.class
 .recommenders/
->>>>>>> 62d1720bf767283445d0a731e501a35cd723c2d6

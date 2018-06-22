@@ -383,34 +383,51 @@ th.specalt {
             <div class="MenuContents">
                  <div class="MenuConTitle"><H2>구매 내역</H2>
                 </div> <hr>
-                <div class="MenuCon">  <div class="table-users">
+                <div class="MenuCon">  <div class="table-users" style="overflow:scroll; width:1000px; height:550px;">
 
 
 <center>
 <%if(list2!=null){ %>
 <table>
-      <tr>
-         <th width="200">상품이미지</th>
-         <th width="150">상품명</th>
-         <th width="100">가격</th>
-         <th width="100">결제완료일자</th>
-      </tr>
-   		<% for(Product p : list2){%>
-      <tr>
-         <td><img src="http://lorempixel.com/100/100/people/1" alt="" /></td>
-         <td><%=p.getProduct_image() %></td>
-         <td><%=p.getProduct_name() %></td>
-         <td><%=p.getProduct_price() %></td>
-         <td><%=p.getProduct_state() %></td>
-      </tr>
-    	 <%} %>
-    	     </table>
-    	          </center>   
-<%}else{ %>
-   <div>아직 구매내역이 없습니다. Sell:F 에서 스마트하게 쇼핑해보세요..</div>
-<%} %>
-</div></div>
-            </div>
+  				<tr>
+					<th style="width: 50%">찜한 상품</th>
+					<th style="width: 10%">가격</th>
+					<th style="width: 8%">수량</th>
+					<th style="width: 22%" class="text-center">장바구니 추가</th>
+				</tr>
+				</thead>
+				<%for (Product p : list2){%>
+				<tbody>
+				<tr>
+					<td><div class="row"><div class="col-sm-2 hidden-xs">
+					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+					<div class="col-sm-10">
+					<h4 class="nomargin"><%=p.getProduct_name() %></h4>
+					<h5>    <% String state = p.getProduct_state(); %>
+       		 <%if(state.equals("S")){%>
+         	  <h4  style="color: blue">판매중</h4>
+         	 <%}else if(state.equals("T")) {%>
+         	  <h4  style="color: orange">거래중</h4>
+         	 <%}else if(state.equals("E")) {%>
+         	  <h4  style="color: red">판매완료</h4>
+         	 <%} %></h5></div></div>
+					</td>
+					<td><%=p.getProduct_price()%></td>
+					<td>
+					<input type="number" value="<%=p.getProduct_amount()%>"></td>
+					<td>
+					<a href="/views/member/myCart.jsp"><img alt="" src="/../../img/wow.gif" style="width:150px;"></a>
+					</td>
+					</tr>
+					</tbody><%}%>
+					</table>
+					</center>
+						<%} else {%>
+						<div>살까말까 고민되는 물건을 찜해보세요!</div>
+						<%}%>
+					</div>
+				</div>
+			</div>
   <div class="menu-button">
 				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
 					style="background-image: url(/../../img/messageQbtn.png)"> <i

@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    <%@ page import="member.model.vo.*" import="java.util.ArrayList" %>
-     <%@ page import="product.model.vo.*" %>
-<% Product p = (Product)request.getAttribute("Product"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.*" 
+		 import="java.util.ArrayList"
+		 import="product.model.vo.*"%>
+<% Member m = (Member)session.getAttribute("user"); %> 
+<% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÆÇ¸Å³»¿ª</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>êµ¬ë§¤ë‚´ì—­</title>
 <style>
 body {
 	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
@@ -362,64 +364,86 @@ th.specalt {
 </head>
 <body align ="center">
 
-<div class="header">Çì´õ</div>
+<div class="header">í—¤ë”</div>
 <center>
         <div class="contents">
             <div class="mpMenuItems">
                       <div class="mpMenuTitle"><h1>My Page</h1></div>
 
-                <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active"><a href="/views/member/mySelf.jsp">ÆÇ¸Å³»¿ª</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myBuy.jsp">±¸¸Å³»¿ª</a></li>
-					<li role="presentation" class="active"><a href="/views/member/jjim.jsp">ÂòÇÑ »óÇ°</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">³» ÄíÆù</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">³» Á¤º¸</a></li>
-									<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">µî±Þº¸±â</a></li>
+                 <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active" id="selfb"><a href="/self">íŒë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="buyb"><a href="/buy">êµ¬ë§¤ë‚´ì—­</a></li>
+					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ì°œí•œ ìƒí’ˆ</a></li>
+					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">ë‚´ ì¿ í°</a></li>
+					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">ë‚´ ì •ë³´</a></li>
+					<li role="presentation" class="active"><a href="/Grade">ë“±ê¸‰ë³´ê¸°</a></li>
 				</ul>
             </div>
 
             <div class="MenuContents">
-                 <div class="MenuConTitle"><H2>±¸¸Å ³»¿ª</H2>
+                 <div class="MenuConTitle"><H2>êµ¬ë§¤ ë‚´ì—­</H2>
                 </div> <hr>
-                <div class="MenuCon">  <div class="table-users">
+                <div class="MenuCon">  <div class="table-users" style="overflow:scroll; width:1000px; height:550px;">
 
-<% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("userList"); %>
+
 <center>
-<%if(list!=null){ %>
+<%if(list2!=null){ %>
 <table>
-      <tr>
-         <th width="200">»óÇ°ÀÌ¹ÌÁö</th>
-         <th width="150">»óÇ°¸í</th>
-         <th width="100">°¡°Ý</th>
-         <th width="100">°áÁ¦¿Ï·áÀÏÀÚ</th>
-      </tr>
-   		<% for(Member m : list){%>
-      <tr>
-         <td><img src="http://lorempixel.com/100/100/people/1" alt="" /></td>
-         <td>»çÁø</td>
-         <td>100000¿ø</td>
-         <td>ÆÇ¸ÅÁß</td>
-         <td>		<div><center><a href="#" class="delete">»èÁ¦</a></center><div> </td>
-      </tr>
-     
-    	 <%} %>
-    	     </table>
-    	          </center>
-    	     
-<%}else{ %>
-   <div>¾ÆÁ÷ ±¸¸Å³»¿ªÀÌ ¾ø½À´Ï´Ù. Sell:F ¿¡¼­ ½º¸¶Æ®ÇÏ°Ô ¼îÇÎÇØº¸¼¼¿ä..</div>
-<%} %>
-</div></div>
-            </div>
-  <div class="menu-button"><i class="Qbtn"></i>
-	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
-	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
-	<a href="/views/member/myCart3.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
-</div>
+  				<tr>
+					<th style="width: 50%">ì°œí•œ ìƒí’ˆ</th>
+					<th style="width: 10%">ê°€ê²©</th>
+					<th style="width: 8%">ìˆ˜ëŸ‰</th>
+					<th style="width: 22%" class="text-center">ìž¥ë°”êµ¬ë‹ˆ ì¶”ê°€</th>
+				</tr>
+				</thead>
+				<%for (Product p : list2){%>
+				<tbody>
+				<tr>
+					<td><div class="row"><div class="col-sm-2 hidden-xs">
+					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+					<div class="col-sm-10">
+					<h4 class="nomargin"><%=p.getProduct_name() %></h4>
+					<h5>    <% String state = p.getProduct_state(); %>
+       		 <%if(state.equals("S")){%>
+         	  <h4  style="color: blue">íŒë§¤ì¤‘</h4>
+         	 <%}else if(state.equals("T")) {%>
+         	  <h4  style="color: orange">ê±°ëž˜ì¤‘</h4>
+         	 <%}else if(state.equals("E")) {%>
+         	  <h4  style="color: red">íŒë§¤ì™„ë£Œ</h4>
+         	 <%} %></h5></div></div>
+					</td>
+					<td><%=p.getProduct_price()%></td>
+					<td>
+					<input type="number" value="<%=p.getProduct_amount()%>"></td>
+					<td>
+					<a href="/views/member/myCart.jsp"><img alt="" src="/../../img/wow.gif" style="width:150px;"></a>
+					</td>
+					</tr>
+					</tbody><%}%>
+					</table>
+					</center>
+						<%} else {%>
+						<div>ì‚´ê¹Œë§ê¹Œ ê³ ë¯¼ë˜ëŠ” ë¬¼ê±´ì„ ì°œí•´ë³´ì„¸ìš”!</div>
+						<%}%>
+					</div>
+				</div>
+			</div>
+  <div class="menu-button">
+				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
+					style="background-image: url(/../../img/messageQbtn.png)"> <i
+					class="messageQbtn"></i>
+				</a> <a href="/index.jsp"
+					style="background-image: url(/../../img/homeQbtn.png)"> <i
+					class="homeQbtn"> </i>
+				</a> <a href="/views/member/myCart3.jsp"
+					style="background-image: url(/../../img/sayQbtn.png)"> <i
+					class="sayQbtn"> </i>
+				</a>
+			</div>
         </div>
     
         </center>
-<div class="footer">ÇªÅÍ</div>
+<div class="footer">í‘¸í„°</div>
 </body>
 
 </html>

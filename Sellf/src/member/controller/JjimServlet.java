@@ -16,6 +16,7 @@ import common.JDBCTemplate;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 import member.model.vo.wishList;
+import product.model.vo.PageData;
 import product.model.vo.Product;
 
 /**
@@ -40,17 +41,14 @@ public class JjimServlet extends HttpServlet {
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
-		
-		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		String id = ((Member)session.getAttribute("user")).getUser_id();
-		ArrayList<wishList> list  = new MemberService().jjimList(id);
+		ArrayList<Product> list = new MemberService().jjimlist(id);
 		if(list.size()>0) 
 		{
-		ArrayList<Product> list2 = new MemberService().jjimList2(list);
-		System.out.println("Servlet->list2:"+list2.size());
 		RequestDispatcher view = request.getRequestDispatcher("/views/member/jjim.jsp");
-		request.setAttribute("product", list2);
+		request.setAttribute("product", list);
 		view.forward(request, response);
 		}
 		else 
@@ -62,5 +60,4 @@ public class JjimServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

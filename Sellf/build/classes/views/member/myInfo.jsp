@@ -123,6 +123,13 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 .phonediv div {
 	float: left;
 }
+.phonediv input{
+float:left;
+margin:10px;
+margin-top:19px;
+margin-bottom:1px;
+}
+
 .emaildiv {
 	overflow: auto;
 	display: block;
@@ -238,6 +245,7 @@ float:left;
 	margin:10px;
 }
 
+
 .deleteok {width: 100%;height: 5%;float: right;}
 .save {
 	width: 100px;
@@ -331,37 +339,6 @@ float:left;
 	top: -1px;
 }
 
-
-
-.phone {
-	position: relative;
-	width: 265px;
-	display: inline-block;
-	color: #ecf0f1;
-	text-decoration: none;
-	border-radius: 5px;
-	border: solid 1px #7151FC;
-	background: #7151FC;
-	text-align: center;
-	padding: 16px 18px 14px;
-	margin: 10px;
-	margin-bottom:-1px;
-	font-size: 25px;
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	-webkit-box-shadow: 0px 6px 0px rebeccapurple;
-	-moz-box-shadow: 0px 6px 0px rebeccapurple;
-	box-shadow: 0px 0px 0px rebeccapurple;
-}
-
-.phone:active {
-	-webkit-box-shadow: 0px 2px 0px rebeccapurple;
-	-moz-box-shadow: 0px 2px 0px rebeccapurple;
-	box-shadow: 0px 0px 0px rebeccapurple;
-	position: relative;
-	top: 4px;
-}
 
 .button-purple {
 	background: #9966cb;
@@ -562,14 +539,14 @@ text-align:center;
 		<div class="mpMenuItems">
 			<div class="mpMenuTitle"><h1>My Page</h1></div>
 
-		 <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active"><a href="/views/member/mySelf.jsp">판매내역</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myBuy.jsp">구매내역</a></li>
-					<li role="presentation" class="active"><a href="/views/member/jjim.jsp">찜한 상품</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
-					<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">등급보기</a></li>
-				</ul>
+		  <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active" id="selfb"><a href="/self">판매내역</a></li>
+					<li role="presentation" class="active" id="buyb"><a href="/buy">구매내역</a></li>
+					<li role="presentation" class="active" id="jjimb"><a href="/jjim">찜한 상품</a></li>
+					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
+					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
+					<li role="presentation" class="active"><a href="/Grade">등급보기</a></li>
+		</ul>
 		</div>
 		<center>
 			<div class="MenuContents">
@@ -588,7 +565,11 @@ text-align:center;
 							<!-- 핸드폰 div start -->
 							<div class="insertTitle"
 								style="margin-top: 30px; font-size: 20px" name="phone">전화번호</div>
-							<div class="phone">휴대폰 번호 등록</div>
+								
+							<input type="text" style="width: 300px; height: 40px;"
+								style="border:1px solid maroon; background:transparent;" 
+								name="userPhone" value="<%=m.getUser_phone()%>">
+							
 						</div>
 						<!-- 핸드폰 div end -->
 						<br>
@@ -599,6 +580,7 @@ text-align:center;
 								style="border:1px solid maroon;background:transparent;" 
 								name="email" placeholder="이메일을 입력하세요" value="<%=m.getUser_email()%>">
 							<input type="hidden" value="<%=m.getUser_id() %>" name="userId">
+							
 						</div>
 						
 					
@@ -607,8 +589,7 @@ text-align:center;
 						
 						<input type="text" style="width: 220px; height: 40px;"
 								style="border:1px solid maroon;background:transparent;" 
-								name="point" placeholder="-----원" readonly class="point">
-						
+								name="point" readonly class="point" value="<%=m.getUser_epoint()%> 원">
 						<input type="button" value="충전" class="pointBtn"> 
 						</div>
 						
@@ -696,9 +677,9 @@ text-align:center;
 				</div>
 				<div class="deleteok">
 				
-				<form action="deleteComplate.jsp" method="post" style="display:inLine;">
+				
 				<input type="submit" id="delBtn" value="회원탈퇴" class="delete" onclick="return deletecheck();" />
-				</form>
+				
 					<div>
 						<div><button  type="submit" id="save" class="save">확인</button></div>
 						
@@ -708,11 +689,18 @@ text-align:center;
 	</div>
 
 	</center>
- <div class="menu-button"><i class="Qbtn"></i>
-	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
-	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
-	<a href="/views/member/myCart3.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
-</div>
+ <div class="menu-button">
+				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
+					style="background-image: url(/../../img/messageQbtn.png)"> <i
+					class="messageQbtn"></i>
+				</a> <a href="/index.jsp"
+					style="background-image: url(/../../img/homeQbtn.png)"> <i
+					class="homeQbtn"> </i>
+				</a> <a href="/views/member/myCart3.jsp"
+					style="background-image: url(/../../img/sayQbtn.png)"> <i
+					class="sayQbtn"> </i>
+				</a>
+			</div>
 	</div>
 
 
@@ -726,10 +714,7 @@ function deletecheck(){
 	if(swi==false){
 		var result = window.confirm("계정을 삭제하면 개인 정보 및 거래 내역이 모두 삭제됩니다.             그래도 계정을 삭제하시겠습니까?                                              전화번호 또는 이메일을 변경하고 싶다면 기본정보에서                   변경할 수 있습니다.");
 		if(result){
-			session.invalidate();
-			alert('탈퇴하였습니다');
-			
-		swi =true;
+			location.href="/delete";
 		}else{
 		alert('취소했어양!! ^ㅅ^');
 		}

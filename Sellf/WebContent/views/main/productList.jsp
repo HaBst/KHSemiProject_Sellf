@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"
  	import="product.model.vo.*" import="java.util.ArrayList"
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +19,7 @@
 <!-- 내부 링크건 CSS -->
 <link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
 <link rel="stylesheet" href="../../CSS/common/common.css?ver=1" />
-<link rel="stylesheet" href="../../CSS/main/productListMain.css" />
+<link rel="stylesheet" href="../../CSS/main/productListMain.css?ver=1" />
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

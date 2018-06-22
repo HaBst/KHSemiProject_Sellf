@@ -2,16 +2,16 @@ package member.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import common.EmailConfirm;
+import common.JDBCTemplate;
 import member.model.service.FindIdPwdService;
-import member.model.vo.Member;
+
 
 /**
  * Servlet implementation class FindIdPwdServlet
@@ -19,7 +19,7 @@ import member.model.vo.Member;
 @WebServlet(name = "FindIdPwd", urlPatterns = { "/findIdPwd" })
 public class FindIdPwdServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-
+	private static String authReturn = "";	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -32,37 +32,58 @@ public class FindIdPwdServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String userName = request.getParameter("memberName_id");
-		String authNum = "";
-		if(request.getParameter("userEmail")!=null)authNum = new EmailConfirm().connectEmail(request.getParameter("userEmail"));
-		if(request.getParameter("sendMyAuth")!=null)authNum = request.getParameter("sendMyAuth");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		ServletContext context = getServletContext();
+		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+		JDBCTemplate.setDriverPath(fullPath);
 		
 		
-		System.out.println(authNum);
-		 
-		System.out.println("메일 보냄 성공");
-		response.setCharacterEncoding("utf-8");
-		response.getWriter().print(authNum);
-		response.getWriter().close();
 		
+		//이름이 입력됐을때만. 이메일 인증번호를 요청했을때.
+		if(authReturn.length()==0){
+			request.setCharacterEncoding("utf-8");
+			authReturn = "";
+			String userName = request.getParameter("userName");
+			String userEmail = request.getParameter("userEmail");
+			
+			int result = new FindIdPwdService().existUser(userName, userEmail);
+			System.out.println(result);
+			if(result>0)
+			{	
+				System.out.println("등록되어있는 아이디입니다.");
+				System.out.println("메일 보냄 성공");
+				authReturn = new EmailConfirm().connectEmail(request.getParameter("userEmail"));			
+				System.out.println(authReturn);
+			}
+			else
+			{
+				System.out.println("등록되어있지 않은 정보입니다.");
+			}
+		}
+		else// 사용자가 다음버튼을 눌렀을때.
+		{
+			String sendMyAuth=request.getParameter("sendMyAuth");
+			// 인증번호 일치
+			if(sendMyAuth.equals(authReturn))
+			{
+//				response.sendRedirect("/views/member/findIdComplete.jsp");
+				System.out.println("인증성공");
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().print("인증성공");
+				response.getWriter().close();
+				
+			}
+			else // 인증번호 불일치
+			{
+				System.out.println("인증실패");
+				response.sendRedirect("/views/error/member/Error.html");
+			}			
+		}
+	
 		
-//		int idCertificationNum = Integer.parseInt(request.getParameter("IDcertificationNum"));
-//		String findId = new FindIdPwdService().findId(userName, userEmail, idCertificationNum);
-//		if (findId != null) {
-///*			response.sendRedirect("/views/member/test.jsp");*/
-//			RequestDispatcher view = request.getRequestDispatcher("/views/member/findIdComplete.jsp");
-//			request.setAttribute("userId1", findId);
-//			view.forward(request, response);
-//		} else
-//		{
-//			System.out.println("아이디 찾기 실패");
-//			response.sendRedirect("/views/member/memberLoginError.html");
-//		}
-	}
-
+	} 
+	
 	private Object Number(String authNum) {
 		// TODO Auto-generated method stub
 		return null;

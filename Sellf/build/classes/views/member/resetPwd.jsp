@@ -76,6 +76,7 @@ crossorigin="anonymous">
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 								<td colspan="2" style="padding-bottom: 10px;">비밀번호 입력</td>
 								<td>&nbsp;&nbsp;&nbsp;</td>
+								
 								<td>
 									<div class="input-group mb-3">
 										<input type="password" class="form-control"
@@ -105,12 +106,35 @@ crossorigin="anonymous">
 								<td><div id="result"></div></td>
 							</tr>
 						</table>
+			
 						<hr>
-						<button type="button" class="btn btn-secondary" id="resetPwdBtn">비밀번호 재설정</button>
-						<button type="button" class="btn btn-secondary"
-							onclick="cancleBtn();">취소</button>
+						<button type="button" class="btn btn-secondary" id="resetPwdBtn" onclick="changePwdBtn();">비밀번호 재설정</button>
+						<button type="button" class="btn btn-secondary" onclick="cancleBtn();">취소</button>
 					</div>
 					<br>
+					<script>
+						function changePwdBtn()
+						{
+							var resetPwdNum1 = $("#resetPwdNum1");
+							var resetPwdNum2 = $("#resetPwdNum2");
+							$.ajax({
+								url:"/resetPwd",
+								data: {resetPwd1:resetPwdNum1, resetPwd2:resetPwdNum2},
+								type: "post",
+								success : function(data){
+									alert("성공 ");
+									window.open("/views/member/changePwdSuccess.html","비밀번호 재설정 성공","width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
+								},
+								error: function(data){
+									alert("실패"); 
+									window.open("/views/member/changePwdFail.html","비밀번호 재설정 실패","width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
+								}
+							});
+							
+						}
+					
+					
+					</script>
 				</div>
 			</div>
 				<footer id="footer">

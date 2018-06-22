@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -110,13 +111,11 @@
 												</div>
 											</td>
 											<td>
-
-												<button type="button" class="btn btn-secondary"
+												<button class="btn btn-secondary"
 													name="certificationBtn" id="IdcertificationBtn1"
 													style="margin-bottom: 16px; height: 45px;"
 													onclick="IdcertificationBtn();">인증번호받기</button>
 											</td>
-										
 										</tr>
 										<tr>
 											<td></td>
@@ -134,29 +133,31 @@
 							<br>
 							<hr>
 							<br>
-							<script>
-							var authNumTemp ="";
+							<script>							
 								function IdcertificationBtn()
 								{
 									var memberEmail = $("#memberEmail_id").val();
+									var memberName = $("#memberName_id").val();
 									$.ajax({
 										url:"/findIdPwd", //서블릿
-										data : {userEmail : memberEmail}, 
+										data : {userEmail : memberEmail, userName : memberName},
 										type : "get",
 										success : function(data){
+										
+											window.open("existUser.html","등록된 회원", "width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
+											
 											$("input[name='IDcertificationNum']").prop("disabled",false);
-											authNumTemp = data;
-										/* 	alert("버튼 눌렀을때 콜백되는 인증 " + authNumTemp ); */
+									/* 	alert("버튼 눌렀을때 콜백되는 인증 " + authNumTemp );  */
 										}, 
 										error : function(){
-									
+											window.open("noExistUser.html","등록되지 않은 회원","width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no"); 
 										}  
 									
 									});
 								}
 							
 							</script>
-							
+						
 							
 							<script type="text/javascript">
 								function findIDBtn() {
@@ -187,23 +188,14 @@
 										url:"/findIdPwd",
 										data : {sendMyAuth : IDcertificationNum}, 
 										type: "get", 
-										success : function(data){
-											
+										success : function(data){											
 										/* 	alert("성공 " +  authNumTemp+" 인증번호 " + data); */
-											
-											 if(authNumTemp==data)
-												{
-													window.alert("이메일인증성공"); 
-													location.href ="/views/member/findIdComplete.jsp";
-												}
-											 else
-												 {
-													window.alert("이메일인증 실패");
-													location.reload();
-												 }
+											 window.alert("이메일 인증 성공");
+											 location.replace("/views/member/findIdComplete.jsp");
 										},
 										error: function(data){
-											alert("실패");
+											window.alert("이메일인증 실패");
+											location.reload();
 									
 										}
 									});
@@ -291,21 +283,23 @@
 							<hr>
 							<br>
 							<script>
-							var authNumTemp ="";
-								function certificationBtn()
+								function PwdcertificationNum()
 								{
+									var memberId_pwd = $("#memberId_pwd").val(); 
+									var memberName_pwd = $("#memberName_pwd").val(); 
 									var memberEmail_pwd = $("#memberEmail_pwd").val();
 									$.ajax({
-										url:"/findIdPwd", //서블릿
-										data : {userEmail : memberEmail_pwd}, 
+										url:"/findPwd", //서블릿
+										data : { userId:memberId_pwd , userName:memberName_pwd, userEmail : memberEmail_pwd}, 
 										type : "get",
 										success : function(data){
+											window.open("existUser.html","등록된 회원", "width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
+											
 											$("input[name='PwdcertificationNum']").prop("disabled",false);
-											authNumTemp = data;
-											alert("버튼 눌렀을때 콜백되는 인증 " + authNumTemp );
+								
 										}, 
 										error : function(){
-									
+											window.open("noExistUser.html","등록되지 않은 회원","width=440px, height=340px, top=300, left=780, location=no,status=no,resizable=no,scrollbars=no");
 										}  
 									
 									});
@@ -320,13 +314,12 @@
 									var PwdcertificationNum = $(
 											"#PwdcertificationNum").val();
 
-									if (memberName == "" || memberId == ""
-											|| memberEmail == ""
-											|| IDcertificationNum == "") {
-										alert("비어 있는 칸을 모두 채워주세요");
+									if (memberName == "" || memberId == "" || memberEmail == ""	|| IDcertificationNum == "") 
+									{
+										alert("빈 칸을 모두 채워주세요");
 										location.reload();
 									} else {
-										alert("비어 있는 칸을 모두 채워주세요");
+										alert("빈 칸을 모두 채워주세요");
 										location.href = "../../views/member/resetPwd.jsp";
 									}
 								}
@@ -342,25 +335,16 @@
 									var PwdcertificationNum = $("#PwdcertificationNum").val();
 									alert(PwdcertificationNum);
 									$.ajax({
-										url:"/findIdPwd",
+										url:"/findPwd",
 										data : {sendMyAuth : PwdcertificationNum}, 
 										type: "get", 
 										success : function(data){
-											
-											alert("성공 " +  PwdcertificationNum +" 인증번호 " + data);
-											
-											 if(PwdcertificationNum==data)
-												{
-													window.alert("이메일인증성공"); 
-													location.href ="/views/member/findIdComplete.jsp";
-												}
-											else
-												{
-													window.alert("이메일인증 실패");
-												} 
+													window.alert("이메일 인증 성공"); 
+													location.replace("/views/member/resetPwd.jsp");
 										},
 										error: function(data){
-											alert("실패");
+											window.alert("이메일인증 실패");
+											location.reload();
 										}
 									});
 								}

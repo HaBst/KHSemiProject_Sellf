@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import common.JDBCTemplate;
 import member.model.vo.Member;
+import member.model.vo.wishList;
 import product.model.vo.Product;
 
 
@@ -117,7 +118,7 @@ public class MemberDao {
                 m.setUser_email(rset.getString("USER_EMAIL"));
                 m.setUser_interest(rset.getString("USER_INTEREST"));
                 m.setUser_enrolldate(rset.getDate("USER_ENROLLDATE"));
-                m.setUser_epoint(rset.getInt("USER_EPOINT"));
+                m.setUser_ePoint(rset.getInt("USER_EPOINT"));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -158,7 +159,7 @@ public class MemberDao {
 			rset = stmt.executeQuery(query);
 			while(rset.next()){
 			w.setUSER_WL_PRODUCT_ENTIRE_FK(rset.getInt("USER_WL_PRODUCT_ENTIRE_FK"));
-		} catch (SQLException e) {
+		}} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {

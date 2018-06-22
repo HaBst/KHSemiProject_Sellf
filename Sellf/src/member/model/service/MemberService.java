@@ -76,7 +76,7 @@ public class MemberService {
 	public wishList jjimDelete(String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		wishList w = new MemberDao().jjimDelete(conn,id);
-
+	}
 	public int memberJoin(Member m, String fullPath) {
 		Connection conn = null;
 		conn = JDBCTemplate.getConnection();
@@ -98,7 +98,7 @@ public class MemberService {
 	public ArrayList<Product> self(String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Product> list = new MemberDao().self(conn,id);
-
+	}
 
 	public int memberNaverJoin(Member m, String fullPath) {
 		Connection conn = null;
@@ -122,11 +122,6 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
-
-
-
-}
-
 
 
 	public Member memberLogin(String id, String pw, String fullPath) {

@@ -76,6 +76,8 @@
 	}
 	function boardTapChange(btn, boardName)
 	{
+		alert(btn);
+		alert(boardName);
 		if(boardName.id=="boardListArea") location.href="/notice";
 		if(boardName.id=="answerListArea") location.href="/faq";
 		clearAll();

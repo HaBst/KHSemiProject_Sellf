@@ -418,7 +418,7 @@
 		<div class="regist" align="center">
 			<button onclick="register()" class="btn btn-primary btn-lg"
 				style="background-color: black; border-radius: 0px; width: 200px">회원가입</button>
-			<a href="/views/member/memberJoin.html" class="btn btn-default btn-lg "
+			<a href="/views/member/memberJoin.jsp" class="btn btn-default btn-lg "
 				style="background-color: lightgray; border-radius: 0px; width: 200px">취소</a>
 		</div>
 		<div align="center">
@@ -456,7 +456,7 @@
 			}
 			else
 				{
-				alert("틀림");
+				alert("모든 약관에 동의 하셔야 합니다.");
 				}
 		}
 	</script>

@@ -22,7 +22,7 @@ public FaqService() {}
 		ArrayList<Faq> f_list = new FaqDao().getCurrentPage(conn,currentPage,recordCountPerPage);
 		System.out.println("f_list값:"+f_list.get(0).getFaq_subject());
 								//DB 가서 현재 페이지, 몇개의 게시물 보여줄것인지 
-		String FaqPageNavi = new FaqDao().getFaqPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
+		String FaqPageNavi = new FaqDao().getPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
 		FaqPageData fpd= null; 
 		if(!f_list.isEmpty() && !FaqPageNavi.isEmpty())
 		{

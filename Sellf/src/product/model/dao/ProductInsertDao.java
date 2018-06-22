@@ -20,7 +20,7 @@ public class ProductInsertDao {
 	public int productInsert(Connection conn, ProductInsert pi) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into product_entire_tb values(product_entire_tb_SEQ.NEXTVAL,?,?,?,?,?,?,?,'S',?,?)";
+		String query = "insert into product_entire_tb values(product_entire_tb_SEQ.NEXTVAL,?,?,?,?,?,?,?,'S',?,?,sysdate)";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -31,9 +31,9 @@ public class ProductInsertDao {
 			pstmt.setInt(5, pi.getProductPrice());
 			pstmt.setString(6, pi.getProductImage().getImgArr().toString());
 			pstmt.setInt(7, pi.getProductAmount());
-			System.out.println(pi.getProductImage().getImgArr().toString());
-			pstmt.setString(8, pi.getProductGrade());
-			pstmt.setString(9,pi.getProductDetail());
+			
+			pstmt.setString(8, pi.getProductOldNew());
+			pstmt.setString(9,pi.getProductDetail().getDetailArr().toString());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

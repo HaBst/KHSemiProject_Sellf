@@ -34,8 +34,8 @@ public class ProductSearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("서블릿 시작");
 		request.setCharacterEncoding("utf-8");
-		String searchSub = request.getParameter("searchSub");
-		System.out.println(searchSub);
+		String searchName = request.getParameter("searchName");
+		System.out.println(searchName);
 		
 		int currentPage;
 		if(request.getParameter("currentPage")==null) {
@@ -43,12 +43,12 @@ public class ProductSearchServlet extends HttpServlet {
 		}else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		PageData pd = new ProductInsertService().searchSub(searchSub,currentPage);
+		PageData pd = new ProductInsertService().searchSub(searchName,currentPage);
 		
 		if(pd != null) {
 			RequestDispatcher view = request.getRequestDispatcher("/views/product/productSearch.jsp");
 			request.setAttribute("pageData", pd);
-			request.setAttribute("searchSub", searchSub);
+			request.setAttribute("searchSub", searchName);
 			view.forward(request, response);
 		}else {
 			response.sendRedirect("/views/product/poductError.jsp");

@@ -9,11 +9,12 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 window.onload = function()
 {
 	btnArr = document.getElementsByClassName("menuBtn");
-	btnArr[0].style = selectStyle;
+	btnArr[1].style = selectStyle;
 	
 	tabArr = document.getElementsByClassName("noticeTab");
-	tabArr[0].style.display = "block";
+	tabArr[1].style.display = "block";
 
+	
 }
 function clearAll()
 {
@@ -29,8 +30,7 @@ function clearAll()
 function boardTapChange(btn, boardName)
 {
 	console.log(boardName.id);
-	if(boardName.id=="boardListArea") {location.href="/notice"}
-	else if(boardName.id=="answerListArea") {location.href="/faq"};
+	if(boardName.id=="answerListArea") {location.href="/faq"};
 	clearAll();
 	btn.style = selectStyle;
 	boardName.style.display = "block";

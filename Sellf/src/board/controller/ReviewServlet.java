@@ -9,22 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.FaqService;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+
 import board.model.service.NoticeService;
-import board.model.vo.FaqPageData;
+import board.model.service.ReviewService;
 import board.model.vo.NoticePageData;
+import board.model.vo.ProductReviewPageData;
 
 /**
- * Servlet implementation class FaqServlet
+ * Servlet implementation class NoticeServlet
  */
-@WebServlet(name = "Faq", urlPatterns = { "/faq" })
-public class FaqServlet extends HttpServlet {
+@WebServlet(name = "Review", urlPatterns = { "/review" })
+public class ReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqServlet() {
+    public ReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +39,6 @@ public class FaqServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		int currentPage;
 		//첫페이지는 요청값이 없음. 따라서 첫페이지만 1로 셋팅하고 그외 페이지라면 해당 페이지값을 셋팅
@@ -46,18 +51,16 @@ public class FaqServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		//비즈니스 로직
-		FaqPageData fpd = new FaqService().faqAll(currentPage);
-		if(fpd!=null)
+		ProductReviewPageData rpd = new ReviewService().reviewAll(currentPage);
+		if(rpd!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardFaq.jsp");
-			request.setAttribute("FaqPageData", fpd);
-			request.setAttribute("noticeTab", "answerListArea");
+			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardReview.jsp");
+			request.setAttribute("ProductReviewPageData", rpd);
+			request.setAttribute("noticeTab", "reviewListArea");
 			view.forward(request, response);
 		}else
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardFaq.jsp");
-			request.setAttribute("noticeTab", "answerListArea");
-			view.forward(request, response);
+			response.sendRedirect("/views/error/notice/NoticeError.html");
 		}
 	}
 

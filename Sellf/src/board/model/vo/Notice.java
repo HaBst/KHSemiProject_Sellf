@@ -10,11 +10,12 @@ public class Notice
  private String notice_image; 
  private String notice_content;
  private Date notice_registration_date;
+ private int notice_views_count;
 
 public Notice() {}
 
 public Notice(int notice_pk, String notice_main_admin_id_fk, String notice_subject, String notice_image,
-		String notice_content, Date notice_registration_date) {
+		String notice_content, Date notice_registration_date, int notice_views_count) {
 	super();
 	this.notice_pk = notice_pk;
 	this.notice_main_admin_id_fk = notice_main_admin_id_fk;
@@ -22,6 +23,16 @@ public Notice(int notice_pk, String notice_main_admin_id_fk, String notice_subje
 	this.notice_image = notice_image;
 	this.notice_content = notice_content;
 	this.notice_registration_date = notice_registration_date;
+	this.notice_views_count = notice_views_count;
+}
+
+
+public int getNotice_views_count() {
+	return notice_views_count;
+}
+
+public void setNotice_views_count(int notice_views_count) {
+	this.notice_views_count = notice_views_count;
 }
 
 public int getNotice_pk() {

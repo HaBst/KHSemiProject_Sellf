@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+
 import board.model.service.NoticeService;
 import board.model.vo.NoticePageData;
 
@@ -46,7 +52,7 @@ public class NoticeServlet extends HttpServlet {
 		NoticePageData npd = new NoticeService().noticeAll(currentPage);
 		if(npd!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/board/board.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardNotice.jsp");
 			request.setAttribute("NoticePageData", npd);
 			request.setAttribute("noticeTab", "boardListArea");
 			view.forward(request, response);

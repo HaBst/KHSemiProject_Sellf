@@ -35,7 +35,7 @@
 					<a href="/views/member/myInfo.jsp">MYPAGE</a>
 				</div>
 				<div>
-					<a href="/views/board/board.jsp">CSCENTER</a>
+					<a href="/notice">CSCENTER</a>
 				</div>
 		<!-- 		<div>
 					<a href="" id="bookmark">+BOOKMARK</a>

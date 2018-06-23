@@ -20,7 +20,7 @@ public FaqService() {}
 		int naviCountPerPage = 5; //현재 위치 중심으로 시작 navi부터 끝 navi까지의 개수 
 		
 		ArrayList<Faq> f_list = new FaqDao().getCurrentPage(conn,currentPage,recordCountPerPage);
-		System.out.println("f_list값:"+f_list.get(0).getFaq_subject());
+		
 								//DB 가서 현재 페이지, 몇개의 게시물 보여줄것인지 
 		String FaqPageNavi = new FaqDao().getPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
 		FaqPageData fpd= null; 

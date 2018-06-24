@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	$("#allCheckBox").click(function() {
 		if ($("#allCheckBox").prop("checked")) {
@@ -55,7 +54,7 @@ function selectAllChk() {
 
 function deleteOneBtn() {
 	if ($("input[name=chk]").prop("checked")) {
-		$("#infoSelectTr").remove();
+		$("#cartlistTr[]").remove();
 		console.log($('tbody>tr').length);
 	}
 	if ($('tbody>tr').length <= 0) {

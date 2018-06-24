@@ -117,7 +117,7 @@
 							<%
 								for (int i = 0; i < list.size(); i++) {
 							%>
-							<tr id="cartlistTr">
+							<tr id="cartlistTr[]">
 								<td scope="row"><input type="checkbox" name="chk" value =<%=list.get(i).getProduct_entire_pk()%>></td>
 								<td id="productName"><%=list.get(i).getProduct_name()%></td>
 								<td id="productAmount"><%=list.get(i).getProduct_amount()%></td>
@@ -145,20 +145,6 @@
 							location.href ="/myCart2?productIndex="+item;
 						}
 					
-						$(document).ready(function(){
-							// 결제 금액 합계 만들기 
-						});
-						
-						function deleteOneBtn() {
-							if ($("input[name=chk]").prop("checked")) {
-								$("#cartlistTr").remove();
-								console.log($('tbody>tr').length);
-							}
-							if ($('tbody>tr').length <= 0) {
-								$('#dontHaveGoodsList').text("장바구니에 담긴 상품이 없습니다.");
-							}
-						}
-
 					</script>
 
 					<div id="dontHaveGoodsList"></div>

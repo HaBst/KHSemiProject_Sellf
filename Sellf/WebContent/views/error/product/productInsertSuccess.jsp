@@ -8,8 +8,8 @@
 </head>
 <script>
 	window.onload = function(){
-		alert("회원가입이 완료되었습니다.");
-		location.href="/test1.html"
+		alert("상품등록이 완료되었습니다.");
+		location.href="/test.html"
 	}
 </script>
 <body>

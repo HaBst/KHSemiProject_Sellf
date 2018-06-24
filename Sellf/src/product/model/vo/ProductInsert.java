@@ -7,115 +7,87 @@ public class ProductInsert {
 	private String productEntireCateMainIdFK;
 	private String productEntireCateSubIdFK;
 	private String productName;
+	private String productOldNew;
+	private int productAmount;
 	private int productPrice;
 	private ImageUpload productImage;
-//	private String productImage;
-	private int productAmount;
-//	private String productState;
-	private String productGrade;
-	private String productDetail;
+	// imgOne imgTwo imgThree imgFour imgFive
+	private ProductDetail productDetail;
+	// grade scratch refund extra detail
 	
 	public ProductInsert() {}
-
 	public ProductInsert(String productEntireUserIdFK, String productEntireCateMainIdFK,
-			String productEntireCateSubIdFK, String productName, int productPrice, ImageUpload productImage,
-			int productAmount, String productGrade, String productDetail) {
+			String productEntireCateSubIdFK, String productName, String productOldNew, int productAmount,
+			int productPrice, ImageUpload productImage,ProductDetail productDetail) {
 		super();
 		this.productEntireUserIdFK = productEntireUserIdFK;
 		this.productEntireCateMainIdFK = productEntireCateMainIdFK;
 		this.productEntireCateSubIdFK = productEntireCateSubIdFK;
 		this.productName = productName;
+		this.productOldNew = productOldNew;
+		this.productAmount = productAmount;
 		this.productPrice = productPrice;
 		this.productImage = productImage;
-		this.productAmount = productAmount;
-		this.productGrade = productGrade;
 		this.productDetail = productDetail;
 	}
-
 	public String getProductEntireUserIdFK() {
 		return productEntireUserIdFK;
 	}
-
 	public void setProductEntireUserIdFK(String productEntireUserIdFK) {
 		this.productEntireUserIdFK = productEntireUserIdFK;
 	}
-
 	public String getProductEntireCateMainIdFK() {
 		return productEntireCateMainIdFK;
 	}
-
 	public void setProductEntireCateMainIdFK(String productEntireCateMainIdFK) {
 		this.productEntireCateMainIdFK = productEntireCateMainIdFK;
 	}
-
 	public String getProductEntireCateSubIdFK() {
 		return productEntireCateSubIdFK;
 	}
-
 	public void setProductEntireCateSubIdFK(String productEntireCateSubIdFK) {
 		this.productEntireCateSubIdFK = productEntireCateSubIdFK;
 	}
-
 	public String getProductName() {
 		return productName;
 	}
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
-	public int getProductPrice() {
-		return productPrice;
+	public String getProductOldNew() {
+		return productOldNew;
 	}
-
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+	public void setProductOldNew(String productOldNew) {
+		this.productOldNew = productOldNew;
 	}
-
-	public ImageUpload getProductImage() {
-		return productImage;
-	}
-
-	public void setProductImage(ImageUpload productImage) {
-		this.productImage = productImage;
-	}
-
 	public int getProductAmount() {
 		return productAmount;
 	}
-
 	public void setProductAmount(int productAmount) {
 		this.productAmount = productAmount;
 	}
-
-	public String getProductGrade() {
-		return productGrade;
+	public int getProductPrice() {
+		return productPrice;
 	}
-
-	public void setProductGrade(String productGrade) {
-		this.productGrade = productGrade;
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
-
-	public String getProductDetail() {
+	public ImageUpload getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(ImageUpload productImage) {
+		this.productImage = productImage;
+	}
+	public ProductDetail getProductDetail() {
 		return productDetail;
 	}
-
-	public void setProductDetail(String productDetail) {
+	public void setProductDetail(ProductDetail productDetail) {
 		this.productDetail = productDetail;
 	}
 
 
-	
-	
-	
-
-	
 
 
-
-
-
-	
 	
 }
 

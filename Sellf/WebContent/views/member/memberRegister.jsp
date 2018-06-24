@@ -158,7 +158,7 @@
 				</tr>
 				<tr class="regi-tr">
 					<td><img src="/img/check.png" class="check-img"> 아이디</td>
-					<td><input type="text" name="userId"><button onclick="checkId();">중복확인</button> <span id="idcheck">공백 없는 영문,숫자 포함
+					<td><input type="text" name="userId"><span id="idcheck"> 공백 없는 영문,숫자 포함
 						6-20자 </span></td>
 				</tr>
 				<tr class="regi-tr">
@@ -168,8 +168,8 @@
 				</tr>
 				<tr class="regi-tr">
 					<td><img src="/img/check.png" class="check-img"> 비밀번호 확인</td>
-					<td><input type="password" name="userPwdRe"> 비밀번호 확인을
-						위해 한번 더 입력하세요. <span id="pwdrecheck"></span></td>
+					<td><input type="password" name="userPwdRe"> <span id="pwdrecheck">비밀번호 확인을
+						위해 한번 더 입력하세요. </span></td>
 				</tr>
 				<tr class="regi-tr">
 					<td><img src="/img/check.png" class="check-img"> 생년월일</td>
@@ -308,11 +308,48 @@
 		var reg = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //검증용
 		
 		// ID 검증
-		function checkId() {
+		var userId = $('input[name=userId]')
+		userId.blur(function() {
 			var id = $('input[name=userId]').val();
 			//console.log(id);
-			window.open("/views/member/checkId.jsp?checkId="+id,"ID 중복확인","width=700px, height=300px, left=100, top=100");
-		}
+			var check =1;
+			var reg = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+			
+			
+				 if(!reg.test(id)){
+					 }
+				 else{
+					 check=0;
+					}
+				// jQuery Ajax 코드
+					$.ajax({
+						url : "/checkid",
+						data : {id : id},
+						type : "get",
+						success : function(result) {
+							if(check==1)
+								{
+								$('#idcheck').text(" 잘못된 입력입니다.");
+								$('#idcheck').css("color","red");
+								}
+						else if(result==1&&check==0)
+								{
+								$('#idcheck').text(" 이미 사용중인 ID 입니다.");
+							 	$('#idcheck').css("color","red");
+								}
+							else if(result==0&&check==0)
+								{
+								$('#idcheck').text(" 사용 가능 합니다.");
+								$('#idcheck').css("color","#00ff00");
+								$('input[name=memberId]').val($('input[name=userId]').val());
+								}
+						},
+						error : function(){
+							console.log("실패");
+							alert(id);
+						}
+					});
+		});
 		
 		// PW 검증
 		var userPwd = $("input[name='userPwd']");

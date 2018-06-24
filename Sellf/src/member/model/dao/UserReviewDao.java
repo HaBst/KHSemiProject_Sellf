@@ -22,6 +22,9 @@ public class UserReviewDao {
 					"select user_review_tb.* , row_number() over(order by user_rv_pk desc) as num from user_review_tb) "+
 							"where num between ? and ? and USER_RV_USER_ENTIRE_ID_FK=?";
 //			System.out.println(query);
+//			System.out.println(start);
+//			System.out.println(end);
+//			System.out.println(id);
 		ArrayList<UserReview> list = new ArrayList<UserReview>();
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -35,9 +38,9 @@ public class UserReviewDao {
 				UserReview ur = new UserReview();
 				ur.setUserReviewPk(rset.getInt("user_rv_pk"));
 				ur.setUserReviewUserEntireIdFk(rset.getString("USER_RV_USER_ENTIRE_ID_FK"));
-				ur.setUserReviewUserEntireReviewedIdFk("USER_RV_USER_ENTIRE_RVED_ID_FK");
+				ur.setUserReviewUserEntireReviewedIdFk(rset.getString("USER_RV_USER_ENTIRE_RVED_ID_FK"));
 				ur.setUserReviewProductEntireFk(rset.getInt("USER_RV_PRODUCT_ENTIRE_FK"));
-				ur.setUserReviewComment("USER_REVIEW_COMMENT");
+				ur.setUserReviewComment(rset.getString("USER_REVIEW_COMMENT"));
 				ur.setUserReviewRating(rset.getInt("USER_REVIEW_RATING"));
 				ur.setUserReviewDate(rset.getDate("USER_REVIEW_DATE"));
 				
@@ -50,7 +53,7 @@ public class UserReviewDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+//		System.out.println("UserReviewDAO " + list.size());
 		return list;
 	}
 
@@ -146,27 +149,79 @@ public class UserReviewDao {
 				// 여기까지 기본적이 구조는 끝남
 				
 				StringBuilder sb = new StringBuilder();
+				String navi = 
+						"<nav aria-label='Page navigation example'>";				
+				navi+= "<ul class='pagination'>";
+		
 				
-				if(needPrev) {// 시작이 1페이지가 아니라면!
-					sb.append("<a href='/notice?currentPage="+(startNavi-1)+ "'> < </a>");
+				if(needPrev) {// 시작이 1페이지가 아니라면!					
+					navi +=	"<li class='page-item'>"+
+						"<a class='page-link' aria-label='Previous' onclick='pageChange("+(startNavi-1)+ ");'> <span aria-hidden='true' >«</span>"+
+						"<span class='sr-only'>Previous</span>"+
+						"</a> </li>";
+					
+//					"<span onclick='pageChange("+(startNavi-1)+ ");'> < </span>";
 				}
 				
 				for(int i = startNavi;i<=endNavi;i++)
 				{
 					if(i==currentPage) {
-						sb.append("<a href='/notice?currentPage="+i+"'><B> "+i+" </B></a>");
+						navi += "<li>"+
+						"<a class='page-link' onclick='pageChange("+ i +");'> <span aria-hidden='true'><B>"+i+"</B></span>"+
+						"<span class='sr-only'>"+ i +"</span>"+
+						"</a></li>";
+//						navi += "<span onclick='pageChange("+ i + ");'></span>";
 					}
 					else {
-						sb.append("<a href='/notice?currentPage="+i+"'> "+i+" </a>");
+						navi += "<li>"+
+							"<a class='page-link'  onclick='pageChange("+ i +");'> <span aria-hidden='true'>"+i+"</span>"+
+							"<span class='sr-only'>"+i+"</span>"+
+							"</a></li>";
+//						navi += "<span onclick='pageChange("+ i + ");'>"+ i +"</span>";
+//						sb.append("<a href='/notice?currentPage="+i+"'> "+i+" </a>");
 					}
 				}
 				
 				if(needNext) {// 끝페이지가 아니라면
-					sb.append("<a href='/notice?currentPage="+(endNavi+1)+ "'> > </a>");
+					navi += "<li class='page-item'>"+
+						"<a class='page-link' aria-label='Next' onclick='pageChange("+(endNavi+1)+ ");'>"+
+						"<span aria-hidden='true' >»</span>"+ 
+						"<span class='sr-only'>Next</span>"+
+						"</a>"+
+					"</li>";
+//					navi+= "<span onclick='pageChange("+(endNavi+1)+ ");'> > </span>";
+//					sb.append("<a href='/notice?currentPage="+(endNavi+1)+ "'> > </a>");
 				
 				}
 //				System.out.println("검색어 " + search);
-				return sb.toString();
+				return navi;
+	}
+
+	public int reviewComment(Connection conn, UserReview ur) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="INSERT INTO user_review_tb VALUES (USER_REVIEW_TB_SEQ.NEXTVAL,?,?,?,?,?,sysdate)";
+		System.out.println(query);
+		System.out.println( ur.getUserReviewUserEntireIdFk());
+		System.out.println(ur.getUserReviewUserEntireReviewedIdFk());
+		System.out.println(ur.getUserReviewProductEntireFk());
+		System.out.println(ur.getUserReviewComment());
+		System.out.println(ur.getUserReviewRating());
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ur.getUserReviewUserEntireIdFk());
+			pstmt.setString(2, ur.getUserReviewUserEntireReviewedIdFk());
+			pstmt.setInt(3, ur.getUserReviewProductEntireFk());
+			pstmt.setString(4,ur.getUserReviewComment());
+			pstmt.setInt(5, ur.getUserReviewRating());
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

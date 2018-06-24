@@ -146,7 +146,7 @@
 		<div class="regiBtn" align="center">
 			<button onclick="login()" class="btn btn-primary btn-lg"
 				style="background-color: black; border-radius: 0px; width: 150px">로그인</button>&nbsp
-			<a href="" class="btn btn-default btn-lg "
+			<a href="/index.jsp" class="btn btn-default btn-lg "
 				style="background-color: lightgray; border-radius: 0px; width: 150px">메인화면</a>
 		</div>
 		</div>

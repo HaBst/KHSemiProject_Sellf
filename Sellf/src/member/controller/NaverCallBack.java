@@ -90,7 +90,7 @@ public class NaverCallBack extends HttpServlet {
     		{
     			m2 = new MemberService().memberLogin(id,pw, fullPath);
     			HttpSession session = request.getSession();
-    			session.setAttribute("login", m2);
+    			session.setAttribute("login", m2.getUser_id());
     			response.sendRedirect("/index.jsp");
     		}
     		else if(result==0)
@@ -100,7 +100,7 @@ public class NaverCallBack extends HttpServlet {
     			{
     				m2 = new MemberService().memberLogin(id,pw, fullPath);
     				HttpSession session = request.getSession();
-        			session.setAttribute("login", m2);
+        			session.setAttribute("login", m2.getUser_id());
         			response.sendRedirect("/index.jsp");
     			}
     		}

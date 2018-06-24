@@ -60,8 +60,7 @@ crossorigin="anonymous"></script>
 
 	<center>
 		<!-- Wrapper -->
-		<div id="wrapper" style="overflow: hidden;">
-		
+		<div id="wrapper" style="overflow: hidden;">		
 			<!-- header -->
 			<div id="header"><%@include file="/views/common/header.jsp"%></div>
 			

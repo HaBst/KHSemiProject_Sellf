@@ -36,6 +36,7 @@ function loadSelectCategory()
 {
 	var mainCategory  = "M01";//$("#userIndex2").val();// 입력값 가져오기
 	var subCategory  = category;//$("#userIndex2").val();// 입력값 가져오기
+	var searchKey = $("#search");
 	var onePageShowProduct = 8;//Number($("#perPageCount").val()); // 한페이지에 몇개 보여줄지.
 //	var currentPage = Number(currentPageNum);// 현재 페이지.
 	var totalProductSize = $("#entireProductTitleLabel");  // 제목 표시해줄때.
@@ -48,6 +49,7 @@ function loadSelectCategory()
 				onePageShowProduct :onePageShowProduct,
 				currentPage :currentPage,
 				orderType : orderType,
+				searchKey :searchKey
 				},
 		type : "get",
 		success : function(data){			
@@ -76,6 +78,8 @@ function loadSelectCategory()
 //				console.log(data[keys[i]].product_image);
 //				var imgKey = Object.keys(data[keys[i]].product_image);
 				var imgJsonObj = JSON.parse(data[keys[i]].product_image);
+				console.log(data[keys[i]].product_detail);
+				var detailJsonObj = JSON.parse(data[keys[i]].product_detail);
 //				console.log("이미지 정보" + imgJsonObj.img1);
 				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
 				totalProductList.append(
@@ -110,7 +114,7 @@ function loadSelectCategory()
 				'<div class="productTitle">'+data[keys[i]].product_name+'</div>'+
 				'<div class="productExplain">'+
 					'<font class="productExplainFont" text-overflow: ellipsis;>'+data[keys[i]].product_entire_user_entire_id_fk +'<br>'
-						+data[keys[i]].product_detail +
+						+detailJsonObj.Detail +
 					'</font>'+
 				'</div>'+
 //				'<div class="priceOrigin">'+

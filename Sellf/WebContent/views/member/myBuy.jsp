@@ -400,12 +400,10 @@ th.specalt {
 					</td>
 					<td><h4 class="nomargin"><%=p.getProduct_name() %></h4>
 					<h5>    <% String state = p.getProduct_state(); %>
-       		 <%if(state.equals("S")){%>
-         	  <h4  style="color: blue">판매중</h4>
-         	 <%}else if(state.equals("T")) {%>
-         	  <h4  style="color: orange">거래중</h4>
-         	 <%}else if(state.equals("E")) {%>
-         	  <h4  style="color: red">판매완료</h4>
+       		 <%if(state.equals("O")){%>
+         	  <h4  style="color: GREEN">구매완료</h4>
+         	 <%}else if(state.equals("X")) {%>
+         	  <h4  style="color: red">구매중</h4>
          	 <%} %></h5></td>
 					<td><%=p.getProduct_price()%></td>
 					<td>

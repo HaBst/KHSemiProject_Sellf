@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="product.model.vo.*" import="member.model.vo.*" import="java.util.*"
-	import="member.model.vo.*"
-	%>
+	import="member.model.vo.*" import="java.text.DecimalFormat"
+%>
 <% 
 	Product p  = null;
 	SellerRate sellerRate = null;
 	if(request.getAttribute("productInfo") != null){
 		p = (Product)request.getAttribute("productInfo"); 
+		System.out.println("중고 여부 " +p.getProduct_oldnew());
 	}
 	if(request.getAttribute("sellerScore") != null){
 		sellerRate = ((SellerRate)request.getAttribute("sellerScore"));
@@ -18,7 +19,7 @@
 	{
 		m = (Member) session.getAttribute("login");
 	}
-	
+	DecimalFormat df = new DecimalFormat("#,##0원");
 	//ReviewPageData rpd = (ReviewPageData)request.getAttribute("reviewPageData");
 	//ArrayList<UserReview> reviewList = rpd.getReviewList();
 	//String pageNavi = rpd.getPageNavi();
@@ -35,6 +36,7 @@
 <!-- <script src="../../JS/externalJs/cloud-zoom.1.0.2.js" type="text/javascript"></script> -->
 <script>
 var currentProductPk;
+var firstImg = "<%=p.getImageJson().get("img1").getAsString()%>";
 $(document).ready(function() {
 	$('.magnify-image').magnify();
 });
@@ -111,22 +113,22 @@ $(document).ready(function() {
 					</div> -->
 					<div class="zoom-desc">
 						<%if(p.getImageJson().get("img2").getAsString().length()>0){ %>
-							<a href='<%=p.getImageJson().get("img2").getAsString() %>'>
+							<a onclick="changeImage(0)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img2").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
 						<%if(p.getImageJson().get("img3").getAsString().length()>0){ %>
-							<a href='<%=p.getImageJson().get("img3").getAsString() %>'>
+							<a onclick="changeImage(1)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img3").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
 						<%if(p.getImageJson().get("img4").getAsString().length()>0){ %>
-							<a href='<%=p.getImageJson().get("img4").getAsString() %>'>
+							<a onclick="changeImage(2)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img4").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
 						<%if(p.getImageJson().get("img5").getAsString().length()>0){ %>
-							<a href='<%=p.getImageJson().get("img5").getAsString() %>'>
+							<a onclick="changeImage(3)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img5").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
@@ -148,7 +150,7 @@ $(document).ready(function() {
 									<div class="infoBox">할인내역</div>
 								</div>-->
 								<div>
-									<h3><%=p.getProduct_price() %></h3>
+									<h3><%=df.format(p.getProduct_price()) %></h3>
 								</div>
 							</div>
 							<!-- 할인율 적용됐을때만  
@@ -195,7 +197,7 @@ $(document).ready(function() {
 						</div>
 						<div class="infoContent">
 							<div id="totalPriceInfo">
-								<h3><%=p.getProduct_price() %></h3>
+								<h3><%=df.format(p.getProduct_price()) %></h3>
 							</div>
 						</div>
 					</div>
@@ -233,41 +235,57 @@ $(document).ready(function() {
 						<div id="productStateIconGroup" class="productIconGroup">
 							<div id="useState">
 								<img class="stateIcon" src="../../img/icoUse_3x_ofrw9u.jpg" />
-								<div class="productStateTitle">사용</div>
+								<div class="productStateTitle"><%=p.getProduct_oldnew().equals("O")?"개봉":"미개봉" %></div>
 								<div id="useStateDetail">
 									<div id="useStateTitle">
 										<h4>상품상태</h4>
 									</div>
 									<div id="useStateGraph">
-										<div id="useStateIcon1" class="noneSelectDot"></div>
+										<% if(p.getProduct_oldnew().equals("O")){%><div id="useStateIcon1" class="selectDot"></div>
+										<%}else{ %>
+											<div id="useStateIcon1" class="noneSelectDot"></div>
+										<% } %>
+										
 										<div class="stateLine"></div>
-										<div id="useStateIcon2" class="noneSelectDot"></div>
-										<div class="stateLine"></div>
-										<div id="useStateIcon3" class="selectDot"></div>
+										<% if(p.getProduct_oldnew().equals("N")){%>	<div id="useStateIcon3" class="selectDot"></div>
+										<%}else{ %>
+											<div id="useStateIcon1" class="noneSelectDot"></div>
+										<% } %>
 									</div>
 									<div id="useStateText">
-										<div id="useStateText1">새상품</div>
-										<div id="useStateText2">미사용</div>
-										<div id="useStateText3">&nbsp;&nbsp;&nbsp;사용</div>
+										<div id="useStateText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개봉</div>
+										<div id="useStateText2">&nbsp;&nbsp;&nbsp;미개봉</div>
 									</div>
 								</div>
 							</div>
 							<div id="productGradeState" class="productIconGroup">
 								<img class="stateIcon"
 									src="../../img/icoGradeAplus_3x_fgsqml.jpg" />
-								<div class="productStateTitle">A+</div>
+								<div class="productStateTitle"><%= p.getDetailJson().get("Grade").getAsString() %></div>
 								<div id="productGradeDetail">
 									<div id="useStateTitle">
 										<h4>제품등급</h4>
 									</div>
 									<div id="productGradeGraph">
-										<div id="productGradeIcon1" class="noneSelectDot"></div>
+										<%if(p.getDetailJson().get("Grade").getAsString().equals("A+")) {%><div id="productGradeIcon1" class="selectDot"></div>
+										<%}else{ %>
+											<div id="productGradeIcon1" class="noneSelectDot"></div>
+										<%} %>
 										<div class="stateLine"></div>
-										<div id="productGradeIcon2" class="noneSelectDot"></div>
+										<%if(p.getDetailJson().get("Grade").getAsString().equals("A")) {%><div id="productGradeIcon2" class="selectDot"></div>
+										<%}else{ %>
+											<div id="productGradeIcon2" class="noneSelectDot"></div>
+										<%} %>
 										<div class="stateLine"></div>
-										<div id="productGradeIcon3" class="noneSelectDot"></div>
+										<%if(p.getDetailJson().get("Grade").getAsString().equals("B")) {%><div id="productGradeIcon3" class="selectDot"></div>
+										<%}else{ %>
+											<div id="productGradeIcon3" class="noneSelectDot"></div>
+										<%} %>
 										<div class="stateLine"></div>
-										<div id="productGradeIcon4" class="selectDot"></div>
+										<%if(p.getDetailJson().get("Grade").getAsString().equals("C")) {%><div id="productGradeIcon4" class="selectDot"></div>
+										<%}else{ %>
+											<div id="productGradeIcon4" class="noneSelectDot"></div>
+										<%} %>
 									</div>
 									<div id="useStateText">
 										<div id="useStateText1">&nbsp;A+급</div>
@@ -280,22 +298,29 @@ $(document).ready(function() {
 							<div id="brokenState" class="productIconGroup">
 								<img class="stateIcon"
 									src="../../img/icoNoBreakage_3x_iev7l3.jpg" />
-								<div class="productStateTitle">생활기스</div>
+								<div class="productStateTitle">찍힘/깨짐</div>
 								<div id="brokenStateDetail">
 									<div id="useStateTitle">
 										<h4>찍힘/깨짐</h4>
 									</div>
 									<div id="productGradeGraph">
+									<%if(p.getDetailJson().get("Scratch").getAsString().equals("Y")) {%>
+										<div id="productBrokenIcon1" class="selectDot"></div>
+									<%}else{ %>
 										<div id="productBrokenIcon1" class="noneSelectDot"></div>
+									<%} %>	
 										<div class="stateLine"></div>
+										<%if(p.getDetailJson().get("Scratch").getAsString().equals("N")) {%>
+										<div id="productBrokenIcon2" class="selectDot"></div>
+									<%}else{ %>
 										<div id="productBrokenIcon2" class="noneSelectDot"></div>
-										<div class="stateLine"></div>
-										<div id="productBrokenIcon3" class="selectDot"></div>
+									<%} %>	
+										
+
 									</div>
 									<div id="useStateText">
-										<div id="useStateText1">&nbsp;&nbsp;없음</div>
-										<div id="useStateText2">&nbsp;&nbsp;약간</div>
-										<div id="useStateText3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;심함</div>
+										<div id="useStateText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;있음</div>
+										<div id="useStateText3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;없음</div>
 									</div>
 								</div>
 							</div>
@@ -308,9 +333,18 @@ $(document).ready(function() {
 										<h4>구성품</h4>
 									</div>
 									<div id="productGradeGraph">
-										<div id="productBrokenIcon1" class="noneSelectDot"></div>
+										<%if(p.getDetailJson().get("Extra").getAsString().equals("Y")){ %>
+											<div id="productBrokenIcon1" class="selectDot"></div>
+										<%}else{ %>
+											<div id="productBrokenIcon1" class="noneSelectDot"></div>
+										<%} %>
 										<div class="stateLine"></div>
-										<div id="productBrokenIcon2" class="selectDot"></div>
+										<%if(p.getDetailJson().get("Extra").getAsString().equals("N")){ %>
+											<div id="productBrokenIcon2" class="selectDot"></div>
+										<%}else{ %>
+											<div id="productBrokenIcon2" class="noneSelectDot"></div>
+										<%} %>
+
 									</div>
 									<div id="useStateText">
 										<div id="useStateText1">있음</div>
@@ -348,7 +382,18 @@ $(document).ready(function() {
 						<hr style="clear: both;">
 						<div id="productInfoTextDetail">
 							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">상품상태</div>
-							<div id="productUseStateInfo1" class="productInfoTextExplain"><%=p.getProduct_detail() %></div>
+							<div id="productUseStateInfo1" class="productInfoTextExplain"><%=p.getDetailJson().get("Grade").getAsString() %></div>
+							<br>
+							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">흠집</div>
+							<div id="productUseStateInfo1" class="productInfoTextExplain"><%=p.getDetailJson().get("Scratch").getAsString() %></div>
+							<br>
+							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">구성품</div>
+							<div id="productUseStateInfo1" class="productInfoTextExplain"><%=p.getDetailJson().get("Extra").getAsString() %></div>
+							<br>
+							<div id="productUseStateInfoTitle1" class="productInfoTextTitle">상세설명</div>
+							<div id="productUseStateInfo1" class="productInfoTextExplain"><%=p.getDetailJson().get("Detail").getAsString() %></div>
+							<br>			
+							
 						</div>
 					</li>
 					<li class="tabContents" id="tab2" value="tab2">

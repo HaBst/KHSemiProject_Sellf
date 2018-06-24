@@ -40,7 +40,7 @@ public class ProductDao {
 		return result;	
 	}
 
-	public ArrayList<Product> productSortCategory(Connection conn,String mainCategory, String subCategory,int onePageShowProduct, int currentPage, String orderType) {
+	public ArrayList<Product> productSortCategory(Connection conn,String searchKey, String subCategory,int onePageShowProduct, int currentPage, String orderType) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Product> resultList = new ArrayList<Product>();
@@ -54,7 +54,7 @@ public class ProductDao {
 			case "manyReviewOrder": orderQuery = " order by product_entire_pk desc ";  break;		
 		}
 		String query = "select * from product_entire_tb"
-				+ " where PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? "+
+				+ " where PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? and product_name like %?%"+
 				orderQuery;
 		
 		System.out.println("서브 " + subCategory );
@@ -78,6 +78,7 @@ public class ProductDao {
 				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
 				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_oldnew(rset.getString("PRODUCT_OLDNEW"));
 				resultList.add(p);
 			}
 		} catch (SQLException e) {
@@ -114,6 +115,7 @@ public class ProductDao {
 				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
 				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_oldnew(rset.getString("PRODUCT_OLDNEW"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

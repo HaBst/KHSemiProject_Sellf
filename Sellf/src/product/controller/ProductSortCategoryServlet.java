@@ -47,11 +47,11 @@ public class ProductSortCategoryServlet extends HttpServlet {
 		String mainCategory = request.getParameter("mainCategory");
 		String subCategory = request.getParameter("subCategory");
 		String orderType = request.getParameter("orderType");
-		
+		String searchKey = request.getParameter("searchKey");
 		int onePageShowProduct = 8;//Integer.parseInt(request.getParameter("onePageShowProduct"));
 		int currentPage = 0;//Integer.parseInt(request.getParameter("currentPage"));
 		
-		ArrayList<Product> list = new ProductService().productSortCategory(mainCategory,subCategory,onePageShowProduct,currentPage,orderType);
+		ArrayList<Product> list = new ProductService().productSortCategory(searchKey,subCategory,onePageShowProduct,currentPage,orderType);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		new Gson().toJson(list, response.getWriter());

@@ -20,9 +20,17 @@ public class Product {
 	private int product_amount;
 	private String product_state;
 	private String product_detail;
+	private String product_oldnew;
 	private JsonObject jsonObject = new JsonObject();
+	private JsonObject detailObject = new JsonObject();
 	
 	
+	public String getProduct_oldnew() {
+		return product_oldnew;
+	}
+	public void setProduct_oldnew(String product_oldnew) {
+		this.product_oldnew = product_oldnew;
+	}
 	public int getProduct_entire_pk() {
 		return product_entire_pk;
 	}
@@ -93,6 +101,11 @@ public class Product {
 	}
 	public void setProduct_detail(String product_detail) {
 		this.product_detail = product_detail;
+		detailObject = new JsonParser().parse(this.product_detail).getAsJsonObject();
+	}
+	public JsonObject getDetailJson()
+	{
+		return detailObject;
 	}
 	
 	

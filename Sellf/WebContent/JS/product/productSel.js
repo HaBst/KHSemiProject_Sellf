@@ -137,3 +137,16 @@ function changeTab(tabInfo, name, sellerId)
 			});
 	 }
 
+function changeImage(imgTag)
+{
+	var bigImg  = document.getElementsByClassName("magnify-image")[0];
+	var slideImg  = document.getElementsByClassName("zoom-tiny-image");
+	console.log(imgTag);
+	var tempImg = slideImg[imgTag].src;
+	slideImg[imgTag].src = bigImg.src;
+	bigImg.src = tempImg;
+	firstImg = tempImg;
+}
+
+
+

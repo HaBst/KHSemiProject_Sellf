@@ -30,7 +30,7 @@
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
-<script src="../../JS/main/productListMain.js"></script>
+<script src="../../JS/main/productListMain.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/common/adv.js?ver=1"></script>
 
@@ -220,13 +220,13 @@
 					<div id="crossLineLong"></div>
 					<ul class="float_wrap">
 						<li class="left"><span class="sort_item">
-								<button class="sortBtn" onclick = 'selectSortType("uploadOrder");' name="uploadOrder" value="최근등록순"><b>최근등록순</b></button>
+								<button class="sortBtn" onclick = 'selectSortType("uploadOrder");' name="updateOrder" value="최근등록순"><B>최근등록순</B></button>
 								&nbsp;|&nbsp; 
 								<button class="sortBtn" onclick = 'selectSortType("lowPriceOrder");' name="lowPriceOrder" value="낮은가격순">낮은가격순</button>
 								&nbsp;|&nbsp; 
 								<button class="sortBtn" onclick = 'selectSortType("highPriceOrder");' name="highPriceOrder" value="높은가격순">높은가격순</button>
-								&nbsp;|&nbsp;
-								<button class="sortBtn" onclick = 'selectSortType("manyReviewOrder");' name="manyReviewOrder" value="상품평많은순">상품평많은순</button>
+								<!-- &nbsp;|&nbsp;
+								<button class="sortBtn" onclick = 'selectSortType("manyReviewOrder");' name="manyReviewOrder" value="상품평많은순">상품평많은순</button> -->
 						</span></li>
 						<!-- <li class="right">
 							 <select name="perpage" id="perPageCount" 

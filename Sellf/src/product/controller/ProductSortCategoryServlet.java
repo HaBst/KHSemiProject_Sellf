@@ -44,10 +44,13 @@ public class ProductSortCategoryServlet extends HttpServlet {
 
 		
 		request.setCharacterEncoding("utf-8");
-		String mainCategory = request.getParameter("mainCategory");
+//		String mainCategory = request.getParameter("mainCategory");
 		String subCategory = request.getParameter("subCategory");
 		String orderType = request.getParameter("orderType");
 		String searchKey = request.getParameter("searchKey");
+		System.out.println("검색어 값 " +searchKey  +" " + subCategory.equals("null"));
+		if(searchKey.equals("null"))searchKey="";
+		if(subCategory.equals("null"))subCategory="";
 		int onePageShowProduct = 8;//Integer.parseInt(request.getParameter("onePageShowProduct"));
 		int currentPage = 0;//Integer.parseInt(request.getParameter("currentPage"));
 		

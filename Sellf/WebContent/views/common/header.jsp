@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 	<%@ page import="member.model.vo.*" %>
 	<% session = request.getSession();
-	Member m = new Member();
+	Member mHeader = new Member();
 	if(session != null)
 	{
-	m = (Member)session.getAttribute("login");
-	System.out.println("세션 : " + m);
+		mHeader = (Member)session.getAttribute("login");
+	System.out.println("세션 : " + mHeader);
 	%>
 	
 	<%
@@ -31,10 +31,10 @@
 			<div id="headerTitle">
 				<!--중간 첫번째 윗부분-->
 				<div id="login">
-				<%if(m == null){ %>
+				<%if(mHeader == null){ %>
 					<a href="/views/member/memberLogin.jsp">LOGIN</a>
-					<%}else if(m != null){ %>
-					<%=m.getUser_id()%>님 어서오세요 <a href="/memberLogout">LOGOUT</a>
+					<%}else if(mHeader != null){ %>
+					<%=mHeader.getUser_id()%>님 어서오세요 <a href="/memberLogout">LOGOUT</a>
 					<%} %>
 				</div>
 				<div>
@@ -57,10 +57,11 @@
 				</div> -->
 			</div>
 			<div id="searchBox">
-				<form action="#" method="get">
+				<form action="/views/main/productList.jsp" method="get">
 					<div id="searchText">
+						<input type="hidden" name="orderType" value="uploadOrder"/>
 						<input type="text" style="text-aling: center;" id="search"
-							name="searchquery" placeholder="상품명으로 검색해보세요">
+							name="searchKey" placeholder="상품명으로 검색해보세요">
 					</div>
 					<div id="searchIcon">
 						<input type="submit" value="" class="inputImg"

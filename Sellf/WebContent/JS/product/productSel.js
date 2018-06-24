@@ -68,7 +68,7 @@ function changeTab(tabInfo, name, sellerId)
 						},
 				type : "get",
 				success : function(data){					 
-//					console.log("길이 " + data.reviewList.length);
+					console.log("길이 " + data.reviewList.length);
 					 for(var i = 0; i<data.reviewList.length;i++)
 					 {
 						 var starRate = "";
@@ -145,6 +145,8 @@ function changeImage(imgTag)
 	var tempImg = slideImg[imgTag].src;
 	slideImg[imgTag].src = bigImg.src;
 	bigImg.src = tempImg;
+	$("#mainImg").attr('data-magnify-src', tempImg);
+	 $('.magnify-lens').css('background-image', 'url(' + tempImg + ')');
 	firstImg = tempImg;
 }
 

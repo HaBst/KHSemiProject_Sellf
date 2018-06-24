@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"
  	import="product.model.vo.*" import="java.util.ArrayList"
 %>
+<%-- <% System.out.println(request.getParameter("searchKey")); %> --%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -50,7 +51,8 @@
 			<!--  Header -->
 			<header id="header">
                  <center>
-				 <%@include  file="../../views/common/header.jsp" %>
+				 	<%@include  file="../../views/common/header.jsp" %>
+				 	<input type="hidden" id="searchKey" value="<%=request.getParameter("searchKey") %>"/>
 				 </center>
 			</header>
 			<section id="content">				
@@ -220,7 +222,7 @@
 					<div id="crossLineLong"></div>
 					<ul class="float_wrap">
 						<li class="left"><span class="sort_item">
-								<button class="sortBtn" onclick = 'selectSortType("uploadOrder");' name="updateOrder" value="최근등록순"><B>최근등록순</B></button>
+								<button class="sortBtn" onclick = 'selectSortType("updateOrder");' name="updateOrder" value="최근등록순"><B>최근등록순</B></button>
 								&nbsp;|&nbsp; 
 								<button class="sortBtn" onclick = 'selectSortType("lowPriceOrder");' name="lowPriceOrder" value="낮은가격순">낮은가격순</button>
 								&nbsp;|&nbsp; 

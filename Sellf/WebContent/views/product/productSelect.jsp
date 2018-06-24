@@ -60,7 +60,7 @@ $(document).ready(function() {
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
 
-<script src="../../JS/product/productSel.js"></script>
+<script src="../../JS/product/productSel.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
 
@@ -103,7 +103,7 @@ $(document).ready(function() {
 			<div id="productContent">
 				<div id="productImage">		
 				
-					<img src="<%=p.getImageJson().get("img1").getAsString() %>" class="magnify-image" data-magnify-src="<%=p.getImageJson().get("img1").getAsString() %>" />						
+					<img id="mainImg" src="<%=p.getImageJson().get("img1").getAsString() %>" class="magnify-image" data-magnify-src="<%=p.getImageJson().get("img1").getAsString() %>" />						
 					<!-- <div class="zoom-section">    	  
 						<div class="zoom-small-image">
 							<a href='../../img/테스트3.JPG' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">

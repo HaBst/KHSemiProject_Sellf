@@ -34,7 +34,6 @@ public class NotOpenProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Product> list= new PopularProductService().notOpenProduct();
-		System.out.println("중고상품  " + list.size());
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(list, response.getWriter());

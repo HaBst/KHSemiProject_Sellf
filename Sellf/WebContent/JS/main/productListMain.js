@@ -1,3 +1,5 @@
+
+
 var allCategory;
 var allState;
 var orderTypeArr;
@@ -36,7 +38,7 @@ function loadSelectCategory()
 {
 	var mainCategory  = "M01";//$("#userIndex2").val();// 입력값 가져오기
 	var subCategory  = category;//$("#userIndex2").val();// 입력값 가져오기
-	var searchKey = $("#search");
+	var searchKey = $("#searchKey").val();
 	var onePageShowProduct = 8;//Number($("#perPageCount").val()); // 한페이지에 몇개 보여줄지.
 //	var currentPage = Number(currentPageNum);// 현재 페이지.
 	var totalProductSize = $("#entireProductTitleLabel");  // 제목 표시해줄때.
@@ -52,7 +54,7 @@ function loadSelectCategory()
 				searchKey :searchKey
 				},
 		type : "get",
-		success : function(data){			
+		success : function(data){		
 			var result = "";
 			// JSON에서 MAP형태로 꺼내오려면
 			// 키값을 먼저 추출해야함
@@ -67,20 +69,13 @@ function loadSelectCategory()
 			{
 				maxLength =   currentPage*onePageShowProduct+ onePageShowProduct;
 			}
-//			totalProductSize.html("전체상품 " +  keys.length + "개");
 			
 			var imgKeys = ["img1","img2","img3","img4","img5"];
 			for(var i = currentPage*onePageShowProduct; i<maxLength;i++)
 			{			
-//				var jsonData = data[keys[i]].product_image;
-//				var arr = Object.keys(jsonData);
-//				console.log(arr);
-//				console.log(data[keys[i]].product_image);
-//				var imgKey = Object.keys(data[keys[i]].product_image);
 				var imgJsonObj = JSON.parse(data[keys[i]].product_image);
 				console.log(data[keys[i]].product_detail);
 				var detailJsonObj = JSON.parse(data[keys[i]].product_detail);
-//				console.log("이미지 정보" + imgJsonObj.img1);
 				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
 				totalProductList.append(
 				'<li class="productWrap">'+
@@ -178,7 +173,7 @@ function selectProduct(productId)
 
 function selectSortType(selectOption)
 {
-	location.href="/views/main/productList.jsp?orderType="+selectOption+"&category="+category;
+	location.href="/views/main/productList.jsp?orderType="+selectOption+"&category="+category+"&searchKey="+$("#searchKey").val();
 }
 
 

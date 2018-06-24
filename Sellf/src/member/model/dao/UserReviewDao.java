@@ -19,8 +19,8 @@ public class UserReviewDao {
 
 		int end = currentPage * recordCountPerPage;
 		String 	query = "select * from ("+
-					"select user_review_tb.* , row_number() over(order by user_rv_pk desc) as num from user_review_tb) "+
-							"where num between ? and ? and USER_RV_USER_ENTIRE_ID_FK=?";
+					"select user_review_tb.* , row_number() over(order by user_rv_pk desc) as num from user_review_tb where USER_RV_USER_ENTIRE_ID_FK=? )"+
+							"where num between ? and ? ";
 //			System.out.println(query);
 //			System.out.println(start);
 //			System.out.println(end);
@@ -28,9 +28,9 @@ public class UserReviewDao {
 		ArrayList<UserReview> list = new ArrayList<UserReview>();
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			pstmt.setString(3, id);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) 

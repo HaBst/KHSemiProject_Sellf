@@ -45,6 +45,8 @@ public class ProductDao {
 		ResultSet rset = null;
 		ArrayList<Product> resultList = new ArrayList<Product>();
 		String orderQuery = "";
+		String whereQuery = "";
+		int queryPar = 1;
 		if(orderType==null)orderType = "uploadOrder";
 		switch(orderType)
 		{
@@ -53,15 +55,21 @@ public class ProductDao {
 			case "highPriceOrder": orderQuery = " order by product_price desc ";  break;
 			case "manyReviewOrder": orderQuery = " order by product_entire_pk desc ";  break;		
 		}
-		String query = "select * from product_entire_tb"
-				+ " where PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? and product_name like %?%"+
-				orderQuery;
+		if(searchKey.length()>0)whereQuery += " where product_name like ? ";
+	
+		if(subCategory.length()>0 ) {
+			if(whereQuery.length()>0) whereQuery +=" and ";
+			else whereQuery+=" where ";
+			whereQuery +=" PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? ";
+		}
+		String query = "select * from product_entire_tb"+whereQuery +orderQuery;
 		
-		System.out.println("서브 " + subCategory );
-			
+		System.out.println(searchKey + " " + subCategory + " 서브 " + query );
+		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, subCategory);
+			if(searchKey.length()>0)   pstmt.setString(queryPar++, "%" + searchKey+"%");
+			if(subCategory.length()>0 )pstmt.setString(queryPar++, subCategory);
 //			pstmt.setInt(3, currentPage*onePageShowProduct);
 //			pstmt.setInt(4, currentPage*onePageShowProduct + onePageShowProduct);
 			rset = pstmt.executeQuery();

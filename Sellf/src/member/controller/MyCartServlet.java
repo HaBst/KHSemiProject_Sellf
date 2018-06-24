@@ -50,8 +50,11 @@ public class MyCartServlet extends HttpServlet {
 		
 			// 세션값이 넘어왔는지 여부 체크 
 			HttpSession session = request.getSession(false);
+			
+			//System.out.println("세션값:"+session.getAttribute("login"));
 			if(session.getAttribute("login")!=null) {
-				Member m =  (Member) session.getAttribute("login");
+				Member m = (Member) session.getAttribute("login");
+				System.out.println("m???"+m.getUser_birth());
 				String userId = m.getUser_id();
 				list =new MyCartService().myCartList(userId);
 				
@@ -63,12 +66,6 @@ public class MyCartServlet extends HttpServlet {
 				System.out.println("로그인이 되어있지 않아 장바구니 접근 불가");
 				response.sendRedirect("/views/error/member/Error.html");
 			}
-			
-			
-				
-				
-				
-		//}
 	}
 
 	/**

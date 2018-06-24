@@ -4,6 +4,8 @@ var orderTypeArr;
 var orderType = "updateOrder";
 var category  = "";
 window.onload = function(){
+	currentPage = 0;
+	orderType = "updateOrder";
 	allCategory = document.getElementsByClassName('category-btn')[0];
 	selectCategory();
 	allState = document.getElementsByClassName('productState-btn')[0];
@@ -45,7 +47,7 @@ function loadSelectCategory()
 				subCategory : subCategory,
 				onePageShowProduct :onePageShowProduct,
 				currentPage :currentPage,
-				orderType : orderType
+				orderType : orderType,
 				},
 		type : "get",
 		success : function(data){			
@@ -65,23 +67,22 @@ function loadSelectCategory()
 			}
 //			totalProductSize.html("전체상품 " +  keys.length + "개");
 			
-
-			
+			var imgKeys = ["img1","img2","img3","img4","img5"];
 			for(var i = currentPage*onePageShowProduct; i<maxLength;i++)
 			{			
-				var str = '{"1":"https://d7gbrm2kdcmco.cloudfront.net/t_w768_limit_jpg/j0bxdcsa3bun0shd2b9h.jpg","2":"https://d103rzmewwjpod.cloudfront.net/t_w768_limit_jpg/im54btsw22fgedxblt9c.jpg","3":"https://d7gbrm2kdcmco.cloudfront.net/t_w768_limit_jpg/genn4blq8lpo36dqiw82.jpg","4":null,"5":null}';
-				var imgJsonObj = Object.keys(str);
-				console.log("이미지 json " + imgJsonObj);
-				for(var j = 0;j<imgJsonObj.length;j++ ){					
-			        console.log("이미지 키값 " + imgJsonObj[i]);
-			    }
-//				console.log("이미지 데이터 " + data[keys[i]].product_image[1]);
+//				var jsonData = data[keys[i]].product_image;
+//				var arr = Object.keys(jsonData);
+//				console.log(arr);
+//				console.log(data[keys[i]].product_image);
+//				var imgKey = Object.keys(data[keys[i]].product_image);
+				var imgJsonObj = JSON.parse(data[keys[i]].product_image);
+//				console.log("이미지 정보" + imgJsonObj.img1);
 				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
 				totalProductList.append(
 				'<li class="productWrap">'+
 				'<div class="productBg"' +link +'>'+
 					'<div class="imgWrapper">'+
-						'<img class="productImgMain" src="'+data[keys[i]].product_image+'">'+
+						'<img class="productImgMain" src="'+imgJsonObj.img1+'">'+
 //						'<% if (discountRate > 0) { %>'+						
 //						'<div class="discountBg">10%</div>'+
 //						'<% }%>'+

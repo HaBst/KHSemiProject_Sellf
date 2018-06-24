@@ -1,6 +1,13 @@
 package product.model.vo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Product {
 	private int product_entire_pk;
@@ -13,7 +20,7 @@ public class Product {
 	private int product_amount;
 	private String product_state;
 	private String product_detail;
-	
+	private JsonObject jsonObject = new JsonObject();
 	
 	
 	public int getProduct_entire_pk() {
@@ -64,6 +71,16 @@ public class Product {
 	}
 	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
+		System.out.println(this.product_image);
+//		if(this.product_image!=null && this.product_image.length()>0) {
+			jsonObject = new JsonParser().parse(this.product_image).getAsJsonObject();
+//		}
+//		System.out.println(jsonObject.get("name").getAsString());
+	}
+	
+	public JsonObject getImageJson()
+	{
+		return jsonObject;
 	}
 	public String getProduct_state() {
 		return product_state;

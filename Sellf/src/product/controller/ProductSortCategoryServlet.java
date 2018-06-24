@@ -47,6 +47,7 @@ public class ProductSortCategoryServlet extends HttpServlet {
 		String mainCategory = request.getParameter("mainCategory");
 		String subCategory = request.getParameter("subCategory");
 		String orderType = request.getParameter("orderType");
+		
 		int onePageShowProduct = 8;//Integer.parseInt(request.getParameter("onePageShowProduct"));
 		int currentPage = 0;//Integer.parseInt(request.getParameter("currentPage"));
 		

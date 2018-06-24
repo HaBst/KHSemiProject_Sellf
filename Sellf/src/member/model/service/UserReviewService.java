@@ -34,4 +34,9 @@ public class UserReviewService {
 		return rpd;
 	}
 
+	public int reviewComment(int point, String reviewComment) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

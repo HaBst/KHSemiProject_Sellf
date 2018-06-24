@@ -17,7 +17,12 @@ window.onload = function(){
 	orderType = sortOrder;
 	selectOrderType();
 	category = $_GET('category');
+	loadRecommandList();
 	loadSelectCategory();
+	// 제목설정
+	setTitle();
+//	console.log("현재 제목" + $("#productTitle").text());
+
 }
 
 var currentPage = 0;
@@ -30,6 +35,47 @@ $(window).scroll(function() {
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function loadRecommandList()
+{
+	var totalProductList = $("#recommandProductContent");
+	$.ajax({
+		url:"/productRecomandList",
+		type : "get",
+		success : function(data){	
+			for(var i = 0 ; i<4;i++){
+				var imgJsonObj = JSON.parse(data[i].product_image);
+				var detailJsonObj = JSON.parse(data[i].product_detail);
+				totalProductList.append(
+				'<div id="recommandProduct" onclick="selectProduct('+data[i].product_entire_pk+');">'+
+				'<div class="productBg" style="height:100%; >'+
+					'<div class="imgWrapper">'+
+						'<img class="productImgMain" src="'+imgJsonObj.img1+'" alt="">'+														
+						'<div class="productCoverExplain">'+
+							'<br><br><br>'+				
+							'<ul>'+
+								'<li style="color:white;overflow:auto;">'+data[i].product_name+'</li>'+
+								'<li style="color:gray;overflow:auto;">	'+detailJsonObj.Detail+
+								'<li style="color:white;overflow:auto;">'+numberWithCommas(data[i].product_price)+'</li>'+
+							'</ul>'+
+						'</div>'+
+						'<div class="productSideMenu">'+
+							'<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>'+
+							'<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>'+
+							'<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>'+
+							'<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>'+
+							'<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>'+
+						'</div>'+
+					'</div>'+
+				'</div>'+
+			'</div>');
+			}
+		},
+		error : function(){
+			console.log("실패");	
+		}
+	});
 }
 
 
@@ -74,7 +120,7 @@ function loadSelectCategory()
 			for(var i = currentPage*onePageShowProduct; i<maxLength;i++)
 			{			
 				var imgJsonObj = JSON.parse(data[keys[i]].product_image);
-				console.log(data[keys[i]].product_detail);
+				/*console.log(data[keys[i]].product_detail);*/
 				var detailJsonObj = JSON.parse(data[keys[i]].product_detail);
 				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
 				totalProductList.append(

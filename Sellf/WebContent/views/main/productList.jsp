@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"
  	import="product.model.vo.*" import="java.util.ArrayList"
 %>
-<%-- <% System.out.println(request.getParameter("searchKey")); %> --%>
+ <% 
+ 	String searchK= request.getParameter("searchKey");
+/*  	String cate = request.getParameter("category");
+ 	System.out.println(cate + " 현재 카테고리 "); */
+ %> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,7 +35,7 @@
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
-<script src="../../JS/main/productListMain.js?ver=1"></script>
+<script src="../../JS/main/productListMain.js"></script>
 <script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/common/adv.js?ver=1"></script>
 
@@ -41,7 +45,17 @@
 <link rel="stylesheet" type="text/css" href="../../CSS/common/header.css?ver=1">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css?ver=1">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css?ver=1">
-
+<script>
+	function setTitle()
+	{
+		 <%-- console.log(<%=searchK%> +" 123 " +<%=(searchK!="null")%> ); --%>
+		<% if(searchK!="null" && searchK!=null ){ %>
+			$("#productTitle").html("<h3><%=searchK%></h3>");
+		<% }else {%>
+			$("#productTitle").html("<h3>"+document.getElementById(category).innerHTML + "</h3>");
+		<%}%>
+	}
+</script>
 <title>상품 목록</title>
 </head>
 <body>
@@ -108,14 +122,14 @@
 				<br>
 				<div id="crossLine"></div>
 				<div id="productTitle">
-					<label>전자제품</label>
+					<!-- <label>전자제품</label> -->
 				</div>
 	
 				<div id="recommandProductTitle">
 					<strong>추천상품</strong>
 				</div>
 				<div id="recommandProductContent">
-					<div id="recommandProduct">
+					<!-- <div id="recommandProduct">
 						<div class="productBg" style="height:100%;">
 							<div class="imgWrapper">
 								<img class="productImgMain"
@@ -139,81 +153,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div id="recommandProduct">
-						<div class="productBg" style="height:100%;">
-							<div class="imgWrapper">
-								<img class="productImgMain"
-									src="../../img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
-									alt="">														
-								
-								<div class="productCoverExplain">
-									<br><br><br>				
-									<ul>
-										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
-										<li style="color:gray;overflow:auto;"> 제품설명1<br> 제품설명2</li>
-										<li style="color:white;overflow:auto;">	<s>￦ 50,000</s>-> ￦ 40,000</li>
-									</ul>
-								</div>
-								<div class="productSideMenu">
-									<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>
-									<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>
-									<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>
-									<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>
-									<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="recommandProduct">
-						<div class="productBg" style="height:100%;">
-							<div class="imgWrapper">
-								<img class="productImgMain"
-									src="../../img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
-									alt="">														
-								
-								<div class="productCoverExplain">
-					   				<br><br><br>				
-									<ul>
-										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
-										<li style="color:gray;overflow:auto;">	 제품설명1<br> 제품설명2</li>
-										<li style="color:white;overflow:auto;">		<s>￦ 50,000</s>-> ￦ 40,000</li>
-									</ul>
-								</div>
-								<div class="productSideMenu">
-									<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>
-									<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>
-									<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>
-									<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>
-									<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="recommandProduct">
-						<div class="productBg" style="height:100%;">
-							<div class="imgWrapper">
-								<img class="productImgMain"
-									src="../../img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
-									alt="">																						
-								<div class="productCoverExplain">
-									<br><br><br>				
-									<ul>
-										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
-										<li style="color:gray;overflow:auto;">	 제품설명1<br> 제품설명2</li>
-										<li style="color:white;overflow:auto;">	<s>￦ 50,000</s>-> ￦ 40,000</li>
-									</ul>
-								</div>
-								<div class="productSideMenu">
-									<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>
-									<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>
-									<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>
-									<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>
-									<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+					</div> -->
+					
 				</div>
 				<div id="entireProduct">
 					<div id="entireProductTitle">

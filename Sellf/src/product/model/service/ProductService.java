@@ -47,5 +47,11 @@ public class ProductService {
 		JDBCTemplate.close(conn);
 		return sellerRate;
 	}
+	public ArrayList<Product> productRecomandList() {
+		Connection conn= JDBCTemplate.getConnection();
+		ArrayList<Product> resultList = new ProductDao().productRecomandList(conn);
+		JDBCTemplate.close(conn);
+		return resultList;
+	}
 
 }

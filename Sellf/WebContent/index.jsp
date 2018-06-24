@@ -62,7 +62,7 @@ crossorigin="anonymous"></script>
 		<!-- Wrapper -->
 		<div id="wrapper" style="overflow: hidden;">		
 			<!-- header -->
-			<div id="header"><%@include file="/views/common/header.jsp"%></div>
+			<div id="header"><%@include file="/views/common/header.jsp" %></div>
 			
 			<!-- 메인 광고 이미지 슬라이더 -->
 			<div id="imgSliderSec" style="width:100%;height:auto;">

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, java.text.*"%>
-
+	pageEncoding="UTF-8" import="java.util.*, java.text.*" import="manager.model.vo.*"%>
+<% ManagerMemberData mmd = (ManagerMemberData)request.getAttribute("listData");
+	ArrayList<ManagerSelMember> list = mmd.getList();
+	String pageNavi = mmd.getPageNavi();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +45,7 @@
 	 									<option value="userName">이름</option>
 										<option value="userId">아이디</option>
 									</select> 
-										<input type="text" name="selInfoVal" placeholder="이름 or id입력! " />
+										<input type="text" name="selVal" placeholder="이름 or id입력! " />
 								</td>
 							</tr>
 							<tr><th>회원등급</th>
@@ -71,23 +74,34 @@
 					<br>
 
 					<hr>
-					<br> <br> <label><h3>조회 결과</h3></label> <label><h5
-							style="color: red;">[총 n명 검색]</h5></label>
+					<br> <br> <label><h3>조회 결과</h3></label> 
 							<br>
 					 
 					<div id="selectInfoResult">
 						<table class="table" id="printMemberInfo">
 							<tr>
-								<th><input type="checkbox" name="allCheck"></th>
+								<th>체크</th>
 								<th>아이디</th>
 								<th>고객명</th>
 								<th>등급</th>
 								<th>휴대폰 번호</th>
 								<th>성별</th>
 								<th>가입일자</th>
-								<th>거래내역</th>
+								<th>포인트</th>
 							</tr>
-							
+							<% for(ManagerSelMember msm:list){%>
+							<tr>
+								<td><input type="checkbox" id="unlock" value=<%=msm.getUserEntireId() %>></td>
+								<td><%=msm.getUserEntireId() %></td>
+								<td><%=msm.getUserEntireName() %></td>
+								<td><%=msm.getUserGrade() %></td>
+								<td><%=msm.getUserPhone() %></td>
+								<td><%=msm.getUserGender()%></td>
+								<td><%=msm.getUserEnrollDate() %></td>
+								<td><%=msm.getUserPoint() %>
+							</tr>
+							<%} %>
+							<label><%=pageNavi %></label>
 						</table>
 						<br>
 						<button type="button" class="btn btn-danger btn-sm">불량회원 설정</button>

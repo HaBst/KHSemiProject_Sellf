@@ -42,7 +42,7 @@ public class ManagerBlackListServlet extends HttpServlet {
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 		
-		int currentPage ;//���� ���������� �����ϴ� ����
+		int currentPage ;////시작페이지
 		if(request.getParameter("currentPage")==null) 
 		{
 			currentPage=1;

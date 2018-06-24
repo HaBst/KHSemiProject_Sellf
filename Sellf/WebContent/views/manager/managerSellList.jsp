@@ -25,24 +25,25 @@
 
 					<h3>상품 정보 조회</h3>
 					<hr>
-					
+						<form action="/managerProductSearch" method="post">
 						<table class="table table-bordered">
 							<tr>
+								<form action ="/managerProductSearch" method="post"> 
 								
 								<th>검색분류</th>
-								<td><select id="searchType"> <!-- value값은 차차 생각!! -->
-										<option value=null>-선택안함-</option>
+								<td><select name="searchType"> <!-- value값은 차차 생각!! -->
+										<option value="">-선택안함-</option>
 										<option value="1">상품명</option>
 										<option value="2">카테고리</option>
 										<option value="3">판매자</option>
-								</select><input type="text" id="getSearch" />
+								</select><input type="text" name ="getSearch">
 								</td>
 							</tr>
 							<tr>
 								<th>상품 분류</th> 
 								<td>
-								<select id="productCategory" onchange="chan();" >
-									<option value=null selected>-대분류 선택-</option>
+								<select name="productCategory" onchange="chan();" >
+									<option value="" selected>-대분류 선택-</option>
 									<option value="M01">전자제품</option>
 									<option value="M02">패션의류</option>
 									<option value="M03">패션잡화</option>
@@ -58,7 +59,7 @@
 									<option value="M13">해외명품</option>
 								</select>
 							 	
-							 	<select id="productItem" >
+							 	<select name="productItem" >
 								<!-- 카테고리에 딸린 소분류를 db에서 읽어와서 출력. -->
 								<option disabled>-소분류 선택-</option>
 								
@@ -67,7 +68,7 @@
 						</tr>
 							<tr>
 								<th>상품 상태</th>
-								<td> <input type="radio" name="status" value=null checked />전체 
+								<td> <input type="radio" name="status" value="" checked />전체 
 									 <input type="radio" name="status" value="a" />상  
 									 <input type="radio" name="status" value="b" />중상  
 									 <input type="radio" name="status" value="b" />중  
@@ -78,20 +79,15 @@
 							</tr>
 						</table>
 						<center>
-							<button type=button class="btn btn-outline-warning btn-sm" onclick="sellSearch()"  >검색</button> 
-							<button type="button"
-								class="btn btn-outline-secondary btn-sm" onckick="reset();">초기화</button>
+							<input type="submit" class="btn btn-outline-warning btn-sm"  >							
+							<input type="reset" class="btn btn-outline-secondary btn-sm" onckick="reset();">초기화</button>
 						</center>
-					
+					</form>
 					<hr>
 					<br><br>
 					<div id="searchResult">
 					 <label><h3>조회결과</h3></label><br>
-					 <label><select name="viewNum"> <!-- 한 페이지당 출력할 내용의 갯수 선택. -->
-					 			<option value="10">10</option>
-					 			<option value="30">30</option>
-					 			<option value="50">50</option>
-					 		</select></label>개 씩 보기
+					
 						<table class="table">
 							<tr>
 								<th>상품번호</th>

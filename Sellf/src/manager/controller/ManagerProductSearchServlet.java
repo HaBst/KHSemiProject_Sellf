@@ -36,7 +36,7 @@ public class ManagerProductSearchServlet extends HttpServlet {
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 		
-		
+		request.setCharacterEncoding("UTF-8");
 		ManagerSellSearch mss= new ManagerSellSearch(); //상품 검색내용을 담을 객체 선언.
 //		String searchType = request.getParameter("searchType");
 //		String getSearch = request.getParameter("getSearch");
@@ -46,9 +46,9 @@ public class ManagerProductSearchServlet extends HttpServlet {
 //		System.out.println(searchType + getSearch + MainCtg + subCtg);
 		mss.setSearchType(request.getParameter("searchType"));
 		mss.setGetSearch(request.getParameter("getSearch"));
-		mss.setMainCtg(request.getParameter("MainCtg"));
-		mss.setSubCtg(request.getParameter("subCtg"));
-		mss.setGradeStatus(request.getParameter("gradeStatus"));
+		mss.setMainCtg(request.getParameter("productCategory"));
+		mss.setSubCtg(request.getParameter("productItem"));
+		mss.setGradeStatus(request.getParameter("status"));
 		System.out.println(mss.getSearchType());
 		System.out.println(mss.getGetSearch());
 		System.out.println(mss.getMainCtg());

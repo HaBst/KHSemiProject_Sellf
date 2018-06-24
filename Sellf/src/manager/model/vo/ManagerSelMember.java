@@ -12,9 +12,9 @@ public class ManagerSelMember { //DB에서 회원정보를 가져올 때 저장�
 	private char userGender; //db에서 회원의 성별을 읽어 저장
 	private Date userEnrollDate; //회원가입한 날을 읽어 저장
 	private int userPoint; //회원이 보유한 point읽어와 저장함.
-	
+	private int totalCount;//검색갯수
 	public ManagerSelMember(String userEntireId, String userEntireName, String userGrade, String userPhone,
-			char userGender, Date userEnrollDate, int userPoint) {
+			char userGender, Date userEnrollDate, int userPoint,int totalCount ) {
 		super();
 		this.userEntireId = userEntireId;
 		this.userEntireName = userEntireName;
@@ -23,6 +23,15 @@ public class ManagerSelMember { //DB에서 회원정보를 가져올 때 저장�
 		this.userGender = userGender;
 		this.userEnrollDate = userEnrollDate;
 		this.userPoint = userPoint;
+		this.totalCount = totalCount;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
 
 	public String getUserEntireId() {

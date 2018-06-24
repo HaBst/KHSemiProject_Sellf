@@ -10,7 +10,7 @@ public class ManagerProductService {
     public void getSellSearch(ManagerSellSearch mss) { //front단에서 설정받은 조건을 매개변수로 넘겨서 조건에해당하는 상품들을 DB로가지러 감.
     Connection conn = JDBCTemplate.getConnection();
     new ManagerProductDao().getSellSearch(conn,mss);
-    
+    JDBCTemplate.close(conn);
         
     }
     

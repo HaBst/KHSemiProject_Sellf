@@ -57,11 +57,6 @@ body {
 	font-size: 20px;
 }
 
-/*광고 */
-.ad {
-	padding-top: 6%;
-	margin-bottom: 5%;
-}
 
 /*판매가격 */
 #price {
@@ -70,14 +65,9 @@ body {
 
 /*상세정보 분류제목 */
 #subTitle {
-	margin-top: 1%;
-}
-
-.thumb-image {
-	float: left;
-	width: 100px;
-	position: relative;
-	padding: 5px;
+	font-size : 17px;
+	margin-left:5%;
+	margin-top: 1%;	
 }
 
 .submitWrapper {
@@ -88,12 +78,6 @@ body {
 	float: right;
 	margin-right: 2%;
 	margin-left: 2%;
-}
-
-/* 날력 버튼 지우기 */
-input[type="date"]::-webkit-inner-spin-button {
-	display: none;
-	appearance: none;
 }
 
 .imgCon {
@@ -107,16 +91,47 @@ input[type="date"]::-webkit-inner-spin-button {
 	float: left;
 	margin: 2% 2% 2% 2%;
 }
+.imgTitle{
+	font-size: 25px;
+}
 
 #line {
 	margin-right: 3%;
 }
-form-control{
-	padding: 0px;
+.form-control{
+	padding-left: 10px;
+
+	
+}
+.form-control:hover{
+	border-color: RGBA(216,85,161,1);
+	box-shadow: 0 .1rem 1rem RGBA(216,85,161,1)!important;
 }
 #buttons{
-	border : 1px solid lightgray;
+	border : 1px solid RGBA(216,85,161,1);
+	
+}
+#buttons:hover{
+	background-color: RGBA(216,85,161,1);
+	color : white;
+}
+.imgCon:hover{
+	border-color: RGBA(216,85,161,1);
+	box-shadow: 0 .1rem 1rem RGBA(216,85,161,1)!important;
 }
 #bCategory,#sCategory,#state,#number,#productGrade,#scratch,#refund,#extra{
 	height : 34px;
 }
+.shadow {
+    box-shadow: 0 .1rem 1rem RGBA(216,85,161,1)!important;
+}
+label {
+	    font-weight: 500;
+}
+
+    
+    
+    
+    
+    
+    

@@ -346,7 +346,6 @@
 						},
 						error : function(){
 							console.log("실패");
-							alert(id);
 						}
 					});
 		});

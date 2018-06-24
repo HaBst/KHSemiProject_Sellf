@@ -123,7 +123,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 						%>
 						<div id="bordTitle">
 							<h3 style="float: left;">
-								<strong>자주 묻는 질문</strong>
+								<strong>공지 사항</strong>
 							</h3>
 						</div>
 						<div class="hlLong"></div>

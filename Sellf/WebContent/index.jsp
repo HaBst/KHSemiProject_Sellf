@@ -60,8 +60,7 @@ crossorigin="anonymous"></script>
 
 	<center>
 		<!-- Wrapper -->
-		<div id="wrapper" style="overflow: hidden;">
-		
+		<div id="wrapper" style="overflow: hidden;">		
 			<!-- header -->
 			<div id="header"><%@include file="/views/common/header.jsp"%></div>
 			
@@ -207,21 +206,25 @@ crossorigin="anonymous"></script>
 							var img = [];
 							var productPk = [];
 							
-							console.log(data);
+							console.log("중고 아닌 새거 " + data);
+							var imgKeys = ["img1","img2","img3","img4","img5"];
+							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
-								img[i]= data[i].product_image;
+								imgJsonObj = JSON.parse(data[i].product_image);
+								img[i]= imgJsonObj.img1;//data[i].product_image; 
+								console.log("개봉 안한 이미지" + imgJsonObj.img1);
 								productName[i] =data[i].product_name;
 								productPk[i] =data[i].product_entire_pk;
 								}	
 								console.log("상품인덱스:"+productPk[0]);
 								
 							$("#imghoverSec .shadow img:eq(0)").attr("src",img[0]);
-								$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
-								$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
+							$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
+							$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
 								
-								$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
-								$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
-								$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
+							$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
+							$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
+							$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
 						},
 						error : function() { 
 							console.log("미개봉상품가져오기 실행 실패");	

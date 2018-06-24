@@ -71,7 +71,7 @@ public class Product {
 	}
 	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
-		System.out.println(this.product_image);
+//		System.out.println(product_entire_pk + " 이미지 경로 " + this.product_image);
 //		if(this.product_image!=null && this.product_image.length()>0) {
 			jsonObject = new JsonParser().parse(this.product_image).getAsJsonObject();
 //		}

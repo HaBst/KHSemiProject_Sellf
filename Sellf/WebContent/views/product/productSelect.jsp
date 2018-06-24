@@ -58,7 +58,7 @@ $(document).ready(function() {
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
 
-<script src="../../JS/product/productSel.js?ver=1"></script>
+<script src="../../JS/product/productSel.js"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
 
@@ -107,18 +107,31 @@ $(document).ready(function() {
 							<a href='../../img/테스트3.JPG' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">
 							<img src="../../img/테스트3.JPG" alt='' title="상품 확대" /></a>
 						</div>	
-						<div class="zoom-desc">
-							<a href='../../img/테스트3.JPG' class='cloud-zoom-gallery' title='Red' rel="useZoom: 'zoom1', smallImage: '../../img/테스트3.JPG' ">
-								<img class="zoom-tiny-image" src="../../img/테스트3.JPG" style="width:20%;"/>
-							</a>
-							<a href='../../img/테스트4.JPG' class='cloud-zoom-gallery' title='Blue' rel="useZoom: 'zoom1', smallImage: '../../img/테스트4.JPG'">
-								<img class="zoom-tiny-image" src="../../img/테스트4.JPG" style="width:20%;"/>
-							</a>
-							<a href='../../img/테스트5.JPG' class='cloud-zoom-gallery' title='Blue' rel="useZoom: 'zoom1', smallImage: '../../img/테스트5.JPG' ">
-								<img class="zoom-tiny-image" src="../../img/테스트5.JPG" style="width:20%;"/>
-							</a>
-						</div>				
+								
 					</div> -->
+					<div class="zoom-desc">
+						<%if(p.getImageJson().get("img2").getAsString().length()>0){ %>
+							<a href='<%=p.getImageJson().get("img2").getAsString() %>'>
+								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img2").getAsString() %>" style="width:22%; height:60px;"/>
+							</a>
+						<%} %>
+						<%if(p.getImageJson().get("img3").getAsString().length()>0){ %>
+							<a href='<%=p.getImageJson().get("img3").getAsString() %>'>
+								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img3").getAsString() %>" style="width:22%; height:60px;"/>
+							</a>
+						<%} %>
+						<%if(p.getImageJson().get("img4").getAsString().length()>0){ %>
+							<a href='<%=p.getImageJson().get("img4").getAsString() %>'>
+								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img4").getAsString() %>" style="width:22%; height:60px;"/>
+							</a>
+						<%} %>
+						<%if(p.getImageJson().get("img5").getAsString().length()>0){ %>
+							<a href='<%=p.getImageJson().get("img5").getAsString() %>'>
+								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img5").getAsString() %>" style="width:22%; height:60px;"/>
+							</a>
+						<%} %>
+					
+						</div>		
 					
 					<!-- <img	src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" /> -->
 				</div>
@@ -170,7 +183,7 @@ $(document).ready(function() {
 									<li class="star"><%if(sellerRate.getAvr()>=3){ %>★  <%}else{%>☆<%} %></li>
 									<li class="star"><%if(sellerRate.getAvr()>=4){ %>★  <%}else{%>☆<%} %></li>
 									<li class="star"><%if(sellerRate.getAvr()>=5){ %>★  <%}else{%>☆<%} %></li>
-									<li>(<%=sellerRate.getAvr() %>/5)</li>
+									<li>(<%=String.format("%.2f",sellerRate.getAvr()) %>/5)</li>
 								</ul>
 							</div>
 						</div>
@@ -346,7 +359,7 @@ $(document).ready(function() {
 							 <div id="productReviewAvr">
 								<div id="starReview">
 									<div class="star">
-										<h3><span id="starScore" style="font-size:20;"><%=sellerRate.getAvr() %></span></h3>										
+										<h3><span id="starScore" style="font-size:20;"><%=String.format("%.2f",sellerRate.getAvr()) %></span></h3>										
 							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=1){ %>★  <%}else{%>☆<%} %></h1>
 							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=2){ %>★  <%}else{%>☆<%} %></h1>
 							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=3){ %>★  <%}else{%>☆<%} %></h1>

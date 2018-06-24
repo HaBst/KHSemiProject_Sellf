@@ -27,3 +27,5 @@ Sellf/build/
 Sellf/.classpath
 *.class
 .recommenders/
+Sellf/.settings/org.eclipse.wst.common.component
+Sellf/.settings/org.eclipse.wst.common.component

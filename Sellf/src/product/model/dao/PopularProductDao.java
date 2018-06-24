@@ -221,6 +221,7 @@ public class PopularProductDao {
 				p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));
 				p.setProduct_image(rset.getString("PRUDUCT_IMAGE"));
+				System.out.println("중고상품  " + rset.getString("PRUDUCT_IMAGE"));
 				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
 
 				list.add(p);

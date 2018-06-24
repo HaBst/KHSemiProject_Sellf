@@ -56,14 +56,14 @@ public class MyCart2Servlet extends HttpServlet {
 			}
 			
 			request.setCharacterEncoding("utf-8");
-			System.out.println("마이카트서블릿2:"+list.get(0).getProductDetail());
+			//System.out.println("마이카트서블릿2:"+list.get(0).getProductDetail());
 			RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart2.jsp");
 			request.setAttribute("orderList", list);
 			view.forward(request, response);
 		}
 		else {
 			System.out.println("로그인이 되어있지 않아 장바구니 접근 불가");
-			response.sendRedirect("/views/member/memberLoginError.jsp");
+			response.sendRedirect("/views/error/member/Error.html");
 		}
 		
 		

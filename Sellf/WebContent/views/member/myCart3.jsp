@@ -1,3 +1,5 @@
+<%@page import="product.model.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,7 +52,7 @@ crossorigin="anonymous">
 <style>
 </style>
 </head>
-
+<%-- <%ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("mt2List");%> --%>
 <body>
 	<center>
 		<div id="wrapper" style="font-family: 'Sunflower', sans-serif; overflow:hidden;" >
@@ -83,14 +85,14 @@ crossorigin="anonymous">
 				<div id="orderComplete">
 					<div id="orderCompleteTitle">
 						<h1>주문완료</h1>
-						<span style="font-size: 50px; color: green;">SELL:F</span> <span
+						<span style="font-size: 50px; color: #000033; font-weigth:700;">SELL:F</span> <span
 							style="font-size: 20px;">쇼핑몰을 이용해주셔서 감사합니다.</span>
 					</div>
 				</div>
 				<br>
 				<div id="orderInfo">
 					<div>
-						<table class="table"
+						<!-- <table class="table"
 							style="table-layout: fixed; margin: auto; text-align: center;">
 							<thead>
 								<tr>
@@ -104,23 +106,25 @@ crossorigin="anonymous">
 									<td style="width: 30%; padding-top: 10px;">
 										<div class="orderGoodsInfo1">
 											<img
-												src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg"
+												src=""
 												style="width: 100px; height: 100px;" />
 										</div>
 										<div class="orderGoodsInfo2">
 											<div class="orderGoodsName">
-												<a href="#">상품명:<span>?????</span></a>
+												<a href="#">상품명:<span></span></a>
 											</div>
-											<div class="orderGoodsOption">(옵션:색상-그레이)</div>
+											<div class="orderGoodsOption"></div>
 										</div>
 									</td>
-									<td style="padding-top: 50px;"><span style="font-size: 15px;" id="orderquantity">1</span> <br></td>
-									<td style="padding-top: 50px;"><span style="font-size: 15px;">총결제금액</span></td>										
+									<td style="padding-top: 50px;"><span style="font-size: 15px;" id="orderquantity">
+									</span><br></td>
+									<td style="padding-top: 50px;"><span style="font-size: 15px;"></span></td>										
 								</tr>
 							</tbody>
-						</table>
+						</table> -->
 					</div>
 				</div>
+				
 				<hr>
 				<button type="button" class="btn btn-secondary" onclick="home();">메인으로</button>
 				<button type="button" class="btn btn-secondary" onclick="myPage();">마이페이지</button>
@@ -129,7 +133,7 @@ crossorigin="anonymous">
 			</div>
 			<br> <br>
 			<footer id="footer">
-						<%@include file="../../views/common/footer.jsp" %>
+						<%@include file="/views/common/footer.jsp" %>
 			</footer>
 		</div>
 	</center>

@@ -61,7 +61,7 @@ public class MyCartServlet extends HttpServlet {
 			}
 			else {
 				System.out.println("로그인이 되어있지 않아 장바구니 접근 불가");
-				response.sendRedirect("/views/member/memberLoginError.jsp");
+				response.sendRedirect("/views/error/member/Error.html");
 			}
 			
 			

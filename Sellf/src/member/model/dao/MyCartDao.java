@@ -2,6 +2,7 @@ package member.model.dao;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import member.model.vo.Member;
 import member.model.vo.MyCartTmp;
-import member.model.vo.UserCartList;
 import product.model.vo.Product;
 
 public class MyCartDao {
@@ -69,7 +69,13 @@ public class MyCartDao {
 				myCart.setProductName(rset.getString("PRODUCT_NAME"));
 				myCart.setUser_entire_pk(rset.getInt("USER_ENTIRE_PK"));
 				myCart.setUser_ePoint(rset.getInt("USER_EPOINT"));
-				
+				myCart.setUser_name(rset.getString("USER_NAME"));
+				myCart.setUser_email(rset.getString("USER_EMAIL"));
+				myCart.setUser_addr(rset.getString("USER_ADDR"));
+				myCart.setUser_id(rset.getString("USER_ID"));
+				myCart.setUser_phone(rset.getString("USER_PHONE"));
+				myCart.setUser_user_entire_user_grade_id_fk(rset.getString("USER_ENTIRE_USER_GRADE_ID_FK"));
+				myCart.setUser_interest(rset.getString("USER_INTEREST"));	
 			}
 		} catch (SQLException e) {		
 			e.printStackTrace();
@@ -117,5 +123,29 @@ public class MyCartDao {
 		return m ;
 		
 	}
+
+	public int myOrderInfo(Connection conn, MyCartTmp mt) {
+		PreparedStatement pstmt = null;
+		int result =  0;
+		String query = "INSERT INTO ORDER_TB (SELECT ORDER_TB_SEQ.NEXTVAL,?,?,PRODUCT_ENTIRE_TB.PRODUCT_STATE,SYSDATE "
+				+ "	FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_ENTIRE_PK=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, mt.getProductEntire());
+			pstmt.setString(2, mt.getUser_id());
+			pstmt.setInt(3, mt.getProductEntire());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 }

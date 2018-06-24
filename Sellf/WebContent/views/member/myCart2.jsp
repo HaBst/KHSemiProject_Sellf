@@ -104,19 +104,19 @@
 						<h2>주문정보</h2>
 						<hr>
 						<h3 style="float: left;">배송지</h3>
-						<br> <br> <br>
+						<br> <br> <br> <br>
 						<div class="input-group input-group-sm mb-3"
 							style="width: 300px; float: left;">
 							<input type="text" class="form-control" aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm" placeholder="받는 분"
-								name="memberName" id="memberName" style="height: 40px;">
+								name="memberName" id="memberName" style="height: 40px;" value="<%=list.get(0).getUser_name()%>">
 						</div>
 						<div class="input-group input-group-sm mb-3"
 							style="width: 300px; float: left;">
 							<input type="tel" class="form-control" aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm"
 								placeholder="휴대폰번호(숫자만입력)" name="phone" id="phone"
-								style="height: 40px;">
+								style="height: 40px;"  value="<%=list.get(0).getUser_phone() %>">
 						</div>
 						<br> <br>
 						<div class="input-group input-group-sm mb-3"
@@ -124,13 +124,13 @@
 							<div class="input-group-prepend"></div>
 							<input type="email" class="form-control" aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm" placeholder="이메일주소"
-								name="email" id="email" style="height: 40px;">
+								name="email" id="email" style="height: 40px;" value ="<%=list.get(0).getUser_email()%>">
 						</div>
 						<div class="input-group input-group-sm mb-3"
 							style="width: 300px; float: left;">
 							<input type="text" class="form-control postcodify_address" aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm" placeholder="주소"
-								name="addrInfo" size="50" readonly="readonly" style="height: 40px;">
+								name="addrInfo" size="50" readonly="readonly" style="height: 40px;" value="<%=list.get(0).getUser_addr()%>">
 						</div>
 						<br> <br> <br> <br>
 						 <button type="button" class="btn btn-secondary btn-sm"
@@ -149,43 +149,42 @@
 						<h2>결제수단</h2>
 						<hr>
 						<br> <br> <input type="button" value="신용카드"
-							class="payButton"> <input type="button"
+							class="payButton"> 
+							<input type="button"
 							value="무통장입금(가상계좌)" class="payButton">
 					</div>
 					
-					<div id="orderListInfo" style="padding-bottom: 30px;">
+					<div id="orderListInfo" >
 						<br>
 						<h2>결제상품</h2>
 						<hr>
 						<div id="goodsInfo">
 							<img src="<%=list.get(0).getProductImage() %>"
 								style="width: 100px; height: 100px; float: left;">
-							<div id="goodsName">상품명 : <%=list.get(0).getProductName()%></div>
-							<div id="goodsPrice">상품가격 : <%=list.get(0).getProductPrice()%></div>
+							<div id="goodsName" name="goodsName" style="padding-bottom:10px; margin-top:10px;">상품명 : <%=list.get(0).getProductName()%></div>
+							<div id="goodsPrice" name="goodsPrice">상품가격 : <%=list.get(0).getProductPrice()%></div>
 						</div>
 						<div id="orderListInfoWrap">
 							<div>
-								<span>주문 수량</span><span id="productPrice">상품명:<%=list.get(0).getProductName()%>&nbsp;
+								<span style="font-weight:500;">주문 수량</span><span id="productPrice">상품명:<%=list.get(0).getProductName()%>&nbsp;
 													<%=list.get(0).getProductAmount()%>외&nbsp;<%=list.size()-1 %>개</span>
 							</div>
 							<div>
-								<span>쿠폰사용</span><span>
-									<button type="button" class="btn btn-secondary" onclick="availableCouponsBtn();">사용가능쿠폰</button>		
+								<span style="font-weight:500;">쿠폰사용</span><span>
+									<button type="button" style="background-color: #66CCFF;"class="btn btn-secondary" onclick="availableCouponsBtn();">사용가능쿠폰</button>		
 								</span>
 							</div>
 							<div>
-								<span>E-wallet포인트</span><span id="userPoint" name="ewalletPoint"><%=list.get(0).getUser_ePoint() %>포인트</span>
+								<span style="font-weight:500;" >E-wallet포인트</span><span id="userPoint" name="ewalletPoint"><%=list.get(0).getUser_ePoint() %>포인트</span>
 							</div>
 							<div>
-								<span>배송료</span><span>무료배송</span>
+								<span style="font-weight:500;">배송료</span><span>무료배송</span>
 							</div>
 							<hr>
 							<div>
 							<%! int totalPrice = 0; 
 								int amount= 0; 
 								int price = 0;
-						
-			
 							%>
 							<%for (int i = 0 ; i<list.size(); i++){ 
 								int result = 0;
@@ -194,18 +193,21 @@
 								result = amount * price;
 								totalPrice+=result;	
 							%>						
-							<%}
+							<%}%>
 							
-							%>
-								<span>총 결제 금액</span> 
-								<span id="totalPrice"><%=totalPrice-list.get(0).getUser_ePoint()%>원</span>
-										
+							<%for(int i = 0 ; i<list.size();i++) {%>
+							<input type="hidden" name ="productEntire+<%=i %>" value = "<%=list.get(i).getProductEntire() %>" />
+							<%} %>
+							<input type="hidden" name="totalAmount" value="<%=list.size() %>" />	
+								<span style="font-weight:500;">총 결제 금액</span> 
+								<span id="totalPrice"><%=totalPrice-list.get(0).getUser_ePoint()%>원</span>				
 							</div>
 							<div style="padding-left: 16px;">
 								<!--  외부 API 결제시스템 반영 or 기존에 적립한 포인트로 결제하는 방법  -->	
 								<input type="submit" class="btn btn-secondary" id="orderButton" 
-								style="width: 300px; height: 50px; margin-right: 15px;" value="주문하기" onclick="return orderBtn();">
+								style="width: 300px; height: 50px; margin-right: 15px; background-color: #66CCFF;" value="주문하기" onclick="return orderBtn();">
 							</div>
+											
 							<br><br>	
 						</div>
 					</div>

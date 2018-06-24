@@ -29,4 +29,17 @@ public class MyCartService {
 		
 	}
 
+	public int myOrderInfo(MyCartTmp mt) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result =  new MyCartDao().myOrderInfo(conn,mt);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
+
 }

@@ -5,7 +5,8 @@ import java.util.Date;
 public class MyCartTmp {
 	
 	
-	
+	private int productEntire;
+	private String productState;
 	private String productImage;
 	private String productName ;
 	private String productDetail;
@@ -25,19 +26,23 @@ public class MyCartTmp {
 	private String user_interest;
 	private Date user_enrolldate;
 	private int user_ePoint;
+	private Date orderDate;
 	
 	
 	public MyCartTmp() {
 	
 	}
 
+	
 
-	public MyCartTmp(String productImage, String productName, String productDetail, int productAmount,
-			int productPrice, int totalPrice, int user_entire_pk, String user_id, String user_name, String user_pwd,
-			String user_phone, String user_birth, String user_gender, String user_addr,
-			String user_user_entire_user_grade_id_fk, String user_email, String user_interest, Date user_enrolldate,
-			int user_ePoint) {
+	public MyCartTmp(int productEntire, String productState, String productImage, String productName,
+			String productDetail, int productAmount, int productPrice, int totalPrice, int user_entire_pk,
+			String user_id, String user_name, String user_pwd, String user_phone, String user_birth, String user_gender,
+			String user_addr, String user_user_entire_user_grade_id_fk, String user_email, String user_interest,
+			Date user_enrolldate, int user_ePoint, Date orderDate) {
 		super();
+		this.productEntire = productEntire;
+		this.productState = productState;
 		this.productImage = productImage;
 		this.productName = productName;
 		this.productDetail = productDetail;
@@ -57,7 +62,39 @@ public class MyCartTmp {
 		this.user_interest = user_interest;
 		this.user_enrolldate = user_enrolldate;
 		this.user_ePoint = user_ePoint;
+		this.orderDate = orderDate;
 	}
+
+
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+
+
+	public int getProductEntire() {
+		return productEntire;
+	}
+
+
+
+	public String getProductState() {
+		return productState;
+	}
+
+
+
+	public void setProductState(String productState) {
+		this.productState = productState;
+	}
+
 
 
 	public int getUser_entire_pk() {
@@ -237,5 +274,10 @@ public class MyCartTmp {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
+
+	public void setProductEntire(int productEntire) {
+		this.productEntire = productEntire;
+	}
+
+
 }

@@ -1,7 +1,10 @@
 package member.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import member.model.service.MyCartService;
 import member.model.vo.Member;
 import member.model.vo.MyCartTmp;
 import product.model.vo.Product;
@@ -34,23 +38,21 @@ public class MyCart3Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 한글 인코딩
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession(false);
-		String memberName = request.getParameter("memberName");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String address = request.getParameter("addrInfo")+request.getParameter("addrDetail");
+		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("login")!=null) {
+			
 			Member m = (Member) session.getAttribute("login");
 			String userId = m.getUser_id();
-			MyCartTmp mt = new MyCartTmp();
-			System.out.println("myCart3 서블릿 왔어");
-		}
+			RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart3.jsp");
+			request.setAttribute("myCartList3", m);
+			view.forward(request, response);
+		}else {
 		
-		else {
-			System.out.println("로그인이 되어있지않아 접근 불가");
-			response.sendRedirect("/views/error/memberLoginError.html");
+		
+		System.out.println("로그인이 되어있지않아 접근 불가");
+		response.sendRedirect("/views/error/member/Error.html");
+
 		}
 		
 	}

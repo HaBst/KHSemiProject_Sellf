@@ -1,32 +1,35 @@
 package manager.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import manager.model.dao.ManagerDao;
-import manager.model.service.ManagerService;
-import com.google.gson.Gson;
+import org.omg.PortableServer.RequestProcessingPolicy;
 
 import common.JDBCTemplate;
+import manager.model.service.ManagerService;
+import manager.model.vo.Manager;
+import manager.model.vo.ManagerTotalMember;
 
 /**
- * Servlet implementation class ManagerGetSubCtgServlet
+ * Servlet implementation class ManagerFirstLoadServlet
  */
-@WebServlet(name = "ManagerGetSubCtg", urlPatterns = { "/managerGetSubCtg" })
-public class ManagerGetSubCtgServlet extends HttpServlet {
+@WebServlet(name = "ManagerFirstLoad", urlPatterns = { "/managerFirstLoad" })
+public class ManagerFirstLoadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerGetSubCtgServlet() {
+    public ManagerFirstLoadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,27 +38,26 @@ public class ManagerGetSubCtgServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//메인카테고리 선택에 따라 하위분류를 db에서 읽어오는 서블릿.
-		
+		//맨처음 관리자 계정으로 로그인했을 시 그래프와 테이블에 들어갈 정보를 읽어오는 servlet. 
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
-		
-		request.setCharacterEncoding("UTF-8");
-		String mainCtg = request.getParameter("mainCtg");
-		System.out.println(mainCtg);
-		
-        HashMap<String, String> subCtg = new ManagerService().getSubCtg(mainCtg); //DB에서 읽어온 소분류를 저장.
-//      for(String subId:subCtg.keySet())
-//      {
-//          System.out.println("key:"+subId+",value:"+subCtg.get(subId)); // 값 읽어온거 테스트
-//      }
-      //hash-map을 Gson이용하여 script로 넘김.
-      response.setCharacterEncoding("UTF-8");
-      response.setContentType("application/json");
-      new Gson().toJson(subCtg,response.getWriter());
-
+	
+		ArrayList<ManagerTotalMember> totalMember=new ManagerService().getMemberStatus();
+		 request.getContextPath();
+		if(!totalMember.isEmpty())
+			{
+			System.out.println("널아냐");
+			System.out.println(totalMember);
+				RequestDispatcher views=request.getRequestDispatcher("/views/main/manager.jsp");
+				request.setAttribute("totalMember", totalMember);
+				views.forward(request, response); //메인으로
+						
+			}else {
+				System.out.println("비었어");
+			}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

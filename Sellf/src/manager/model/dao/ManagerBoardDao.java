@@ -30,7 +30,7 @@ public class ManagerBoardDao {
 			{
 				mb = new ManagerBoard();
 				mb.setBoardNo(rset.getInt("notice_pk"));
-				mb.setWriteId("������");
+				mb.setWriteId("관리자");
 				mb.setSubject(rset.getString("notice_subject"));
 				mb.setContent(rset.getString("notice_content"));
 				mb.setWriteDate(rset.getDate("notice_registration_date"));
@@ -144,7 +144,7 @@ public class ManagerBoardDao {
 			{
 				mb = new ManagerBoard();
 				mb.setBoardNo(rset.getInt("notice_pk"));
-				mb.setWriteId("������"); //���������� �����ڸ� �ۼ�.
+				mb.setWriteId("관리자"); //공지사항은 관리자만 작성 가능!
 				mb.setSubject(rset.getString("notice_subject"));
 				mb.setContent(rset.getString("notice_content"));
 				mb.setWriteDate(rset.getDate("notice_registration_date"));
@@ -158,6 +158,24 @@ public class ManagerBoardDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return mb;
+	}
+
+	public int writeNotice(Connection conn, String writeTitle, String writeContent) { //공지사항 db에 삽입하는 메소드.
+		PreparedStatement pstmt  = null;
+		int result = 0;
+
+		String query = "insert into board_notice_tb values(board_notice_tb_SEQ.nextval, 'admin',?,null,?,sysdate,1150)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, writeTitle); //글제목 삽입
+			pstmt.setString(2, writeContent); //글내용 삽입
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}return result;
 	}
 
 }

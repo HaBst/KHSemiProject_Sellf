@@ -28,11 +28,25 @@ public class ManagerBoardService {
 		return mbpd;
 	}
 
-	public ManagerBoard noticeSelect(int noticeNo) { //�Խù� ����
+	public ManagerBoard noticeSelect(int noticeNo) { //공지사항 제목 클릭하여 글내용을 보고자 할때
 		Connection conn = JDBCTemplate.getConnection();
 		ManagerBoard mb = new ManagerBoardDao().noticeSelect(conn,noticeNo);
 		JDBCTemplate.close(conn);
 		return mb;
+	}
+
+	public int writeNotice(String writeTitle, String writeContent) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ManagerBoardDao().writeNotice(conn,writeTitle,writeContent);
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn); //insert가 정상적으로 되었다면 commit
+		}else {
+			JDBCTemplate.rollback(conn); //insert가 안되었다면 rollback
+		} 	
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 }

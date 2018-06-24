@@ -35,7 +35,8 @@ public class UserReviewService {
 	}
 
 	public int reviewComment(int point, String reviewComment) {
-		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new UserReviewDao().reviewComment(conn, point, reviewComment);
 		return 0;
 	}
 

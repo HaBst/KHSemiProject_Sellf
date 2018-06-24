@@ -1,8 +1,6 @@
 package member.controller;
 
 import java.io.IOException;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberLoginServlet
+ * Servlet implementation class MemberLogout
  */
-@WebServlet(name = "MemberLogin", urlPatterns = { "/memberLogin" })
-public class MemberLoginServlet extends HttpServlet {
+@WebServlet("/memberLogout")
+public class MemberLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginServlet() {
+    public MemberLogout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +27,11 @@ public class MemberLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String id = request.getParameter("userId");
-		String pw = request.getParameter("userPwd");
-		
 		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("login")!=null)
+		if(session.getAttribute("login") != null)
 		{
 			session.invalidate();
-		}
-		
-		ServletContext context = getServletContext();
-		String fullPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
-	      System.out.println(fullPath);
-		Member m= null;
-		m = new MemberService().memberLogin(id,pw, fullPath);
-		if(m!=null)
-		{
-			session = request.getSession();
-			System.out.println(session.getAttribute("login"));
-			session.setAttribute("login", m.getUser_id());
-			System.out.println(session.getAttribute("login"));
 			response.sendRedirect("/index.jsp");
-		}
-		else
-		{
-			response.sendRedirect("/views/member/memberLoginError.jsp");
 		}
 	}
 

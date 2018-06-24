@@ -29,8 +29,8 @@ function clearAll()
 function boardTapChange(btn, boardName)
 {
 	console.log(boardName.id);
-	if(boardName.id=="boardListArea") location.href="/notice";
-	if(boardName.id=="answerListArea") location.href="/faq";
+	if(boardName.id=="boardListArea") {location.href="/notice"}
+	else if(boardName.id=="answerListArea") {location.href="/faq"};
 	clearAll();
 	btn.style = selectStyle;
 	boardName.style.display = "block";

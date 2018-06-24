@@ -108,11 +108,22 @@
 </head>
 
 <body>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
 	<script type="text/javascript" src="../../JS/common/adv.js"></script>
 	<script type="text/javascript"	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"	charset="utf-8"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var error = <%=request.getParameter("error")%>;
+		if(error==1)
+			{
+			alert("로그인에 실패하였습니다.")
+			error = 0;
+			}
+	});
+	</script>
 	<header id="header"> <%@include
 				file="/views/common/header.jsp"%> </header><br>
 	<div class="container">

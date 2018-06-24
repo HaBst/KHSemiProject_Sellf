@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="member.model.vo.*" %>
 	<% session = request.getSession();
-	String login = null;
+	Member m = new Member();
 	if(session != null)
 	{
-	login = (String)session.getAttribute("login");
-	System.out.println("세션 : " + login);
+	m = (Member)session.getAttribute("login");
+	System.out.println("세션 : " + m);
 	%>
 	
 	<%
@@ -30,10 +31,10 @@
 			<div id="headerTitle">
 				<!--중간 첫번째 윗부분-->
 				<div id="login">
-				<%if(login==null){ %>
+				<%if(m == null){ %>
 					<a href="/views/member/memberLogin.jsp">LOGIN</a>
-					<%}else if(login!=null){ %>
-					<%=login%>님 어서오세요 <a href="/memberLogout">LOGOUT</a>
+					<%}else if(m != null){ %>
+					<%=m.getUser_id()%>님 어서오세요 <a href="/memberLogout">LOGOUT</a>
 					<%} %>
 				</div>
 				<div>

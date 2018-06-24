@@ -52,13 +52,13 @@ public class MemberLoginServlet extends HttpServlet {
 		{
 			session = request.getSession();
 			System.out.println(session.getAttribute("login"));
-			session.setAttribute("login", m.getUser_id());
+			session.setAttribute("login", m);
 			System.out.println(session.getAttribute("login"));
 			response.sendRedirect("/index.jsp");
 		}
 		else
 		{
-			response.sendRedirect("/views/member/memberLoginError.jsp");
+			response.sendRedirect("/views/member/memberLogin.jsp?error="+"1");
 		}
 	}
 

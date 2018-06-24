@@ -341,6 +341,7 @@
 								{
 								$('#idcheck').text(" 사용 가능 합니다.");
 								$('#idcheck').css("color","#00ff00");
+								$('input[name=memberId]').val($('input[name=userId]').val());
 								}
 						},
 						error : function(){

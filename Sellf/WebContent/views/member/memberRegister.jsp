@@ -54,15 +54,15 @@
 }
 
 .sign-up li.active {
-	border-bottom: 3px solid black;
+	border-bottom: 3px solid RGBA(216,85,161,1);
 }
 
 .sign-up li.active h3 {
-	color: black;
+	color: RGBA(216,85,161,1);
 }
 
 .sign-up li.active h3 small {
-	color: black;
+	color: RGBA(216,85,161,1);
 }
 
 .sign-up-title {
@@ -254,7 +254,7 @@
 			<input type="hidden" value="" name="memberAddr">
 			<input type="hidden" value="" name="memberInter">
 			<input type="submit" class="btn btn-primary btn-lg"
-				style="background-color: black; border-radius: 0px; width: 200px" value="회원가입">
+				style="background-color: RGBA(216,85,161,1); border-radius: 0px; width: 200px" value="회원가입">
 			<a href="" class="btn btn-default btn-lg "
 				style="background-color: lightgray; border-radius: 0px; width: 200px">취소</a>
 				</form>

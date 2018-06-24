@@ -8,31 +8,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>내 정보</title>
    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<!-- 내부 링크건 CSS -->
-<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
-<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
-<script type="text/javascript" src="../../JS/common/adv.js"></script>
-<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
-<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
-<!-- 헤더 끝 -->
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
-
-
 <style>
-body {
-	 font-family: 'Sunflower';
-}
+div{background-color: white;}
+    
+.header{border:3px solid white;
+       background-color: #7151FC;
+        width: auto;
+        height: 100px;}
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
+    .footer{border:3px solid white;
+    background-color: #7151FC;
+    width: auto;
+    height: 120px;
+    }
     .mpMenuItems{border: 1px solid white;
     float: left;
     width: auto;
@@ -53,7 +46,7 @@ ul.mpMenuAll li a{
 }
 ul.mpMenuAll li a:hover{
 	background:#F2F2F2 url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;
-	color:#9B9BA7;
+	color:#7151FC;
 }
 
 ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
@@ -63,6 +56,8 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 
 .mpMenuTitle {
 	width: auto;
+	margin-top:55px;
+	height: 5%;
 	animation: background 1s linear infinite;
 	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
 		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
@@ -106,6 +101,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 
     .MenuConTitle
     {
+    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
@@ -127,13 +123,6 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 .phonediv div {
 	float: left;
 }
-.phonediv input{
-float:left;
-margin:10px;
-margin-top:19px;
-margin-bottom:1px;
-}
-
 .emaildiv {
 	overflow: auto;
 	display: block;
@@ -249,7 +238,6 @@ float:left;
 	margin:10px;
 }
 
-
 .deleteok {width: 100%;height: 5%;float: right;}
 .save {
 	width: 100px;
@@ -288,8 +276,8 @@ float:left;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #9B9BA7;
-	background: #9B9BA7;
+	border: solid 1px #7151FC;
+	background: #7151FC;
 	text-align: center;
 	padding: 16px 18px 14px;
 	font-size: 15px;
@@ -322,8 +310,8 @@ float:left;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #9B9BA7;
-	background: #9B9BA7;
+	border: solid 1px #7151FC;
+	background: #7151FC;
 	text-align: center;
 	padding: 16px 18px 14px;
 	margin-right: 150px;
@@ -344,6 +332,37 @@ float:left;
 }
 
 
+
+.phone {
+	position: relative;
+	width: 265px;
+	display: inline-block;
+	color: #ecf0f1;
+	text-decoration: none;
+	border-radius: 5px;
+	border: solid 1px #7151FC;
+	background: #7151FC;
+	text-align: center;
+	padding: 16px 18px 14px;
+	margin: 10px;
+	margin-bottom:-1px;
+	font-size: 25px;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	-webkit-box-shadow: 0px 6px 0px rebeccapurple;
+	-moz-box-shadow: 0px 6px 0px rebeccapurple;
+	box-shadow: 0px 0px 0px rebeccapurple;
+}
+
+.phone:active {
+	-webkit-box-shadow: 0px 2px 0px rebeccapurple;
+	-moz-box-shadow: 0px 2px 0px rebeccapurple;
+	box-shadow: 0px 0px 0px rebeccapurple;
+	position: relative;
+	top: 4px;
+}
+
 .button-purple {
 	background: #9966cb;
 	border-color: #8040be #8040be #733aab;
@@ -356,6 +375,12 @@ float:left;
 .button-purple:active {
 	background: #9966cb;
 	border-color: #733aab #8040be #8040be;
+}
+
+body {
+	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
+	color: #404040;
+	background: white;
 }
 
 .container {
@@ -372,8 +397,8 @@ text-align:center;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #9B9BA7;
-	background: #9B9BA7;
+	border: solid 1px #7151FC;
+	background: #7151FC;
 	padding: 16px 18px 14px;
 	margin: 12px;
 	font-size: 20px;
@@ -400,8 +425,8 @@ text-align:center;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #9B9BA7;
-	background: #9B9BA7;
+	border: solid 1px #7151FC;
+	background: #7151FC;
 	text-align: center;
 	padding: 16px 18px 14px;
 	margin: 12px;
@@ -434,7 +459,7 @@ text-align:center;
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #9B9BA7;
+  background-color: #7151FC;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -531,20 +556,20 @@ text-align:center;
 </head>
 <body align="center">
 
-	<div class="header"><%@include file="../../views/common/header.jsp"%></div>
+	<div class="header">헤더</div>
 <center>
 	<div class="contents">
 		<div class="mpMenuItems">
 			<div class="mpMenuTitle"><h1>My Page</h1></div>
 
-		  <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">판매내역</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">구매내역</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">찜한 상품</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
-					<li role="presentation" class="active"><a href="/Grade">등급보기</a></li>
-		</ul>
+		 <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active"><a href="/views/member/mySelf.jsp">판매내역</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myBuy.jsp">구매내역</a></li>
+					<li role="presentation" class="active"><a href="/views/member/jjim.jsp">찜한 상품</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">등급보기</a></li>
+				</ul>
 		</div>
 		<center>
 			<div class="MenuContents">
@@ -563,11 +588,7 @@ text-align:center;
 							<!-- 핸드폰 div start -->
 							<div class="insertTitle"
 								style="margin-top: 30px; font-size: 20px" name="phone">전화번호</div>
-								
-							<input type="text" style="width: 300px; height: 40px;"
-								style="border:1px solid maroon; background:transparent;" 
-								name="userPhone" value="<%=m.getUser_phone()%>">
-							
+							<div class="phone">휴대폰 번호 등록</div>
 						</div>
 						<!-- 핸드폰 div end -->
 						<br>
@@ -578,7 +599,6 @@ text-align:center;
 								style="border:1px solid maroon;background:transparent;" 
 								name="email" placeholder="이메일을 입력하세요" value="<%=m.getUser_email()%>">
 							<input type="hidden" value="<%=m.getUser_id() %>" name="userId">
-							
 						</div>
 						
 					
@@ -587,18 +607,11 @@ text-align:center;
 						
 						<input type="text" style="width: 220px; height: 40px;"
 								style="border:1px solid maroon;background:transparent;" 
-								name="point" readonly class="point" value="<%=m.getUser_epoint()%> 원">
-						<input type="button" value="충전" data-toggle="modal" data-target=".bs-example-modal-sm" class="pointBtn"> 
+								name="point" placeholder="-----원" readonly class="point">
+						
+						<input type="button" value="충전" class="pointBtn"> 
 						</div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      충전금액을 입력해주세요
-      <input type="text" placeholder="100원 이상" name="price"/>원 <input type="button" value="충전하기" onclick="pay();"> <input type="reset" value="취소">
-      </form>
-    </div>
-  </div>
-</div>
+						
 						
 						
 						<!-- 이메일 div end -->
@@ -683,9 +696,9 @@ text-align:center;
 				</div>
 				<div class="deleteok">
 				
-				
+				<form action="deleteComplate.jsp" method="post" style="display:inLine;">
 				<input type="submit" id="delBtn" value="회원탈퇴" class="delete" onclick="return deletecheck();" />
-				
+				</form>
 					<div>
 						<div><button  type="submit" id="save" class="save">확인</button></div>
 						
@@ -695,18 +708,11 @@ text-align:center;
 	</div>
 
 	</center>
- <div class="menu-button">
-				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
-					style="background-image: url(/../../img/messageQbtn.png)"> <i
-					class="messageQbtn"></i>
-				</a> <a href="/index.jsp"
-					style="background-image: url(/../../img/homeQbtn.png)"> <i
-					class="homeQbtn"> </i>
-				</a> <a href="/views/member/myCart3.jsp"
-					style="background-image: url(/../../img/sayQbtn.png)"> <i
-					class="sayQbtn"> </i>
-				</a>
-			</div>
+ <div class="menu-button"><i class="Qbtn"></i>
+	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
+	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
+	<a href="/views/member/myCart3.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
+</div>
 	</div>
 
 
@@ -720,7 +726,10 @@ function deletecheck(){
 	if(swi==false){
 		var result = window.confirm("계정을 삭제하면 개인 정보 및 거래 내역이 모두 삭제됩니다.             그래도 계정을 삭제하시겠습니까?                                              전화번호 또는 이메일을 변경하고 싶다면 기본정보에서                   변경할 수 있습니다.");
 		if(result){
-			location.href="/delete";
+			session.invalidate();
+			alert('탈퇴하였습니다');
+			
+		swi =true;
 		}else{
 		alert('취소했어양!! ^ㅅ^');
 		}
@@ -729,50 +738,9 @@ function deletecheck(){
 }
 	return false;
 }
-
-
-window.onload = function(){
-    var IMP = window.IMP; // 생략가능
-    IMP.init('imp75493546'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-}
-var $menuEle = $('dt'); // 탭메뉴를 변수에 지정
-$menuEle.click(function() { // 탭메뉴 클릭 이벤트
-    $('dd').addClass('hidden');
-    $(this).next().removeClass('hidden');
-})
-   
-   function pay()
-   {
-       IMP.request_pay({
-            pg : 'inicis', // version 1.1.0부터 지원.
-            pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'Sellf 갤럭시 S7',
-            amount : '$(''#price').innerHTML',
-            buyer_email : 'iamport@siot.do',
-            buyer_name : '곽영훈',
-            buyer_tel : '010-1234-5678',
-            buyer_addr : '서울특별시 강남구 삼성동',
-            buyer_postcode : '123-456',
-            m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-        }, function(rsp) {
-            if ( rsp.success ) {
-                var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
-            } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-            }
-            alert(msg);
-        });
-   }
-   
-
 </script>
+
 	</center>
-<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
+	<div class="footer">푸터</div>
 </body>
 </html>

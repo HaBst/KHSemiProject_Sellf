@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- Coded by JSB -->
+<html>
+<head>
+<style>
+.header
+{
+	background-color:darkorange;
+	height: 60px;
+}
+.container {
+	width:1000px;
+	overflow:auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+	background-color: darkorange;
+	height: 60px;
+}
+
+.
+.sign-up {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul {
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+.sign-up>ul li {
+	text-align: center;
+	margin: 0 2px;
+	display: inline-block;
+	width: 24%;
+	border-bottom: 3px solid gray;
+}
+
+.sign-up>ul li h3 {
+	font-weight: 600;
+	color : gray;
+}
+
+.sign-up>h4 {
+	font-weight: 600;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+.sign-up li.active {
+	border-bottom: 3px solid black;
+}
+.sign-up li.active h3{
+	color:black;
+}
+
+.sign-up li.active h3 small{
+	color:black;
+}
+
+
+.sign-up-title {
+	display: inline-block;
+	font-size: 18px;
+	text-align: center;
+	width: 100%;
+	margin-top: 50px;
+	position: relative;
+}
+
+.sign-up-title>p {
+	font-size: 14px;
+	color: gray;
+}
+
+
+
+.normal-sign-up {
+	border-top: 2px solid black;
+	display: block;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.normal-sign-up h4 {
+	margin-top: 30px;
+	display: inline-block;
+	width: 300px;
+	font-weight: 600;
+}
+
+.normal-sign-up h4>span {
+	margin-right: 30px;
+}
+
+.sns-sign-up {
+	border-top: 1px solid gray;
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.sns-sign-up>h4 {
+	font-weight: 600;
+}
+
+.sns-list {
+	display: block;
+	padding-left: 0px;
+}
+
+.sns-list li {
+	display: inline-block;
+	width: 200px;
+	padding: 0px;
+}
+
+.etc {
+	border-top: 1px solid gray;
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+}
+.snsBtn {
+	border: 0px;
+	background-color: white;
+}
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/CSS/bootstrap/bootstrap.css">
+</head>
+
+<body>
+	<div class="header">
+	헤더입니다.
+	</div>
+	<div class="container">
+		<div class="sign-up-title">
+			회원가입
+			<p>회원이 되셔서 다양한 혜택을 누려보세요.
+		</div>
+		<div class="sign-up">
+			<ul>
+				<li class="active"><h3>
+						STEP1 <small>가입방법 선택</small>
+					</h3></li>
+				<li><h3>
+						STEP2 <small>이용약관 동의</small>
+					</h3></li>
+				<li><h3>
+						STEP3 <small>회원정보 입력</small>
+					</h3></li>
+				<li><h3>
+						STEP4 <small>회원가입 완료</small>
+					</h3></li>
+			</ul>
+			<h4>원하는 회원가입 방법을 선택하세요.</h4>
+		</div>
+		<!-- 회원가입 방법 선택 -->
+		<div class="normal-sign-up">
+				<h4>
+					<span>회원 유형 : <input type="radio" name="memberType"
+						value="member" checked="checked">개인
+					</span> <button onclick="memberType($('input[name=memberType]:checked').val());" class="btn btn-default btn-lg"
+						style="color: white; background-color: black;">회원가입</button>
+				</h4>
+		</div>
+		<!-- SNS 계정으로 가입 -->
+		<div class="sns-sign-up">
+			<h4>SNS 계정으로 회원가입</h4>
+			<ul class="sns-list">
+				<li><button onclick="memberType('naver');" class="snsBtn"><img src="/img/loginByNaver.PNG" class="img-responsive"></button></li>
+				<br>
+				<li><button onclick="memberType('google');" class="snsBtn"><img src="/img/btn_google_signin_dark_normal_web.png"
+					class="img-responsive" width="200px"></button></li>
+			</ul>
+		</div>
+		<div class="etc">
+			a<br> a<br> a<br> a<br> a<br> a<br>a
+		</div>
+	</div>
+	
+	<!-- footer -->
+	<div class="footer">footer 입니다.</div>
+	</div>
+	<script type="text/javascript">
+		/*	회원가입 방법에따라 값 넣어서 전송		*/
+		function memberType(type) {
+			location.href="/views/member/memberTerms.html?memberType="+type;
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
+
+</body>
+
+</html>

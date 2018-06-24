@@ -203,7 +203,7 @@ public class PopularProductDao {
 		Product p = null;
 		ArrayList<Product> list = new ArrayList<Product>();
 		String query ="SELECT * FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_STATE = 'S' AND PRODUCT_OLDNEW = 'N'";
-		// �̰����� ��ǰ���´� �Ǹ��� ���� ��ǰ 
+
 
 
 		try {

@@ -39,6 +39,7 @@ public class NoticeDao {
 				n.setNotice_image(rset.getString("notice_image"));
 				n.setNotice_content(rset.getString("notice_content"));
 				n.setNotice_registration_date(rset.getDate("notice_registration_date"));
+				n.setNotice_views_count(rset.getInt("notice_views_count"));
 				list.add(n);
 			}
 		} catch (SQLException e) {

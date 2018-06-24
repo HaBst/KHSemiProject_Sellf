@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<% session = request.getSession();
+	String login = null;
+	if(session != null)
+	{
+	login = (String)session.getAttribute("login");
+	System.out.println("세션 : " + login);
+	%>
+	
+	<%
+	}%>
 <div class="content">
 	<div class="containerAd" id="div2">
 		<div id="advertising">
@@ -19,8 +29,12 @@
 		<div id="middleTwoBox">
 			<div id="headerTitle">
 				<!--중간 첫번째 윗부분-->
-				<div>
+				<div id="login">
+				<%if(login==null){ %>
 					<a href="/views/member/memberLogin.jsp">LOGIN</a>
+					<%}else if(login!=null){ %>
+					<%=login%>님 어서오세요 <a href="/memberLogout">LOGOUT</a>
+					<%} %>
 				</div>
 				<div>
 					<a href="/views/member/memberJoin.jsp">JOIN</a>
@@ -35,7 +49,7 @@
 					<a href="/views/member/myInfo.jsp">MYPAGE</a>
 				</div>
 				<div>
-					<a href="/views/board/board.jsp">CSCENTER</a>
+					<a href="/notice">CSCENTER</a>
 				</div>
 				<!-- 		<div>
 					<a href="" id="bookmark">+BOOKMARK</a>

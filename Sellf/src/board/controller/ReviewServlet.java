@@ -16,19 +16,21 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import board.model.service.NoticeService;
+import board.model.service.ReviewService;
 import board.model.vo.NoticePageData;
+import board.model.vo.ProductReviewPageData;
 
 /**
  * Servlet implementation class NoticeServlet
  */
-@WebServlet(name = "Notice", urlPatterns = { "/notice" })
-public class NoticeServlet extends HttpServlet {
+@WebServlet(name = "Review", urlPatterns = { "/review" })
+public class ReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeServlet() {
+    public ReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,12 +51,12 @@ public class NoticeServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		//비즈니스 로직
-		NoticePageData npd = new NoticeService().noticeAll(currentPage);
-		if(npd!=null)
+		ProductReviewPageData rpd = new ReviewService().reviewAll(currentPage);
+		if(rpd!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardNotice.jsp");
-			request.setAttribute("NoticePageData", npd);
-			request.setAttribute("noticeTab", "boardListArea");
+			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardReview.jsp");
+			request.setAttribute("ProductReviewPageData", rpd);
+			request.setAttribute("noticeTab", "reviewListArea");
 			view.forward(request, response);
 		}else
 		{

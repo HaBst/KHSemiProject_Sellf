@@ -206,12 +206,13 @@ crossorigin="anonymous"></script>
 							var img = [];
 							var productPk = [];
 							
-							console.log(data);
+							console.log("중고 아닌 새거 " + data);
 							var imgKeys = ["img1","img2","img3","img4","img5"];
 							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
-								imgJsonObj = JSON.parse(data[keys[i]].product_image);
+								imgJsonObj = JSON.parse(data[i].product_image);
 								img[i]= imgJsonObj.img1;//data[i].product_image; 
+								console.log("개봉 안한 이미지" + imgJsonObj.img1);
 								productName[i] =data[i].product_name;
 								productPk[i] =data[i].product_entire_pk;
 								}	

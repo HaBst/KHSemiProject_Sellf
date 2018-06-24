@@ -39,15 +39,15 @@ public class CollectionSecServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		JSONArray resultArray = new JSONArray();
 	
-		for (Product collectionRandom : CollectionSecRandomList) { 
-			JSONObject result = new JSONObject();
-			result.put("name", collectionRandom.getProduct_name());
-			result.put("price", collectionRandom.getProduct_price());
-			result.put("image", collectionRandom.getProduct_image());
-			result.put("detail", collectionRandom.getProduct_detail());
-			result.put("productNo",collectionRandom.getProduct_entire_pk()); // »óÇ° °íÀ¯ ÀÎµ¦½º
-			resultArray.add(result);
-		}
+			for (Product collectionRandom : CollectionSecRandomList) { 
+				JSONObject result = new JSONObject();
+				result.put("name", collectionRandom.getProduct_name());
+				result.put("price", collectionRandom.getProduct_price());
+				result.put("image", collectionRandom.getProduct_image());
+				result.put("detail", collectionRandom.getProduct_detail());
+				result.put("productNo",collectionRandom.getProduct_entire_pk()); // ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+				resultArray.add(result);
+			}
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(resultArray);

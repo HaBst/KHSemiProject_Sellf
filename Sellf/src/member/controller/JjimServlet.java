@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
-import member.model.service.MemberService;
+import member.model.service.myInfoService;
 import member.model.vo.Member;
-import member.model.vo.wishList;
-import product.model.vo.PageData;
 import product.model.vo.Product;
 
 /**
@@ -43,8 +41,8 @@ public class JjimServlet extends HttpServlet {
 		JDBCTemplate.setDriverPath(fullPath);
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		String id = ((Member)session.getAttribute("user")).getUser_id();
-		ArrayList<Product> list = new MemberService().jjimlist(id);
+		String id = ((Member)session.getAttribute("login")).getUser_id();
+		ArrayList<Product> list = new myInfoService().jjimlist(id);
 		if(list.size()>0) 
 		{
 		RequestDispatcher view = request.getRequestDispatcher("/views/member/jjim.jsp");

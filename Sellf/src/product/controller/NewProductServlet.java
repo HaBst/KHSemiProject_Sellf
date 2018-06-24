@@ -51,8 +51,8 @@ public class NewProductServlet extends HttpServlet {
 			result.put("price", product.getProduct_price());
 			result.put("image", product.getProduct_image());
 			result.put("productEntireNo",product.getProduct_entire_pk()); //상품고유 인덱스 번호
-			System.out.println("상품금액:"+product.getProduct_price());
-			System.out.println("상품고유번호 :"+product.getProduct_entire_pk());
+//			System.out.println("상품금액:"+product.getProduct_price());
+//			System.out.println("상품고유번호 :"+product.getProduct_entire_pk());
 			resultArray.add(result);
 		}
 		

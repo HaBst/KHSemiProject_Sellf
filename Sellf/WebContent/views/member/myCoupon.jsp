@@ -185,11 +185,15 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
     }
     
     
-    .mpMenuAll{border: 1px solid #F2F2F2;
-    margin-bottom:10px;
-	list-style-type:none;
-	font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
-    }
+.mpMenuAll{border: 1px solid #F2F2F2;
+margin-bottom:10px;
+list-style-type:none;
+font: 15px/40px 'Sunflower', Verdana, sans-serif;	
+}
+
+
+
+
     ul.mpMenuAll li{
 	margin:0;padding:0;border-top:1px solid #F2F2F2;
 	border-bottom:1px solid white;
@@ -225,7 +229,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
         padding: inherit;
         border:3px solid none;
         width: 100%;
-        height: 39%; 
+        height: 40%; 
         text-align: justify;
     }  
     
@@ -442,7 +446,7 @@ table tr:hover td {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #9B9BA7;
+  background-color: #D855A1;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);

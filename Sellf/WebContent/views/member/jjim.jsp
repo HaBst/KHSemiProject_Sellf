@@ -3,7 +3,7 @@
 <%@ page import="member.model.vo.*" 
 		 import="java.util.ArrayList"
 		 import="product.model.vo.*"%>
-<% Member m = (Member)session.getAttribute("user"); %> 
+<% Member m = (Member)session.getAttribute("login"); %> 
 <% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

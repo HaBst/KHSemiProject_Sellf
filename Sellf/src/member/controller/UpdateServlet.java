@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
+import member.model.service.myInfoService;
 import member.model.vo.Member;
 
 /**
@@ -43,7 +44,7 @@ public class updateServlet extends HttpServlet {
 		}
 		m.setUser_interest(interStr);
 		
-	int result = new MemberService().updateMember(m);
+	int result = new myInfoService().updateMember(m);
 	if(result>0)
 	{
 		response.sendRedirect("/views/member/myInfo.jsp");

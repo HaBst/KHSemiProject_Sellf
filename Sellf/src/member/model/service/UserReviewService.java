@@ -34,10 +34,12 @@ public class UserReviewService {
 		return rpd;
 	}
 
-	public int reviewComment(int point, String reviewComment) {
+	public int reviewComment(UserReview ur) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new UserReviewDao().reviewComment(conn, point, reviewComment);
-		return 0;
+		int result = new UserReviewDao().reviewComment(conn, ur);
+		if(result>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		return result;
 	}
 
 }

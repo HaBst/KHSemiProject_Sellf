@@ -197,4 +197,31 @@ public class UserReviewDao {
 				return navi;
 	}
 
+	public int reviewComment(Connection conn, UserReview ur) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="INSERT INTO user_review_tb VALUES (USER_REVIEW_TB_SEQ.NEXTVAL,?,?,?,?,?,sysdate)";
+		System.out.println(query);
+		System.out.println( ur.getUserReviewUserEntireIdFk());
+		System.out.println(ur.getUserReviewUserEntireReviewedIdFk());
+		System.out.println(ur.getUserReviewProductEntireFk());
+		System.out.println(ur.getUserReviewComment());
+		System.out.println(ur.getUserReviewRating());
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ur.getUserReviewUserEntireIdFk());
+			pstmt.setString(2, ur.getUserReviewUserEntireReviewedIdFk());
+			pstmt.setInt(3, ur.getUserReviewProductEntireFk());
+			pstmt.setString(4,ur.getUserReviewComment());
+			pstmt.setInt(5, ur.getUserReviewRating());
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

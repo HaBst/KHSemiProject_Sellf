@@ -109,20 +109,25 @@ function changeTab(tabInfo, name, sellerId)
 		});
 	 }
 	 
-	 function userReview()
+	 function userReview(productId)
 	 {
+		 console.log("상품아이디 " + productId);
 		 var starPoint = $("#starPointSelect").val();
 		 var reviewCommentArea = $("#reviewCommentArea").val();
-		 if(pageNum!=null) currentPage = pageNum;
 			$.ajax({
 				url:"/userReview",
 				data : {
-					starPoint:starPoint,
-					reviewCommentArea:reviewCommentArea
+					starPoint:starPoint,// 평점
+					reviewCommentArea:reviewCommentArea,  // 유저 리뷰
+					reviewerID:reviewerID,// 판매자 아이디
+					productId:productId// 상품 아이디
+					
 				},
 				type : "post",
 				success : function(data){
-					
+					alert("댓글등록을 성공했습니다.");
+					getReviewList(reviewerID,1);
+					reviewCommentArea.val("");
 				},
 				error:function(){
 					

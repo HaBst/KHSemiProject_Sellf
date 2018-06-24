@@ -34,6 +34,7 @@
 <script src="../../JS/externalJs/jquery.magnify.js" type="text/javascript"></script>
 <!-- <script src="../../JS/externalJs/cloud-zoom.1.0.2.js" type="text/javascript"></script> -->
 <script>
+var currentProductPk;
 $(document).ready(function() {
 	$('.magnify-image').magnify();
 });
@@ -57,7 +58,7 @@ $(document).ready(function() {
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
 
-<script src="../../JS/product/productSel.js"></script>
+<script src="../../JS/product/productSel.js?ver=1"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
 
@@ -394,18 +395,18 @@ $(document).ready(function() {
 							<hr style="clear: both; display:block;">
 							<h3 style="color:black; float:left">댓글작성</h3>							
 								<select id="starPointSelect" style="color:#ffd53d; float:right; margin-top:10px;">
-								   	<option style="color:#ffd53d;" value="1">★☆☆☆☆(1/5)</option>
-								   	<option style="color:#ffd53d;" value="2">★★☆☆☆(2/5)</option>
-								   	<option style="color:#ffd53d;" value="3">★★★☆☆(3/5)</option>
-								   	<option style="color:#ffd53d;" value="4">★★★★☆(4/5)</option>
 								   	<option style="color:#ffd53d;" value="5" selected>★★★★★(5/5)</option>
+								   	<option style="color:#ffd53d;" value="4">★★★★☆(4/5)</option>
+								   	<option style="color:#ffd53d;" value="3">★★★☆☆(3/5)</option>
+								   	<option style="color:#ffd53d;" value="2">★★☆☆☆(2/5)</option>
+								   	<option style="color:#ffd53d;" value="1">★☆☆☆☆(1/5)</option>
 								</select>
 								   <h4 style="float:right;">별점주기</h4>
 								<div id="myUserReview">
 									
 										<textarea id="reviewCommentArea" style="width:100%; height:70%; resize:none;">
 										</textarea>
-									<button onclick="userReview();">댓글 등록</button>
+									<button onclick="userReview(<%=p.getProduct_entire_pk() %>);">댓글 등록</button>
 								</div>
 						</div>
 						

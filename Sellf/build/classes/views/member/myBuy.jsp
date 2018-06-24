@@ -1,40 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="member.model.vo.*" 
-		 import="java.util.ArrayList"
-		 import="product.model.vo.*"%>
-<% Member m = (Member)session.getAttribute("user"); %> 
-<% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    <%@ page import="member.model.vo.*" import="java.util.ArrayList" %>
+     <%@ page import="product.model.vo.*" %>
+<% Product p = (Product)request.getAttribute("Product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>êµ¬ë§¤ë‚´ì—­</title>
-<!-- ë‚´ë¶€ ë§í¬ê±´ CSS -->
-<link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
-<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
-<script type="text/javascript" src="../../JS/common/adv.js"></script>
-<link rel="stylesheet" type="text/css" href="../../CSS/common/header.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
-<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
-<!-- í—¤ë” ë -->
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>ÆÇ¸Å³»¿ª</title>
 <style>
 body {
-	 font-family: 'Sunflower';
+	font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
+	color: #404040;
+	background: white;
 }
+div{background-color: white;}
+    
+.header{border:3px solid white;
+       background-color: #7151FC;
+        width: auto;
+        height: 100px;}
 .contents {
 	position: relative;
 	border: 3px solid white;
 	width: 1300px;
 	height: 800px;
 }
+    .footer{border:3px solid white;
+    background-color: #7151FC;
+    width: auto;
+    height: 120px;
+    }
     .mpMenuItems{border: 1px solid white;
     float: left;
     width: auto;
     height: 100%;
     }
+    
+    
     .mpMenuAll{border: 1px solid #F2F2F2;
+    margin-bottom:10px;
 	list-style-type:none;
 	font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
     }
@@ -55,6 +60,8 @@ ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
 background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;}
 .mpMenuTitle {
 	width: auto;
+	margin-top:55px;
+	height: 5%;
 	animation: background 1s linear infinite;
 	background: linear-gradient(90deg, rgba(150, 48, 30, 1) 0%,
 		rgba(199, 201, 88, 1) 10%, rgba(28, 147, 46, 1) 20%,
@@ -84,6 +91,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
     }
     .MenuConTitle
     {
+    	margin-top:30px;
         width:100%;
         height: 10%;
         float: left;
@@ -124,6 +132,8 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	position: relative;
 	top: 4px;
 }
+    
+
 .container {
   margin: 50px auto;
   width: 580px;
@@ -179,6 +189,9 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
   content: none;
 }
 
+a {
+	color: #c75f3e;
+}
 
 #mytable {
 	width: 700px;
@@ -254,7 +267,7 @@ th.specalt {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #9B9BA7;
+  background-color: #7151FC;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -349,85 +362,64 @@ th.specalt {
 </head>
 <body align ="center">
 
-
-	<div class="header"><%@include file="../../views/common/header.jsp"%></div>	
+<div class="header">Çì´õ</div>
 <center>
         <div class="contents">
             <div class="mpMenuItems">
                       <div class="mpMenuTitle"><h1>My Page</h1></div>
 
-                 <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">íŒë§¤ë‚´ì—­</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">êµ¬ë§¤ë‚´ì—­</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">ì°œí•œ ìƒí’ˆ</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">ë‚´ ì¿ í°</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">ë‚´ ì •ë³´</a></li>
-					<li role="presentation" class="active"><a href="/Grade">ë“±ê¸‰ë³´ê¸°</a></li>
+                <ul class="mpMenuAll" role="tablist" style="none">
+					<li role="presentation" class="active"><a href="/views/member/mySelf.jsp">ÆÇ¸Å³»¿ª</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myBuy.jsp">±¸¸Å³»¿ª</a></li>
+					<li role="presentation" class="active"><a href="/views/member/jjim.jsp">ÂòÇÑ »óÇ°</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myCoupon.jsp">³» ÄíÆù</a></li>
+					<li role="presentation" class="active"><a href="/views/member/myInfoQuiz.jsp">³» Á¤º¸</a></li>
+									<li role="presentation" class="active"><a href="/views/member/myGrade.jsp">µî±Şº¸±â</a></li>
 				</ul>
             </div>
 
             <div class="MenuContents">
-                 <div class="MenuConTitle"><H2>êµ¬ë§¤ ë‚´ì—­</H2>
+                 <div class="MenuConTitle"><H2>±¸¸Å ³»¿ª</H2>
                 </div> <hr>
-                <div class="MenuCon">  <div class="table-users" style="overflow:auto; width:800px; height:550px;">
+                <div class="MenuCon">  <div class="table-users">
 
-
+<% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("userList"); %>
 <center>
-<%if(list2!=null){ %>
+<%if(list!=null){ %>
 <table>
-  				<tr>
-					<th style="width: 40%">ìƒí’ˆì‚¬ì§„</th>
-					<th style="width: 20%">ìƒí’ˆë‚´ìš©</th>
-					<th style="width: 20%">ê°€ê²©</th>
-					<th style="width: 20%">ìˆ˜ëŸ‰</th>
-				</tr>
-				</thead>
-				<%for (Product p : list2){%>
-				<tbody>
-				<tr>
-					<td><div class="row"><div class="col-sm-2 hidden-xs">
-					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
-					</div>
-					</td>
-					<td><h4 class="nomargin"><%=p.getProduct_name() %></h4>
-					<h5>    <% String state = p.getProduct_state(); %>
-       		 <%if(state.equals("S")){%>
-         	  <h4  style="color: blue">íŒë§¤ì¤‘</h4>
-         	 <%}else if(state.equals("T")) {%>
-         	  <h4  style="color: orange">ê±°ë˜ì¤‘</h4>
-         	 <%}else if(state.equals("E")) {%>
-         	  <h4  style="color: red">íŒë§¤ì™„ë£Œ</h4>
-         	 <%} %></h5></td>
-					<td><%=p.getProduct_price()%></td>
-					<td>
-					<input type="" value="<%=p.getProduct_amount()%>"></td>
-			
-					</tr>
-					</tbody><%}%>
-					</table>
-					</center>
-						<%} else {%>
-						<div>ì‚´ê¹Œë§ê¹Œ ê³ ë¯¼ë˜ëŠ” ë¬¼ê±´ì„ ì°œí•´ë³´ì„¸ìš”!</div>
-						<%}%>
-					</div>
-				</div>
-			</div>
-  <div class="menu-button">
-				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
-					style="background-image: url(/../../img/messageQbtn.png)"> <i
-					class="messageQbtn"></i>
-				</a> <a href="/index.jsp"
-					style="background-image: url(/../../img/homeQbtn.png)"> <i
-					class="homeQbtn"> </i>
-				</a> <a href="/views/member/myCart3.jsp"
-					style="background-image: url(/../../img/sayQbtn.png)"> <i
-					class="sayQbtn"> </i>
-				</a>
-			</div>
+      <tr>
+         <th width="200">»óÇ°ÀÌ¹ÌÁö</th>
+         <th width="150">»óÇ°¸í</th>
+         <th width="100">°¡°İ</th>
+         <th width="100">°áÁ¦¿Ï·áÀÏÀÚ</th>
+      </tr>
+   		<% for(Member m : list){%>
+      <tr>
+         <td><img src="http://lorempixel.com/100/100/people/1" alt="" /></td>
+         <td>»çÁø</td>
+         <td>100000¿ø</td>
+         <td>ÆÇ¸ÅÁß</td>
+         <td>		<div><center><a href="#" class="delete">»èÁ¦</a></center><div> </td>
+      </tr>
+     
+    	 <%} %>
+    	     </table>
+    	          </center>
+    	     
+<%}else{ %>
+   <div>¾ÆÁ÷ ±¸¸Å³»¿ªÀÌ ¾ø½À´Ï´Ù. Sell:F ¿¡¼­ ½º¸¶Æ®ÇÏ°Ô ¼îÇÎÇØº¸¼¼¿ä..</div>
+<%} %>
+</div></div>
+            </div>
+  <div class="menu-button"><i class="Qbtn"></i>
+	<a href="/views/member/myCart.jsp" style="background-image:url(/../../img/messageQbtn.png)"> <i class="messageQbtn"></i> </a>
+	<a href="/index.jsp" style="background-image:url(/../../img/homeQbtn.png)"> <i class="homeQbtn"> </i> </a>
+	<a href="/views/member/myCart3.jsp" style="background-image:url(/../../img/sayQbtn.png)"> <i class="sayQbtn"> </i> </a>
+</div>
         </div>
     
         </center>
-<div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>
+<div class="footer">ÇªÅÍ</div>
 </body>
 
 </html>

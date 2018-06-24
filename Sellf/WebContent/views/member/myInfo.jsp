@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.*" %>
-<% Member m = (Member)session.getAttribute("login"); %>  
+<% Member m = (Member)session.getAttribute("user"); %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,11 +38,11 @@ body {
     width: auto;
     height: 100%;
     }
-.mpMenuAll{border: 1px solid #F2F2F2;
-margin-bottom:10px;
-list-style-type:none;
-font: 15px/40px 'Sunflower', Verdana, sans-serif;	
-}
+    .mpMenuAll{border: 1px solid #F2F2F2;
+    margin-bottom:10px;
+	list-style-type:none;
+	font: 15px/40px 'Lucida Grande', Verdana, sans-serif;	
+    }
     ul.mpMenuAll li{
 	margin:0;padding:0;border-top:1px solid #F2F2F2;
 	border-bottom:1px solid white;
@@ -75,16 +75,14 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 	-webkit-text-fill-color: transparent;
 }
 
-
-.mpMenuAll
-{
-        position: static;
-        padding: inherit;
-        border:3px solid none;
-        width: 100%;
-        height: 40%; 
-        text-align: justify;
-}  
+.mpMenuAll {
+	position: static;
+	padding: inherit;
+	border: 3px solid none;
+	width: 100%;
+	height: 39%;
+	text-align:left;
+}
 
 .tapBtn {
 	margin: 0px;
@@ -135,6 +133,7 @@ margin:10px;
 margin-top:19px;
 margin-bottom:1px;
 }
+
 .emaildiv {
 	overflow: auto;
 	display: block;
@@ -289,8 +288,8 @@ float:left;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #D855A1;
-	background: #D855A1;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	text-align: center;
 	padding: 16px 18px 14px;
 	font-size: 15px;
@@ -323,8 +322,8 @@ float:left;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #D855A1;
-	background: #D855A1;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	text-align: center;
 	padding: 16px 18px 14px;
 	margin-right: 150px;
@@ -373,8 +372,8 @@ text-align:center;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #D855A1;
-	background: #D855A1;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	padding: 16px 18px 14px;
 	margin: 12px;
 	font-size: 20px;
@@ -401,8 +400,8 @@ text-align:center;
 	color: #ecf0f1;
 	text-decoration: none;
 	border-radius: 5px;
-	border: solid 1px #D855A1;
-	background: #D855A1;
+	border: solid 1px #9B9BA7;
+	background: #9B9BA7;
 	text-align: center;
 	padding: 16px 18px 14px;
 	margin: 12px;
@@ -435,7 +434,7 @@ text-align:center;
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #D855A1;
+  background-color: #9B9BA7;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -596,8 +595,8 @@ text-align:center;
     <div class="modal-content">
       충전금액을 입력해주세요
       <input type="text" placeholder="100원 이상" name="price"/>원 <input type="button" value="충전하기" onclick="pay();"> <input type="reset" value="취소">
-
-    
+      </form>
+    </div>
   </div>
 </div>
 						
@@ -744,15 +743,14 @@ $menuEle.click(function() { // 탭메뉴 클릭 이벤트
    
    function pay()
    {
-	console.log("결제 금액" + document.getElementsByName("price")[0].value);
        IMP.request_pay({
             pg : 'inicis', // version 1.1.0부터 지원.
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : 'Sellf 갤럭시 S7',
-            amount : Number(document.getElementsByName("price")[0].value),
+            amount : '$("#price").innerHTML',
             buyer_email : 'iamport@siot.do',
-            buyer_name : '<%=m.getUser_name()%>',
+            buyer_name : '곽영훈',
             buyer_tel : '010-1234-5678',
             buyer_addr : '서울특별시 강남구 삼성동',
             buyer_postcode : '123-456',
@@ -764,14 +762,9 @@ $menuEle.click(function() { // 탭메뉴 클릭 이벤트
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-                var money = document.getElementsByName("price")[0].value;
-                location.href="/cash?money="+money;
             } else {
                 var msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
-                
-                var money = document.getElementsByName("price")[0].value;
-                location.href="/cash?money="+money;
             }
             alert(msg);
         });

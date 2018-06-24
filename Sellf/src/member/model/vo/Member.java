@@ -3,7 +3,6 @@ package member.model.vo;
 
 import java.util.Date;
 
-import oracle.sql.DATE;
 
 public class Member {
 	/*

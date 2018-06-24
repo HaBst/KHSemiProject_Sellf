@@ -44,7 +44,7 @@
 <script type="text/javascript">
 var btnArr = [];
 var tabArr = [];
-var selectStyle = "background-color:gray; color:white; border:1px solid lightgray;";
+var selectStyle = "background-color: RGBA(216,85,161,1); color:white; border:1px solid RGBA(216,85,161,1);";
 var nonSelectStyle = "background-color:white; color:black; border:1px solid lightgray;";
 
 	window.onload = function() {
@@ -105,7 +105,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 			</div>--> </header>
 			<section id="content">
 			<div id="topLeftLink">
-				<a href="#">게시판</a> <a href="#">홈></a>
+				<a href="/notice">게시판</a> <a href="/index.jsp">홈></a>
 			</div>
 			<div id="topMenu">
 				<button class="menuBtn" onclick="moveNotice()">
@@ -152,7 +152,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 							%>
 							<tr>
 								<td><%=f_list.get(i).getFaq_pk()%></td>
-								<td><a href="#"><%=f_list.get(i).getFaq_subject()%></a></td>
+								<td><a href="/faqSelect?faq_pk=<%=f_list.get(i).getFaq_pk()%>"><%=f_list.get(i).getFaq_subject()%></a></td>
 								<td>관리자</td>
 								<td>2018-06-19</td>
 							</tr>

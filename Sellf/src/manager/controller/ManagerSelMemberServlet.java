@@ -43,19 +43,21 @@ public class ManagerSelMemberServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		ManagerMemberSearch mms = new ManagerMemberSearch(); //회원 검색 조건을 담는 객체 선언.
+		ManagerMemberSearch mms = new ManagerMemberSearch();//회원 검색 조건을 담는 객체 선언.
+		
 		mms.setSelInfo(request.getParameter("selInfo"));   //검색 조건 선택한 값을 저장
-		mms.setMemberInfo(request.getParameter("memberInfo")); //선택한 검색 조건에 해당하는 값을 입력받아 저장
+		mms.setMemberInfo(request.getParameter("selInfoVal")); //선택한 검색 조건에 해당하는 값을 입력받아 저장
 		mms.setSelGrade(request.getParameter("selGrade"));    //선택한 등급을 저장
-		mms.setGender(request.getParameter("gender"));        //선택한 성별 저장.
+		mms.setGender(request.getParameter("gender"));    //선택한 성별 저장. 
+		System.out.println(mms.getMemberInfo());
 		new ManagerMemberService().getMemberSearch(mms);   //회원 정보를 검색하는 서비스로 넘김.
 		
 		
 		//ArrayList<ManagerSelMember> list = new ManagerService().selMember(selInfo, memberInfo,selGrade,gender);
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		//new Gson().toJson(list,response.getWriter());	//gson����Ͽ� db���� �о�� ���� �ѱ�.
+//		
+//		response.setContentType("application/json");
+//		response.setCharacterEncoding("UTF-8");
+//		new Gson().toJson,response.getWriter());	//gson����Ͽ� db���� �о�� ���� �ѱ�.
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

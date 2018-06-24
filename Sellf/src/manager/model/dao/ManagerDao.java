@@ -1,10 +1,42 @@
 package manager.model.dao;
 
-import java.sql.*;
-import java.util.*;
-import manager.model.vo.ManagerSelMember;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import common.JDBCTemplate;
+import manager.model.vo.ManagerSelMember;
+import member.model.vo.Member;
 public class ManagerDao {
+	
+	public Member managerLogin(Connection conn, String managerId, String managerPwd) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		
+		String query = "select *from admin_tb where  admin_id=? and admin_pwd=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, managerId);
+			pstmt.setString(2, managerPwd);
+			rset = pstmt.executeQuery();
+			if(rset.next())
+			{
+				m = new Member();
+				m.setUser_id(rset.getString("admin_id"));
+				m.setUser_pwd(rset.getString("admin_pwd"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}return m;
+	}
 
 	public ArrayList<ManagerSelMember> selMember(Connection conn, String selInfo, String memberInfo, String selGrade,char gender) {
 		//조건에 따라 회원 정보를 DB에서검색하여 jsp로 보냄. 
@@ -255,6 +287,8 @@ public class ManagerDao {
 		}
 		return subCtg;
 	}
+
+	
 
 }
 

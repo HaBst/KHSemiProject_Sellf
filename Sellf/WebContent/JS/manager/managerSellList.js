@@ -1,5 +1,5 @@
 
-function chan()
+function chan() //대분류 선택에따라 소분류 를 dv에서 읽어와서 뿌려줌.
 {
     $("#productItem").empty();
     var mainCtg = $("#productCategory option:selected").val();
@@ -20,7 +20,7 @@ function chan()
 		},
 		error : function()
 		{
-			console.log("18");
+			console.log("fail");
 		}
 	
 	});

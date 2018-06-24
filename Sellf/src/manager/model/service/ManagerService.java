@@ -1,15 +1,26 @@
 package manager.model.service;
 
-import manager.model.dao.ManagerDao;
-import manager.model.vo.ManagerMemberData;
-import manager.model.vo.ManagerSelMember;
-
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import common.JDBCTemplate;
+import manager.model.dao.ManagerDao;
+import manager.model.dao.ManagerMemberDao;
+import manager.model.vo.ManagerMemberData;
+import manager.model.vo.ManagerSelMember;
+import manager.model.vo.ManagerTotalMember;
+import member.model.vo.Member;
 
 public class ManagerService {
+	
+	public Member managerLogin(String managerId, String managerPwd) {
+	//관리자가 맞는 지 판별.
+		Connection conn = JDBCTemplate.getConnection();
+		Member m = new ManagerDao().managerLogin(conn,managerId,managerPwd);
+		JDBCTemplate.close(conn);
+		return m;
+	}
 
 	public ArrayList<ManagerSelMember> selMember(String selInfo, String memberInfo, String selGrade,char gender) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -59,11 +70,15 @@ public class ManagerService {
 		return subCtg;
 	}
 
-	public void getMemberStatus() {
+	public ArrayList<ManagerTotalMember> getMemberStatus() {
 		// 회원 가입수, 탈퇴수 등 메인에 보여줄 데이터를 가져옴.
 		 Connection conn = JDBCTemplate.getConnection();
-		 new ManagerDao().getMemberStatus(conn);
+		 ArrayList<ManagerTotalMember>totalMember = new ManagerMemberDao().getMemberStatus(conn); //회원 현황을 읽어옴.
+		 JDBCTemplate.close(conn);
+		 return totalMember;
 	}
+
+	
 	
 
 }

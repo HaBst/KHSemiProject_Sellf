@@ -127,7 +127,8 @@ function changeTab(tabInfo, name, sellerId)
 				success : function(data){
 					alert("댓글등록을 성공했습니다.");
 					getReviewList(reviewerID,1);
-					reviewCommentArea.val("");
+//					reviewCommentArea.val("");
+					$("#reviewCommentArea").val("");
 				},
 				error:function(){
 					

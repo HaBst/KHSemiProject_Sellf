@@ -9,7 +9,7 @@
 <script>
 	window.onload = function(){
 		alert("상품등록이 완료되었습니다.");
-		location.href="/test.html"
+		location.href="/localhost"
 	}
 </script>
 <body>

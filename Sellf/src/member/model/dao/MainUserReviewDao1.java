@@ -19,8 +19,8 @@ public class MainUserReviewDao1 {
 		UserReview ur = null;
 		ArrayList<UserReview> list = new ArrayList<UserReview>();
 		String query ="SELECT  * FROM USER_REVIEW_TB WHERE LENGTH(USER_REVIEW_COMMENT)>40"
-					+ " AND USER_REVIEW_COMMENT LIKE '%°¨»ç%'"
-					+ " OR USER_REVIEW_COMMENT LIKE '%ÁÁ¾Æ%' AND USER_REVIEW_RATING>4.0 AND ROWNUM<=3";
+					+ " AND USER_REVIEW_COMMENT LIKE '%ì¢‹ì•„%'"
+					+ " OR USER_REVIEW_COMMENT LIKE '%ê°ì‚¬%' AND USER_REVIEW_RATING>4.0 AND ROWNUM<=3";
 		
 		try {
 			stmt = conn.createStatement();

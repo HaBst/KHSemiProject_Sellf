@@ -36,6 +36,7 @@ public class ProductSmallCateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cateBig = request.getParameter("bCategory");
+		System.out.println("cateBig"+cateBig);
 		ArrayList<CateSmall> list = new ProductInsertService().productSmallCate(cateBig);
 //		new Gson().toJson(list,response.getWriter());
 	      JSONArray resultArray = new JSONArray(); // JSONarray 객체

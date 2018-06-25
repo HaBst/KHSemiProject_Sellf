@@ -3,7 +3,7 @@
 <%@ page import="member.model.vo.*" 
 		 import="java.util.ArrayList"
 		 import="product.model.vo.*"%>
-<% Member m = (Member)session.getAttribute("user"); %> 
+<% Member m = (Member)session.getAttribute("login"); %> 
 <% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -213,7 +213,7 @@ th {
 th.nobg {
 	border-top: 0;
 	border-left: 0;
-	border-right: 1px solid #C1DAD7;
+	border-right: 1px solid #D855A1;
 	background: none;
 }
 
@@ -258,7 +258,7 @@ th.specalt {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #9B9BA7;
+  background-color: #D855A1;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -348,7 +348,12 @@ th.specalt {
   transition-delay: 0s;
   background: yellow;
 }    
-    
+.img-responsive
+{
+    width: auto; height: auto;
+    max-width: 100px;
+    max-height: 100px;
+}
 </style>
 </head>
 <body align ="center">
@@ -379,12 +384,12 @@ th.specalt {
 <center>
 <%if(list2!=null){ %>
 <table>
-  				<tr>
-					<th style="width: 40%">상품사진</th>
-					<th style="width: 20%">상품내용</th>
-					<th style="width: 20%">가격</th>
-					<th style="width: 20%">수량</th>
-				</tr>
+  					<tr>
+					<th style="width: 25%">상품사진</th>
+					<th style="width: 25%">상품내용</th>
+					<th style="width: 25%">가격</th>
+					<th style="width: 25%">수량</th>
+					</tr>
 				</thead>
 				<%for (Product p : list2){%>
 				<tbody>
@@ -395,12 +400,10 @@ th.specalt {
 					</td>
 					<td><h4 class="nomargin"><%=p.getProduct_name() %></h4>
 					<h5>    <% String state = p.getProduct_state(); %>
-       		 <%if(state.equals("S")){%>
-         	  <h4  style="color: blue">판매중</h4>
-         	 <%}else if(state.equals("T")) {%>
-         	  <h4  style="color: orange">거래중</h4>
-         	 <%}else if(state.equals("E")) {%>
-         	  <h4  style="color: red">판매완료</h4>
+       		 <%if(state.equals("O")){%>
+         	  <h4  style="color: GREEN">구매완료</h4>
+         	 <%}else if(state.equals("X")) {%>
+         	  <h4  style="color: red">구매중</h4>
          	 <%} %></h5></td>
 					<td><%=p.getProduct_price()%></td>
 					<td>

@@ -446,7 +446,7 @@ table tr:hover td {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #9B9BA7;
+  background-color: #D855A1;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);

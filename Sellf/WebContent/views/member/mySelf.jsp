@@ -3,7 +3,7 @@
 <%@ page import="member.model.vo.*" 
 		 import="java.util.ArrayList"
 		 import="product.model.vo.*"%>
-<% Member m = (Member)session.getAttribute("user"); %> 
+<% Member m = (Member)session.getAttribute("login"); %> 
 <% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +30,7 @@ body {
 	height: 800px;
 }
     .mpMenuItems{border: 1px solid white;
-    float: left;
+    float: left; 
     width: auto;
     height: 100%;
     }
@@ -195,7 +195,6 @@ caption {
 	padding: 0 0 5px 0;
 	width: 700px;	 
 	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	text-align: right;
 }
 
 th {
@@ -204,9 +203,6 @@ th {
 	border-right: 1px solid #C1DAD7;
 	border-bottom: 1px solid #C1DAD7;
 	border-top: 1px solid #C1DAD7;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	text-align: left;
 	padding: 6px 6px 6px 12px;
 	background: #F2F2F2 url(/data/201011/IJ12896448126037/bg_header.jpg) no-repeat;
 }
@@ -232,12 +228,6 @@ td.alt {
 	color: #797268;
 }
 
-th.spec {
-	border-left: 1px solid #C1DAD7;
-	border-top: 0;
-	background: #fff url(/data/201011/IJ12896448126037/bullet1.gif) no-repeat;
-	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-}
 
 th.specalt {
 	border-left: 1px solid #C1DAD7;
@@ -259,7 +249,7 @@ th.specalt {
   text-align: center;
   line-height: 60px;
   border-radius: 50%;
-  background-color: #9B9BA7;
+  background-color: #D855A1;
   color: #FFFFFF;
   font-size: 24px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.22);
@@ -349,7 +339,12 @@ th.specalt {
   transition-delay: 0s;
   background: yellow;
 }    
-    
+.img-responsive
+{
+    width: auto; height: auto;
+    max-width: 100px;
+    max-height: 100px;
+}
 </style>
 </head>
 <body align ="center">
@@ -381,17 +376,18 @@ th.specalt {
 <%if(list2!=null){ %>
 <table>
   				<tr>
-					<th style="width: 40%">상품사진</th>
-					<th style="width: 20%">상품내용</th>
-					<th style="width: 20%">가격</th>
-					<th style="width: 20%">수량</th>
+					<th style="width: 25%">상품사진</th>
+					<th style="width: 25%">상품내용</th>
+					<th style="width: 25%">가격</th>
+					<th style="width: 25%">수량</th>
 				</tr>
 				</thead>
 				<%for (Product p : list2){%>
 				<tbody>
 				<tr>
-					<td><div class="row"><div class="col-sm-2 hidden-xs">
-					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+					<td><div class="row">
+					<div class="col-sm-2 hidden-xs">
+					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive"/></div>
 					</div>
 					</td>
 					<td><h4 class="nomargin"><%=p.getProduct_name() %></h4>

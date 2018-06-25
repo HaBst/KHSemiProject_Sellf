@@ -38,16 +38,15 @@ public class PopularProduct2Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletContext context = getServletContext();
-		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
-		JDBCTemplate.setDriverPath(fullPath);	
-		
-		ArrayList<Product> popularProductList = new PopularProductService().popularProductList2();
+			ServletContext context = getServletContext();
+			String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
+			JDBCTemplate.setDriverPath(fullPath);	
 			
+			ArrayList<Product> popularProductList = new PopularProductService().popularProductList2();
 			response.setCharacterEncoding("utf-8");
-			JSONArray resultArray = new JSONArray(); // JSONarray 객체
-			// 여러명의 정보를 담을 객체가 필요하기 때문에 array 로 만듦
-			for (Product product : popularProductList) { // for : each문을 사용해서 전체 출력하기
+			JSONArray resultArray = new JSONArray(); 
+		
+			for (Product product : popularProductList) { 
 				JSONObject result = new JSONObject();
 				result.put("name", product.getProduct_name());
 				result.put("price", product.getProduct_price());

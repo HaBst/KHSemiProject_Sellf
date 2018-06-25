@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"
  	import="product.model.vo.*" import="java.util.ArrayList"
 %>
+ <% 
+ 	String searchK= request.getParameter("searchKey");
+/*  	String cate = request.getParameter("category");
+ 	System.out.println(cate + " 현재 카테고리 "); */
+ %> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,7 +25,7 @@
 <!-- 내부 링크건 CSS -->
 <link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
 <link rel="stylesheet" href="../../CSS/common/common.css?ver=1" />
-<link rel="stylesheet" href="../../CSS/main/productListMain.css" />
+<link rel="stylesheet" href="../../CSS/main/productListMain.css?ver=1" />
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -40,7 +45,17 @@
 <link rel="stylesheet" type="text/css" href="../../CSS/common/header.css?ver=1">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css?ver=1">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css?ver=1">
-
+<script>
+	function setTitle()
+	{
+		 <%-- console.log(<%=searchK%> +" 123 " +<%=(searchK!="null")%> ); --%>
+		<% if(searchK!="null" && searchK!=null ){ %>
+			$("#productTitle").html("<h3><%=searchK%></h3>");
+		<% }else {%>
+			$("#productTitle").html("<h3>"+document.getElementById(category).innerHTML + "</h3>");
+		<%}%>
+	}
+</script>
 <title>상품 목록</title>
 </head>
 <body>
@@ -50,7 +65,8 @@
 			<!--  Header -->
 			<header id="header">
                  <center>
-				 <%@include  file="../../views/common/header.jsp" %>
+				 	<%@include  file="../../views/common/header.jsp" %>
+				 	<input type="hidden" id="searchKey" value="<%=request.getParameter("searchKey") %>"/>
 				 </center>
 			</header>
 			<section id="content">				
@@ -106,14 +122,14 @@
 				<br>
 				<div id="crossLine"></div>
 				<div id="productTitle">
-					<label>전자제품</label>
+					<!-- <label>전자제품</label> -->
 				</div>
 	
 				<div id="recommandProductTitle">
 					<strong>추천상품</strong>
 				</div>
 				<div id="recommandProductContent">
-					<div id="recommandProduct">
+					<!-- <div id="recommandProduct">
 						<div class="productBg" style="height:100%;">
 							<div class="imgWrapper">
 								<img class="productImgMain"
@@ -137,81 +153,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div id="recommandProduct">
-						<div class="productBg" style="height:100%;">
-							<div class="imgWrapper">
-								<img class="productImgMain"
-									src="../../img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
-									alt="">														
-								
-								<div class="productCoverExplain">
-									<br><br><br>				
-									<ul>
-										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
-										<li style="color:gray;overflow:auto;"> 제품설명1<br> 제품설명2</li>
-										<li style="color:white;overflow:auto;">	<s>￦ 50,000</s>-> ￦ 40,000</li>
-									</ul>
-								</div>
-								<div class="productSideMenu">
-									<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>
-									<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>
-									<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>
-									<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>
-									<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="recommandProduct">
-						<div class="productBg" style="height:100%;">
-							<div class="imgWrapper">
-								<img class="productImgMain"
-									src="../../img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
-									alt="">														
-								
-								<div class="productCoverExplain">
-					   				<br><br><br>				
-									<ul>
-										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
-										<li style="color:gray;overflow:auto;">	 제품설명1<br> 제품설명2</li>
-										<li style="color:white;overflow:auto;">		<s>￦ 50,000</s>-> ￦ 40,000</li>
-									</ul>
-								</div>
-								<div class="productSideMenu">
-									<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>
-									<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>
-									<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>
-									<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>
-									<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="recommandProduct">
-						<div class="productBg" style="height:100%;">
-							<div class="imgWrapper">
-								<img class="productImgMain"
-									src="../../img/13_tmp_2a76a0e4e67b6235c1154881381ed2655930large.jpg"
-									alt="">																						
-								<div class="productCoverExplain">
-									<br><br><br>				
-									<ul>
-										<li style="color:white;overflow:auto;">	세련된flex 디자인</li>
-										<li style="color:gray;overflow:auto;">	 제품설명1<br> 제품설명2</li>
-										<li style="color:white;overflow:auto;">	<s>￦ 50,000</s>-> ￦ 40,000</li>
-									</ul>
-								</div>
-								<div class="productSideMenu">
-									<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>
-									<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>
-									<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>
-									<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>
-									<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+					</div> -->
+					
 				</div>
 				<div id="entireProduct">
 					<div id="entireProductTitle">
@@ -220,13 +163,13 @@
 					<div id="crossLineLong"></div>
 					<ul class="float_wrap">
 						<li class="left"><span class="sort_item">
-								<button class="sortBtn" onclick = 'selectSortType("uploadOrder");' name="uploadOrder" value="최근등록순"><b>최근등록순</b></button>
+								<button class="sortBtn" onclick = 'selectSortType("updateOrder");' name="updateOrder" value="최근등록순"><B>최근등록순</B></button>
 								&nbsp;|&nbsp; 
 								<button class="sortBtn" onclick = 'selectSortType("lowPriceOrder");' name="lowPriceOrder" value="낮은가격순">낮은가격순</button>
 								&nbsp;|&nbsp; 
 								<button class="sortBtn" onclick = 'selectSortType("highPriceOrder");' name="highPriceOrder" value="높은가격순">높은가격순</button>
-								&nbsp;|&nbsp;
-								<button class="sortBtn" onclick = 'selectSortType("manyReviewOrder");' name="manyReviewOrder" value="상품평많은순">상품평많은순</button>
+								<!-- &nbsp;|&nbsp;
+								<button class="sortBtn" onclick = 'selectSortType("manyReviewOrder");' name="manyReviewOrder" value="상품평많은순">상품평많은순</button> -->
 						</span></li>
 						<!-- <li class="right">
 							 <select name="perpage" id="perPageCount" 

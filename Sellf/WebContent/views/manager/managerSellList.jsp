@@ -30,19 +30,19 @@
 							<tr>
 								
 								<th>검색분류</th>
-								<td><select id="searchProduct"> <!-- value값은 차차 생각!! -->
+								<td><select id="searchType"> <!-- value값은 차차 생각!! -->
+										<option value=null>-선택안함-</option>
 										<option value="1">상품명</option>
 										<option value="2">카테고리</option>
 										<option value="3">판매자</option>
-										<option value="4">상품번호</option>
-										
-								</select><input type="text" name="getSearch" /></td>
+								</select><input type="text" id="getSearch" />
+								</td>
 							</tr>
 							<tr>
 								<th>상품 분류</th> 
 								<td>
 								<select id="productCategory" onchange="chan();" >
-									<option value=null>-대분류 선택-</option>
+									<option value=null selected>-대분류 선택-</option>
 									<option value="M01">전자제품</option>
 									<option value="M02">패션의류</option>
 									<option value="M03">패션잡화</option>
@@ -67,7 +67,7 @@
 						</tr>
 							<tr>
 								<th>상품 상태</th>
-								<td> <input type="radio" name="status" value="all" checked />전체 
+								<td> <input type="radio" name="status" value=null checked />전체 
 									 <input type="radio" name="status" value="a" />상  
 									 <input type="radio" name="status" value="b" />중상  
 									 <input type="radio" name="status" value="b" />중  

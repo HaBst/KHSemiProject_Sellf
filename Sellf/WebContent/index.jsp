@@ -50,68 +50,56 @@ crossorigin="anonymous"></script>
 <!-- <script type="text/javascript" src="../../JS/bootstrap/bootstrap.min.js"></script> -->
 <!-- 구글 폰트 -->
 <style>
-
+.dropdown-toggle::after {
+    display: inline-block !important;
+ }
 </style>
 <title>메인페이지</title>
-
-<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-9029956828399072",
-          enable_page_level_ads: true
-     });
-</script> -->
 </head>
 <body>
 
 	<center>
 		<!-- Wrapper -->
-		<div id="wrapper" style="overflow: hidden;">
-		
+		<div id="wrapper" style="overflow: hidden;">		
 			<!-- header -->
-			<div id="header"><%@include file="/views/common/header.jsp"%></div>
+			<div id="header"><%@include file="/views/common/header.jsp" %></div>
 			
 			<!-- 메인 광고 이미지 슬라이더 -->
-			<div id="imgSliderSec">
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0" 	class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner" style="height:400px;">
-						<div class="carousel-item active">
-							<a href="index.jsp">
-								<img class="d-block w-100"
-								src="img/categoryImgGroup/노트북광고.JPG"	
-								alt="첫번째 슬라이드" >
-							</a>
-						</div>
-						<div class="carousel-item">
-							<a href="index.jsp">
-								<img class="d-block w-100"
-								src="img/categoryImgGroup/수익광고2.JPG"
-								alt="두번째 슬라이드" >
-							</a>
-						</div>
-						<div class="carousel-item">
-							<a href="index.jsp">
-								<img class="d-block"
-									src="img/categoryImgGroup/광고이어폰.JPG"
-									alt="세번째 슬라이드">
-							</a>
-						</div>
+			<div id="imgSliderSec" style="width:100%;height:auto;">
+					
+					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+					  <div class="carousel-inner" style="width:100%;">
+					    <div class="carousel-item active">
+					    			<a href="index.jsp">
+										<img class="d-block w-100"
+										src="img/categoryImgGroup/노트북광고.JPG"	
+										alt="첫번째 슬라이드" style="width:100%; height:500px;">
+									</a>
+					    </div>
+					    <div class="carousel-item">
+					     			<a href="index.jsp">
+										<img class="d-block w-100"
+											src="/ImgMain/슬라이드1.PNG";
+											alt="두번째 슬라이드" style="width:100%; height:500px;">
+									</a>
+					    </div>
+					    <div class="carousel-item">
+					     			<a href="index.jsp">
+										<img class="d-block w-100"
+										src="img/categoryImgGroup/수익광고2.JPG"
+										alt="세번째 슬라이드" style="width:100%; height:500px;" >
+									</a>
+					    </div>
+					  </div>
+					  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators"
-						role="button" data-slide="prev"> <span
-						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-						class="sr-only">이전</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-						role="button" data-slide="next"> <span
-						class="carousel-control-next-icon" aria-hidden="true"></span> <span
-						class="sr-only">다음</span>
-					</a>
-				</div>
 			</div>
 			<br><br>
 			<!-- 인기카테고리 -->
@@ -218,21 +206,25 @@ crossorigin="anonymous"></script>
 							var img = [];
 							var productPk = [];
 							
-							console.log(data);
+							console.log("중고 아닌 새거 " + data);
+							var imgKeys = ["img1","img2","img3","img4","img5"];
+							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
-								img[i]= data[i].product_image;
+								imgJsonObj = JSON.parse(data[i].product_image);
+								img[i]= imgJsonObj.img1;//data[i].product_image; 
+								console.log("개봉 안한 이미지" + imgJsonObj.img1);
 								productName[i] =data[i].product_name;
 								productPk[i] =data[i].product_entire_pk;
 								}	
 								console.log("상품인덱스:"+productPk[0]);
 								
 							$("#imghoverSec .shadow img:eq(0)").attr("src",img[0]);
-								$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
-								$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
+							$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
+							$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
 								
-								$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
-								$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
-								$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
+							$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
+							$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
+							$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
 						},
 						error : function() { 
 							console.log("미개봉상품가져오기 실행 실패");	
@@ -279,17 +271,23 @@ crossorigin="anonymous"></script>
 					$(document).ready(function(){
 						$.ajax({
 							url : "/newProduct",
-							data:{},
 							type : "get",
 							success : function(data) { 
 								var name = [];
 								var price = [];
 								var img = [];	
 								var productNo = [];
+								var productPk = [];
+								
+								//gson 땜시 추가한 부분 
+								var imgKeys = ["img1","img2","img3","img4","img5"];
+								var imgJsonObj;
+								 
 								for (var i = 0; i < data.length; i++) {
 									name[i]= data[i].name;
 									price[i] =data[i].price;	
-									img[i] = data[i].image;
+									imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+									img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 									productNo[i] = data[i].productEntireNo;
 								}
 							$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
@@ -531,10 +529,16 @@ crossorigin="anonymous"></script>
 						var detail =[];
 						var productNo1 =[];
 						var subCateId = [];
+						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
+							
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							detail[i] = data[i].detail;
 							productNo1[i] = data[i].productNo;
 							subCateId[i] = data[i].subCateId;
@@ -805,10 +809,15 @@ crossorigin="anonymous"></script>
 						var img = [];
 						var productNo2 = [];
 						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
+							
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							productNo2[i] = data[i].productNo;
 						}	
 						console.log("인기카테고리순위2 " + name[0]);
@@ -1043,15 +1052,20 @@ crossorigin="anonymous"></script>
 						var price = [];
 						var img = [];
 						var productNo3 = [];
+						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							productNo3[i] = data[i].productNo;
-							console.log("인기카테고리순위3 " + name[i]);
-							console.log("인기카테고리순위3이미지 : " + img[i]);		
+							
 						}	
-						
+						console.log("인기카테고리순위3 " + name[0]);
+					
 						$("#sellExpectedSec3 .card-img-top:eq(0)").attr("src",img[0]);
 						$("#sellExpectedSec3 .card-img-top:eq(1)").attr("src",img[1]);
 						$("#sellExpectedSec3 .card-img-top:eq(2)").attr("src",img[2]);
@@ -1288,10 +1302,14 @@ crossorigin="anonymous"></script>
 						var img = [];
 						var detail = [];
 						var productNo4 = [];
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							detail[i] = data[i].detail;
 							productNo4[i] = data[i].productNo;
 				
@@ -1443,9 +1461,9 @@ crossorigin="anonymous"></script>
 									$("#review .col-sm:eq(0)>div:last-child").text(comment[0]);
 									$("#review .col-sm:eq(1)>div:last-child").text(comment[1]);
 									$("#review .col-sm:eq(2)>div:last-child").text(comment[2]);
-									$("#review .col-sm:eq(0)>div:first-child").text(userId[0]+ "님이 작성한 리뷰입니다~!!  ");
-									$("#review .col-sm:eq(1)>div:first-child").text(userId[1]+ "님이 작성한 리뷰입니다~!!  ");
-									$("#review .col-sm:eq(2)>div:first-child").text(userId[2]+ "님이 작성한 리뷰입니다~!!  ");
+									$("#review .col-sm:eq(0)>div:first-child").text(userId[0]+ "님 리뷰");
+									$("#review .col-sm:eq(1)>div:first-child").text(userId[1]+ "님 리뷰");
+									$("#review .col-sm:eq(2)>div:first-child").text(userId[2]+ "님 리뷰");
 							},
 							error : function() { 
 								console.log("리뷰가져오기 실행 실패");	
@@ -1454,7 +1472,7 @@ crossorigin="anonymous"></script>
 					});	
 					</script> 
 					<div id="content" class="reviewContent">
-				 	<div id="reviewTitle"><h1 style="font-weight:600;">1000만 사용자가 생길 예정입니다.</h1></div>
+				 	<div id="reviewTitle"><h1 style="font-weight:600;">SELL:F 사용자 후기</h1></div>
 				 	<br>
 				 	
 					<div class="container" id="review" style="overflow:hidden;">
@@ -1462,23 +1480,22 @@ crossorigin="anonymous"></script>
 					    <div class="col-sm">
 					    	<div class="title_userId"></div>
 					    	<hr>
-					    	<div></div>
+					    	<div class="reviewContent1"></div>
 					    </div>
 					    <div class="col-sm">
 							<div class="title_userId"></div>
 							<hr>				   
-							<div></div>
+							<div class="reviewContent1"></div>
 					    </div>
 					    <div class="col-sm">
 							<div class="title_userId"></div>
 							<hr>				    	
-							<div></div>
+							<div class="reviewContent1"></div>
 					    </div>
 					  </div>
 					</div>	
 				</div> <!-- 전체 content 끝  -->							
 				<br><br>
-			
 				<!-- footer -->
 				<div id="footer"> <%@include file="/views/common/footer.jsp"%></div>
 			</div><!-- wrapper 끝 -->

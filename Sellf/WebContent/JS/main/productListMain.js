@@ -1,9 +1,13 @@
+
+
 var allCategory;
 var allState;
 var orderTypeArr;
 var orderType = "updateOrder";
 var category  = "";
 window.onload = function(){
+	currentPage = 0;
+	orderType = "updateOrder";
 	allCategory = document.getElementsByClassName('category-btn')[0];
 	selectCategory();
 	allState = document.getElementsByClassName('productState-btn')[0];
@@ -13,7 +17,12 @@ window.onload = function(){
 	orderType = sortOrder;
 	selectOrderType();
 	category = $_GET('category');
+	loadRecommandList();
 	loadSelectCategory();
+	// 제목설정
+	setTitle();
+//	console.log("현재 제목" + $("#productTitle").text());
+
 }
 
 var currentPage = 0;
@@ -28,26 +37,70 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function loadRecommandList()
+{
+	var totalProductList = $("#recommandProductContent");
+	$.ajax({
+		url:"/productRecomandList",
+		type : "get",
+		success : function(data){	
+			for(var i = 0 ; i<4;i++){
+				var imgJsonObj = JSON.parse(data[i].product_image);
+				var detailJsonObj = JSON.parse(data[i].product_detail);
+				totalProductList.append(
+				'<div id="recommandProduct" onclick="selectProduct('+data[i].product_entire_pk+');">'+
+				'<div class="productBg" style="height:100%; >'+
+					'<div class="imgWrapper">'+
+						'<img class="productImgMain" src="'+imgJsonObj.img1+'" alt="">'+														
+						'<div class="productCoverExplain">'+
+							'<br><br><br>'+				
+							'<ul>'+
+								'<li style="color:white;overflow:auto;">'+data[i].product_name+'</li>'+
+								'<li style="color:gray;overflow:auto;">	'+detailJsonObj.Detail+
+								'<li style="color:white;overflow:auto;">'+numberWithCommas(data[i].product_price)+'</li>'+
+							'</ul>'+
+						'</div>'+
+						'<div class="productSideMenu">'+
+							'<div class="display_newwin hide"><img src="../../img/thumb_quickview.png" alt=""></div>'+
+							'<div class="display_quickview"><img src="../../img/thumb_quickview.png" alt="미리보기"></div>'+
+							'<div class="display_option"><img src="../../img/thumb_option.png" alt="옵션보기"><div class="hide display_opt_bak" act=""></div></div>'+
+							'<div class="display_send"><img src="../../img/thumb_send.png" alt="SNS보내기"></div>'+
+							'<div class="display_zzim"><img src="../../img/thumb_zzim_off.png" alt="찜하기"><img src="../../img/thumb_quickview.png" style="display:none" alt="찜하기"></div>'+
+						'</div>'+
+					'</div>'+
+				'</div>'+
+			'</div>');
+			}
+		},
+		error : function(){
+			console.log("실패");	
+		}
+	});
+}
+
 
 var currentPageNum = 0;//현재 페이지 넘버.
 function loadSelectCategory()
 {
 	var mainCategory  = "M01";//$("#userIndex2").val();// 입력값 가져오기
 	var subCategory  = category;//$("#userIndex2").val();// 입력값 가져오기
+	var searchKey = $("#searchKey").val();
 	var onePageShowProduct = 8;//Number($("#perPageCount").val()); // 한페이지에 몇개 보여줄지.
 //	var currentPage = Number(currentPageNum);// 현재 페이지.
 	var totalProductSize = $("#entireProductTitleLabel");  // 제목 표시해줄때.
 	var totalProductList = $(".productList");//$("#productLine");
 	$.ajax({
 		url:"/productSortCategory",
-		data : {mainCategory : mainCategory,
+		data : {
+				mainCategory : mainCategory,
 				subCategory : subCategory,
 				onePageShowProduct :onePageShowProduct,
 				currentPage :currentPage,
-				orderType : orderType
+				orderType : orderType,
+				searchKey :searchKey
 				},
 		type : "get",
-		success : function(data){			
+		success : function(data){		
 			var result = "";
 			// JSON에서 MAP형태로 꺼내오려면
 			// 키값을 먼저 추출해야함
@@ -62,19 +115,22 @@ function loadSelectCategory()
 			{
 				maxLength =   currentPage*onePageShowProduct+ onePageShowProduct;
 			}
-//			totalProductSize.html("전체상품 " +  keys.length + "개");
 			
+			var imgKeys = ["img1","img2","img3","img4","img5"];
 			for(var i = currentPage*onePageShowProduct; i<maxLength;i++)
-			{
-				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk +');"';
+			{			
+				var imgJsonObj = JSON.parse(data[keys[i]].product_image);
+				/*console.log(data[keys[i]].product_detail);*/
+				var detailJsonObj = JSON.parse(data[keys[i]].product_detail);
+				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
 				totalProductList.append(
 				'<li class="productWrap">'+
 				'<div class="productBg"' +link +'>'+
 					'<div class="imgWrapper">'+
-						'<img class="productImgMain" src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg">'+
-						'<% if (discountRate > 0) { %>'+						
-						'<div class="discountBg">10%</div>'+
-						'<% }%>'+
+						'<img class="productImgMain" src="'+imgJsonObj.img1+'">'+
+//						'<% if (discountRate > 0) { %>'+						
+//						'<div class="discountBg">10%</div>'+
+//						'<% }%>'+
 						'<div class="productSideMenu">'+
 						'<div class="display_newwin hide">'+
 						'<img src="../../img/thumb_quickview.png" alt="">'+
@@ -99,7 +155,7 @@ function loadSelectCategory()
 				'<div class="productTitle">'+data[keys[i]].product_name+'</div>'+
 				'<div class="productExplain">'+
 					'<font class="productExplainFont" text-overflow: ellipsis;>'+data[keys[i]].product_entire_user_entire_id_fk +'<br>'
-						+data[keys[i]].product_detail +
+						+detailJsonObj.Detail +
 					'</font>'+
 				'</div>'+
 //				'<div class="priceOrigin">'+
@@ -163,7 +219,7 @@ function selectProduct(productId)
 
 function selectSortType(selectOption)
 {
-	location.href="/views/main/productList.jsp?orderType="+selectOption+"&category="+category;
+	location.href="/views/main/productList.jsp?orderType="+selectOption+"&category="+category+"&searchKey="+$("#searchKey").val();
 }
 
 

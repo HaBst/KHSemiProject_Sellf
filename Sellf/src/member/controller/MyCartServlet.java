@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
+import member.model.service.MemberInfoService;
 import member.model.service.MyCartService;
+import member.model.vo.Member;
 import member.model.vo.UserCartList;
 import product.model.vo.Product;
 
@@ -36,22 +38,34 @@ public class MyCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			// JDBCTemplate í˜¸ì¶œ 
 			ServletContext context = getServletContext();
 			String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 			JDBCTemplate.setDriverPath(fullPath);
-		
-			request.setCharacterEncoding("utf-8");	 // ÇÑ±Û ÀÎÄÚµù ( ¹Ş¾Æ¿À´Â °ªÀº ¾øÀ¸´Ï Áö¿öµµ µÇ°ÚÁö ? )
-			//HttpSession session = request.getSession(false); // ¼¼¼Ç¿¡¼­ ID°ª ÃßÃâ
-		
-	
-			ArrayList<Product> list = new MyCartService().myCartList();
-			System.out.println("Ä«Æ®ÀÔ´Ï´Ù." +list.get(0).getProduct_amount());
-			RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart.jsp");
-			request.setAttribute("myCartList", list);
-			view.forward(request, response);
 			
+			// ì¸ì½”ë”© 
+			request.setCharacterEncoding("utf-8");
+			ArrayList<Product> list = new ArrayList<>();
 			
-	
+		
+			// ì„¸ì…˜ê°’ì´ ë„˜ì–´ì™”ëŠ”ì§€ ì—¬ë¶€ ì²´í¬ 
+			HttpSession session = request.getSession(false);
+			
+			//System.out.println("ì„¸ì…˜ê°’:"+session.getAttribute("login"));
+			if(session.getAttribute("login")!=null) {
+				Member m = (Member) session.getAttribute("login");
+				System.out.println("m???"+m.getUser_birth());
+				String userId = m.getUser_id();
+				list =new MyCartService().myCartList(userId);
+				
+				RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart.jsp");
+				request.setAttribute("myCartList", list);
+				view.forward(request, response);
+			}
+			else {
+				System.out.println("ë¡œê·¸ì¸ì´ ë˜ì–´ìˆì§€ ì•Šì•„ ì¥ë°”êµ¬ë‹ˆ ì ‘ê·¼ ë¶ˆê°€");
+				response.sendRedirect("/views/error/member/Error.html");
+			}
 	}
 
 	/**
@@ -61,5 +75,7 @@ public class MyCartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
+
 
 }

@@ -55,7 +55,6 @@ $('#checkBtn').click(function() {
 		 else{
 			 check=0;
 			}
-	
 		// jQuery Ajax 코드
 			$.ajax({
 				url : "/checkid",
@@ -78,6 +77,7 @@ $('#checkBtn').click(function() {
 				},
 				error : function(){
 					console.log("실패");
+					alert(id);
 				}
 			});
 	});

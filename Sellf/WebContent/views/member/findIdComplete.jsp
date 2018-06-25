@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
+<%@ page import="member.model.vo.*"%>
+<%@ page import= "java.sql.Date"%>
+<% String memberEmail = request.getParameter("memberEmail");
+   String userId = request.getParameter("userId");
+   String enrolldate = request.getParameter("enrolldate");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,7 +72,7 @@
 				<br>
 				<div id="findIdContainer">
 					<div class="title_1">
-						<h6>고객님의 정보와 일치하는 아이디 목록입니다.</h6>
+						<h6>고객님의 정보와 일치하는 아이디입니다.</h6>
 					</div>
 					<br>
 					<div id="container">
@@ -83,9 +87,9 @@
 							<tr>
 								<td>&nbsp;&nbsp;<input type="radio" checked>&nbsp;&nbsp;
 								</td>
-								<td colspan="2">${userId1}</td>
+								<td colspan="2"><%=userId%></td>
 								<td>&nbsp;&nbsp;&nbsp;</td>
-								<td>db에서 가입일자 가져오기</td>
+								<td><%=enrolldate %></td>
 							</tr>
 						</table>
 

@@ -39,6 +39,7 @@ public class NoticeDao {
 				n.setNotice_image(rset.getString("notice_image"));
 				n.setNotice_content(rset.getString("notice_content"));
 				n.setNotice_registration_date(rset.getDate("notice_registration_date"));
+				n.setNotice_views_count(rset.getInt("notice_views_count"));
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -138,6 +139,7 @@ public class NoticeDao {
 					sb.append("<a href='/notice?currentPage="+(endNavi+1)+"'> > </a>"); // 다음으로
 					sb.append("<a href='/notice?currentPage="+(pageTotalCount)+"'> >> </a>");//맨뒤로 
 				}
+				
 				return sb.toString();
 		
 	}

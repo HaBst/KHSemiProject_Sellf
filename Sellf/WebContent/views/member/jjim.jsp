@@ -3,7 +3,7 @@
 <%@ page import="member.model.vo.*" 
 		 import="java.util.ArrayList"
 		 import="product.model.vo.*"%>
-<% Member m = (Member)session.getAttribute("user"); %> 
+<% Member m = (Member)session.getAttribute("login"); %> 
 <% ArrayList<Product> list2 = (ArrayList<Product>)request.getAttribute("product"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -245,7 +245,7 @@ th.spec {
 	text-align: center;
 	line-height: 60px;
 	border-radius: 50%;
-	background-color: #9B9BA7;
+	background-color: #D855A1;
 	color: #FFFFFF;
 	font-size: 24px;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0
@@ -352,6 +352,13 @@ th.spec {
 	transition-delay: 0s;
 	background: yellow;
 }
+.img-responsive
+{
+    width: auto; height: auto;
+    max-width: 100px;
+    max-height: 100px;
+}
+
 </style>
 </head>
 <body align="center">
@@ -381,9 +388,9 @@ th.spec {
 				
 				<table id="cart" class="table table-hover table-condensed"><thead>
 				<tr>
-					<th style="width: 40%">상품이미지</th>
-					<th style="width: 20%">상품정보</th>
-					<th style="width: 10%">수량</th>
+					<th style="width: 25%">상품이미지</th>
+					<th style="width: 35%">상품정보</th>
+					<th style="width: 20%">수량</th>
 					<th style="width: 10%" class="text-center">장바구니 추가</th>
 					<th style="width: 10%" class="text-center">삭제</th>
 				</tr>

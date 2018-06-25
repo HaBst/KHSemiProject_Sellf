@@ -3,7 +3,10 @@ package board.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import board.model.dao.FaqDao;
 import board.model.dao.NoticeDao;
+import board.model.vo.Faq;
+import board.model.vo.FaqPageData;
 import board.model.vo.Notice;
 import board.model.vo.NoticeComment;
 import board.model.vo.NoticePageData;
@@ -20,7 +23,6 @@ public NoticeService() {}
 		int naviCountPerPage = 5; //현재 위치 중심으로 시작 navi부터 끝 navi까지의 개수 
 		
 		ArrayList<Notice> list = new NoticeDao().getCurrentPage(conn,currentPage,recordCountPerPage);
-		System.out.println(list);
 								//DB 가서 현재 페이지, 몇개의 게시물 보여줄것인지 
 		String NoticePageNavi = new NoticeDao().getPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
 		NoticePageData npd= null; 
@@ -47,5 +49,6 @@ public NoticeService() {}
 		JDBCTemplate.close(conn);
 		return list; 
 	}
+	
 	
 }

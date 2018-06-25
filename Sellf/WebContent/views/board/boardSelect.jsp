@@ -55,29 +55,42 @@
 <title>게시판</title>
 
 </head>
+<style> 
+    #CommentWriterId
+    {
+    float:left;
+    font-weight:800;
+    }
+	#CommentContext
+    {
+    float:left;
+    }
+    
+
+</style>
 <body>
+<script type="text/javascript">
+</script>
 	<center>
 		<!--  Wrraper    -->
-		<div id="wrapper">
 			<!--  Header -->
-			<header id="header">
-			<div style="background-color: gray; width: 100%; height: 200px;">
-			</div>
-			</header>
+			<header id="header"> <%@include
+				file="../../views/common/header.jsp"%> <!--<div style="background-color: gray; width: 100%; height: 200px;">
+			</div>--> </header>
 			<section id="content">
 			<div id="topLeftLink">
 				<a href="#">Test</a> <a href="#">게시판> </a> <a href="#">홈></a>
 			</div>
 			<div id="topMenu">
-				<div class="menuBtn" onclick="boardTapChange(this,boardListArea);">
-					<span>공지사항</span>
-				</div>
-				<div class="menuBtn" onclick="boardTapChange(this,answerListArea);">
-					<span>자주 묻는 질문</span>
-				</div>
-				<div class="menuBtn" onclick="boardTapChange(this,reviewListArea);">
-					<span>상품후기</span>
-				</div>
+				<button class="menuBtn" onclick="moveNotice()" id="selectedBtn">
+				공지사항
+				</button>
+				<button class="menuBtn" onclick="moveFaq()">
+				자주 묻는 질문
+				</button>
+				<button class="menuBtn" onclick="moveReview()">
+				상품 후기
+				</button>
 			</div>
 			<div class="hlLongBold"></div>
 			<div id="boardContent">
@@ -162,8 +175,10 @@
 			</div>
 			</section>
 		</div>
-		<footer id="footer"> <%@include file="../../views/common/footer.jsp"%> <!--  <div id="footerTest" style="width:100%; height:300px; background-color:gray;"></div>-->
-		</footer>
+		<div align="center">
+	<footer>
+					<%@include file="../../views/common/footer.jsp" %>
+	</footer>
 	</center>
 	<script> 
 
@@ -185,19 +200,17 @@
 			 $('#commentBtn').slideToggle(500);
 		});
 	});
-
+	
+	function moveNotice() {
+		location.href="/notice";
+	}
+	function moveFaq() {
+		location.href="/faq";
+	}
+	function moveReview() {
+		location.href="/review";
+	}
 </script>
-<style> 
-    #CommentWriterId
-    {
-    float:left;
-    font-weight:800;
-    }
-	#CommentContext
-    {
-    float:left;
-    }
 
-</style>
 </body>
 </html>

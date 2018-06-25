@@ -204,4 +204,52 @@ public class MemberDao {
 		}
 		return m;
 	}
+
+
+	public boolean memberCheckDelete(Connection conn, String id, String fullPath) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		boolean result=false;
+		Properties prop = new Properties();
+
+		try {
+			prop.load(new FileInputStream(fullPath));
+			String query = prop.getProperty("checkDelete");
+			//			System.out.println(id);
+			//		
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				rset = pstmt.executeQuery();
+				if(rset.next())
+				{
+					String grade = rset.getString("user_grade_id");
+					System.out.println(grade);
+					if(grade.equals("G00"))
+					{
+						result=false;
+					}
+					else
+					{
+						result=true;
+					}
+				}
+				else
+				{
+					result=true;
+				}
+		
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("result : " + result);
+		return result;
+	}
 }

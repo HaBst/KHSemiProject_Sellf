@@ -1,4 +1,4 @@
-package manager.model.service;
+ package manager.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -69,16 +69,4 @@ public class ManagerService {
 		JDBCTemplate.close(conn);
 		return subCtg;
 	}
-
-	public ArrayList<ManagerTotalMember> getMemberStatus() {
-		// 회원 가입수, 탈퇴수 등 메인에 보여줄 데이터를 가져옴.
-		 Connection conn = JDBCTemplate.getConnection();
-		 ArrayList<ManagerTotalMember>totalMember = new ManagerMemberDao().getMemberStatus(conn); //회원 현황을 읽어옴.
-		 JDBCTemplate.close(conn);
-		 return totalMember;
-	}
-
-	
-	
-
 }

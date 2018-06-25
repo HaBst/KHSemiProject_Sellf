@@ -33,21 +33,21 @@
 				
 					
 						<table class="table table-bordered">
-							<form action="/managerSelMember" method="post">
+							
 							<tr>
 								<th>개인정보</th>
 								<td colspan="3">
-									<select name="selInfo">  <!-- option의 value값은 하기 편한걸로!!  -->
+									<select id="selInfo">  <!-- option의 value값은 하기 편한걸로!!  -->
 										<option value="" selected>-선택 안함-</option>
 	 									<option value="userName">이름</option>
 										<option value="userId">아이디</option>
 									</select> 
-										<input type="text" name="selInfoVal" placeholder="이름 or id입력! " />
+										<input type="text" id="selInfoVal" placeholder="이름 or id입력! " />
 								</td>
 							</tr>
 							<tr><th>회원등급</th>
 								<td>
-								<select name="selGrade">
+								<select id="selGrade">
 									<option value="" selected>-선택안함</option>
 									<option value="G01">브론즈</option>
 									<option value="G02">실버</option>
@@ -63,49 +63,25 @@
 							</tr>
 						</table>
 						<center>
-						<input type="submit" class="btn btn-outline-success" value = "정보조회"/>
-						<input type="reset" class = "btn btn-outline-warning" value="초기화"/>
-						</form>
+						<button  class="btn btn-outline-success" onclick="memberSelect();">검색</button>
+						<button  class = "btn btn-outline-warning" onclick="cancel();">초기화</button>
+					
 						</center>
 					
 					<br>
 
 					<hr>
-					<br> <br> <label><h3>조회 결과</h3></label> <label><h5
-							style="color: red;">[총 n명 검색]</h5></label>
+					<br> <br> <label><h3>조회 결과</h3></label> 
 							<br>
 					 
 					<div id="selectInfoResult">
 						<table class="table" id="printMemberInfo">
-							<tr>
-								<th><input type="checkbox" name="allCheck"></th>
-								<th>아이디</th>
-								<th>고객명</th>
-								<th>등급</th>
-								<th>휴대폰 번호</th>
-								<th>성별</th>
-								<th>가입일자</th>
-								<th>거래내역</th>
-							</tr>
 							
 						</table>
-						<br>
-						<button type="button" class="btn btn-danger btn-sm">불량회원 설정</button>
-						<hr>
-						<h5>추가 설정</h5>
-						<br>
-						<table class="table">
-							<tr>
-								<th>회원 등급 변경</th>
-								<td>선택된 회원을 <select name="changeGrd">
-										<option>브론즈</option>
-										<option>실버</option>
-										<option>골드</option>
-								</select>로
-									<button type="button" class="btn btn-outline-warning"> 등급변경</button>합니다.
-								</td>
-							</tr>
-						</table>
+						<div id="naviArea"></
+								
+							
+					
 					</div>
 
 

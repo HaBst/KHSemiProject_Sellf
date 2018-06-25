@@ -35,7 +35,7 @@ public class ManagerBoardService {
 		return mb;
 	}
 
-	public int writeNotice(String writeTitle, String writeContent) {
+	public int writeNotice(String writeTitle, String writeContent) { //공지사항 작성
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new ManagerBoardDao().writeNotice(conn,writeTitle,writeContent);
 		if(result>0)
@@ -46,6 +46,20 @@ public class ManagerBoardService {
 		} 	
 		JDBCTemplate.close(conn);
 		
+		return result;
+	}
+
+	public int delNotice(String[] items) { //공지사항 삭제.
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ManagerBoardDao().delNotice(conn,items);
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+		}else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 

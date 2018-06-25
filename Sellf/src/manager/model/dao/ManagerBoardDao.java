@@ -10,13 +10,13 @@ import manager.model.vo.ManagerBoard;
 public class ManagerBoardDao {
 
 	public ArrayList<ManagerBoard> getCurrentPage(Connection conn, int currentPage, int recordCountPerPage) {
-		PreparedStatement pstmt = null; //���� ������ ������ ������
+		PreparedStatement pstmt = null; //
 		ResultSet rset = null;
 		ArrayList <ManagerBoard> boardList = new ArrayList<ManagerBoard>();
 		ManagerBoard mb = null;
 		
-		int start = currentPage*recordCountPerPage-(recordCountPerPage-1); //���������� ���
-		int end = currentPage*recordCountPerPage;	//�������� ���
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1); //처음 시작 페이지
+		int end = currentPage*recordCountPerPage;	//마지막 페이지 
 		String query = "select notice_pk, notice_main_admin_id_fk,notice_subject,notice_content,notice_registration_date, notice_views_count from " + 
 				"(select board_notice_tb.*,row_number() over(order by notice_pk  desc) as num from board_notice_tb) " + 
 				"where num between  ? and ?";
@@ -176,6 +176,29 @@ public class ManagerBoardDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}return result;
+	}
+
+	public int delNotice(Connection conn, String[] items) { //공지사항 삭제하려 db로 접근하는 메소드
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+		for(int i=0;i<items.length;i++)
+		{
+			String query = "delete from board_notice_tb where notice_pk=?";
+			
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, items[i]);
+				result = pstmt.executeUpdate();
+		}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(pstmt);
+				
+		}
+		return result;
 	}
 
 }

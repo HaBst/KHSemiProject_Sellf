@@ -60,8 +60,9 @@
 								<td><%=msm.getUserEnrollDate() %></td>
 							</tr>
 							<%} %>
-							<label><%=pageNavi %></label>
+							
 						</table>
+						<center><label><%=pageNavi %></label></center>
 						<button type="button" class="btn btn-outline-info btn-sm" onclick="unlock();">불량회원 해제</button>
 					</div>
 				</div>

@@ -34,14 +34,7 @@
  #writeMember{
  	height:30px;width:300px; float:left;	
  }
- #leftArrow
- {
- 	height:30px;width:60px; float:left;
- }
- #rightArrow
- {
- height:30px;width:60px; float:right;
- }
+
  #boardList{
  height:50px; width:100px;
  }
@@ -89,7 +82,7 @@
 						</textarea>
 						<br>
 						
-						<span id="boardList"><a href=""><i class="fas fa-th-list">목록으로가기</i></a></span> 
+						<span id="boardList"><a href="/managerNoticeBoard"><i class="fas fa-th-list">목록으로가기</i></a></span> 
 						
 						</center>
 						

@@ -169,31 +169,9 @@
                             
                         </li>
                        
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-globe"></i>
-                                <span>통계&분석</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Web 분석</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">회원-상품 통계</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="header-menu">
-                            <span>Extra</span>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar"></i>
-                                <span>통계</span>
-                            </a>
-                        </li>
+                        
+                        
+                        
                     </ul>
                 </div>
                  

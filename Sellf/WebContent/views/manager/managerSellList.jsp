@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>상품 관리</title>
-<script src="/JS/manager/managerSellList.js"></script>
+<script src="/JS/manager/managerSellList.js?ver=1"></script>
 </head>
 
 <body>
@@ -87,14 +87,10 @@
 					<br><br>
 					<div id="searchResult">
 					 <label><h3>조회결과</h3></label><br>
-					 <label><select name="viewNum"> <!-- 한 페이지당 출력할 내용의 갯수 선택. -->
-					 			<option value="10">10</option>
-					 			<option value="30">30</option>
-					 			<option value="50">50</option>
-					 		</select></label>개 씩 보기
-						<table class="table">
+					 
+						<table class="table" id="searchResultTb">
 							<tr>
-								<th>상품번호</th>
+								<th>상품명</th>
 								<th>상품코드</th>
 								<th>상품명</th>
 								<th>판매가</th>
@@ -109,7 +105,8 @@
 							</tr>
 							<!-- 조회결과 출력 -->
 						</table>
-						<button type="button" class="btn btn-outline-warning btn-sm">삭제</button>
+						<div id="naviArea"></div>
+						
 					</div>
 				</div>
 			</div>

@@ -30,15 +30,14 @@ public class PasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String userPwd = request.getParameter("userPwd");
-		Member m = new myInfoService().myInfo(userPwd);
-		if(m!=null) //로그인 성공시
+		String userPwd = request.getParameter("userPwd");//입력값 받아온 비번
+		HttpSession session = request.getSession();
+		String pwd = ((Member)session.getAttribute("login")).getUser_pwd(); //기존 접속중 비번
+		if(userPwd.equals(pwd)) //세션비번이랑 일치하면
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("user", m);
 			response.sendRedirect("/views/member/myInfo.jsp");
 		}
-		else //로그인 실패시
+		else //틀림
 		{
 			response.sendRedirect("/views/error/member/PasswordError.html");
 		}

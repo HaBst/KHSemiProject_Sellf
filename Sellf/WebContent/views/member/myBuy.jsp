@@ -380,7 +380,7 @@ th.specalt {
                 </div> <hr>
                 <div class="MenuCon">  <div class="table-users" style="overflow:auto; width:800px; height:550px;">
 
-
+<% System.out.println(list2); %>
 <center>
 <%if(list2!=null){ %>
 <table>
@@ -395,7 +395,7 @@ th.specalt {
 				<tbody>
 				<tr>
 					<td><div class="row"><div class="col-sm-2 hidden-xs">
-					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+						<img src="<%=p.getImageJson().get("img1").getAsString()%>" alt="..." class="img-responsive"/></div>
 					</div>
 					</td>
 					<td><h4 class="nomargin"><%=p.getProduct_name() %></h4>

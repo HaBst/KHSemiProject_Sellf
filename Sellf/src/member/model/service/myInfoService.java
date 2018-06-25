@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import member.model.dao.InfoDao;
 import member.model.dao.MemberDao;
-import member.model.dao.MyCartDao;
 import member.model.vo.Grade;
 import member.model.vo.Member;
 import member.model.vo.purchaseHis;
@@ -50,18 +49,6 @@ public class myInfoService {
 		return result;
 	}
 
-	public int deleteSave(String userId) {
-		 Connection conn =  JDBCTemplate.getConnection();
-		 int result = new InfoDao().deleteSave(userId,conn);
-		 if(result>0)
-		 {
-			 JDBCTemplate.commit(conn);
-		 }else {
-			 JDBCTemplate.rollback(conn);
-		 }
-		 JDBCTemplate.close(conn);
-		return result;
-	}
 
 	public Grade gradeInfo(String id) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -74,6 +61,7 @@ public class myInfoService {
 	public ArrayList<Product> self(String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Product> list = new InfoDao().self(conn,id);
+		System.out.println("서비스리스트:"+list);
 		JDBCTemplate.close(conn);
 		return list;
 	}

@@ -90,14 +90,15 @@
 				<br>
 				<div id="boardRead">
 					<form action="/managerNoticeWrite" method="post">
-						<span id="titleRead"> <!-- 제목 --> 제목 : <input type="text"
-							name="title" />
+					<h3>공지사항 작성</h3>
+						<br>
+						<span id="titleRead"> <!-- 제목 --> 
+						제목 : <input type="text" name="title" />
 						</span> <br>
 						<br> <br>
 						<br>
-						<br>
 						
-							<textarea rows="12" cols="100" name="writeContent"
+							<textarea rows="12" cols="170" name="writeContent"
 								style="border: 1;">
 					
 						</textarea>

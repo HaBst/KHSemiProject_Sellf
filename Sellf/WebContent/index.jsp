@@ -201,22 +201,21 @@ crossorigin="anonymous"></script>
 					$.ajax({
 						url : "/notOpenProduct",
 						type : "post",
+
 						success : function(data) {
 							var productName = [];
 							var img = [];
 							var productPk = [];
-							
-							console.log("중고 아닌 새거 " + data);
-							var imgKeys = ["img1","img2","img3","img4","img5"];
+						
 							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
 								imgJsonObj = JSON.parse(data[i].product_image);
 								img[i]= imgJsonObj.img1;//data[i].product_image; 
-								console.log("개봉 안한 이미지" + imgJsonObj.img1);
+								//console.log("개봉 안한 이미지" + imgJsonObj.img1);
 								productName[i] =data[i].product_name;
 								productPk[i] =data[i].product_entire_pk;
 								}	
-								console.log("상품인덱스:"+productPk[0]);
+								//console.log("상품인덱스:"+productPk[0]);
 								
 							$("#imghoverSec .shadow img:eq(0)").attr("src",img[0]);
 							$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
@@ -282,14 +281,14 @@ crossorigin="anonymous"></script>
 								//gson 땜시 추가한 부분 
 								var imgKeys = ["img1","img2","img3","img4","img5"];
 								var imgJsonObj;
-								 
-								for (var i = 0; i < data.length; i++) {
+							for (var i = 0; i < data.length; i++) {
+									//console.log("새거 이미지 " + data[i].image);
 									name[i]= data[i].name;
 									price[i] =data[i].price;	
-									imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+									imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 									img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 									productNo[i] = data[i].productEntireNo;
-								}
+							}
 							$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
 							$("#newProductSec .card-img-top:eq(1)").attr("src",img[1]);
 							$("#newProductSec .card-img-top:eq(2)").attr("src",img[2]);
@@ -534,7 +533,8 @@ crossorigin="anonymous"></script>
 						var imgJsonObj;  // 이부분 추가
 						
 						for (var i = 0; i < data.length; i++) {
-							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							//console.log("여성 의류 " +data[i].image);
+							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							
 							name[i]= data[i].name;
@@ -813,7 +813,8 @@ crossorigin="anonymous"></script>
 						var imgJsonObj;  // 이부분 추가 
 						
 						for (var i = 0; i < data.length; i++) {
-							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							console.log("인기카테고리 순위2"+data[i].image);
+							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							
 							name[i]= data[i].name;
@@ -1130,7 +1131,7 @@ crossorigin="anonymous"></script>
 			});	
 			</script>
 			<br>
-			<!-- 인기상품 보여주기 3 -->	
+	<!-- <!-- 		인기상품 보여주기 3	
 				<div id="sellExpectedSec3">
 						<div id="sellExpectedSec3_title">
 							<div></div>
@@ -1361,7 +1362,7 @@ crossorigin="anonymous"></script>
 							<br>
 							<div class="row">
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover" style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;">		
 										<a href ="#" class="mdProduct1"><img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
@@ -1377,7 +1378,7 @@ crossorigin="anonymous"></script>
 									</div>
 								</div>
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover"
 										style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;" >
@@ -1395,7 +1396,7 @@ crossorigin="anonymous"></script>
 									</div>
 								</div>
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover" style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;" >
 											<a href ="" class = "mdProduct3">
@@ -1413,7 +1414,7 @@ crossorigin="anonymous"></script>
 								</div>
 									
 								<div class="col-xs-3" style="width: 23%;">
-										<!-- 이미지 캡션 -->
+										이미지 캡션
 										<div class="cuadro_intro_hover"
 											style="background-color: #cccccc;">
 											<p style="text-align: center; margin-top: 0px;">
@@ -1436,7 +1437,7 @@ crossorigin="anonymous"></script>
 					</div>
 				</div>
 				<br> <br><br> <br>
-				</div>
+				</div> --> -->
 				<!-- 고객 리뷰 가져오기 -->
 					
 				 	<script type="text/javascript">

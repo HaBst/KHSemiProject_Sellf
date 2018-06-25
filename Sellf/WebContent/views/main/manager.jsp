@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, java.text.*" import ="manager.model.vo.ManagerTotalMember"%>
-<% ManagerTotalMember mtm = new ManagerTotalMember();
-	ArrayList<ManagerTotalMember>totalMember = (ArrayList<ManagerTotalMember>)request.getAttribute("totalMember");%>
+	pageEncoding="UTF-8" import="java.util.*, java.text.*" import ="manager.model.vo.ManagerTotalMember" import="member.model.vo.*"%>
+<% 
+Member m = (Member)session.getAttribute("manager");
+ManagerTotalMember mtm = new ManagerTotalMember();
+	%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +32,10 @@
 </head>
 
 <body>
+if(m==null)
+{
+	location.href="/"
+}else
 <%@include file="/views/manager/managerBase.jsp" %>
 	
 		<main class="page-content">

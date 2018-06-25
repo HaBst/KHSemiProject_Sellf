@@ -14,6 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script src="/JS/manager/managerNoticeDel.js"></script>
 <title>게시판 관리</title>
 
 </head>
@@ -50,7 +51,7 @@
 										<th>글쓴이</th>
 										<th>작성일</th>
 										<th>조회수</th>
-										<th></th>
+										<th>삭제</th>
 									</tr> 
 									<%for(ManagerBoard mb:boardList){%> 
 									<tr>
@@ -59,11 +60,13 @@
 									<td><%= mb.getWriteId() %></td>
 									<td><%= mb.getWriteDate() %></td>
 									<td><%= mb.getViewsCount() %></td>
+									<td><input type="checkbox" id="delNotice" value="<%=mb.getBoardNo() %>" /%></td>
 									</tr>
 									<%} %>
-									<label><%=pageNavi%></label>
 								</table>
+								<center><label><%=pageNavi%></label></center>
 								<a type="button" class="btn btn-primary btn-sm" href="/views/manager/managerNoticeWrite.jsp">공지사항 작성</a>
+							<button type="button" class="btn btn-danger btn-sm" onclick="delNotice();">공지사항삭제</button>
 							</div>
 							
 							<!--  -->

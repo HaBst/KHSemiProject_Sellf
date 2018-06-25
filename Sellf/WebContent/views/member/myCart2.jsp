@@ -1,3 +1,4 @@
+<%@page import="oracle.net.aso.e"%>
 <%@page import="member.model.vo.Member"%>
 <%@page import="product.model.vo.Product"%>
 <%@page import="member.model.vo.MyCartTmp"%>
@@ -147,10 +148,18 @@
 						<div id="orderResult"></div>
 						<h2>결제수단</h2>
 						<hr>
-						<br> <br> <input type="button" value="신용카드"
-							class="payButton" style="background-color: RGBA(216,85,161,1);"> 
-							<input type="button"
-							value="무통장입금(가상계좌)" class="payButton" style="background-color: RGBA(216,85,161,1);">
+						<br> <br> 
+						<input type="button" value="신용카드" 	class="payButton" style="background-color: RGBA(216,85,161,1);" onclick="pay1();"> 			
+						<input type="button" value="무통장입금(가상계좌)" class="payButton" style="background-color: RGBA(216,85,161,1);" onclick="pay2();">
+							
+						<script type="text/javascript">
+						function pay1() {
+							alert("구현예정입니다 ~ ^^");
+						}
+						function pay2() {
+							alert("구현예정입니다 ~ ^^");
+						}
+						</script>
 					</div>	
 							<%! int produstSumPrice = 0; // 상품합계금액 
 								int amount= 0; // 상품 수량
@@ -197,7 +206,7 @@
 								</span>
 							</div>
 							<div>
-								<span style="font-weight:500;" >E-wallet포인트</span><span id="userPoint" name="ewalletPoint"><%=list.get(0).getUser_ePoint() %>P</span>
+								<span style="font-weight:500;" >E-wallet포인트</span><span id="userPoint" name="ewalletPoint"><%=list.get(0).getUser_ePoint()%></span>
 							</div>
 							<div>
 								<span style="font-weight:500;">배송료</span><span>무료배송</span>
@@ -224,9 +233,10 @@
 							<br><br>	
 						</div>
 					</div>
+					<input type="hidden" id="epoint2" value="<%=list.get(0).getUser_ePoint()%> " />
+					<input type="hidden" id="goodsPrice2" value="<%=list.get(0).getProductPrice() * list.get(0).getProductAmount()%>" />
 					</form>
 						
-			
 			</div>
 			</div><!-- content 끝 -->
 		
@@ -235,14 +245,25 @@
 		</div> <!-- wrapper 끝 -->
 	</center>
 
+
 <script type="text/javascript">
-	function orderBtn() {
+	function orderBtn(){
 		var memberName = $("#memberName").val();
 		var email = $("#email").val();
 		var phone = $("#phone").val();
 		var detailAddress = $("#detailAddress").val();
 		var address = $("#address").val();
-
+		var ePoint =$("#epoint2").val()
+		
+		var goodsPrice =$("#goodsPrice2").val();		
+		alert(goodsPrice);	
+		alert(ePoint);	
+		if(ePoint<goodsPrice){
+			alert("E-wallet 포인트가 모자랍니다. 충전 후 다시 이용 바랍니다.");
+			location.href= "/views/member/myInfoQuiz.jsp";
+			
+			return false;
+		}
 		if (memberName == "" || email == "" || phone == ""
 			|| detailAddress == "" || address == "") {
 		$("#orderResult").text(
@@ -251,21 +272,10 @@
 			location.reload();
 		}, 2000);
 			return false;
-		}else if($("#totalPrice").text()>0){
-				alert("E-wallet 포인트가 모자랍니다. 충전 후 다시 이용 바랍니다.");
-				return false;
-		}else if($("#userPoint").text()==0){
-			alert("E-wallet 포인트가 모자랍니다. 충전 후 다시 이용 바랍니다.");
-			return false;
-		}else {
-			if($("#totalPrice").text()<0){
-				$("#totalPrice").text("0");
-			}
-			return true;
 			
 		}
+		
 	}
-
 	function availableCouponsBtn() {
 		window.open("/views/member/availableCoupons.jsp","pop","toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,width=400px,height=500px");			
 	}

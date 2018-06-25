@@ -155,9 +155,17 @@
 						}
 							
 						function deleteOneBtn() {
+							var val;
+							var items=[];
 							if ($("input[name=chk]").prop("checked")) {
 								$("#cartlistTr").remove();
 								console.log($('tbody>tr').length);
+								$("input:checkbox[name=chk]:checked").each(function(){
+									val = $(this).val();	
+									items.push(val);	
+								
+								});
+								location.href = "/deleteMyCartList?items=" + items; 	
 							}
 							if ($('tbody>tr').length <= 0) {
 								$('#dontHaveGoodsList').text("장바구니에 담긴 상품이 없습니다.");
@@ -171,8 +179,8 @@
 					<div class="selectBtn1">
 						<button type="button" class="btn btn-info" style="float: left; background-color: RGBA(216,85,161,1);"
 							id="allSelectBtn" onclick="selectAllChk();" >전체선택/해제</button>
-						<button type="button" class="btn btn-info" id="deleteOneBtn"
-							onclick="deleteOneBtn();" style="float: left; margin-left: 5px; background-color: RGBA(216,85,161,1);">선택상품삭제</button>
+						<!-- <button type="button" class="btn btn-info" id="deleteOneBtn"
+							onclick="deleteOneBtn();" style="float: left; margin-left: 5px; background-color: RGBA(216,85,161,1);">선택상품삭제</button> -->
 					</div>
 					<br>
 					<div class="purchase">

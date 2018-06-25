@@ -35,10 +35,10 @@ public class ProductSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = getServletContext();
+	/*	ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);	
-				
+	*/			
 		request.setCharacterEncoding("utf-8");
 		int productPk = Integer.parseInt(request.getParameter("productId"));
 		Product p = new ProductService().selectOneProduct(productPk);
@@ -46,7 +46,7 @@ public class ProductSelectOneServlet extends HttpServlet {
 		if(p!=null)
 		{
 			SellerRate sellerRate = new ProductService().raputationAvr(p.getProduct_entire_user_entire_id_fk());
-			
+			System.out.println("ProductSelectOne " + p.getImageJson());
 			RequestDispatcher view = request.getRequestDispatcher("/views/product/productSelect.jsp");
 			request.setAttribute("productInfo", p);
 			request.setAttribute("sellerScore", sellerRate);

@@ -30,7 +30,7 @@ public class ProductDetail {
 	}
 	public void setProductGrade(String productNewOrOld) {
 		this.productGrade = productGrade;
-		jsonObject.put("Use",productNewOrOld);
+		jsonObject.put("Grade",productNewOrOld);
 	}
 	public String getProductScratch() {
 		return productScratch;

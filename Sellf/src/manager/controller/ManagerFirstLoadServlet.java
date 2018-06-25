@@ -2,6 +2,7 @@ package manager.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.omg.PortableServer.RequestProcessingPolicy;
+
+import com.google.gson.Gson;
 
 import common.JDBCTemplate;
 import manager.model.service.ManagerService;
@@ -43,18 +46,19 @@ public class ManagerFirstLoadServlet extends HttpServlet {
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 	
-		ArrayList<ManagerTotalMember> totalMember=new ManagerService().getMemberStatus();
+		HashMap<Integer, ArrayList<ManagerTotalMember>> totalMember=new ManagerService().getMemberStatus();
 		 request.getContextPath();
 		if(!totalMember.isEmpty())
 			{
-			System.out.println("널아냐");
+			System.out.println("success");
 			System.out.println(totalMember);
-				RequestDispatcher views=request.getRequestDispatcher("/views/main/manager.jsp");
-				request.setAttribute("totalMember", totalMember);
-				views.forward(request, response); //메인으로
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(totalMember,response.getWriter());
+				
 						
 			}else {
-				System.out.println("비었어");
+				System.out.println("fail");
 			}
 	}
 

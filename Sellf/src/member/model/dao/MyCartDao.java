@@ -185,5 +185,25 @@ public class MyCartDao {
 		return result;
 	}
 
+	public int insertCartList(Connection conn, String userId, String productEntire) {
+		PreparedStatement pstmt = null;
+		int result =  0;
+		String query = "INSERT INTO USER_WISHLIST_TB VALUES(?,?,?)";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(1, "USER_WISHLIST_TB_SEQ.NEXTVAL");
+			pstmt.setString(2, productEntire);
+			pstmt.setString(3, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	
 }

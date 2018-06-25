@@ -813,7 +813,7 @@ crossorigin="anonymous"></script>
 						var imgJsonObj;  // 이부분 추가 
 						
 						for (var i = 0; i < data.length; i++) {
-							console.log(""+data[i].image);
+							console.log("인기카테고리 순위2"+data[i].image);
 							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							
@@ -1131,7 +1131,7 @@ crossorigin="anonymous"></script>
 			});	
 			</script>
 			<br>
-			<!-- 인기상품 보여주기 3 -->	
+	<!-- <!-- 		인기상품 보여주기 3	
 				<div id="sellExpectedSec3">
 						<div id="sellExpectedSec3_title">
 							<div></div>
@@ -1362,7 +1362,7 @@ crossorigin="anonymous"></script>
 							<br>
 							<div class="row">
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover" style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;">		
 										<a href ="#" class="mdProduct1"><img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
@@ -1378,7 +1378,7 @@ crossorigin="anonymous"></script>
 									</div>
 								</div>
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover"
 										style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;" >
@@ -1396,7 +1396,7 @@ crossorigin="anonymous"></script>
 									</div>
 								</div>
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover" style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;" >
 											<a href ="" class = "mdProduct3">
@@ -1414,7 +1414,7 @@ crossorigin="anonymous"></script>
 								</div>
 									
 								<div class="col-xs-3" style="width: 23%;">
-										<!-- 이미지 캡션 -->
+										이미지 캡션
 										<div class="cuadro_intro_hover"
 											style="background-color: #cccccc;">
 											<p style="text-align: center; margin-top: 0px;">
@@ -1437,7 +1437,7 @@ crossorigin="anonymous"></script>
 					</div>
 				</div>
 				<br> <br><br> <br>
-				</div>
+				</div> --> -->
 				<!-- 고객 리뷰 가져오기 -->
 					
 				 	<script type="text/javascript">

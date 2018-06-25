@@ -6,7 +6,7 @@
 	if(session != null)
 	{
 		mHeader = (Member)session.getAttribute("login");
-	System.out.println("세션 : " + mHeader);
+		System.out.println("세션 : " + mHeader);
 	%>
 	
 	<%
@@ -47,7 +47,7 @@
 					<a href="/views/member/주문내역??.jsp">ORDER</a>
 				</div> -->
 				<div>
-					<a href="/views/member/myInfo.jsp">MYPAGE</a>
+					<a href="/views/member/myInfoQuiz.jsp">MYPAGE</a>
 				</div>
 				<div>
 					<a href="/notice">CSCENTER</a>

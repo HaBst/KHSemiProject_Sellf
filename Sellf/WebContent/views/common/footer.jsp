@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <div id="footerTitle"><!--풋터 윗부분-->
+  <!--   <div id="footerTitle">풋터 윗부분
             <div> <a href="">COMPANY</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">AGREEMENT</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">PRIVACY POLICY</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">GUIDE</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">PARTNERSHIP</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
-    </div><!--풋터 윗부분 끝 -->
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
+    </div>풋터 윗부분 끝 -->
         <div class="hlLong"></div><!-- 풋터 가로 라인--> 
         <div id="footerDetailGroup"> <!--풋터 중간 4구역-->
                <div class="footerBox" id="csCenter">

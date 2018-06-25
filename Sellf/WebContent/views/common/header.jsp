@@ -52,9 +52,6 @@
 				<div>
 					<a href="/notice">CSCENTER</a>
 				</div>
-				<div>
-					<a href="/productBigCate">상품등록</a>
-				</div>
 				<!-- 		<div>
 					<a href="" id="bookmark">+BOOKMARK</a>
 				</div> -->

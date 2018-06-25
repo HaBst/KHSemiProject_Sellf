@@ -271,17 +271,23 @@ crossorigin="anonymous"></script>
 					$(document).ready(function(){
 						$.ajax({
 							url : "/newProduct",
-							data:{},
 							type : "get",
 							success : function(data) { 
 								var name = [];
 								var price = [];
 								var img = [];	
 								var productNo = [];
+								var productPk = [];
+								
+								//gson 땜시 추가한 부분 
+								var imgKeys = ["img1","img2","img3","img4","img5"];
+								var imgJsonObj;
+								 
 								for (var i = 0; i < data.length; i++) {
 									name[i]= data[i].name;
 									price[i] =data[i].price;	
-									img[i] = data[i].image;
+									imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+									img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 									productNo[i] = data[i].productEntireNo;
 								}
 							$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
@@ -523,10 +529,16 @@ crossorigin="anonymous"></script>
 						var detail =[];
 						var productNo1 =[];
 						var subCateId = [];
+						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
+							
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							detail[i] = data[i].detail;
 							productNo1[i] = data[i].productNo;
 							subCateId[i] = data[i].subCateId;
@@ -797,10 +809,15 @@ crossorigin="anonymous"></script>
 						var img = [];
 						var productNo2 = [];
 						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
+							
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							productNo2[i] = data[i].productNo;
 						}	
 						console.log("인기카테고리순위2 " + name[0]);
@@ -1035,15 +1052,20 @@ crossorigin="anonymous"></script>
 						var price = [];
 						var img = [];
 						var productNo3 = [];
+						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							productNo3[i] = data[i].productNo;
-							console.log("인기카테고리순위3 " + name[i]);
-							console.log("인기카테고리순위3이미지 : " + img[i]);		
+							
 						}	
-						
+						console.log("인기카테고리순위3 " + name[0]);
+					
 						$("#sellExpectedSec3 .card-img-top:eq(0)").attr("src",img[0]);
 						$("#sellExpectedSec3 .card-img-top:eq(1)").attr("src",img[1]);
 						$("#sellExpectedSec3 .card-img-top:eq(2)").attr("src",img[2]);
@@ -1280,10 +1302,14 @@ crossorigin="anonymous"></script>
 						var img = [];
 						var detail = [];
 						var productNo4 = [];
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							detail[i] = data[i].detail;
 							productNo4[i] = data[i].productNo;
 				

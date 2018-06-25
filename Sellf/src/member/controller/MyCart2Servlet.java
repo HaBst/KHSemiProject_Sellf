@@ -39,8 +39,7 @@ public class MyCart2Servlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8"); // 한글인코딩 		
 
 		String info = request.getParameter("productIndex"); // 파라미터 값 받아오기 
-		System.out.println("productIndex:"+info);
-		
+		System.out.println("productIndex:"+info);		
 		String [] arr = info.split(",");
 		
 		ArrayList<MyCartTmp> list = new ArrayList<MyCartTmp>();
@@ -51,10 +50,11 @@ public class MyCart2Servlet extends HttpServlet {
 			System.out.println("m객체 있니?"+m.getUser_ePoint());
 			for(int i = 0 ; i<arr.length;i++) { 		
 				MyCartTmp mt = new MyCartService().selectCartList(arr[i]);
+				System.out.println("t서블릿2에서 상품인덱스 받기:"+ mt.getProductEntire());
 				list.add(mt);	
 				System.out.println("for문안에 list있니?"+list.get(i));
 			}
-			
+			System.out.println("카트 서블릿 2 : "+list);
 			request.setCharacterEncoding("utf-8");
 			//System.out.println("마이카트서블릿2:"+list.get(0).getProductDetail());
 			RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart2.jsp");

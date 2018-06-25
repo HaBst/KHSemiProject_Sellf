@@ -56,14 +56,14 @@
 	margin-bottom: 20px;
 }
 .sign-up li.active {
-	border-bottom: 3px solid black;
+	border-bottom: 3px solid RGBA(216,85,161,1);
 }
 .sign-up li.active h3{
-	color:black;
+	color:RGBA(216,85,161,1);
 }
 
 .sign-up li.active h3 small{
-	color:black;
+	color:RGBA(216,85,161,1);
 }
 
 
@@ -200,7 +200,7 @@ html,body{
 					<span>회원 유형 : <input type="radio" name="memberType"
 						value="member" checked="checked">개인
 					</span> <button onclick="memberType($('input[name=memberType]:checked').val());" class="btn btn-default btn-lg"
-						style="color: white; background-color: black;">회원가입</button>
+						style="color: white; background-color:RGBA(216,85,161,1);">회원가입</button>
 				</h4>
 		</div>
 		<!-- SNS 계정으로 로그인 -->

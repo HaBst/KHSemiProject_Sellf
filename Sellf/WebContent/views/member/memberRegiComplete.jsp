@@ -54,15 +54,15 @@
 }
 
 .sign-up li.active {
-	border-bottom: 3px solid black;
+	border-bottom: 3px solid RGBA(216,85,161,1);
 }
 
 .sign-up li.active h3 {
-	color: black;
+	color: RGBA(216,85,161,1);
 }
 
 .sign-up li.active h3 small {
-	color: black;
+	color: RGBA(216,85,161,1);
 }
 
 .sign-up-title {
@@ -91,6 +91,7 @@
 	margin-top:0px;
 	text-align: center;
 	font-weight: 600;
+	color: black;
 }
 #logo {
 	margin:0 auto;
@@ -145,7 +146,7 @@
 		<h2>회원가입이 완료 되었습니다.</h2>
 		<div class="regiBtn" align="center">
 			<button onclick="login()" class="btn btn-primary btn-lg"
-				style="background-color: black; border-radius: 0px; width: 150px">로그인</button>&nbsp
+				style="background-color: RGBA(216,85,161,1); border-radius: 0px; width: 150px">로그인</button>&nbsp
 			<a href="/index.jsp" class="btn btn-default btn-lg "
 				style="background-color: lightgray; border-radius: 0px; width: 150px">메인화면</a>
 		</div>

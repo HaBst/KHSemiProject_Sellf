@@ -52,10 +52,10 @@
 										<th>조회수</th>
 										<th></th>
 									</tr> 
-									<%for(ManagerBoard mb:boardList){%>
+									<%for(ManagerBoard mb:boardList){%> 
 									<tr>
 									<td><%= mb.getBoardNo() %></td>
-									<td><a href="/managerNoticeSelect?noticeNo=<%=mb.getBoardNo()%>"><%= mb.getSubject() %></a></td>
+									<td><a href="/managerNoticeRead?noticeNo=<%=mb.getBoardNo()%>"><%= mb.getSubject() %></a></td>
 									<td><%= mb.getWriteId() %></td>
 									<td><%= mb.getWriteDate() %></td>
 									<td><%= mb.getViewsCount() %></td>
@@ -63,7 +63,7 @@
 									<%} %>
 									<label><%=pageNavi%></label>
 								</table>
-								
+								<a type="button" class="btn btn-primary btn-sm" href="/views/manager/managerNoticeWrite.jsp">공지사항 작성</a>
 							</div>
 							
 							<!--  -->
@@ -105,6 +105,7 @@
 									</tr>
 								</table>
 							</div>
+							
 						</div>
 					</div>
 				</div>

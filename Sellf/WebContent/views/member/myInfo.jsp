@@ -587,7 +587,7 @@ text-align:center;
 						
 						<input type="text" style="width: 220px; height: 40px;"
 								style="border:1px solid maroon;background:transparent;" 
-								name="point" readonly class="point" value="<%=m.getUser_epoint()%> 원">
+								name="point" readonly class="point" value="<%=m.getUser_ePoint()%> 원">
 						<input type="button" value="충전" data-toggle="modal" data-target=".bs-example-modal-sm" class="pointBtn"> 
 						</div>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -748,7 +748,7 @@ $menuEle.click(function() { // 탭메뉴 클릭 이벤트
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : 'Sellf 갤럭시 S7',
-            amount : '$(''#price').innerHTML',
+            amount : '$("#price").innerHTML',
             buyer_email : 'iamport@siot.do',
             buyer_name : '곽영훈',
             buyer_tel : '010-1234-5678',

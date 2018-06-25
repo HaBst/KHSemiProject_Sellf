@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
-import member.model.service.MemberService;
+import member.model.service.myInfoService;
 import member.model.vo.Grade;
 import member.model.vo.Member;
-import member.model.vo.wishList;
 
 /**
  * Servlet implementation class gradeServlet
@@ -41,8 +40,8 @@ public class gradeServlet extends HttpServlet {
 		JDBCTemplate.setDriverPath(fullPath);
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
-		String id = ((Member)session.getAttribute("user")).getUser_user_entire_user_grade_id_fk();
-		Grade g  = new MemberService().gradeInfo(id);
+		String id = ((Member)session.getAttribute("login")).getUser_user_entire_user_grade_id_fk();
+		Grade g  = new myInfoService().gradeInfo(id);
 		
 		if(g!=null)
 		{

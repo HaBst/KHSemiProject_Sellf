@@ -40,11 +40,13 @@ public class ProductDao {
 		return result;	
 	}
 
-	public ArrayList<Product> productSortCategory(Connection conn,String mainCategory, String subCategory,int onePageShowProduct, int currentPage, String orderType) {
+	public ArrayList<Product> productSortCategory(Connection conn,String searchKey, String subCategory,int onePageShowProduct, int currentPage, String orderType) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Product> resultList = new ArrayList<Product>();
 		String orderQuery = "";
+		String whereQuery = "";
+		int queryPar = 1;
 		if(orderType==null)orderType = "uploadOrder";
 		switch(orderType)
 		{
@@ -53,15 +55,21 @@ public class ProductDao {
 			case "highPriceOrder": orderQuery = " order by product_price desc ";  break;
 			case "manyReviewOrder": orderQuery = " order by product_entire_pk desc ";  break;		
 		}
-		String query = "select * from product_entire_tb"
-				+ " where PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? "+
-				orderQuery;
+		if(searchKey.length()>0)whereQuery += " where product_name like ? ";
+	
+		if(subCategory.length()>0 ) {
+			if(whereQuery.length()>0) whereQuery +=" and ";
+			else whereQuery+=" where ";
+			whereQuery +=" PRODUCT_ENTIRE_CATE_SUB_ID_FK = ? ";
+		}
+		String query = "select * from product_entire_tb"+whereQuery +orderQuery;
 		
-		System.out.println("서브 " + subCategory );
-			
+		System.out.println(searchKey + " " + subCategory + " 서브 " + query );
+		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, subCategory);
+			if(searchKey.length()>0)   pstmt.setString(queryPar++, "%" + searchKey+"%");
+			if(subCategory.length()>0 )pstmt.setString(queryPar++, subCategory);
 //			pstmt.setInt(3, currentPage*onePageShowProduct);
 //			pstmt.setInt(4, currentPage*onePageShowProduct + onePageShowProduct);
 			rset = pstmt.executeQuery();
@@ -78,6 +86,7 @@ public class ProductDao {
 				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
 				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_oldnew(rset.getString("PRODUCT_OLDNEW"));
 				resultList.add(p);
 			}
 		} catch (SQLException e) {
@@ -114,6 +123,7 @@ public class ProductDao {
 				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
 				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_oldnew(rset.getString("PRODUCT_OLDNEW"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -159,6 +169,42 @@ public class ProductDao {
 		}
 		
 		return sellerRate;
+	}
+
+	public ArrayList<Product> productRecomandList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Product> resultList = new ArrayList<Product>();
+		String query = "select * from product_entire_tb where ROWNUM<=4 order by PRODUCT_OLDNEW";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next())
+			{
+				Product p = new Product();
+				p.setProduct_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK"));
+				p.setProduct_entire_user_entire_id_fk(rset.getString("PRODUCT_ENTIRE_USER_ID_FK"));
+				p.setProduct_entire_category_main_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_MAIN_ID_FK"));
+				p.setProduct_entire_category_sub_id_fk(rset.getString("PRODUCT_ENTIRE_CATE_SUB_ID_FK"));
+				p.setProduct_name(rset.getString("PRODUCT_NAME"));
+				p.setProduct_price(rset.getInt("PRODUCT_PRICE"));
+				p.setProduct_image(rset.getString("PRUDUCT_IMAGE")==null?"":rset.getString("PRUDUCT_IMAGE"));
+				p.setProduct_amount(rset.getInt("PRODUCT_AMOUNT"));
+				p.setProduct_state(rset.getString("PRODUCT_STATE"));	
+				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_oldnew(rset.getString("PRODUCT_OLDNEW"));
+				resultList.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return resultList;
+		
 	}
 
 }

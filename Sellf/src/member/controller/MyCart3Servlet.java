@@ -39,11 +39,19 @@ public class MyCart3Servlet extends HttpServlet {
 		// 한글 인코딩
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		
+		String epoint = request.getParameter("remainingPoint");
+		System.out.println("서블릿 3 잔여포인트? "+epoint);
+		int productEntire = Integer.parseInt(request.getParameter("productEntire"));
+		System.out.println("서블릿 3 상품 인덱스 번호?"+productEntire);
 		if(session.getAttribute("login")!=null) {
 			
 			Member m = (Member) session.getAttribute("login");
 			String userId = m.getUser_id();
+			
+			int update = new MyCartService().updateEpoint(userId,epoint);
+			int delete = new MyCartService().deleteOneMycartList(userId,productEntire);
+			System.out.println("포인트 업데이트 성공했니? " +update);
+			System.out.println("장바구니 리스트 삭제했니?" +delete);
 			RequestDispatcher view = request.getRequestDispatcher("/views/member/myCart3.jsp");
 			request.setAttribute("myCartList3", m);
 			view.forward(request, response);

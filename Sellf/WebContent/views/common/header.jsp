@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="member.model.vo.*" %>
+	<% session = request.getSession();
+	Member mHeader = new Member();
+	if(session != null)
+	{
+		mHeader = (Member)session.getAttribute("login");
+	System.out.println("세션 : " + mHeader);
+	%>
+	
+	<%
+	}%>
 <div class="content">
 	<div class="containerAd" id="div2">
 		<div id="advertising">
@@ -19,8 +30,12 @@
 		<div id="middleTwoBox">
 			<div id="headerTitle">
 				<!--중간 첫번째 윗부분-->
-				<div>
+				<div id="login">
+				<%if(mHeader == null){ %>
 					<a href="/views/member/memberLogin.jsp">LOGIN</a>
+					<%}else if(mHeader != null){ %>
+					<%=mHeader.getUser_id()%>님 어서오세요 <a href="/memberLogout">LOGOUT</a>
+					<%} %>
 				</div>
 				<div>
 					<a href="/views/member/memberJoin.jsp">JOIN</a>
@@ -35,17 +50,18 @@
 					<a href="/views/member/myInfo.jsp">MYPAGE</a>
 				</div>
 				<div>
-					<a href="/views/board/board.jsp">CSCENTER</a>
+					<a href="/notice">CSCENTER</a>
 				</div>
 				<!-- 		<div>
 					<a href="" id="bookmark">+BOOKMARK</a>
 				</div> -->
 			</div>
 			<div id="searchBox">
-				<form action="#" method="get">
+				<form action="/views/main/productList.jsp" method="get">
 					<div id="searchText">
+						<input type="hidden" name="orderType" value="uploadOrder"/>
 						<input type="text" style="text-aling: center;" id="search"
-							name="searchquery" placeholder="상품명으로 검색해보세요">
+							name="searchKey" placeholder="상품명으로 검색해보세요">
 					</div>
 					<div id="searchIcon">
 						<input type="submit" value="" class="inputImg"
@@ -169,6 +185,17 @@
 								id="S0309"
 								href="/views/main/productList.jsp?orderType=uploadOrder&amp;category=S0309">기타잡화</a></li>
 
+							<li role="presentation" class="divider"></li>
+							<h4 class="dropdown-header">해외명품</h4>
+
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1301" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1301">명품가방</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1302" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1302">명품지갑</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1303" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1303">명품시계</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1304" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1304">명품신발</a></li>
+							<li role="presentation" class="detailcategory"><a role="menuitem" tabindex="-1" id="S1305" href="/views/main/productList.jsp?orderType=updateOrder&amp;category=S1305">명품액세서리</a></li>
+
+
+					
 						</ul></li>
 					<li role="presentation" class="dropdown"><a id="drop6"
 						href="#" class="dropdown-toggle" data-toggle="dropdown"

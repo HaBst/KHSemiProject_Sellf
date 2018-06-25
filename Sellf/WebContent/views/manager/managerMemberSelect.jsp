@@ -33,19 +33,22 @@
 				
 					
 						<table class="table table-bordered">
+							<form action="/managerSelMember" method="post">
 							<tr>
 								<th>개인정보</th>
 								<td colspan="3">
-									<select id="selInfo">  <!-- option의 value값은 하기 편한걸로!!  -->
+									<select name="selInfo">  <!-- option의 value값은 하기 편한걸로!!  -->
+										<option value="" selected>-선택 안함-</option>
 	 									<option value="userName">이름</option>
 										<option value="userId">아이디</option>
 									</select> 
-										<input type="text" id="memberInfo" />
+										<input type="text" name="selInfoVal" placeholder="이름 or id입력! " />
 								</td>
 							</tr>
 							<tr><th>회원등급</th>
 								<td>
-								<select id="selGrade">
+								<select name="selGrade">
+									<option value="" selected>-선택안함</option>
 									<option value="G01">브론즈</option>
 									<option value="G02">실버</option>
 									<option value="G03">골드</option>
@@ -53,14 +56,16 @@
 								</select>
 								</td>
 								<th>성별</th>
-								<td>
-										<input type="radio" name ="gender" value="M">남   
+								<td>	<input type="radio" name="gender" value="" checked>전체
+										<input type="radio" name="gender" value="M">남   
 										<input type="radio" name="gender" value="F">여
 								</td>
 							</tr>
 						</table>
 						<center>
-						<input type="submit" class="btn btn-outline-success" onclick="memberSelect();" value="정보 조회!" />
+						<input type="submit" class="btn btn-outline-success" value = "정보조회"/>
+						<input type="reset" class = "btn btn-outline-warning" value="초기화"/>
+						</form>
 						</center>
 					
 					<br>

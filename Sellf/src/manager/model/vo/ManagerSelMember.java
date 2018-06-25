@@ -2,16 +2,16 @@ package manager.model.vo;
 
 import java.sql.Date;
 
-public class ManagerSelMember { //���������������� DB�� ����� ȸ�������� �о� ������ ��ü�� ����.
+public class ManagerSelMember { //DB에서 회원정보를 가져올 때 저장할 객체
 	public ManagerSelMember() {}
 	
-	private String userEntireId; //ȸ�� id
-	private String userEntireName; //ȸ�� �̸�
-	private String userGrade; //ȸ�� ���
-	private String userPhone; //ȸ�� ��ȭ��ȣ
-	private char userGender; //ȸ�� ����
-	private Date userEnrollDate; //��������
-	private int userPoint; //����Ʈ
+	private String userEntireId; //db에서 회원 아이디를 읽어 저장
+	private String userEntireName; //db에서 회원 이름을 읽어 저장
+	private String userGrade; //db에서 회원 등급을 읽어 저장
+	private String userPhone; //db에서 회원의 폰 번을 읽어 저장
+	private char userGender; //db에서 회원의 성별을 읽어 저장
+	private Date userEnrollDate; //회원가입한 날을 읽어 저장
+	private int userPoint; //회원이 보유한 point읽어와 저장함.
 	
 	public ManagerSelMember(String userEntireId, String userEntireName, String userGrade, String userPhone,
 			char userGender, Date userEnrollDate, int userPoint) {

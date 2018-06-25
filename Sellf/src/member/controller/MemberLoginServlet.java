@@ -58,7 +58,7 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		else
 		{
-			response.sendRedirect("/views/member/memberLoginError.jsp");
+			response.sendRedirect("/views/member/memberLogin.jsp?error="+"1");
 		}
 	}
 

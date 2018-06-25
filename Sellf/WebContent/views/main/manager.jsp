@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, java.text.*"%>
+	pageEncoding="UTF-8" import="java.util.*, java.text.*" import ="manager.model.vo.ManagerTotalMember"%>
+<% ManagerTotalMember mtm = new ManagerTotalMember();
+	ArrayList<ManagerTotalMember>totalMember = (ArrayList<ManagerTotalMember>)request.getAttribute("totalMember");%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,14 +54,14 @@
 						<li role="presentation" class="active"><a
 							class="nav-link active" href="#sales" aria-controls="sales"
 							role="tab" data-toggle="tab">일별 매출현황</a></li>
-						<li role="presentation"><a class="nav-link" href="#order"
+						<li role="presentation"><a class="nav-link" href="#orderTab"
 							aria-controls="order" role="tab" data-toggle="tab">거래 현황</a></li>
 						<li role="presentation"><a class="nav-link"
 							href="#memberStatus" aria-controls="memberStatus" role="tab"
 							data-toggle="tab">회원현황</a></li>
 						
 					</ul>
-
+	
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane in active" id="sales">
 							<div id="morrisChart"
@@ -67,26 +69,27 @@
 							<script>
 								new Morris.Bar({
 									element : 'morrisChart',
+									<%for(ManagerTotalMember m1:totalMember){ %>
 									data : [ {
-										year : '2008',
-										value : 30
+										회원 : '<%=m1.getUserVisitEnrollCnt()%>',
+										 가입수: <%=m1.getUserVisitLoginCnt()%>
 									}, {
-										year : '2009',
-										value : 10
+										회원 : '<%=m1.getUserVisitSignoutCnt()%>',
+										가입수 : 10
 									}, {
-										year : '2010',
-										value : 5
+										회원 : '2010',
+										가입수 : 5
 									}, {
-										year : '2011',
-										value : 5
+										회원 : '2011',
+										가입수 : 5
 									}, {
-										year : '2012',
-										value : 20
+										회원 : '2012',
+										가입수 : 20
 									} ],
-									xkey : 'year',
-									ykeys : [ 'value' ],
-									labels : [ 'value' ]
-
+									xkey : '회원',
+									ykeys : [ '가입수' ],
+									labels : [ '가입수' ]
+									<%}%>
 								});
 							</script>
 							<div id="salesResult"
@@ -94,16 +97,71 @@
 								아배고프다.</div>
 						</div>
 
-						<div role="tabpanel" class="tab-pane fade" id="order">
-							<div id="order" style="height: 400px; width: 535px; background-color: pink; float: left;">그래프</div>
+						<div role="tabpanel" class="tab-pane fade" id="orderTab">
+							<div id="order" style="height: 400px; width: 535px; background-color: red; float: left;">	</div>
+							<script>
+								new Morris.Bar({
+									element : 'order',
+									<%for(ManagerTotalMember m1:totalMember){ %>
+									data : [ {
+										회원 : '<%=m1.getUserVisitEnrollCnt()%>',
+										 가입수: <%=m1.getUserVisitLoginCnt()%>
+									}, {
+										회원 : '<%=m1.getUserVisitSignoutCnt()%>',
+										가입수 : 10,탈퇴:3
+									}, {
+										회원 : '2010',
+										가입수 : 5,탈퇴:3
+									}, {
+										회원 : '2011',
+										가입수 : 5,탈퇴:8
+									}, {
+										회원 : '2012',
+										가입수 : 20, 탈퇴:9
+									} ],
+									xkey : '회원',
+									ykeys : [ '가입수','탈퇴' ],
+									labels : [ '가입수','탈퇴' ]
+									<%}%>
+								});
+							</script>
+						
 
 							<div id="salesResult"
 								style="height: 400px; width: 510px; background-color: yellow; float: left;">
 								아배고프다.</div>
 						</div>
+						
 						<div role="tabpanel" class="tab-pane fade" id="memberStatus">
 							<div id="memberGraph"
 								style="height: 400px; width: 535px; background-color: pink; float: left;"></div>
+								<script>
+								new Morris.Bar({
+									element : 'memberGraph',
+									<%for(ManagerTotalMember m1:totalMember){ %>
+									data : [ {
+										일자 : '18/06/17',
+										 가입수: 50,탈퇴:1
+									}, {
+										일자 : '<%=m1.getUserVisitSignoutCnt()%>',
+										가입수 : 10,탈퇴:2
+									}, {
+										일자 : '18/06/18',
+										가입수 : 56,탈퇴:3
+									}, {
+										일자 : '18/06/19',
+										가입수 : 58 ,탈퇴:4
+									}, {
+										일자 : '18/06/28',
+										가입수 : 20,탈퇴:5
+									} ],
+									xkey : '일자',
+									ykeys : [ '가입수','탈퇴' ],
+									labels : [ '가입수','탈퇴' ]
+									<%}%>
+								});
+							</script>
+								
 							<div id="memberResult"
 								style="height: 400px; width: 510px; background-color: blue; float: left;">
 								<table class="table">

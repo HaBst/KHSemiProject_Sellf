@@ -14,7 +14,7 @@
 <script src="http://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../../CSS/common.css" type="text/css" />
+
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
 	rel="stylesheet">
 
@@ -64,10 +64,10 @@
 						<ul class="nav nav nav-pills">
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
-								aria-pressed="true" href="#">Dashboard</a></li>
+								aria-pressed="true" href="/managerFirstLoad">Home</a></li>
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
-								aria-pressed="true" href="#">Sell:F 이동</a></li>
+								aria-pressed="true" href="/index.jsp" target="_blank">Sell:F 이동</a></li>
 							<li class="nav-item"><a
 								class="btn btn-primary btn-sm active" role="button"
 								aria-pressed="true" href="#">Profile</a></li>
@@ -158,7 +158,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="/managerNoticeBoard">게시판 현황</a>
+                                        <a href="/managerNoticeBoard1">게시판 현황</a>
                                     </li>
                                     <li>
                                         <a href="/views/manager/managerQnABoard.jsp">상담게시판</a>

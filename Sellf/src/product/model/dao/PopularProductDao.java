@@ -36,6 +36,7 @@ public class PopularProductDao {
 				p.setProduct_state(rset.getString("PRODUCT_STATE"));
 				p.setProduct_image(rset.getString("PRUDUCT_IMAGE"));
 				p.setProduct_detail(rset.getString("PRODUCT_DETAIL"));
+				p.setProduct_oldnew(rset.getString("PRODUCT_OLDNEW"));
 				list.add(p);
 			
 			}
@@ -203,7 +204,7 @@ public class PopularProductDao {
 		Product p = null;
 		ArrayList<Product> list = new ArrayList<Product>();
 		String query ="SELECT * FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_STATE = 'S' AND PRODUCT_OLDNEW = 'N'";
-		// �̰����� ��ǰ���´� �Ǹ��� ���� ��ǰ 
+
 
 
 		try {

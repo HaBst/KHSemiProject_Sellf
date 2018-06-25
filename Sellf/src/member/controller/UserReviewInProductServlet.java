@@ -36,24 +36,23 @@ public class UserReviewInProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int currentPage;
 		String id = request.getParameter("userId");
-		
-		System.out.println("서블릿 " + id);
+
 		if(request.getParameter("currentPage")==null) currentPage = 1;
 		else currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
-		
-		ReviewPageData pd = new UserReviewService().sellerReviewAll(currentPage,id);
-		System.out.println(pd.getReviewList().size());
-		
+		ReviewPageData pd = new UserReviewService().sellerReviewAll(currentPage,id);		
+		System.out.println("댓글 길이 " + pd.getReviewList().size());
 		if(pd!=null)
 		{
+//			System.out.println(pd.getReviewList().get(0).getUserReviewComment());
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			new Gson().toJson(pd, response.getWriter());
 		}
 		else
 		{
-			response.sendRedirect("/views/notice/Error.html");
+			System.out.println("데이터가 없습니다.");
+			//response.sendRedirect("/views/notice/Error.html");
 		}
 	}
 

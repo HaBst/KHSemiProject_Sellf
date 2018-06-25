@@ -15,7 +15,9 @@ html,body{
 		width: 100%;
 	}
 }
-
+#button{
+	background-color: RGBA(216,85,161,1);
+}
 #content{
 	width:1020px;
 }
@@ -139,6 +141,8 @@ html,body{
 }
 
 .purchase {
+	width:100%;
+	height:auto;
 	float: right;
 }
 

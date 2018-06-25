@@ -27,7 +27,7 @@ public class ImageUpload {
 	}
 	public void setImgOne(String imgOne) {
 		this.imgOne = imgOne;
-		jsonObject.put("1",imgOne);
+		jsonObject.put("img1",imgOne);
 	}
 	public String getImgTwo() {
 		return imgTwo;
@@ -35,28 +35,28 @@ public class ImageUpload {
 	}
 	public void setImgTwo(String imgTwo) {
 		this.imgTwo = imgTwo;
-		jsonObject.put("2",imgTwo);
+		jsonObject.put("img2",imgTwo);
 	}
 	public String getImgThree() {
 		return imgThree;
 	}
 	public void setImgThree(String imgThree) {
 		this.imgThree = imgThree;
-		jsonObject.put("3",imgThree);
+		jsonObject.put("img3",imgThree);
 	}
 	public String getImgFour() {
 		return imgFour;
 	}
 	public void setImgFour(String imgFour) {
 		this.imgFour = imgFour;
-		jsonObject.put("4",imgFour);
+		jsonObject.put("img4",imgFour);
 	}
 	public String getImgFive() {
 		return imgFive;
 	}
 	public void setImgFive(String imgFive) {
 		this.imgFive = imgFive;
-		jsonObject.put("5",imgFive);
+		jsonObject.put("img5",imgFive);
 	}
 	public JSONObject getImgArr() {
 //	         JSONObject result = new JSONObject();

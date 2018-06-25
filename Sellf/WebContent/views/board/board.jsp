@@ -1,22 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="board.model.vo.*" import="java.util.*"%>
-<%
-	NoticePageData npd = (NoticePageData) request.getAttribute("NoticePageData");
-	ArrayList<Notice> list = new ArrayList<Notice>();
-	String pageNavi = "";
-	if (npd != null) {
-		list = npd.getNoticeList(); //현재 페이지리스트 
-		pageNavi = npd.getNoticePageNavi(); //navi 리스트 
-	}
-	FaqPageData fpd = (FaqPageData) request.getAttribute("FaqPageData");
-	ArrayList<Faq> f_list = new ArrayList<Faq>();
-	if (fpd != null) {
-		f_list = fpd.getFaqList(); //현재 페이지 리스트 
-		pageNavi = fpd.getFaqPageNavi();
-		System.out.println("f_list : " + f_list.get(1).getFaq_content() +" , pageNavi : " + pageNavi +","+f_list.size());
-	}
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,45 +44,65 @@
 
 
 <script>
-	var currentTab = "boardListArea";
-	window.onload = function() {
-		/* var noticeTabName = request.getAttribute("noticeTab");	
-		var tabArr = document.getElementsByClassName("noticeTab");
-		var btnArr = document.getElementsByClassName("menuBtn");
-		for(var i = 0;i<tabArr.length;i++)
-		{
-		if(tabArr[i].id = currentTab)
-			{
-				boardTapChange(btnArr[i], tabArr[i]);	
-				break;
-			}
-			} */
-	}
 	function boardTapChange(btn, boardName) {
 		alert(btn);
 		alert(boardName.id);
-		if (boardName.id == "boardListArea") {
+		<% String currentTab = request.getParameter("noticeTab");
+		System.out.println(currentTab);
+		if(currentTab==null){%>
+		var currentTab="boardListArea";
+		<%}else{%>
+		var currentTab=<%=currentTab%>;
+		<%}%>
+		if (currentTab == "boardListArea") {
 			$.ajax({
 				url : "/notice",
 				type : "get",
-				success : function(result) {
-					
+				success : function(data) {
+					<%
+					NoticePageData npd = (NoticePageData) request.getAttribute("NoticePageData");
+					ArrayList<Notice> list = new ArrayList<Notice>();
+					String pageNavi = "";
+					if (npd != null) {
+						list = npd.getNoticeList(); //현재 페이지리스트 
+						pageNavi = npd.getNoticePageNavi(); //navi 리스트 
+						System.out.println("f_list : " + list.get(1).getNotice_content() +" , pageNavi : " + pageNavi +","+list.size());
+					}
+					%>
+					var li = <%list.size();%>;
 				},
 				error : function() {
 					console.log("실패");
 				}
 			});
-		} else if (boardName.id == "answerListArea") {
-			$.ajax({
-				url : "/faq",
-				type : "get",
-				success : function(result) {
-					
-				},
-				error : function() {
-					console.log("실패");
+		}
+		if (currentTab == "answerListArea") {
+		$.ajax({
+			url : "/faq",
+			type : "get",
+			success : function(result) {
+				alert("FAQ");
+				<%
+				FaqPageData fpd = (FaqPageData) request.getAttribute("FaqPageData");
+				ArrayList<Faq> f_list = new ArrayList<Faq>();
+				if (fpd != null) {
+					f_list = fpd.getFaqList(); //현재 페이지 리스트 
+					pageNavi = fpd.getFaqPageNavi();
+					System.out.println("list : " + f_list.get(1).getFaq_content() +" , pageNavi : " + pageNavi +","+f_list.size());
 				}
-			});
+				else
+				{
+					fpd = null;
+					System.out.println(fpd);
+					f_list = new ArrayList<Faq>();
+				}
+			%>
+			var li = <%f_list.size();%>;
+			},
+			error : function() {
+				console.log("실패");
+			}
+		});
 		}
 		clearAll();
 		btn.style = selectStyle;
@@ -155,19 +160,18 @@
 								<th style="width: 10%;">조회수</th>
 							</tr>
 							<%
-								for (Notice n : list) {
+								for (int i=0;i<list.size();i++) {
 							%>
 							<tr>
-								<td><%=n.getNotice_pk()%></td>
-								<td><a href="/noticeSelect?notice_pk=<%=n.getNotice_pk()%>"><%=n.getNotice_subject()%></a></td>
-								<td><%=n.getNotice_main_admin_id_fk()%></td>
-								<td><%=n.getNotice_registration_date()%></td>
+								<td><%=list.get(i).getNotice_pk()%></td>
+								<td><a href="/noticeSelect?notice_pk=<%=list.get(i).getNotice_pk()%>"><%=list.get(i).getNotice_subject()%></a></td>
+								<td><%=list.get(i).getNotice_main_admin_id_fk()%></td>
+								<td><%=list.get(i).getNotice_registration_date()%></td>
 								<td></td>
 							</tr>
 							<%
 								}
 							%>
-
 						</table>
 						<%
 							}
@@ -209,6 +213,24 @@
 							<%
 								}
 							%>
+							</tr>
+						</table>
+						<%
+							}else if (fpd == null) {
+						%>
+						<div id="bordTitle">
+							<h3 style="float: left;">
+								<strong>자주 묻는 질문</strong>
+							</h3>
+						</div>
+						<div class="hlLong"></div>
+						<table id="boardTable">
+							<tr>
+								<th style="width: 5%;">NO</th>
+								<th style="width: 65%;">SUBJECT</th>
+								<th style="width: 10%;">게시자</th>
+								<th style="width: 10%;">날짜</th>
+								<th style="width: 10%;">조회수</th>
 							</tr>
 						</table>
 						<%

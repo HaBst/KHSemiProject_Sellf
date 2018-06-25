@@ -49,13 +49,15 @@ public class FaqServlet extends HttpServlet {
 		FaqPageData fpd = new FaqService().faqAll(currentPage);
 		if(fpd!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/board/board.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardFaq.jsp");
 			request.setAttribute("FaqPageData", fpd);
 			request.setAttribute("noticeTab", "answerListArea");
 			view.forward(request, response);
 		}else
 		{
-			response.sendRedirect("/views/error/notice/NoticeError.html");
+			RequestDispatcher view = request.getRequestDispatcher("/views/board/boardFaq.jsp");
+			request.setAttribute("noticeTab", "answerListArea");
+			view.forward(request, response);
 		}
 	}
 
@@ -63,7 +65,7 @@ public class FaqServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
 		doGet(request, response);
 	}
 

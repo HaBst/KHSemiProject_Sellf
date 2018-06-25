@@ -6,15 +6,16 @@ public class ManagerSellSearch {
 	private String getSearch; //검색 내용담는 변수
 	private String mainCtg;   //메인 카테고리 선택한 것을 담는 변수
 	private String subCtg;    //메인 밑에 서브 카테고리를 담는 변수
-	private char gradeStatus; //상품상태를 (a,b,c,d,e)담는 변수.
+	private String gradeStatus; //상품상태를 (a,b,c,d,e)담는 변수.
 	
 
-	public ManagerSellSearch(String searchType, String getSearch, String mainCtg, String subCtg) {
+	public ManagerSellSearch(String searchType, String getSearch, String mainCtg, String subCtg, String gradeStatus) {
 		super();
 		this.searchType = searchType;
 		this.getSearch = getSearch;
 		this.mainCtg = mainCtg;
 		this.subCtg = subCtg;
+		this.gradeStatus = gradeStatus;
 	}
 
 	public String getSearchType() {
@@ -49,11 +50,11 @@ public class ManagerSellSearch {
 		this.subCtg = subCtg;
 	}
 	
-	public char getGradeStatus() {
+	public String getGradeStatus() {
 		return gradeStatus;
 	}
 
-	public void setGradeStatus(char gradeStatus) {
+	public void setGradeStatus(String gradeStatus) {
 		this.gradeStatus = gradeStatus;
 	}
 }

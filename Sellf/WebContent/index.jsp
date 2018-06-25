@@ -201,22 +201,21 @@ crossorigin="anonymous"></script>
 					$.ajax({
 						url : "/notOpenProduct",
 						type : "post",
+
 						success : function(data) {
 							var productName = [];
 							var img = [];
 							var productPk = [];
-							
-							console.log("중고 아닌 새거 " + data);
 						
 							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
 								imgJsonObj = JSON.parse(data[i].product_image);
 								img[i]= imgJsonObj.img1;//data[i].product_image; 
-								console.log("개봉 안한 이미지" + imgJsonObj.img1);
+								//console.log("개봉 안한 이미지" + imgJsonObj.img1);
 								productName[i] =data[i].product_name;
 								productPk[i] =data[i].product_entire_pk;
 								}	
-								console.log("상품인덱스:"+productPk[0]);
+								//console.log("상품인덱스:"+productPk[0]);
 								
 							$("#imghoverSec .shadow img:eq(0)").attr("src",img[0]);
 							$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
@@ -278,20 +277,18 @@ crossorigin="anonymous"></script>
 								var img = [];	
 								var productNo = [];
 								var productPk = [];
-								console.log("콘솔창 뉴이미지:"+data);
+								
 								//gson 땜시 추가한 부분 
 								var imgKeys = ["img1","img2","img3","img4","img5"];
 								var imgJsonObj;
-								 
-								for (var i = 0; i < data.length; i++) {
+							for (var i = 0; i < data.length; i++) {
+									//console.log("새거 이미지 " + data[i].image);
 									name[i]= data[i].name;
 									price[i] =data[i].price;	
-									imgJsonObj = JSON.parse(data[i].product_image).image;  // 이부분 추가 
+									imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 									img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 									productNo[i] = data[i].productEntireNo;
-									
-									console.log("콘솔창 뉴이미지:"+img[i]);
-								}
+							}
 							$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
 							$("#newProductSec .card-img-top:eq(1)").attr("src",img[1]);
 							$("#newProductSec .card-img-top:eq(2)").attr("src",img[2]);
@@ -536,7 +533,8 @@ crossorigin="anonymous"></script>
 						var imgJsonObj;  // 이부분 추가
 						
 						for (var i = 0; i < data.length; i++) {
-							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							//console.log("여성 의류 " +data[i].image);
+							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							
 							name[i]= data[i].name;
@@ -815,7 +813,8 @@ crossorigin="anonymous"></script>
 						var imgJsonObj;  // 이부분 추가 
 						
 						for (var i = 0; i < data.length; i++) {
-							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							console.log(""+data[i].image);
+							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
 							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							
 							name[i]= data[i].name;

@@ -101,6 +101,7 @@ public class Product {
 	}
 	public void setProduct_detail(String product_detail) {
 		this.product_detail = product_detail;
+//		System.out.println("상품 설명 json " + this.product_detail);
 		detailObject = new JsonParser().parse(this.product_detail).getAsJsonObject();
 	}
 	public JsonObject getDetailJson()

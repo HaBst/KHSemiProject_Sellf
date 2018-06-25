@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 
 import common.FileRename;
+import member.model.vo.Member;
 import product.model.service.ProductInsertService;
 import product.model.vo.ImageUpload;
 import product.model.vo.ProductDetail;
@@ -43,13 +44,14 @@ public class ProductInsertServlet extends HttpServlet {
 		//1. 사용자 계정명(업로드한 사람 정보가 있어야함, session객체에서 꺼냄)
 		HttpSession session = request.getSession();
 
-//		String userId = (((Member)session.getAttribute("user")).getUserId());
-
+		String userId = (String) session.getAttribute("login");
+		System.out.println("등록"+userId);
 		//2. 최대 업로드 파일 사이즈 (설정)
 		int fileSizeLimit = 1024*1024*1024*5;//Byte 단위(50MB)
 
 		//3. 업로드 될 경로
-		String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile"; // getRealPath("/")-> WebContent
+		String uploadFilePath = getServletContext().getRealPath("/")+"img"; // getRealPath("/")-> WebContent
+		System.out.println(uploadFilePath);
 
 		//4. 인코딩 타입(파일 인코딩 타입)
 		String enctype = "UTF-8";
@@ -112,7 +114,7 @@ public class ProductInsertServlet extends HttpServlet {
 			pd.setProductDetail(productDetail);
 
 			
-			String productEntireUserIdFK = "mslove11";
+			String productEntireUserIdFK = userId;
 			String productEntireCateMainIdFK = multi.getParameter("bCategory"); //카테고리 대분류
 			System.out.println("카테고리"+productEntireCateMainIdFK);
 			String productEntireCateSubIdFK = multi.getParameter("sCategory"); //카테고리 소분류
@@ -183,6 +185,10 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			response.sendRedirect("/views/error/product/productInsertError.jsp");
 		}
+		
+		
+		
+		
 	}
 
 	/**

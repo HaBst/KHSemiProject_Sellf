@@ -6,13 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<body>
 <script>
 	window.onload = function(){
-		alert("상품 등록을 실패하였습니다.");
-		location.href = "/";
+		alert("존재하지 않는 세션입니다.");
+		location.href="/";
 	}
 </script>
-<body>
-
 </body>
 </html>

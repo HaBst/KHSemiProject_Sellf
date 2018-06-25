@@ -205,7 +205,7 @@
 															type="hidden" id="imgOne" name="imgOne" value="">
  -->
  															<input id="fileSucOne" type="file" name="upfile1"
-															style="display: none" onchange="readURL(this,0);" /> <img
+															style="display: none" onchange="readURL(this,0);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_1" 
 															onclick="document.all.fileSucOne.click();" > <input
@@ -223,7 +223,7 @@
 													<div class="col-md-12" id="successImgTwo">
 
 														<input id="fileSucTwo" type="file" name="upfile2"
-															style="display: none" onchange="readURL(this,1);" /> <img
+															style="display: none" onchange="readURL(this,1);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_2"
 															onclick="document.all.fileSucTwo.click();"> <input
@@ -238,7 +238,7 @@
 													<div class="col-md-12" id="successImgThrid">
 
 														<input id="fileSucThrid" type="file" name="upfile3"
-															style="display: none" onchange="readURL(this,2);" /> <img
+															style="display: none" onchange="readURL(this,2);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_3"
 															onclick="document.all.fileSucThrid.click();"> <input
@@ -253,7 +253,7 @@
 													<div class="col-md-12" id="successImgFour">
 
 														<input id="fileSucFour" type="file" name="upfile4"
-															style="display: none" onchange="readURL(this,3);" /> <img
+															style="display: none" onchange="readURL(this,3);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_4"
 															onclick="document.all.fileSucFour.click();"> <input
@@ -268,7 +268,7 @@
 													<div class="col-md-12" id="successImgFive">
 
 														<input id="fileSucFive" type="file" name="upfile5"
-															style="display: none" onchange="readURL(this,4);" /> <img
+															style="display: none" onchange="readURL(this,4);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_5"
 															onclick="document.all.fileSucFive.click();"> <input

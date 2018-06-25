@@ -66,4 +66,29 @@ public class MyCartService {
 		return result;
 	}
 
+	public int insertCartList(String userId, String productEntire) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result =  new MyCartDao().insertCartList(conn,userId,productEntire);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+		
+	}
+/*
+	public int deleteOneMycartList(String userId, String productEntire) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result =  new MyCartDao().deleteOneMycartList(conn,userId,productEntire);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}*/
+
 }

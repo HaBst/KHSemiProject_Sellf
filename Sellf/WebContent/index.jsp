@@ -207,7 +207,7 @@ crossorigin="anonymous"></script>
 							var productPk = [];
 							
 							console.log("중고 아닌 새거 " + data);
-							var imgKeys = ["img1","img2","img3","img4","img5"];
+						
 							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
 								imgJsonObj = JSON.parse(data[i].product_image);
@@ -278,7 +278,7 @@ crossorigin="anonymous"></script>
 								var img = [];	
 								var productNo = [];
 								var productPk = [];
-								
+								console.log("콘솔창 뉴이미지:"+data);
 								//gson 땜시 추가한 부분 
 								var imgKeys = ["img1","img2","img3","img4","img5"];
 								var imgJsonObj;
@@ -286,9 +286,11 @@ crossorigin="anonymous"></script>
 								for (var i = 0; i < data.length; i++) {
 									name[i]= data[i].name;
 									price[i] =data[i].price;	
-									imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+									imgJsonObj = JSON.parse(data[i].product_image).image;  // 이부분 추가 
 									img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 									productNo[i] = data[i].productEntireNo;
+									
+									console.log("콘솔창 뉴이미지:"+img[i]);
 								}
 							$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
 							$("#newProductSec .card-img-top:eq(1)").attr("src",img[1]);

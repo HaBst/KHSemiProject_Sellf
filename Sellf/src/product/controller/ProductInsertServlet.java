@@ -44,7 +44,7 @@ public class ProductInsertServlet extends HttpServlet {
 		//1. 사용자 계정명(업로드한 사람 정보가 있어야함, session객체에서 꺼냄)
 		HttpSession session = request.getSession();
 
-		String userId = (String) session.getAttribute("login");
+		String userId = ((Member)session.getAttribute("login")).getUser_id().toString();
 		System.out.println("등록"+userId);
 		//2. 최대 업로드 파일 사이즈 (설정)
 		int fileSizeLimit = 1024*1024*1024*5;//Byte 단위(50MB)
@@ -185,10 +185,6 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			response.sendRedirect("/views/error/product/productInsertError.jsp");
 		}
-		
-		
-		
-		
 	}
 
 	/**

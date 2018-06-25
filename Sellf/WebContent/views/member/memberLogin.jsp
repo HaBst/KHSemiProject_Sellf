@@ -1,4 +1,4 @@
-mHeader<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.net.URLEncoder" %>
 	<%@ page import="java.security.SecureRandom" %>
@@ -122,6 +122,11 @@ mHeader<%@ page language="java" contentType="text/html; charset=UTF-8"
 			alert("로그인에 실패하였습니다.")
 			error = 0;
 			}
+		else if(error==2)
+			{
+			alert("존재하지 않는 회원입니다.");
+			error = 0;
+			}
 	});
 	</script>
 	<header id="header"> <%@include
@@ -140,7 +145,7 @@ mHeader<%@ page language="java" contentType="text/html; charset=UTF-8"
 				style="background-color: RGBA(216,85,161,1); border-radius: 0px; width: 400px; height: 35px; padding: 0px; margin-bottom: 10px;" value="로그인"><br>
 				</form>
 				<div class="sublogin">
-				<span id="register"><a href="/views/member/memberJoin.html">회원가입</a></span>
+				<span id="register"><a href="/views/member/memberJoin.jsp">회원가입</a></span>
 				<span id="findIdPwd"><a href="/views/member/findIdPwd.jsp">아이디/비밀번호 찾기</a></span>
 				</div>
 		</div>

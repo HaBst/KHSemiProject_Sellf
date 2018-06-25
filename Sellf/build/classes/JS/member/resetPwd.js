@@ -2,6 +2,8 @@
 		
 		var pwd1 = $("#resetPwdNum1");
 		var pwd2 = $("#resetPwdNum2");
+		var memberId = $("#memberId").val();
+		
 		pwd2.blur(function() {
 			var pwd1Text = pwd1.val();
 			var pwd2Text = pwd2.val();
@@ -20,10 +22,23 @@
 					console.log("같음");
 					$("#result").text("비밀번호 동일.");
 					$("#resetPwdBtn").click(function(){
-						alert("비밀번호 변경완료");
-						location.href ="../../index.jsp";
+						
+					$.ajax({
+							url:"/resetPwd",
+							data:{pwd1:pwd1Text, memberId:memberId},
+							type:"post",
+							success: function(){
+								alert("비밀번호 변경완료. 재로그인 해주세요");
+								location.href="../../index.jsp";
+								location.href ="../../index.jsp";
+							},
+							error: function(){
+								alert("변경실패"); 
+							}
+							
+							})
+						/*location.href ="/resetPwd";*/
 					});
-					
 
 				} else {
 					console.log("다름");

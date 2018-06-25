@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="WebContent"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/SellfServer"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-8.5.31-windows-x64/apache-tomcat-8.5.31/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-8.5.31-windows-x64/apache-tomcat-8.5.31/lib/servlet-api.jar"/>
+=======
+	<classpathentry exported="true" kind="lib" path="C:/apache-tomcat-8.5.31-windows-x64/apache-tomcat-8.5.31/lib/jsp-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/apache-tomcat-8.5.31-windows-x64/apache-tomcat-8.5.31/lib/servlet-api.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Sellf"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/user/Documents/GitDesktop/KHSemiProject_Sellf/Sellf/WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/apache-tomcat-8.5.31/lib/jsp-api.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/apache-tomcat-8.5.31/lib/servlet-api.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry exported="true" kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
+>>>>>>> 3e5d1d5e698f216a913f060b2a4e32146e7555ba
+	<classpathentry kind="output" path="build/classes"/>
 </classpath>

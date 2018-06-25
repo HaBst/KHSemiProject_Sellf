@@ -26,7 +26,9 @@ html, body {
 	box-sizing: border-box;
 
 }
-
+#button{
+	background-color: RGBA(216,85,161,1);
+}
 #goodsInfo {
 	border-radius: 5px;
 	border: 2px solid black;
@@ -134,7 +136,7 @@ html, body {
 	border: 2px solid gray;
 	width: 55%;
 	height: 100%;   
-	padding: 30px;
+	padding: 75px;
 	padding-bottom: 134px;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -164,23 +166,24 @@ html, body {
 	height:800px;
 }
 .payButton {
-	border : 2px solid #66CCFF;
-	background-color: #66CCFF;
+	
+	background-color: RGBA(216,85,161,1);
 	border-radius: 10px;
 	font-size: 17px;
 	color:white;
 	width: 200px;
 	height: 80px;
-	margin: 10px;
+	margin: 3px;
 }
 
 #orderListInfoWrap {
 	border-radius: 5px;
 	border : 2px solid gray;
-	width: 100%;
+	width: 45%;
 	height: auto;
 	margin-top: 30px;
 	padding-left:10px;
+	padding-bottom:30px;
 
 }   
 
@@ -206,7 +209,10 @@ html, body {
 	width: 960px;
 	height: auto;
 }
-
+#content2{
+	width:100%;
+	height:auto;
+}
 #orderListInfoWrap>div>span:last-child {
 
 	width: 100%;

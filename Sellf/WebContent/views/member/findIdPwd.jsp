@@ -194,7 +194,7 @@
 									
 											if(data==memberEmail)
 											{
-												alert("성공!");
+												/* alert("성공!"); */
 												$.ajax({
 													url:"/findIdComplete",
 													data:{memberEmail : memberEmail},
@@ -359,11 +359,11 @@
 										data : {sendMyAuth : PwdcertificationNum}, 
 										type: "get", 
 										success : function(data){
-													window.alert("이메일 인증 성공"); 
+													/* window.alert("이메일 인증 성공");  */
 													location.replace("/views/member/resetPwd.jsp?memberId="+memberId);
 										},
 										error: function(data){
-											window.alert("이메일인증 실패");
+											/* window.alert("이메일인증 실패"); */
 											location.reload();
 										}
 									});

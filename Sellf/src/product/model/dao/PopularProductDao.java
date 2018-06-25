@@ -206,7 +206,6 @@ public class PopularProductDao {
 		String query ="SELECT * FROM PRODUCT_ENTIRE_TB WHERE PRODUCT_STATE = 'S' AND PRODUCT_OLDNEW = 'N'";
 
 
-
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);

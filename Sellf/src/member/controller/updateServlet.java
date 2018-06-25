@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.service.myInfoService;
@@ -37,16 +38,16 @@ public class updateServlet extends HttpServlet {
 		m.setUser_phone(request.getParameter("userPhone"));
 		m.setUser_addr((Integer.parseInt(request.getParameter("postNum"))+(request.getParameter("addrInfo"))+(request.getParameter("addrDetail"))));
 		String [] inter = request.getParameterValues("userInter");
-		String interStr = "";
+        String interStr = "";
 		for(String val :inter)
 		{
 			interStr += val + " ";
 		}
 		m.setUser_interest(interStr);
-		
 	int result = new myInfoService().updateMember(m);
 	if(result>0)
 	{
+		HttpSession session = request.getSession();
 		response.sendRedirect("/views/member/myInfo.jsp");
 	}
 	else 

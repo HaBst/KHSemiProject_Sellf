@@ -101,7 +101,7 @@ public class findIdPwdDao {
 				m.setUser_email(rset.getString("user_email"));
 				m.setUser_interest(rset.getString("user_interest"));
 				m.setUser_enrolldate(rset.getDate("user_enrolldate"));
-				m.setUser_epoint(rset.getInt("user_epoint"));
+				m.setUser_ePoint(rset.getInt("user_epoint"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

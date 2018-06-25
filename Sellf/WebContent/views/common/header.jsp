@@ -47,7 +47,7 @@
 					<a href="/views/member/주문내역??.jsp">ORDER</a>
 				</div> -->
 				<div>
-					<a href="/views/member/myInfoQuiz.jsp">MYPAGE</a>
+					<a href="/mypage">MYPAGE</a>
 				</div>
 				<div>
 					<a href="/notice">CSCENTER</a>

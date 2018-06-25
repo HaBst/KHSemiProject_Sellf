@@ -399,7 +399,7 @@ th.spec {
 				<tbody>
 				<tr>
 					<td><div class="row"><div class="col-sm-2 hidden-xs">
-					<img src="<%=p.getProduct_image()%>" alt="..." class="img-responsive" /></div>
+					<img src="<%=p.getImageJson().get("img1").getAsString()%>" alt="..." class="img-responsive"/></div>
 					<div class="col-sm-10">
 					</td>
 					<td><%=p.getProduct_price()%>	<h4 class="nomargin"><%=p.getProduct_name() %></h4>

@@ -1,9 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,22 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.service.MemberService;
+import member.model.service.MyCartService;
 import member.model.vo.Member;
-import member.model.vo.purchaseHis;
-import product.model.vo.Product;
 
 /**
- * Servlet implementation class selfServlet
+ * Servlet implementation class FoldingProductServlet
  */
-@WebServlet(name = "self", urlPatterns = { "/self" })
-public class selfServlet extends HttpServlet {
+@WebServlet(name = "FoldingProduct", urlPatterns = { "/foldingProduct" })
+public class FoldingProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public selfServlet() {
+    public FoldingProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,13 +31,17 @@ public class selfServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
-		String id = ((Member)session.getAttribute("user")).getUser_id();
-		ArrayList<Product> list = new MemberService().self(id);
-		RequestDispatcher view = request.getRequestDispatcher("/views/member/mySelf.jsp");
-		request.setAttribute("product", list);
-		view.forward(request, response);
+		
+		String productEntire = request.getParameter("");
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("login")!=null) {
+			Member m = (Member)session.getAttribute("login");
+			String userId = m.getUser_id();
+			int result = new MyCartService().insertCartList(userId,productEntire);
+			System.out.println("장바구니 담기 성공했니?? 성공하면 !"+result);
+		}
 	}
 
 	/**

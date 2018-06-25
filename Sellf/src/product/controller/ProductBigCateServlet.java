@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.model.vo.Member;
 import product.model.service.ProductInsertService;
 import product.model.vo.CateBig;
 
@@ -33,11 +35,19 @@ public class ProductBigCateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<CateBig>list = new ProductInsertService().productBigCate();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("login") != null) {
+			System.out.println("세션"+session.getAttribute("login"));
+			ArrayList<CateBig>list = new ProductInsertService().productBigCate();
+			
+			RequestDispatcher view = request.getRequestDispatcher("/views/product/productInsert.jsp");
+			request.setAttribute("listBig", list);
+			view.forward(request, response);
+		}else {
+			response.sendRedirect("/views/error/product/productInsertSessionOver.jsp");
+		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/product/productInsert.jsp");
-		request.setAttribute("listBig", list);
-		view.forward(request, response);
+		
 	}
 
 	/**

@@ -108,11 +108,27 @@
 </head>
 
 <body>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="/JS/bootstrap/bootstrap.js"></script>
 	<script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
 	<script type="text/javascript" src="../../JS/common/adv.js"></script>
 	<script type="text/javascript"	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"	charset="utf-8"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var error = <%=request.getParameter("error")%>;
+		if(error==1)
+			{
+			alert("로그인에 실패하였습니다.")
+			error = 0;
+			}
+		else if(error==2)
+			{
+			alert("존재하지 않는 회원입니다.");
+			error = 0;
+			}
+	});
+	</script>
 	<header id="header"> <%@include
 				file="/views/common/header.jsp"%> </header><br>
 	<div class="container">
@@ -126,11 +142,11 @@
 		<input type="text" id="userId" name="userId"  style="height:40px; width:400px"><br>
 		<input type="password" id="userPwd" name="userPwd" style="height:40px; width:400px"><br>
 		<input type="submit" class="btn btn-primary btn-lg"
-				style="background-color: black; border-radius: 0px; width: 400px; height: 35px; padding: 0px; margin-bottom: 10px;" value="로그인"><br>
+				style="background-color: RGBA(216,85,161,1); border-radius: 0px; width: 400px; height: 35px; padding: 0px; margin-bottom: 10px;" value="로그인"><br>
 				</form>
 				<div class="sublogin">
-				<span id="register"><a href="/views/member/memberJoin.html">회원가입</a></span>
-				<span id="findIdPwd">아이디/비밀번호 찾기</span>
+				<span id="register"><a href="/views/member/memberJoin.jsp">회원가입</a></span>
+				<span id="findIdPwd"><a href="/views/member/findIdPwd.jsp">아이디/비밀번호 찾기</a></span>
 				</div>
 		</div>
 		<div class="snsLogin">

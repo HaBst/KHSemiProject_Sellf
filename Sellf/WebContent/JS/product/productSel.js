@@ -68,7 +68,7 @@ function changeTab(tabInfo, name, sellerId)
 						},
 				type : "get",
 				success : function(data){					 
-//					console.log("길이 " + data.reviewList.length);
+					console.log("길이 " + data.reviewList.length);
 					 for(var i = 0; i<data.reviewList.length;i++)
 					 {
 						 var starRate = "";
@@ -127,7 +127,8 @@ function changeTab(tabInfo, name, sellerId)
 				success : function(data){
 					alert("댓글등록을 성공했습니다.");
 					getReviewList(reviewerID,1);
-					reviewCommentArea.val("");
+//					reviewCommentArea.val("");
+					$("#reviewCommentArea").val("");
 				},
 				error:function(){
 					
@@ -135,4 +136,19 @@ function changeTab(tabInfo, name, sellerId)
 				}
 			});
 	 }
+
+function changeImage(imgTag)
+{
+	var bigImg  = document.getElementsByClassName("magnify-image")[0];
+	var slideImg  = document.getElementsByClassName("zoom-tiny-image");
+	console.log(imgTag);
+	var tempImg = slideImg[imgTag].src;
+	slideImg[imgTag].src = bigImg.src;
+	bigImg.src = tempImg;
+	$("#mainImg").attr('data-magnify-src', tempImg);
+	 $('.magnify-lens').css('background-image', 'url(' + tempImg + ')');
+	firstImg = tempImg;
+}
+
+
 

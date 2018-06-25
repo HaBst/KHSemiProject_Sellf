@@ -42,5 +42,14 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return m2;
 	}
+	public boolean memberCheckDelete(String id, String fullPath) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		boolean checkDelete = false;
+		conn = JDBCTemplate.getConnection();
+		checkDelete = new MemberDao().memberCheckDelete(conn, id,fullPath);
+		JDBCTemplate.close(conn);
+		return checkDelete;
+	}
 
 }

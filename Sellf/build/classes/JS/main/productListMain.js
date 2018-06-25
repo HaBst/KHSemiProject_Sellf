@@ -4,8 +4,6 @@ var orderTypeArr;
 var orderType = "updateOrder";
 var category  = "";
 window.onload = function(){
-	currentPage = 0;
-	orderType = "updateOrder";
 	allCategory = document.getElementsByClassName('category-btn')[0];
 	selectCategory();
 	allState = document.getElementsByClassName('productState-btn')[0];
@@ -42,12 +40,11 @@ function loadSelectCategory()
 	var totalProductList = $(".productList");//$("#productLine");
 	$.ajax({
 		url:"/productSortCategory",
-		data : {
-				mainCategory : mainCategory,
+		data : {mainCategory : mainCategory,
 				subCategory : subCategory,
 				onePageShowProduct :onePageShowProduct,
 				currentPage :currentPage,
-				orderType : orderType,
+				orderType : orderType
 				},
 		type : "get",
 		success : function(data){			
@@ -67,25 +64,17 @@ function loadSelectCategory()
 			}
 //			totalProductSize.html("전체상품 " +  keys.length + "개");
 			
-			var imgKeys = ["img1","img2","img3","img4","img5"];
 			for(var i = currentPage*onePageShowProduct; i<maxLength;i++)
-			{			
-//				var jsonData = data[keys[i]].product_image;
-//				var arr = Object.keys(jsonData);
-//				console.log(arr);
-//				console.log(data[keys[i]].product_image);
-//				var imgKey = Object.keys(data[keys[i]].product_image);
-				var imgJsonObj = JSON.parse(data[keys[i]].product_image);
-//				console.log("이미지 정보" + imgJsonObj.img1);
-				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk+');"';
+			{
+				var link = 'onclick="selectProduct('+data[keys[i]].product_entire_pk +');"';
 				totalProductList.append(
 				'<li class="productWrap">'+
 				'<div class="productBg"' +link +'>'+
 					'<div class="imgWrapper">'+
-						'<img class="productImgMain" src="'+imgJsonObj.img1+'">'+
-//						'<% if (discountRate > 0) { %>'+						
-//						'<div class="discountBg">10%</div>'+
-//						'<% }%>'+
+						'<img class="productImgMain" src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg">'+
+						'<% if (discountRate > 0) { %>'+						
+						'<div class="discountBg">10%</div>'+
+						'<% }%>'+
 						'<div class="productSideMenu">'+
 						'<div class="display_newwin hide">'+
 						'<img src="../../img/thumb_quickview.png" alt="">'+

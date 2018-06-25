@@ -40,99 +40,53 @@ function changeTab(tabInfo, name, sellerId)
     	}
 	    if(name.id=="tab3")
     	{
-//	    	console.log("세번째 탭");
+	    	console.log("세번째 탭");
     	}
 	 }
-}
 	 
-	 var currentPage = 1;
-	 var reviewerID ="";
-	 
-	 function pageChange(pageNum)
+	 function getReviewList(sellerId)
 	 {
-		 currentPage = pageNum;
-		 getReviewList(reviewerID,currentPage);
-	 }
-	 function getReviewList(sellerId,pageNum)
-	 {
-		 reviewerID = sellerId;
-		 var productReviewList = $("#productReviewList");
-		 var result = "";
-		 if(pageNum!=null) currentPage = pageNum;
-		 console.log("판매자 아이디 " + reviewerID);
 			$.ajax({
 				url:"/userReviewInProduct",
 				data : {
-							userId:reviewerID,
-							currentPage:currentPage
+					userId:sellerId
 						},
 				type : "get",
-				success : function(data){					 
-//					console.log("길이 " + data.reviewList.length);
-					 for(var i = 0; i<data.reviewList.length;i++)
-					 {
-						 var starRate = "";
-						 for(var j = 0; j<data.reviewList[i].userReviewRating;j++){ starRate += "★"; }
-						 for(var k = 0; k<5-data.reviewList[i].userReviewRating;k++){ starRate += "☆"; }
-						 	result+=
-							'<div class="reviewerCommnet">'+
-							'<div class="imageCircle">'+
-								'<img src="../../img/sellitMan.png" style="width:100%; height:100%;"/>'+
-							'</div>'+
-							'<div class="reviewerStarGroup">'+
-								'<div class="reivewerId">'+
-								data.reviewList[i].userReviewUserEntireReviewedIdFk+
-								'</div>'+
-								'<div class="reviewerStar">'+								
-									'<h3 style="color:#ffd53d; display:inline-block">'+
-								 starRate +'</h3>'+
-								'</div>'+
-							'</div>'+
-							'<div class="reviewContent">'+
-								'<div class="reviewTitle">'+
-								data.reviewList[i].userReviewComment+
-								'</div>'+
-								'<div class="reviewComment">'+
-								data.reviewList[i].userReviewDate+
-								'</div>'+
-							'</div>'+	
-						'</div>';
-					 }
-					 result+=data.pageNavi;
-					 productReviewList.html(result);
-					 
-					 currentPage +=1;
+				success : function(data){
+					console.log(data);
+					'<div class="reviewerCommnet">'+
+					'<div class="imageCircle">'+
+						'<img src="../../img/거실.JPG" style="width:100%; height:100%;"/>'+
+					'</div>'+
+					'<div class="reviewerStarGroup">'+
+						'<div class="reivewerId">'+
+							'<%=ur.getUserReviewUserEntireReviewedIdFk() %>'+
+						'</div>'+
+						'<div class="reviewerStar">'+								
+							'<h3 style="color:#ffd53d; display:inline-block">'+
+							'if(ur.getUserReviewRating()>1){★}else{>☆}</h3>'+
+							'if(ur.getUserReviewRating()>2){★}else{>☆}</h3>'+
+							'if(ur.getUserReviewRating()>3){★}else{>☆}</h3>'+
+							'if(ur.getUserReviewRating()>4){★}else{>☆}</h3>'+
+							'if(ur.getUserReviewRating()>=5){★}else{>☆}</h3>'+
+						'</div>'+
+					'</div>'+
+					'<div class="reviewContent">'+
+						'<div class="reviewTitle">'+
+						'애플 아이패드 프로 10.5인치 256GB WiFi'+
+						'</div>'+
+						'<div class="reviewComment">'+
+						'만족해요.'+
+						'</div>'+
+					'</div>'+	
+				'</div>'+
+				'<%} %>'+
+				'<label><%=pageNavi %></label> --%>'
 				},
 			error : function(){
 				console.log("실패");	
 			}
 		});
 	 }
-	 
-	 function userReview(productId)
-	 {
-		 console.log("상품아이디 " + productId);
-		 var starPoint = $("#starPointSelect").val();
-		 var reviewCommentArea = $("#reviewCommentArea").val();
-			$.ajax({
-				url:"/userReview",
-				data : {
-					starPoint:starPoint,// 평점
-					reviewCommentArea:reviewCommentArea,  // 유저 리뷰
-					reviewerID:reviewerID,// 판매자 아이디
-					productId:productId// 상품 아이디
-					
-				},
-				type : "post",
-				success : function(data){
-					alert("댓글등록을 성공했습니다.");
-					getReviewList(reviewerID,1);
-					reviewCommentArea.val("");
-				},
-				error:function(){
-					
-				
-				}
-			});
-	 }
+}
 

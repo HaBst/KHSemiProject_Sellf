@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import com.oreilly.servlet.MultipartRequest;
 
 import common.FileRename;
+import member.model.vo.Member;
 import product.model.service.ProductInsertService;
 import product.model.vo.ImageUpload;
 import product.model.vo.ProductDetail;
@@ -44,13 +44,14 @@ public class ProductInsertServlet extends HttpServlet {
 		//1. 사용자 계정명(업로드한 사람 정보가 있어야함, session객체에서 꺼냄)
 		HttpSession session = request.getSession();
 
-		//				String userId = (((Member)session.getAttribute("user")).getUserId());
-
+		String userId = (String) session.getAttribute("login");
+		System.out.println("등록"+userId);
 		//2. 최대 업로드 파일 사이즈 (설정)
 		int fileSizeLimit = 1024*1024*1024*5;//Byte 단위(50MB)
 
 		//3. 업로드 될 경로
-		String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile"; // getRealPath("/")-> WebContent
+		String uploadFilePath = getServletContext().getRealPath("/")+"img"; // getRealPath("/")-> WebContent
+		System.out.println(uploadFilePath);
 
 		//4. 인코딩 타입(파일 인코딩 타입)
 		String enctype = "UTF-8";
@@ -73,24 +74,18 @@ public class ProductInsertServlet extends HttpServlet {
 
 
 			String beforeFileNameOne = multi.getOriginalFileName("upfile1");
-			
 			String beforeFileNameTwo = multi.getOriginalFileName("upfile2");
-			
 			String beforeFileNameThree = multi.getOriginalFileName("upfile3");
-			
 			String beforeFileNameFour = multi.getOriginalFileName("upfile4");
-			
 			String beforeFileNameFive = multi.getOriginalFileName("upfile5");
 
+			
 			String afterFileNameOne = multi.getFilesystemName("upfile1"); //바뀐파일
-			
 			String afterFileNameTwo = multi.getFilesystemName("upfile2");
-			
 			String afterFileNameThree = multi.getFilesystemName("upfile3");
-			
 			String afterFileNameFour = multi.getFilesystemName("upfile4");
-			
 			String afterFileNameFive = multi.getFilesystemName("upfile5");
+			
 
 			String fullFilePathOne = uploadFilePath+"\\"+afterFileNameOne;
 			String fullFilePathTwo = uploadFilePath+"\\"+afterFileNameTwo;
@@ -104,8 +99,7 @@ public class ProductInsertServlet extends HttpServlet {
 			iu.setImgThree(afterFileNameThree);
 			iu.setImgFour(afterFileNameFour);
 			iu.setImgFive(afterFileNameFive);
-			
-			
+
 			
 			ProductDetail pd = new ProductDetail();
 			String productGrade = multi.getParameter("productGrade");
@@ -118,27 +112,22 @@ public class ProductInsertServlet extends HttpServlet {
 			pd.setProductRefund(productRefund);
 			pd.setProductExtra(productExtra);
 			pd.setProductDetail(productDetail);
+
 			
-			
-			
-			String productEntireUserIdFK = "mslove11";
+			String productEntireUserIdFK = userId;
 			String productEntireCateMainIdFK = multi.getParameter("bCategory"); //카테고리 대분류
 			System.out.println("카테고리"+productEntireCateMainIdFK);
 			String productEntireCateSubIdFK = multi.getParameter("sCategory"); //카테고리 소분류
 			System.out.println("소분류"+productEntireCateSubIdFK);
 			String productName = multi.getParameter("productName"); //상품이름
 			System.out.println("상품이름"+productName);
-//			String productState = multi.getParameter("state");
-//			System.out.println("상품상태"+productState);
+
 			int productAmount = Integer.parseInt(multi.getParameter("productCount")); //상품 수량
 			System.out.println("상품수량"+productAmount);
 			int productPrice = Integer.parseInt(multi.getParameter("price")); // 상품 가격
 			System.out.println("상품가격"+productPrice);
-			
 			String productOldNew = multi.getParameter("state"); //상품 등급
 			System.out.println("상품등급"+productOldNew);
-
-			
 
 			ProductInsert pi = new ProductInsert();
 			pi.setProductEntireUserIdFK(productEntireUserIdFK);
@@ -151,8 +140,7 @@ public class ProductInsertServlet extends HttpServlet {
 			pi.setProductOldNew(productOldNew);
 			pi.setProductDetail(pd);
 			
-			
-			
+
 			int result = 0;
 			result = new ProductInsertService().productInsert(pi);
 			
@@ -173,9 +161,7 @@ public class ProductInsertServlet extends HttpServlet {
 			System.out.println("키 3값 : "  + value3);
 			System.out.println("키 4값 : "  + value4);
 			System.out.println("키 5값 : "  + value5);
-			
 
-			
 			if(value1 != null) {
 				File file1 = new File(fullFilePathOne);
 				file1.delete();
@@ -199,6 +185,10 @@ public class ProductInsertServlet extends HttpServlet {
 			
 			response.sendRedirect("/views/error/product/productInsertError.jsp");
 		}
+		
+		
+		
+		
 	}
 
 	/**

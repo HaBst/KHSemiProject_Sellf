@@ -1,3 +1,4 @@
+<%@page import="oracle.net.aso.e"%>
 <%@page import="member.model.vo.Member"%>
 <%@page import="product.model.vo.Product"%>
 <%@page import="member.model.vo.MyCartTmp"%>
@@ -66,9 +67,7 @@
 </script>
 <%ArrayList<MyCartTmp> list = (ArrayList<MyCartTmp>) request.getAttribute("orderList"); %>
 	<center>
-<%="디테일은 :" +list.get(0).getProductDetail() %>
 		 <div id="wrapper" style="overflow: hidden;">
-			
 			<!-- header -->
 			<header id="header"> <%@include
 				file="/views/common/header.jsp"%> </header>
@@ -96,8 +95,9 @@
 						</ul>
 					</div>
 				</div>
+		
 				<br> <br>
-				<div id="content2">
+			<div id="content2">
 				
 				<form action="/myCart3" method="post">
 					<div id="deliveryInfo" style="margin-bottom: 80px; height: 100%;">
@@ -130,122 +130,152 @@
 							style="width: 300px; float: left;">
 							<input type="text" class="form-control postcodify_address" aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm" placeholder="주소"
-								name="addrInfo" size="50" readonly="readonly" style="height: 40px;" value="<%=list.get(0).getUser_addr()%>">
+								name="addrInfo" size="100" readonly="readonly" style="height: 40px;" value="<%=list.get(0).getUser_addr()%>">
 						</div>
 						<br> <br> <br> <br>
-						 <button type="button" class="btn btn-secondary btn-sm"
+						<!--  <button type="button" class="btn btn-secondary btn-sm"
 							onclick="findAddr();" id="postcodify_search_button"
-							style="margin-left: -80px; margin-top: -3px; height: 40px;">주소검색</button>
+							style="margin-left: -80px; margin-top: -3px; height: 40px;">주소검색</button> -->
 
 
-						<div class="input-group input-group-sm mb-3"
+						<!-- <div class="input-group input-group-sm mb-3"
 							style="width: 400px; float: left;">
 							<input type="text" class="form-control postcodify_details" aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm" placeholder="상세주소"
 								name="addrDetail" size="50" style="height: 40px;">
-						</div>
+						</div> -->
 						<br> <br> <br> <br> <br> <br>
 						<div id="orderResult"></div>
 						<h2>결제수단</h2>
 						<hr>
-						<br> <br> <input type="button" value="신용카드"
-							class="payButton"> 
-							<input type="button"
-							value="무통장입금(가상계좌)" class="payButton">
-					</div>
-					
+						<br> <br> 
+						<input type="button" value="신용카드" 	class="payButton" style="background-color: RGBA(216,85,161,1);" onclick="pay1();"> 			
+						<input type="button" value="무통장입금(가상계좌)" class="payButton" style="background-color: RGBA(216,85,161,1);" onclick="pay2();">
+							
+						<script type="text/javascript">
+						function pay1() {
+							alert("구현예정입니다 ~ ^^");
+						}
+						function pay2() {
+							alert("구현예정입니다 ~ ^^");
+						}
+						</script>
+					</div>	
+							<%! int produstSumPrice = 0; // 상품합계금액 
+								int amount= 0; // 상품 수량
+								int price = 0; // 각 상품 가격
+								int result = 0; //결과 
+								int totalPrice = 0; // epoint에서 차감 후 금액
+							%>
+							<%
+								amount = list.get(0).getProductAmount();
+								price = list.get(0).getProductPrice();
+								produstSumPrice = amount * price;
+							
+							if(produstSumPrice - list.get(0).getUser_ePoint()<0){
+								totalPrice = 0;
+							}else{
+								totalPrice= produstSumPrice- list.get(0).getUser_ePoint();
+							}
+							%>	
+							
+							<!-- 남은 E포인트 -->
+							<%! int remainingPoint;%>	
+							<% remainingPoint = list.get(0).getUser_ePoint()-produstSumPrice;
+							if(remainingPoint <0){
+								remainingPoint = 0;
+							}%>
 					<div id="orderListInfo" >
 						<br>
 						<h2>결제상품</h2>
 						<hr>
 						<div id="goodsInfo">
-							<img src="<%=list.get(0).getProductImage() %>"
+							<img src="<%=list.get(0).getProductImage()%>"
 								style="width: 100px; height: 100px; float: left;">
 							<div id="goodsName" name="goodsName" style="padding-bottom:10px; margin-top:10px;">상품명 : <%=list.get(0).getProductName()%></div>
-							<div id="goodsPrice" name="goodsPrice">상품가격 : <%=list.get(0).getProductPrice()%></div>
+							<div id="goodsPrice" name="goodsPrice">상품가격 합계: <%=list.get(0).getProductAmount() * list.get(0).getProductPrice()%>원</div>
 						</div>
 						<div id="orderListInfoWrap">
 							<div>
-								<span style="font-weight:500;">주문 수량</span><span id="productPrice">상품명:<%=list.get(0).getProductName()%>&nbsp;
-													<%=list.get(0).getProductAmount()%>외&nbsp;<%=list.size()-1 %>개</span>
+								<span style="font-weight:500;">주문 수량</span><span id="productPrice"><%=list.get(0).getProductName()%>&nbsp;
+													<%=list.get(0).getProductAmount()%>개&nbsp;외&nbsp;<%=list.size()-1 %>개</span>
 							</div>
 							<div>
 								<span style="font-weight:500;">쿠폰사용</span><span>
-									<button type="button" style="background-color: #66CCFF;"class="btn btn-secondary" onclick="availableCouponsBtn();">사용가능쿠폰</button>		
+									<button type="button" style="background-color: RGBA(216,85,161,1);"class="btn btn-secondary" onclick="availableCouponsBtn();">사용가능쿠폰</button>		
 								</span>
 							</div>
 							<div>
-								<span style="font-weight:500;" >E-wallet포인트</span><span id="userPoint" name="ewalletPoint"><%=list.get(0).getUser_ePoint() %>포인트</span>
+								<span style="font-weight:500;" >E-wallet포인트</span><span id="userPoint" name="ewalletPoint"><%=list.get(0).getUser_ePoint()%></span>
 							</div>
 							<div>
 								<span style="font-weight:500;">배송료</span><span>무료배송</span>
 							</div>
 							<hr>
 							<div>
-							<%! int totalPrice = 0; 
-								int amount= 0; 
-								int price = 0;
-							%>
-							<%for (int i = 0 ; i<list.size(); i++){ 
-								int result = 0;
-								amount = list.get(i).getProductAmount();
-								price = list.get(i).getProductPrice();
-								result = amount * price;
-								totalPrice+=result;	
-							%>						
-							<%}%>
-							
-							<%for(int i = 0 ; i<list.size();i++) {%>
-							<input type="hidden" name ="productEntire+<%=i %>" value = "<%=list.get(i).getProductEntire() %>" />
-							<%} %>
-							<input type="hidden" name="totalAmount" value="<%=list.size() %>" />	
+
+						<%-- 	<%for(int i = 0 ; i<list.size();i++) {%> 
+								<input type="hidden" name ="productEntire+<%=i %>" value = "<%=list.get(i).getProductEntire() %>" /> --%>
+						<%-- 	<%} %> --%>
+								<input type="hidden" name ="productEntire" value = "<%=list.get(0).getProductEntire()%>" />
+								<input type="hidden" name="totalAmount" value="<%=list.size() %>" />
+								<input type="hidden" name = "remainingPoint"  value ="<%=remainingPoint %>"	/>
+								
 								<span style="font-weight:500;">총 결제 금액</span> 
-								<span id="totalPrice"><%=totalPrice-list.get(0).getUser_ePoint()%>원</span>				
+								<span id="totalPrice"><%=totalPrice %>원</span>				
 							</div>
 							<div style="padding-left: 16px;">
 								<!--  외부 API 결제시스템 반영 or 기존에 적립한 포인트로 결제하는 방법  -->	
 								<input type="submit" class="btn btn-secondary" id="orderButton" 
-								style="width: 300px; height: 50px; margin-right: 15px; background-color: #66CCFF;" value="주문하기" onclick="return orderBtn();">
+								style="width: 300px; height: 50px; margin-right: 15px; background-color: RGBA(216,85,161,1);" value="주문하기" onclick="return orderBtn();">
 							</div>
 											
 							<br><br>	
 						</div>
 					</div>
-				</form>
-				</div>
+					<input type="hidden" id="epoint2" value="<%=list.get(0).getUser_ePoint()%> " />
+					<input type="hidden" id="goodsPrice2" value="<%=list.get(0).getProductPrice() * list.get(0).getProductAmount()%>" />
+					</form>
+						
 			</div>
+			</div><!-- content 끝 -->
+		
 			<footer> <%@include file="../../views/common/footer.jsp"%>
 			</footer>
-		</div> 
+		</div> <!-- wrapper 끝 -->
 	</center>
 
+
 <script type="text/javascript">
-	function orderBtn() {
+	function orderBtn(){
 		var memberName = $("#memberName").val();
 		var email = $("#email").val();
 		var phone = $("#phone").val();
 		var detailAddress = $("#detailAddress").val();
 		var address = $("#address").val();
-
-		if (memberName == "" || email == "" || phone == ""
-				|| detailAddress == "" || address == "") {
-			$("#orderResult").text(
-					"빈칸 없이 입력해주세요 (2초 후 페이지 새로고침)");
-			setInterval(function() {
-				location.reload();
-			}, 2000);
+		var ePoint =$("#epoint2").val()
+		
+		var goodsPrice =$("#goodsPrice2").val();		
+		alert(goodsPrice);	
+		alert(ePoint);	
+		if(ePoint<goodsPrice){
+			alert("E-wallet 포인트가 모자랍니다. 충전 후 다시 이용 바랍니다.");
+			location.href= "/views/member/myInfoQuiz.jsp";
+			
 			return false;
-		} else {
-
-			return true;
+		}
+		if (memberName == "" || email == "" || phone == ""
+			|| detailAddress == "" || address == "") {
+		$("#orderResult").text(
+				"빈칸 없이 입력해주세요 (2초 후 페이지 새로고침)");
+		setInterval(function() {
+			location.reload();
+		}, 2000);
+			return false;
 			
 		}
+		
 	}
-
-	$(document).ready(function(){
-		$("#goodsInfo>img").attr("src",<%=list.get(0).getProductImage()%>)
-	});
-
 	function availableCouponsBtn() {
 		window.open("/views/member/availableCoupons.jsp","pop","toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,width=400px,height=500px");			
 	}

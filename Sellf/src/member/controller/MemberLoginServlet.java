@@ -35,7 +35,7 @@ public class MemberLoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("userId");
 		String pw = request.getParameter("userPwd");
-		
+		boolean checkDelete = false;
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("login")!=null)
@@ -45,20 +45,28 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
-	      System.out.println(fullPath);
+	    System.out.println(fullPath);
 		Member m= null;
+		checkDelete = new MemberService().memberCheckDelete(id,fullPath);
+		if(checkDelete==false)
+		{
+			response.sendRedirect("/views/member/memberLogin.jsp?error="+"2");
+		}
+		else
+		{
 		m = new MemberService().memberLogin(id,pw, fullPath);
 		if(m!=null)
 		{
 			session = request.getSession();
 			System.out.println(session.getAttribute("login"));
-			session.setAttribute("login", m.getUser_id());
+			session.setAttribute("login", m);
 			System.out.println(session.getAttribute("login"));
 			response.sendRedirect("/index.jsp");
 		}
 		else
 		{
-			response.sendRedirect("/views/member/memberLoginError.jsp");
+			response.sendRedirect("/views/member/memberLogin.jsp?error="+"1");
+		}
 		}
 	}
 

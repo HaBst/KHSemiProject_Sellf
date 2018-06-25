@@ -8,8 +8,8 @@
 </head>
 <script>
 	window.onload = function(){
-		alert("상품 등록 실패하였습니다.");
-		location.href = "/test.html";
+		alert("상품 등록을 실패하였습니다.");
+		location.href = "/";
 	}
 </script>
 <body>

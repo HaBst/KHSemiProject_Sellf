@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="product.model.vo.*" import="member.model.vo.*" import="java.util.*"
-	import="member.model.vo.*"
 	%>
 <% 
 	Product p  = null;
@@ -11,12 +10,6 @@
 	}
 	if(request.getAttribute("sellerScore") != null){
 		sellerRate = ((SellerRate)request.getAttribute("sellerScore"));
-	}
-	
-	Member m = null;
-	if(session.getAttribute("login") != null)
-	{
-		m = (Member) session.getAttribute("login");
 	}
 	
 	//ReviewPageData rpd = (ReviewPageData)request.getAttribute("reviewPageData");
@@ -34,7 +27,6 @@
 <script src="../../JS/externalJs/jquery.magnify.js" type="text/javascript"></script>
 <!-- <script src="../../JS/externalJs/cloud-zoom.1.0.2.js" type="text/javascript"></script> -->
 <script>
-var currentProductPk;
 $(document).ready(function() {
 	$('.magnify-image').magnify();
 });
@@ -46,7 +38,7 @@ $(document).ready(function() {
 <link rel="stylesheet"
 	href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
 <link rel="stylesheet" href="../../CSS/common/common.css?ver=1" />
-<link rel="stylesheet" href="../../CSS/product/productSelect.css" />
+<link rel="stylesheet" href="../../CSS/product/productSelect.css?ver=1" />
 <link href="../../CSS/externalCss/star.css?ver=1" media="screen" rel="stylesheet" type="text/css">
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -58,7 +50,7 @@ $(document).ready(function() {
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
 
-<script src="../../JS/product/productSel.js?ver=1"></script>
+<script src="../../JS/product/productSel.js"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
 
@@ -74,7 +66,7 @@ $(document).ready(function() {
 <link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
 <link rel="stylesheet" type="text/css"
 	href="../../CSS/common/footer.css">
-<link rel="stylesheet" type="text/css" href="../../CSS/externalCss/magnify.css?ver=1">
+<link rel="stylesheet" type="text/css" href="../../CSS/externalCss/magnify.css">
 
 
 <title>상품 선택 화면</title>
@@ -101,7 +93,7 @@ $(document).ready(function() {
 			<div id="productContent">
 				<div id="productImage">		
 				
-					<img src="<%=p.getImageJson().get("img1").getAsString() %>" class="magnify-image" data-magnify-src="<%=p.getImageJson().get("img1").getAsString() %>" />						
+					<img src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" class="magnify-image" data-magnify-src="../../img/10_tmp_274559c6ec69ab30e666353eabc4f2619208large.jpg" />						
 					<!-- <div class="zoom-section">    	  
 						<div class="zoom-small-image">
 							<a href='../../img/테스트3.JPG' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">
@@ -165,10 +157,10 @@ $(document).ready(function() {
 						<div class="infoContent">
 							<div id="sellerStarShow">
 								<ul>
-									<li class="star"><%if(sellerRate.getAvr()>=1){ %>★  <%}else{%>☆<%} %></li>
-									<li class="star"><%if(sellerRate.getAvr()>=2){ %>★  <%}else{%>☆<%} %></li>
-									<li class="star"><%if(sellerRate.getAvr()>=3){ %>★  <%}else{%>☆<%} %></li>
-									<li class="star"><%if(sellerRate.getAvr()>=4){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>1){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>2){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>3){ %>★  <%}else{%>☆<%} %></li>
+									<li class="star"><%if(sellerRate.getAvr()>4){ %>★  <%}else{%>☆<%} %></li>
 									<li class="star"><%if(sellerRate.getAvr()>=5){ %>★  <%}else{%>☆<%} %></li>
 									<li>(<%=sellerRate.getAvr() %>/5)</li>
 								</ul>
@@ -190,12 +182,12 @@ $(document).ready(function() {
 					<div id="purchaseBtnGroup">
 						<div class="purchaseBtn">
 							<div>
-								<a href="/views/member/jjim.jsp">위시리스트</a>
+								<a href="">위시리스트</a>
 							</div>
 						</div>
 						<div class="purchaseBtn">
 							<div>
-								<a href="/myCart">장바구니</a>
+								<a href="">장바구니</a>
 							</div>
 						</div>
 						<div class="purchaseBtn">
@@ -215,7 +207,7 @@ $(document).ready(function() {
 				</ul>
 
 				<ul style="list-style: none;">
-					<li class="tabContents" id="tab1" value="tab1" >
+					<li class="tabContents" id="tab1" value="tab1">
 						<h3 style="float: left; margin-left: 20px;">상품정보</h3>
 						<div id="productStateIconGroup" class="productIconGroup">
 							<div id="useState">
@@ -347,10 +339,10 @@ $(document).ready(function() {
 								<div id="starReview">
 									<div class="star">
 										<h3><span id="starScore" style="font-size:20;"><%=sellerRate.getAvr() %></span></h3>										
-							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=1){ %>★  <%}else{%>☆<%} %></h1>
-							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=2){ %>★  <%}else{%>☆<%} %></h1>
-							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=3){ %>★  <%}else{%>☆<%} %></h1>
-							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=4){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>1){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>2){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>3){ %>★  <%}else{%>☆<%} %></h1>
+							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>4){ %>★  <%}else{%>☆<%} %></h1>
 							  				<h1 style="color:#ffd53d; display:inline-block"><%if(sellerRate.getAvr()>=5){ %>★  <%}else{%>☆<%} %></h1>
 									  <!--   <span class="star-rating">
 									      <img type="radio" name="rating" value="1"><i></i>
@@ -392,24 +384,9 @@ $(document).ready(function() {
 								
 							-->	
 							</div>
+							
 							<hr style="clear: both; display:block;">
-							<h3 style="color:black; float:left">댓글작성</h3>							
-								<select id="starPointSelect" style="color:#ffd53d; float:right; margin-top:10px;">
-								   	<option style="color:#ffd53d;" value="5" selected>★★★★★(5/5)</option>
-								   	<option style="color:#ffd53d;" value="4">★★★★☆(4/5)</option>
-								   	<option style="color:#ffd53d;" value="3">★★★☆☆(3/5)</option>
-								   	<option style="color:#ffd53d;" value="2">★★☆☆☆(2/5)</option>
-								   	<option style="color:#ffd53d;" value="1">★☆☆☆☆(1/5)</option>
-								</select>
-								   <h4 style="float:right;">별점주기</h4>
-								<div id="myUserReview">
-									
-										<textarea id="reviewCommentArea" style="width:100%; height:70%; resize:none;">
-										</textarea>
-									<button onclick="userReview(<%=p.getProduct_entire_pk() %>);">댓글 등록</button>
-								</div>
 						</div>
-						
 					</li>
 					<li class="tabContents" id="tab3" value="tab3">
 						<div id="qa">

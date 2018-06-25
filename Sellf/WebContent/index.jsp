@@ -60,10 +60,9 @@ crossorigin="anonymous"></script>
 
 	<center>
 		<!-- Wrapper -->
-		<div id="wrapper" style="overflow: hidden;">
-		
+		<div id="wrapper" style="overflow: hidden;">		
 			<!-- header -->
-			<div id="header"><%@include file="/views/common/header.jsp"%></div>
+			<div id="header"><%@include file="/views/common/header.jsp" %></div>
 			
 			<!-- 메인 광고 이미지 슬라이더 -->
 			<div id="imgSliderSec" style="width:100%;height:auto;">
@@ -202,26 +201,29 @@ crossorigin="anonymous"></script>
 					$.ajax({
 						url : "/notOpenProduct",
 						type : "post",
+
 						success : function(data) {
 							var productName = [];
 							var img = [];
 							var productPk = [];
-							
-							console.log(data);
+						
+							 var imgJsonObj;
 							for (var i = 0; i < data.length; i++) {
-								img[i]= data[i].product_image;
+								imgJsonObj = JSON.parse(data[i].product_image);
+								img[i]= imgJsonObj.img1;//data[i].product_image; 
+								//console.log("개봉 안한 이미지" + imgJsonObj.img1);
 								productName[i] =data[i].product_name;
 								productPk[i] =data[i].product_entire_pk;
 								}	
-								console.log("상품인덱스:"+productPk[0]);
+								//console.log("상품인덱스:"+productPk[0]);
 								
 							$("#imghoverSec .shadow img:eq(0)").attr("src",img[0]);
-								$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
-								$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
+							$("#imghoverSec .shadow img:eq(1)").attr("src",img[1]);
+							$("#imghoverSec .shadow img:eq(2)").attr("src",img[2]);
 								
-								$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
-								$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
-								$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
+							$("#imghoverSec .shadow a:eq(0)").attr("href","/productSelectOne?productId="+productPk[0]);
+							$("#imghoverSec .shadow a:eq(1)").attr("href","/productSelectOne?productId="+productPk[1]);
+							$("#imghoverSec .shadow a:eq(2)").attr("href","/productSelectOne?productId="+productPk[2]);  
 						},
 						error : function() { 
 							console.log("미개봉상품가져오기 실행 실패");	
@@ -268,19 +270,25 @@ crossorigin="anonymous"></script>
 					$(document).ready(function(){
 						$.ajax({
 							url : "/newProduct",
-							data:{},
 							type : "get",
 							success : function(data) { 
 								var name = [];
 								var price = [];
 								var img = [];	
 								var productNo = [];
-								for (var i = 0; i < data.length; i++) {
+								var productPk = [];
+								
+								//gson 땜시 추가한 부분 
+								var imgKeys = ["img1","img2","img3","img4","img5"];
+								var imgJsonObj;
+							for (var i = 0; i < data.length; i++) {
+									//console.log("새거 이미지 " + data[i].image);
 									name[i]= data[i].name;
 									price[i] =data[i].price;	
-									img[i] = data[i].image;
+									imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
+									img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 									productNo[i] = data[i].productEntireNo;
-								}
+							}
 							$("#newProductSec .card-img-top:eq(0)").attr("src",img[0]);
 							$("#newProductSec .card-img-top:eq(1)").attr("src",img[1]);
 							$("#newProductSec .card-img-top:eq(2)").attr("src",img[2]);
@@ -520,10 +528,17 @@ crossorigin="anonymous"></script>
 						var detail =[];
 						var productNo1 =[];
 						var subCateId = [];
+						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가
+						
 						for (var i = 0; i < data.length; i++) {
+							//console.log("여성 의류 " +data[i].image);
+							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
+							
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							detail[i] = data[i].detail;
 							productNo1[i] = data[i].productNo;
 							subCateId[i] = data[i].subCateId;
@@ -794,10 +809,16 @@ crossorigin="anonymous"></script>
 						var img = [];
 						var productNo2 = [];
 						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
+							console.log("인기카테고리 순위2"+data[i].image);
+							imgJsonObj = JSON.parse(data[i].image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
+							
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							productNo2[i] = data[i].productNo;
 						}	
 						console.log("인기카테고리순위2 " + name[0]);
@@ -1032,15 +1053,20 @@ crossorigin="anonymous"></script>
 						var price = [];
 						var img = [];
 						var productNo3 = [];
+						
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
 							productNo3[i] = data[i].productNo;
-							console.log("인기카테고리순위3 " + name[i]);
-							console.log("인기카테고리순위3이미지 : " + img[i]);		
+							
 						}	
-						
+						console.log("인기카테고리순위3 " + name[0]);
+					
 						$("#sellExpectedSec3 .card-img-top:eq(0)").attr("src",img[0]);
 						$("#sellExpectedSec3 .card-img-top:eq(1)").attr("src",img[1]);
 						$("#sellExpectedSec3 .card-img-top:eq(2)").attr("src",img[2]);
@@ -1105,7 +1131,7 @@ crossorigin="anonymous"></script>
 			});	
 			</script>
 			<br>
-			<!-- 인기상품 보여주기 3 -->	
+	<!-- <!-- 		인기상품 보여주기 3	
 				<div id="sellExpectedSec3">
 						<div id="sellExpectedSec3_title">
 							<div></div>
@@ -1277,10 +1303,14 @@ crossorigin="anonymous"></script>
 						var img = [];
 						var detail = [];
 						var productNo4 = [];
+						var imgKeys = ["img1","img2","img3","img4","img5"];  // 이부분 추가 
+						var imgJsonObj;  // 이부분 추가 
+						
 						for (var i = 0; i < data.length; i++) {
 							name[i]= data[i].name;
 							price[i] =data[i].price;	
-							img[i]= data[i].image;
+							imgJsonObj = JSON.parse(data[i].product_image);  // 이부분 추가 
+							img[i]= imgJsonObj.img1;//data[i].product_image;   // 이부분 추가 
 							detail[i] = data[i].detail;
 							productNo4[i] = data[i].productNo;
 				
@@ -1332,7 +1362,7 @@ crossorigin="anonymous"></script>
 							<br>
 							<div class="row">
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover" style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;">		
 										<a href ="#" class="mdProduct1"><img src="" class="img-responsive" alt ="" style="width: 100%; height: 200px;"></a>	
@@ -1348,7 +1378,7 @@ crossorigin="anonymous"></script>
 									</div>
 								</div>
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover"
 										style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;" >
@@ -1366,7 +1396,7 @@ crossorigin="anonymous"></script>
 									</div>
 								</div>
 								<div class="col-xs-3" style="width: 23%;">
-									<!-- 이미지 캡션 -->
+									이미지 캡션
 									<div class="cuadro_intro_hover" style="background-color: #cccccc;">
 										<p style="text-align: center; margin-top: 0px;" >
 											<a href ="" class = "mdProduct3">
@@ -1384,7 +1414,7 @@ crossorigin="anonymous"></script>
 								</div>
 									
 								<div class="col-xs-3" style="width: 23%;">
-										<!-- 이미지 캡션 -->
+										이미지 캡션
 										<div class="cuadro_intro_hover"
 											style="background-color: #cccccc;">
 											<p style="text-align: center; margin-top: 0px;">
@@ -1407,7 +1437,7 @@ crossorigin="anonymous"></script>
 					</div>
 				</div>
 				<br> <br><br> <br>
-				</div>
+				</div> --> -->
 				<!-- 고객 리뷰 가져오기 -->
 					
 				 	<script type="text/javascript">

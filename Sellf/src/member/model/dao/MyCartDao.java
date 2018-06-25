@@ -65,7 +65,8 @@ public class MyCartDao {
 				myCart.setProductPrice(rset.getInt("PRODUCT_PRICE"));
 				myCart.setProductAmount(rset.getInt("PRODUCT_AMOUNT"));
 				myCart.setProductDetail(rset.getString("PRODUCT_DETAIL"));
-				myCart.setUser_entire_pk(rset.getInt("PRODUCT_ENTIRE_PK"));
+				myCart.setProductEntire(rset.getInt("PRODUCT_ENTIRE_PK"));
+				myCart.setUser_entire_pk(rset.getInt("USER_ENTIRE_PK"));
 				myCart.setProductName(rset.getString("PRODUCT_NAME"));
 				myCart.setUser_entire_pk(rset.getInt("USER_ENTIRE_PK"));
 				myCart.setUser_ePoint(rset.getInt("USER_EPOINT"));
@@ -147,5 +148,62 @@ public class MyCartDao {
 		return result;
 	}
 
+	public int updateEpoint(Connection conn, String userId, String epoint) {
+		PreparedStatement pstmt = null;
+		int result =  0;
+		String query = "UPDATE USER_ENTIRE_TB SET USER_EPOINT = ? WHERE USER_ID = ?";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(1, epoint);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
+	public int deleteOneMycartList(Connection conn, String userId, int productEntire) {
+		PreparedStatement pstmt = null;
+		int result =  0;
+		String query = "DELETE FROM  USER_WISHLIST_TB  WHERE USER_WL_PRODUCT_ENTIRE_FK = ? AND USER_WL_USER_ENTIRE_ID_FK = ?";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(2, userId);
+			pstmt.setInt(1, productEntire);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertCartList(Connection conn, String userId, String productEntire) {
+		PreparedStatement pstmt = null;
+		int result =  0;
+		String query = "INSERT INTO USER_WISHLIST_TB VALUES(?,?,?)";
+		try {
+			pstmt  = conn.prepareStatement(query);
+			pstmt.setString(1, "USER_WISHLIST_TB_SEQ.NEXTVAL");
+			pstmt.setString(2, productEntire);
+			pstmt.setString(3, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	
 }

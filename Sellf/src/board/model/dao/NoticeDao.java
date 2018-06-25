@@ -139,6 +139,7 @@ public class NoticeDao {
 					sb.append("<a href='/notice?currentPage="+(endNavi+1)+"'> > </a>"); // 다음으로
 					sb.append("<a href='/notice?currentPage="+(pageTotalCount)+"'> >> </a>");//맨뒤로 
 				}
+				
 				return sb.toString();
 		
 	}

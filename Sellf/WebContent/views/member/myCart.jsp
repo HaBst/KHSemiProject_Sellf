@@ -120,8 +120,8 @@
 							<tr id="cartlistTr">
 								<td scope="row"><input type="checkbox" name="chk" value =<%=list.get(i).getProduct_entire_pk()%>></td>
 								<td id="productName"><%=list.get(i).getProduct_name()%></td>
-								<td id="productAmount"><%=list.get(i).getProduct_amount()%></td>
-								<td id="productPrice"><%=list.get(i).getProduct_price()%></td>
+								<td id="productAmount"><%=list.get(i).getProduct_amount()%>개</td>
+								<td id="productPrice"><%=list.get(i).getProduct_price()%>원</td>
 							</tr>
 							<%
 								}
@@ -132,27 +132,40 @@
 					<!-- 체크박스 선택여부 검증 -->
 					<script>
 						function myCartListPurchase() {
-							var item = [];
-							var ischecked = false;
 							var val;
+							var item = [];
+							var checkLength = $("input:checkbox[name=chk]:checked").length;
+							console.log(checkLength);
 							// 여기가 myCart1
-							$("input:checkbox[name=chk]:checked").each(function(){
-								val = $(this).val();			
-								item.push(val);	
-								console.log("value값:"+val);
-								ischecked = true;
-							});							
-							location.href ="/myCart2?productIndex="+item;
+							if(checkLength==1){
+								$("input:checkbox[name=chk]:checked").each(function(){
+									val = $(this).val();			
+									item.push(val);	
+									console.log("value값:"+val);
+								location.href ="/myCart2?productIndex="+item;
+								//return true;
+								});
+							}else if(checkLength>1){
+								alert("주문하실 상품을 1개만 선택해주세요");
+								//return false;
+							}else if(checkLength==0){
+								alert("주문하실 상품을 선택해주세요");
+								//return false;
+							}
 						}
-					
-						$(document).ready(function(){
-							// 결제 금액 합계 만들기 
-						});
-						
+							
 						function deleteOneBtn() {
+							var val;
+							var items=[];
 							if ($("input[name=chk]").prop("checked")) {
 								$("#cartlistTr").remove();
 								console.log($('tbody>tr').length);
+								$("input:checkbox[name=chk]:checked").each(function(){
+									val = $(this).val();	
+									items.push(val);	
+								
+								});
+								location.href = "/deleteMyCartList?items=" + items; 	
 							}
 							if ($('tbody>tr').length <= 0) {
 								$('#dontHaveGoodsList').text("장바구니에 담긴 상품이 없습니다.");
@@ -164,33 +177,34 @@
 					<div id="dontHaveGoodsList"></div>
 					<hr>
 					<div class="selectBtn1">
-						<button type="button" class="btn btn-info" style="float: left;"
-							id="allSelectBtn" onclick="selectAllChk();">전체선택/해제</button>
-						<button type="button" class="btn btn-info" id="deleteOneBtn"
-							onclick="deleteOneBtn();" style="float: left; margin-left: 5px;">선택상품삭제</button>
+						<button type="button" class="btn btn-info" style="float: left; background-color: RGBA(216,85,161,1);"
+							id="allSelectBtn" onclick="selectAllChk();" >전체선택/해제</button>
+						<!-- <button type="button" class="btn btn-info" id="deleteOneBtn"
+							onclick="deleteOneBtn();" style="float: left; margin-left: 5px; background-color: RGBA(216,85,161,1);">선택상품삭제</button> -->
 					</div>
 					<br>
 					<div class="purchase">
-						<div class="cart_billing_label"
+						<!-- <div class="cart_billing_label"
 							style="float: left; font-size: 20px; margin-right: 40px;">결제금액
-							합계</div>
+							합계</div> -->
 						<div class="cart_billing_price" style="float: right;"
 							id="totalPrice" name="totalPrice" id="totalPrice"></div>
 					</div>
 					<br> <br> <br>
 									
 					<div class="purchase">
-				<!-- 	<form action="/myCart2" method="post"> -->
 						<input type="hidden" name="productInfo" id="productInfo" value="" />
-						<input type="button" class="btn btn-info" id="purchaseBtn" 	name="purchaseBtn" onclick=" return myCartListPurchase();" value="구매하기" />
-					<!-- </form> -->
+						<input type="button" class="btn btn-info" 
+							style="background-color: RGBA(216,85,161,1);" id="purchaseBtn" 	name="purchaseBtn" onclick=" myCartListPurchase();" value="구매하기" />		
 					</div>
+					
 					<!-- cartList 끝 -->
 				</div>
 				<!-- content 끝 -->
 			</div>
 
-			<footer> <%@include file="/views/common/footer.jsp"%>
+			<footer> 
+				<%@include file="/views/common/footer.jsp"%>
 			</footer>
 			<!-- wrapper 끝 -->
 		</div>

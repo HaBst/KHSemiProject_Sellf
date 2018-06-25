@@ -41,7 +41,6 @@ public class UserReviewInProductServlet extends HttpServlet {
 		else currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
 		ReviewPageData pd = new UserReviewService().sellerReviewAll(currentPage,id);		
-		
 		if(pd!=null)
 		{
 //			System.out.println(pd.getReviewList().get(0).getUserReviewComment());

@@ -44,7 +44,7 @@
 <script type="text/javascript">
 var btnArr = [];
 var tabArr = [];
-var selectStyle = "background-color:gray; color:white; border:1px solid lightgray;";
+var selectStyle = "background-color:RGBA(216,85,161,1); color:white; border:1px solid lightgray;";
 var nonSelectStyle = "background-color:white; color:black; border:1px solid lightgray;";
 
 	window.onload = function() {
@@ -99,7 +99,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 			</div>--> </header>
 			<section id="content">
 			<div id="topLeftLink">
-				<a href="#">게시판</a> <a href="#">홈></a>
+				<a href="/notice">게시판</a> <a href="/index.jsp">홈></a>
 			</div>
 			<div id="topMenu">
 				<button class="menuBtn" onclick="moveNotice()">
@@ -123,7 +123,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 						%>
 						<div id="bordTitle">
 							<h3 style="float: left;">
-								<strong>자주 묻는 질문</strong>
+								<strong>공지 사항</strong>
 							</h3>
 						</div>
 						<div class="hlLong"></div>
@@ -143,7 +143,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 							%>
 							<tr>
 								<td><%=list.get(i).getNotice_pk()%></td>
-								<td><a href="#"><%=list.get(i).getNotice_subject()%></a></td>
+								<td><a href="/noticeSelect?notice_pk=<%=list.get(i).getNotice_pk()%>"><%=list.get(i).getNotice_subject()%></a></td>
 								<td>관리자</td>
 								<td><%=list.get(i).getNotice_registration_date()%></td>
 								<td><%=list.get(i).getNotice_views_count()%></td>
@@ -158,7 +158,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 						%>
 						<div id="bordTitle">
 							<h3 style="float: left;">
-								<strong>자주 묻는 질문</strong>
+								<strong>공지 사항</strong>
 							</h3>
 						</div>
 						<div class="hlLong"></div>
@@ -181,65 +181,6 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 					<div class="noticeTab" id="answerListArea">
 					</div>
 					<div class="noticeTab" id="reviewListArea">
-						<div id="bordTitle">
-							<h3 style="float: left;">
-								<strong>상품후기</strong>
-							</h3>
-						</div>
-						<div class="hlLong"></div>
-						<table id="boardTable">
-							<tr>
-								<th style="width: 5%;">NO</th>
-								<th style="width: 65%;">SUBJECT</th>
-								<th style="width: 10%;">게시자</th>
-								<th style="width: 10%;">날짜</th>
-								<th style="width: 10%;">조회수</th>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td><a href="/views/board/boardSelect.jsp">TEST</a></td>
-								<td>관리자</td>
-								<td>2018-06-14</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td><a href="/views/board/boardSelect.jsp">TEST</a></td>
-								<td>관리자</td>
-								<td>2018-06-14</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td><a href="/views/board/boardSelect.jsp">TEST</a></td>
-								<td>관리자</td>
-								<td>2018-06-14</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td><a href="/views/board/boardSelect.jsp">TEST</a></td>
-								<td>관리자</td>
-								<td>2018-06-14</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td><a href="/views/board/boardSelect.jsp">TEST</a></td>
-								<td>관리자</td>
-								<td>2018-06-14</td>
-								<td>15</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td><a href="/views/board/boardSelect.jsp">TEST</a></td>
-								<td>관리자</td>
-								<td>2018-06-14</td>
-								<td>15</td>
-							</tr>
-
-
-						</table>
 					</div>
 
 
@@ -247,7 +188,7 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 					<div id="pagingArea">
 						<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#"
+							<li class="page-item"><a class="page-link" href='/faq?currentPage=1'
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 									<span class="sr-only">Previous</span>
 							</a></li>
@@ -261,14 +202,6 @@ var nonSelectStyle = "background-color:white; color:black; border:1px solid ligh
 						</nav>
 					</div>
 
-					<div id="searchArea">
-						<select>
-							<option selected>제목</option>
-							<option>제목+내용</option>
-							<option>내용</option>
-							<option>작성자</option>
-						</select> <input type="text" style="size: 100" />
-					</div>
 				</div>
 
 			</div>

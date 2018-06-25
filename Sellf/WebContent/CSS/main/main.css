@@ -133,7 +133,7 @@ div[id*="text"] {
 .reviewContent{
 	width:100% !important;
 	height:400px !important;
-	background-color: #ffc107e6;
+	background-color: RGBA(216,85,161,1);
 
 }
 .title_userId{
@@ -152,7 +152,7 @@ div[id*="text"] {
 
 .reviewContent1{
 	overflow:hidden;
-	font-size:10px;
+	font-size:16px;	
 	font-weight:400;
 	color:black;
 	width: 100%;
@@ -162,7 +162,7 @@ div[id*="text"] {
 }
 .shadow img {
 	width: 100%;
-	height: 300px;
+	height: 300px;ㅇ
 	cursor: pointer;
 	overflow: auto;
 	-webkit-transform: scale(1);
@@ -402,7 +402,7 @@ a:active {
 	margin-left: 100px;
 }
 #collectionSec_title{    	 	
- margin-left : 40px;
+ 	margin-left : 40px;
 }
 #sellExpectedSec3_title>div:last-child {
 	float: right;

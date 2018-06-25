@@ -27,8 +27,12 @@
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--멀티 사진 업로드-->
 
 <link rel="stylesheet" href="/CSS/bootstrap/bootstrap.min.css" >
@@ -37,13 +41,13 @@
 <link rel="stylesheet" type="text/css" href="/CSS/common/adv.css">
 
 
-<link rel="stylesheet" type="text/css" href="/CSS/product/productInsert.css?ver=1">
+<link rel="stylesheet" type="text/css" href="/CSS/product/productInsert.css">
 <link rel="stylesheet" type="text/css" href="/CSS/common/footer.css?ver=1">
+<link rel="stylesheet" href="../../CSS/product/productPreview.css?ver=1" /><!--프리뷰-->
 
 <!-- 내부 js파일 -->
 <script type="text/javascript" src="../../JS/common/header.js?ver=1"></script>
-<script type="text/javascript" src="../../JS/member/main.js"></script>
-<script type="text/javascript" src="../../JS/common/adv.js"></script>
+
 <script type="text/javascript" src="../../JS/product/productInsert.js"></script>
 </head>
 
@@ -62,7 +66,7 @@
 		
 		<div class="shadow p-3 mb-5 bg-white rounded">
 			<div class="insertTitle">
-				<h2 id="insertProductTitle">상품 등록 페이지</h2>
+				<h2 id="insertProductTitle">상품 등록</h2>
 			</div>
 			<div class="dataWrapper">
 				<span id="dataTitle">상품 상세정보</span>
@@ -130,11 +134,11 @@
 									<label id="subTitle">상품 등급</label> <select name="productGrade"
 										id="productGrade" class="form-control" onchange="productGrade">
 										<option selected value="0">등급선택</option>
-										<option value="S">S급</option>
-										<option value="A">A급</option>
-										<option value="B">B급</option>
-										<option value="C">C급</option>
-										<option value="S">D급</option>
+										<option value="S">S</option>
+										<option value="A">A</option>
+										<option value="B">B</option>
+										<option value="C">C</option>
+										<option value="S">D</option>
 										
 									</select>
 								</div>
@@ -178,7 +182,7 @@
 							<!--사진 업로드-->
 							<div class="form-row" id = "imgform">
 								<div class="form-group col-md-6">
-									<label id="subTitle">상품 사진 등록</label>
+									<label id="subTitle" class = "imgTitle">상품 사진 등록</label>
 								</div>
 								<div class="imgCon">
 									<div id="imgwrapper">
@@ -201,7 +205,7 @@
 															type="hidden" id="imgOne" name="imgOne" value="">
  -->
  															<input id="fileSucOne" type="file" name="upfile1"
-															style="display: none" onchange="readURL(this,0);" /> <img
+															style="display: none" onchange="readURL(this,0);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_1" 
 															onclick="document.all.fileSucOne.click();" > <input
@@ -219,7 +223,7 @@
 													<div class="col-md-12" id="successImgTwo">
 
 														<input id="fileSucTwo" type="file" name="upfile2"
-															style="display: none" onchange="readURL(this,1);" /> <img
+															style="display: none" onchange="readURL(this,1);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_2"
 															onclick="document.all.fileSucTwo.click();"> <input
@@ -234,7 +238,7 @@
 													<div class="col-md-12" id="successImgThrid">
 
 														<input id="fileSucThrid" type="file" name="upfile3"
-															style="display: none" onchange="readURL(this,2);" /> <img
+															style="display: none" onchange="readURL(this,2);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_3"
 															onclick="document.all.fileSucThrid.click();"> <input
@@ -249,7 +253,7 @@
 													<div class="col-md-12" id="successImgFour">
 
 														<input id="fileSucFour" type="file" name="upfile4"
-															style="display: none" onchange="readURL(this,3);" /> <img
+															style="display: none" onchange="readURL(this,3);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_4"
 															onclick="document.all.fileSucFour.click();"> <input
@@ -264,7 +268,7 @@
 													<div class="col-md-12" id="successImgFive">
 
 														<input id="fileSucFive" type="file" name="upfile5"
-															style="display: none" onchange="readURL(this,4);" /> <img
+															style="display: none" onchange="readURL(this,4);" accept="image/jpg, image/gif, image/jpeg, image/png"/> <img
 															src="../../img/imgInsertBackground.PNG" width="130"
 															height="130" id="imgFile_Suc_5"
 															onclick="document.all.fileSucFive.click();"> <input
@@ -293,11 +297,18 @@
 							<div class="howSubmit">
 								<div class="submitWrapper">
 
-									<button type="reset" id = "buttons"class="btn btn-outline-secondary">취소</button>
+									<button type="reset" id = "buttons"class="btn btn-outline-secondary"
+									onclick = "back();">취소</button>
 
 									<button type="submit"id = "buttons" class="btn btn-outline-secondary"
-										onclick="return check();">작성</button>
-
+										onclick="return check();" data-toggle="modal" data-target="#my80sizeCenterModal">작성</button>
+									
+									
+<script>
+function back(){
+	history.go(-1);
+}
+</script>
 								</div>
 							</div>
 						</form>
@@ -307,6 +318,27 @@
 			</div>
 		</div>
 		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 	</div>
 	<center>
 <div id="footer"> <%@include file="/views/common/footer.jsp"%></div>

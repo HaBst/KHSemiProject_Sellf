@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <div id="footerTitle"><!--풋터 윗부분-->
+  <!--   <div id="footerTitle">풋터 윗부분
             <div> <a href="">COMPANY</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">AGREEMENT</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">PRIVACY POLICY</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">GUIDE</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
             <div> <a href="">PARTNERSHIP</a></div>
-            <div class="vlshort"></div><!-- 풋터 짧은 세로 라인--> 
-    </div><!--풋터 윗부분 끝 -->
+            <div class="vlshort"></div>풋터 짧은 세로 라인 
+    </div>풋터 윗부분 끝 -->
         <div class="hlLong"></div><!-- 풋터 가로 라인--> 
         <div id="footerDetailGroup"> <!--풋터 중간 4구역-->
                <div class="footerBox" id="csCenter">
@@ -100,7 +100,7 @@
                <ul class="bottomBar">
                     <li class="detail info last"> COMPANY (주)셀프 | REPRESENTATIVE 네고가능 | ADDRESS 서울시 영등포구 선유동2로 57 이레빌딩(구관) 19F
                     | TEL 02-1111-2222 | FAX 031-1111-2222</li>
-                    <li class="detail info last"> CORPORATE BUSINESS NUMBER 123-45-67890 | ONLINE BUSINESS NUMBER 제1234-서울강남56789호 | PRIVACY OFFICER 네고가능 | E-MAIL negookay@kh.or.kr </li>
+                    <li class="detail info last"> CORPORATE BUSINESS NUMBER 123-45-67890 | ONLINE BUSINESS NUMBER 제1234-서울강남56789호 | PRIVACY OFFICER 네고가능 | E-MAIL sellfnegookay@.gmail.com </li>
                     <li class="detail info last">
                         Copyright ⓒ (주)네고가능. All Rights Reserved. | Design by Negookay.
                     </li>

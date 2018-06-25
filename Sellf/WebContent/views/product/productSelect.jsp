@@ -8,7 +8,7 @@
 	SellerRate sellerRate = null;
 	if(request.getAttribute("productInfo") != null){
 		p = (Product)request.getAttribute("productInfo"); 
-		System.out.println("중고 여부 " +p.getProduct_oldnew());
+		System.out.println("중고 여부 " +p.getImageJson().get("img2").getAsString());
 	}
 	if(request.getAttribute("sellerScore") != null){
 		sellerRate = ((SellerRate)request.getAttribute("sellerScore"));
@@ -112,26 +112,27 @@ $(document).ready(function() {
 								
 					</div> -->
 					<div class="zoom-desc">
-						<%if(p.getImageJson().get("img2").getAsString().length()>0){ %>
+						<%if(p.getImageJson().get("img2")!=null ){ %>
 							<a onclick="changeImage(0)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img2").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
-						<%if(p.getImageJson().get("img3").getAsString().length()>0){ %>
+						<%if(p.getImageJson().get("img3")!=null){ %>
 							<a onclick="changeImage(1)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img3").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
-						<%if(p.getImageJson().get("img4").getAsString().length()>0){ %>
+						<%if(p.getImageJson().get("img4")!=null){ %>
 							<a onclick="changeImage(2)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img4").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
-						<%if(p.getImageJson().get("img5").getAsString().length()>0){ %>
+						<%if(p.getImageJson().get("img5")!=null){ %>
 							<a onclick="changeImage(3)">
 								<img class="zoom-tiny-image" src="<%=p.getImageJson().get("img5").getAsString() %>" style="width:22%; height:60px;"/>
 							</a>
 						<%} %>
+						
 					
 						</div>		
 					

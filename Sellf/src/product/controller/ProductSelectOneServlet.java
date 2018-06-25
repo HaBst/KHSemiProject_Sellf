@@ -46,7 +46,7 @@ public class ProductSelectOneServlet extends HttpServlet {
 		if(p!=null)
 		{
 			SellerRate sellerRate = new ProductService().raputationAvr(p.getProduct_entire_user_entire_id_fk());
-			
+			System.out.println("ProductSelectOne " + p.getImageJson());
 			RequestDispatcher view = request.getRequestDispatcher("/views/product/productSelect.jsp");
 			request.setAttribute("productInfo", p);
 			request.setAttribute("sellerScore", sellerRate);

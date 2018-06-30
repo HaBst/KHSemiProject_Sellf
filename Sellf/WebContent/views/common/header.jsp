@@ -54,6 +54,9 @@
 				<!-- 		<div>
 					<a href="" id="bookmark">+BOOKMARK</a>
 				</div> -->
+				<div>
+					<a href="/productBigCate">상품등록</a>
+				</div>
 			</div>
 			<div id="searchBox">
 				<form action="#" method="get">

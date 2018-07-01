@@ -207,4 +207,21 @@ public class ProductDao {
 		
 	}
 
+	public int productAddCart(Connection conn, String user_id, int productId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into USER_WISHLIST_TB values(USER_WISHLIST_TB_SEQ.nextval, ?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, productId);
+			pstmt.setString(2, user_id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
+import member.model.service.MemberService;
 import member.model.service.myInfoService;
 import member.model.vo.Member;
 import product.model.vo.Product;
@@ -49,6 +50,8 @@ public class cashServlet extends HttpServlet {
 		int result = new myInfoService().cash(id,cash3); //넘겨서 수정 ㄱ 
 		if(result>0)
 		{
+			Member newM = new MemberService().memberLogin(id,((Member)session.getAttribute("login")).getUser_pwd() , fullPath);
+			session.setAttribute("login", newM);
 			response.sendRedirect("/views/member/chargeSuccess.html");
 		}
 		else 

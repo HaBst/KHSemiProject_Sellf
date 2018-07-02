@@ -66,13 +66,13 @@
 						</td>
 						</tr>
 							<tr>
-								<th>상품 상태</th>
+								<th>개봉 상태</th>
 								<td> <input type="radio" name="status" value=null checked />전체 
-									 <input type="radio" name="status" value="a" />상  
-									 <input type="radio" name="status" value="b" />중상  
-									 <input type="radio" name="status" value="b" />중  
+									 <input type="radio" name="status" value="N" />미개봉  
+									 <input type="radio" name="status" value="O" />개봉  
+								<!-- 	 <input type="radio" name="status" value="b" />중  
 									 <input type="radio" name="status" value="d" />중하  
-									 <input type="radio" name="status" value="e" />하 
+									 <input type="radio" name="status" value="e" />하  -->
 								</td>
 								
 							</tr>

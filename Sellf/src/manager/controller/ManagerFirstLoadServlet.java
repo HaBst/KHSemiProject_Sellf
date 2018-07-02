@@ -46,20 +46,20 @@ public class ManagerFirstLoadServlet extends HttpServlet {
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
 	
-		HashMap<Integer, ArrayList<ManagerTotalMember>> totalMember=new ManagerService().getMemberStatus();
-		 request.getContextPath();
-		if(!totalMember.isEmpty())
-			{
-			System.out.println("success");
-			System.out.println(totalMember);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			new Gson().toJson(totalMember,response.getWriter());
-				
-						
-			}else {
-				System.out.println("fail");
-			}
+//		HashMap<Integer, ArrayList<ManagerTotalMember>> totalMember=new ManagerService().getMemberStatus();
+//		 request.getContextPath();
+//		if(!totalMember.isEmpty())
+//			{
+//			System.out.println("success");
+//			System.out.println(totalMember);
+//			response.setContentType("application/json");
+//			response.setCharacterEncoding("UTF-8");
+//			new Gson().toJson(totalMember,response.getWriter());
+//				
+//						
+//			}else {
+//				System.out.println("fail");
+//			}
 	}
 
 	/**

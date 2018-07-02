@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import member.model.service.MemberService;
 import member.model.service.UserReviewService;
 import member.model.vo.Member;
 import member.model.vo.UserReview;
@@ -35,26 +36,31 @@ public class UserReviewServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member m = (Member)session.getAttribute("login");
 		
-		
-		int point = Integer.parseInt(request.getParameter("starPoint"));
-		String reviewComment = request.getParameter("reviewCommentArea");
-		String reviewId = request.getParameter("reviewerID");// 판매자 아이디
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		UserReview ur = new UserReview();
-		ur.setUserReviewProductEntireFk(productId);
-		ur.setUserReviewRating(point);
-		ur.setUserReviewComment(reviewComment);
-		ur.setUserReviewUserEntireIdFk(reviewId);
-		ur.setUserReviewUserEntireReviewedIdFk("mslove11");//m.getUser_id()
-		int result = new UserReviewService().reviewComment(ur);
-		if(result>0)
+		if(m!=null) {
+			int point = Integer.parseInt(request.getParameter("starPoint"));
+			String reviewComment = request.getParameter("reviewCommentArea");
+			String reviewId = request.getParameter("reviewerID");// 판매자 아이디
+			int productId = Integer.parseInt(request.getParameter("productId"));
+			UserReview ur = new UserReview();
+			ur.setUserReviewProductEntireFk(productId);
+			ur.setUserReviewRating(point);
+			ur.setUserReviewComment(reviewComment);
+			ur.setUserReviewUserEntireIdFk(reviewId);
+			ur.setUserReviewUserEntireReviewedIdFk(m.getUser_id());
+			int result = new UserReviewService().reviewComment(ur);
+			if(result>0)
+			{
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().print(result);
+				response.getWriter().close();
+			}else
+			{
+				System.out.println("댓글등록에 실패했음");
+			}
+		}
+		else
 		{
-			response.setCharacterEncoding("utf-8");
-			response.getWriter().print(result);
-			response.getWriter().close();
-		}else
-		{
-			System.out.println("댓글등록에 실패했음");
+			response.sendError(0);
 		}
 		
 		

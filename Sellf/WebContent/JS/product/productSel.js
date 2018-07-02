@@ -52,6 +52,7 @@ function changeTab(tabInfo, name, sellerId)
 	 {
 		 currentPage = pageNum;
 		 getReviewList(reviewerID,currentPage);
+//		 console.log("아이디 " + reviewerID );
 	 }
 	 function getReviewList(sellerId,pageNum)
 	 {
@@ -59,7 +60,7 @@ function changeTab(tabInfo, name, sellerId)
 		 var productReviewList = $("#productReviewList");
 		 var result = "";
 		 if(pageNum!=null) currentPage = pageNum;
-		 console.log("판매자 아이디 " + reviewerID);
+//		 console.log("판매자 아이디 " + reviewerID);
 			$.ajax({
 				url:"/userReviewInProduct",
 				data : {
@@ -111,7 +112,6 @@ function changeTab(tabInfo, name, sellerId)
 	 
 	 function userReview(productId)
 	 {
-		 console.log("상품아이디 " + productId);
 		 var starPoint = $("#starPointSelect").val();
 		 var reviewCommentArea = $("#reviewCommentArea").val();
 			$.ajax({
@@ -120,8 +120,7 @@ function changeTab(tabInfo, name, sellerId)
 					starPoint:starPoint,// 평점
 					reviewCommentArea:reviewCommentArea,  // 유저 리뷰
 					reviewerID:reviewerID,// 판매자 아이디
-					productId:productId// 상품 아이디
-					
+					productId:productId// 상품 아이디					
 				},
 				type : "post",
 				success : function(data){
@@ -129,14 +128,18 @@ function changeTab(tabInfo, name, sellerId)
 					getReviewList(reviewerID,1);
 //					reviewCommentArea.val("");
 					$("#reviewCommentArea").val("");
+//					pageChange(1);
 				},
 				error:function(){
-					
+					alert("로그인후에 이용할수 있습니다.");
 				
 				}
 			});
 	 }
-
+function loginError()
+{
+	alert("로그인을 먼저 해야합니다.");
+}
 function changeImage(imgTag)
 {
 	var bigImg  = document.getElementsByClassName("magnify-image")[0];

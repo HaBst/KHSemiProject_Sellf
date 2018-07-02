@@ -45,7 +45,7 @@ public class ManagerProductDao {
 	       //대분류 값이 넘어왔다면
 	       if(!mss.getMainCtg().equals("null")) {
 	          System.out.println("query2");
-	          if(whereQueryUpdate==1) whereQuery += " and " ;//and 추가
+	          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 	          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
 	          whereQuery+="  product_entire_cate_main_id_fk='"+mss.getMainCtg()+"' ";
 	          whereQueryUpdate+=1;
@@ -54,17 +54,17 @@ public class ManagerProductDao {
 	       if(mss.getSubCtg()!=null)
 	       {
 	          System.out.println("query3");
-	          if(whereQueryUpdate==2) whereQuery += " and " ;//and 추가
+	          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 	          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
-	          whereQuery+= "' and product_entire_cate_sub_id_fk='"+mss.getSubCtg()+"'";
+	          whereQuery+= " and product_entire_cate_sub_id_fk='"+mss.getSubCtg()+"'";
 	          whereQueryUpdate+=1;
 	       }
 
 	       //상품상태가 null이 아니면
 	       if(!mss.getGradeStatus().equals("null"))
 	       {      
-	          System.out.println("query4");
-	          if(whereQueryUpdate==3) whereQuery += " and " ;//and 추가
+	          System.out.println("query4 " + whereQueryUpdate + " 업데이트 숫자");
+	          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 	          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
 	          whereQuery+=" product_grade='"+mss.getGradeStatus()+"'";
 	          
@@ -105,7 +105,7 @@ public class ManagerProductDao {
 			       //대분류 값이 넘어왔다면
 			       if(!mss.getMainCtg().equals("null")) {
 			          System.out.println("query2");
-			          if(whereQueryUpdate==1) whereQuery += " and " ;//and 추가
+			          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 			          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
 			          whereQuery+="  product_entire_cate_main_id_fk='"+mss.getMainCtg()+"' ";
 			          whereQueryUpdate+=1;
@@ -114,9 +114,9 @@ public class ManagerProductDao {
 			       if(mss.getSubCtg()!=null)
 			       {
 			          System.out.println("query3");
-			          if(whereQueryUpdate==2) whereQuery += " and " ;//and 추가
+			          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 			          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
-			          whereQuery+= "' and product_entire_cate_sub_id_fk='"+mss.getSubCtg()+"'";
+			          whereQuery+= " and product_entire_cate_sub_id_fk='"+mss.getSubCtg()+"'";
 			          whereQueryUpdate+=1;
 			       }
 
@@ -124,9 +124,9 @@ public class ManagerProductDao {
 			       if(!mss.getGradeStatus().equals("null"))
 			       {      
 			          System.out.println("query4");
-			          if(whereQueryUpdate==3) whereQuery += " and " ;//and 추가
+			          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 			          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
-			          whereQuery+=" product_grade='"+mss.getGradeStatus()+"'";
+			          whereQuery+=" product_oldnew='"+mss.getGradeStatus()+"'";
 			          
 			       }
 			       whereQueryStatic = whereQuery;

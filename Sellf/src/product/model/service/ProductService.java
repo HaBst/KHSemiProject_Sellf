@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import common.JDBCTemplate;
 import product.model.dao.ProductDao;
-import product.model.vo.ImageFile;
+//import product.model.vo.ImageFile;
 import product.model.vo.Product;
 import product.model.vo.SellerRate;
 
@@ -16,19 +16,19 @@ public class ProductService {
 		Connection conn = JDBCTemplate.getConnection();
 		return null;
 	}
-	public int uploadFile(ImageFile imgFile) {
-		Connection conn= JDBCTemplate.getConnection();
-		int result = new ProductDao().uploadFile(conn,imgFile);
-		if(result>0)
-		{
-			JDBCTemplate.commit(conn);
-		}
-		else {
-			JDBCTemplate.rollback(conn);
-		}
-		JDBCTemplate.close(conn);
-		return result;	
-	}
+//	public int uploadFile(ImageFile imgFile) {
+//		Connection conn= JDBCTemplate.getConnection();
+//		int result = new ProductDao().uploadFile(conn,imgFile);
+//		if(result>0)
+//		{
+//			JDBCTemplate.commit(conn);
+//		}
+//		else {
+//			JDBCTemplate.rollback(conn);
+//		}
+//		JDBCTemplate.close(conn);
+//		return result;	
+//	}
 	public ArrayList<Product> productSortCategory(String searchKey, String subCategory,int onePageShowProduct, int currentPage, String orderType) {
 		Connection conn= JDBCTemplate.getConnection();
 		ArrayList<Product> resultList = new ProductDao().productSortCategory(conn,searchKey,subCategory,onePageShowProduct,currentPage, orderType);

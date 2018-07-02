@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 
 import common.FileRename;
+import member.model.vo.Member;
 import product.model.service.ProductInsertService;
 import product.model.vo.ImageUpload;
 import product.model.vo.ProductDetail;
@@ -44,7 +45,7 @@ public class ProductInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 
-		String userId = (session.getAttribute("login")).toString();
+		String userId = ((Member)session.getAttribute("login")).getUser_id();
 //		System.out.println("등록세션아이디"+userId);
 		//2. 최대 업로드 파일 사이즈 (설정)
 		int fileSizeLimit = 1024*1024*1024*5;//Byte 단위(50MB)

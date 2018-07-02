@@ -8,37 +8,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import common.JDBCTemplate;
-import product.model.vo.ImageFile;
+//import product.model.vo.ImageFile;
 import product.model.vo.Product;
 import product.model.vo.SellerRate;
 
 public class ProductDao {
-
-	public int uploadFile(Connection conn, ImageFile imgFile) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = "insert into filetbl2 values(?,?,?,?,?,?)";
-		try {
-			
-			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, imgFile.getFileNewName());
-//			pstmt.setString(2, imgFile.getFileOriginName());
-//			pstmt.setString(3, imgFile.getFilePath());
-//			pstmt.setLong(4, imgFile.getFileSize());
-//			pstmt.setString(5, imgFile.getUserId());
-//			pstmt.setTimestamp(6, imgFile.getUploadTime());			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			JDBCTemplate.close(pstmt);
-		}
-		
-		return result;	
-	}
+//
+//	public int uploadFile(Connection conn, ImageFile imgFile) {
+//		PreparedStatement pstmt = null;
+//		int result = 0;
+//		
+//		String query = "insert into filetbl2 values(?,?,?,?,?,?)";
+//		try {
+//			
+//			pstmt = conn.prepareStatement(query);
+////			pstmt.setString(1, imgFile.getFileNewName());
+////			pstmt.setString(2, imgFile.getFileOriginName());
+////			pstmt.setString(3, imgFile.getFilePath());
+////			pstmt.setLong(4, imgFile.getFileSize());
+////			pstmt.setString(5, imgFile.getUserId());
+////			pstmt.setTimestamp(6, imgFile.getUploadTime());			
+//			result = pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		finally {
+//			JDBCTemplate.close(pstmt);
+//		}
+//		
+//		return result;	
+//	}
 
 	public ArrayList<Product> productSortCategory(Connection conn,String searchKey, String subCategory,int onePageShowProduct, int currentPage, String orderType) {
 		PreparedStatement pstmt = null;

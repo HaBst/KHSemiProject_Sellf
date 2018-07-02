@@ -59,7 +59,7 @@ $(document).ready(function() {
 	crossorigin="anonymous"></script>
 <script src="../../JS/bootstrap/bootstrap.min.js?ver=1"></script>
 
-<script src="../../JS/product/productSel.js?ver=1"></script>
+<script src="../../JS/product/productSel.js"></script>
 <script type="text/javascript" src="../../JS/externalJs/jquery.raty.js?ver=1"></script>
 <script src="../../JS/externalJs/labs.js" type="text/javascript"></script>
 
@@ -465,7 +465,11 @@ $(document).ready(function() {
 									
 										<textarea id="reviewCommentArea" style="width:100%; height:70%; resize:none;">
 										</textarea>
-									<button onclick="userReview(<%=p.getProduct_entire_pk() %>);">댓글 등록</button>
+									<%if(m!=null){ %>
+										<button onclick="userReview(<%=p.getProduct_entire_pk() %>);">댓글 등록</button>
+									<%}else{ %>
+										<button onclick="loginError();">댓글 등록</button>
+									<%} %>
 								</div>
 						</div>
 						

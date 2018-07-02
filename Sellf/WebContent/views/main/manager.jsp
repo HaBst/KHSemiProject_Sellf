@@ -75,7 +75,7 @@ if(m==null)
 							<script>
 								new Morris.Bar({
 									element : 'morrisChart',
-									<%for(ManagerTotalMember m1:totalMember){ %>
+									<%-- <%for(ManagerTotalMember m1:totalMember){ %>
 									data : [ {
 										회원 : '<%=m1.getUserVisitEnrollCnt()%>',
 										 가입수: <%=m1.getUserVisitLoginCnt()%>
@@ -95,7 +95,7 @@ if(m==null)
 									xkey : '회원',
 									ykeys : [ '가입수' ],
 									labels : [ '가입수' ]
-									<%}%>
+									<%}%> --%>
 								});
 							</script>
 							<div id="salesResult"
@@ -108,7 +108,7 @@ if(m==null)
 							<script>
 								new Morris.Bar({
 									element : 'order',
-									<%for(ManagerTotalMember m1:totalMember){ %>
+									<%-- <%for(ManagerTotalMember m1:totalMember){ %>
 									data : [ {
 										회원 : '<%=m1.getUserVisitEnrollCnt()%>',
 										 가입수: <%=m1.getUserVisitLoginCnt()%>
@@ -128,7 +128,7 @@ if(m==null)
 									xkey : '회원',
 									ykeys : [ '가입수','탈퇴' ],
 									labels : [ '가입수','탈퇴' ]
-									<%}%>
+									<%}%> --%>
 								});
 							</script>
 						
@@ -144,7 +144,7 @@ if(m==null)
 								<script>
 								new Morris.Bar({
 									element : 'memberGraph',
-									<%for(ManagerTotalMember m1:totalMember){ %>
+									<%-- <%for(ManagerTotalMember m1:totalMember){ %>
 									data : [ {
 										일자 : '18/06/17',
 										 가입수: 50,탈퇴:1
@@ -164,7 +164,7 @@ if(m==null)
 									xkey : '일자',
 									ykeys : [ '가입수','탈퇴' ],
 									labels : [ '가입수','탈퇴' ]
-									<%}%>
+									<%}%> --%>
 								});
 							</script>
 								

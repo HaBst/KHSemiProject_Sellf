@@ -43,16 +43,16 @@ public class ProductSearchServlet extends HttpServlet {
 		}else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		PageData pd = new ProductInsertService().searchSub(searchName,currentPage);
-		
-		if(pd != null) {
-			RequestDispatcher view = request.getRequestDispatcher("/views/product/productSearch.jsp");
-			request.setAttribute("pageData", pd);
-			request.setAttribute("searchSub", searchName);
-			view.forward(request, response);
-		}else {
-			response.sendRedirect("/views/product/poductError.jsp");
-		}
+//		PageData pd = new ProductInsertService().searchSub(searchName,currentPage);
+//		
+//		if(pd != null) {
+//			RequestDispatcher view = request.getRequestDispatcher("/views/product/productSearch.jsp");
+//			request.setAttribute("pageData", pd);
+//			request.setAttribute("searchSub", searchName);
+//			view.forward(request, response);
+//		}else {
+//			response.sendRedirect("/views/product/poductError.jsp");
+//		}
 	}
 
 	/**

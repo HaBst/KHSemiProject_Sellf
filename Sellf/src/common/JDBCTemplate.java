@@ -82,7 +82,7 @@ public class JDBCTemplate {
 	public static void close(Statement stmt)
 	{
 		try {
-			stmt.close();
+			if(stmt!=null)stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,7 +91,7 @@ public class JDBCTemplate {
 	public static void close(ResultSet rset)
 	{
 		try {
-			rset.close();
+			if(rset!=null)rset.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

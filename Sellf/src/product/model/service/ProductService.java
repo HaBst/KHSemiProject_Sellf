@@ -53,5 +53,12 @@ public class ProductService {
 		JDBCTemplate.close(conn);
 		return resultList;
 	}
+	public int productAddCart(String user_id, int productId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result  = new ProductDao().productAddCart(conn, user_id, productId);
+		if(result>0) JDBCTemplate.commit(conn);
+		else JDBCTemplate.rollback(conn);
+		return result;
+	}
 
 }

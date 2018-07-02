@@ -42,7 +42,7 @@ public class DeleteMyCartListServlet extends HttpServlet {
 			 
 			 for(int i = 0 ;i<productEntireArr.length;i++) {
 				// int [] productEntireArr1 = new int[productEntireArr.length];
-				 result[i]= new MyCartService().deleteOneMycartList(userId,productEntireArr[i]);
+				 result[i]= new MyCartService().deleteOneMycartList(userId,result[i]);
 				 System.out.println("장바구니 목록에서 선택삭제 됐니?" +result[i]);
 			 }
 			

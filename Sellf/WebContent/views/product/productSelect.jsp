@@ -8,7 +8,6 @@
 	SellerRate sellerRate = null;
 	if(request.getAttribute("productInfo") != null){
 		p = (Product)request.getAttribute("productInfo"); 
-		System.out.println("중고 여부333 " +p.getImageJson().get("img4").getAsString());
 	}
 	if(request.getAttribute("sellerScore") != null){
 		sellerRate = ((SellerRate)request.getAttribute("sellerScore"));
@@ -205,21 +204,21 @@ $(document).ready(function() {
 					</div>
 					<div class="hl"></div>
 					<div id="purchaseBtnGroup">
-						<div class="purchaseBtn">
+						<!-- <div class="purchaseBtn">
 							<div>
 								<a href="/views/member/jjim.jsp">위시리스트</a>
 							</div>
-						</div>
+						</div> -->
 						<div class="purchaseBtn">
 							<div>
-								<a href="/myCart">장바구니</a>
+								<a href="/myCartAdd?productId=<%=p.getProduct_entire_pk()%>">장바구니에 담기</a>
 							</div>
 						</div>
-						<div class="purchaseBtn">
+						<!-- <div class="purchaseBtn">
 							<div>
 								<a href="">바로구매</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

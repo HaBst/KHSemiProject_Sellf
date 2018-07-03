@@ -66,7 +66,7 @@ public class ManagerProductDao {
 	          System.out.println("query4 " + whereQueryUpdate + " 업데이트 숫자");
 	          if(whereQueryUpdate>0) whereQuery += " and " ;//and 추가
 	          if(whereQueryUpdate==0) whereQuery += " where ";// 첫 검색 명령어면 where
-	          whereQuery+=" product_grade='"+mss.getGradeStatus()+"'";
+	          whereQuery+=" product_oldnew='"+mss.getGradeStatus()+"'";
 	          
 	       }
 	       

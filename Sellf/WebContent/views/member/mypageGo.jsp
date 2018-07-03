@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.*" import="java.util.ArrayList" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>내 정보</title>
+
+<!-- 외부 js파일 -->
+<script type="text/javascript" src="../../JS/common/header.js"></script>
+
+<title>내 쿠폰</title>
 <!-- 내부 링크건 CSS -->
 <link rel="stylesheet" href="../../CSS/bootstrap/bootstrap.min.css?ver=1" />
 <link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css" />
@@ -14,23 +19,158 @@
 <link rel="stylesheet" type="text/css" href="../../CSS/common/adv.css">
 <link rel="stylesheet" type="text/css" href="../../CSS/common/footer.css">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
-
-
-<script>
-	window.onload = function(){
-		<%if(session.getAttribute("login")!=null){ %>
-			location.href="/views/member/myInfo.jsp"
-		<%}%>
-	}
-</script>
 <!-- 헤더 끝 -->
-
 <style>
-@import url(http://weloveiconfonts.com/api/?family=fontawesome);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 body {
 	 font-family: 'Sunflower';
 }
+.couponcolor{
+  background-color:#F2F2F2;
+}
+
+.wrap
+{
+  margin:50px auto 0 auto;
+  width:100%;
+  display:flex;
+  align-items:space-around;
+  max-width:1200px;
+}
+.tile
+{
+  width:380px;
+  height:380px;
+  margin:10px;
+  background-color:#99aeff;
+  display:inline-block;
+  background-size:cover;
+  position:relative;
+  cursor:pointer;
+  transition: all 0.4s ease-out;
+  box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.44);
+  overflow:hidden;
+  color:white;
+  font-family:'Roboto';
+  
+}
+.tile img
+{
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:0;
+  transition: all 0.4s ease-out;
+}
+.tile .text
+{
+/*   z-index:99; */
+  position:absolute;
+  padding:30px;
+  height:calc(100% - 60px);
+  height:calc(100% - 60px);
+}
+.tile h1
+{
+ 
+  font-weight:300;
+  margin:0;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+.tile h2
+{
+  font-weight:100;
+  margin:20px 0 0 0;
+  font-style:italic;
+   transform: translateX(200px);
+}
+.tile p
+{
+  font-weight:300;
+  margin:20px 0 0 0;
+  line-height: 25px;
+/*   opacity:0; */
+  transform: translateX(-200px);
+  transition-delay: 0.2s;
+}
+.animate-text
+{
+  opacity:0;
+  transition: all 0.6s ease-in-out;
+}
+.tile:hover
+{
+/*   background-color:#99aeff; */
+box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
+  transform:scale(1.05);
+}
+.tile:hover img
+{
+  opacity: 0.2;
+}
+.tile:hover .animate-text
+{
+  transform:translateX(0);
+  opacity:1;
+}
+.dots
+{
+  position:absolute;
+  bottom:20px;
+  right:30px;
+  margin: 0 auto;
+  width:30px;
+  height:30px;
+  color:currentColor;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-around;
+  
+}
+
+.dots span
+{
+    width: 5px;
+    height:5px;
+    background-color: currentColor;
+    border-radius: 50%;
+    display:block;
+  opacity:0;
+  transition: transform 0.4s ease-out, opacity 0.5s ease;
+  transform: translateY(30px);
+ 
+}
+
+.tile:hover span
+{
+  opacity:1;
+  transform:translateY(0px);
+}
+
+.dots span:nth-child(1)
+{
+   transition-delay: 0.05s;
+}
+.dots span:nth-child(2)
+{
+   transition-delay: 0.1s;
+}
+.dots span:nth-child(3)
+{
+   transition-delay: 0.15s;
+}
+
+
+@media (max-width: 1000px) {
+  .wrap {
+   flex-direction: column;
+    width:400px;
+  }
+}
+
+
 .contents {
 	position: relative;
 	border: 3px solid white;
@@ -69,6 +209,7 @@ ul.mpMenuAll li a:hover{
 
 ul.mpMenuItems li a.current,ul.vert-one li a.current:hover{
 background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-one_arrow.gif") no-repeat 0 9px;}
+    
 .mpMenuTitle {
 	width: auto;
 	animation: background 1s linear infinite;
@@ -89,8 +230,10 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
         border:3px solid none;
         width: 100%;
         height: 40%; 
-        text-align:left;
-    } 
+        text-align: justify;
+    }  
+    
+    
     .tapBtn
     {
         margin: 0px;
@@ -108,9 +251,8 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
         position: static;
         width: 70%;
         height: 100%;
-        float:inherit;
     }
-    .MenuConTitle
+     .MenuConTitle
     {
         width:100%;
         height: 10%;
@@ -127,7 +269,7 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
    height:40%;
    float: right;
    }
-}
+
 .container {
   margin: 50px auto;
   width: 580px;
@@ -182,7 +324,117 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
 .button:active:before {
   content: none;
 }
- .menu-button {
+table a:link {
+	color: #666;
+	font-weight: bold;
+	text-decoration:none;
+}
+table a:visited {
+	color: #999999;
+	font-weight:bold;
+	text-decoration:none;
+}
+table a:active,
+table a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+table {
+	width:600px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+	font-size:12px;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	margin:20px;
+	border:#ccc 1px solid;
+
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+table th {
+	padding:21px 25px 22px 25px;
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+table th:first-child {
+	text-align: left;
+	padding-left:20px;
+}
+table tr:first-child th:first-child {
+	-moz-border-radius-topleft:3px;
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+table tr:first-child th:last-child {
+	-moz-border-radius-topright:3px;
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+table tr {
+	text-align: center;
+	padding-left:20px;
+}
+table td:first-child {
+	text-align: left;
+	padding-left:20px;
+	border-left: 0;
+}
+table td {
+	padding:10px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+table td.second {
+  text-align:right;
+	padding:18px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+table tr.even td {
+	background: #f6f6f6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+table tr:last-child td {
+	border-bottom:0;
+}
+table tr:last-child td:first-child {
+	-moz-border-radius-bottomleft:3px;
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+table tr:last-child td:last-child {
+	-moz-border-radius-bottomright:3px;
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+table tr:hover td {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+}
+ 
+.menu-button {
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
   transition: 0.4s;
@@ -283,156 +535,21 @@ background:black url("http://www.blueb.co.kr/data/201010/IJ12872476173279/vert-o
   -moz-transition-delay: 0s;
   transition-delay: 0s;
   background: yellow;
-}
-
-a:focus, a:hover {
-  text-decoration: underline;
-}
-input {
-  border: 0;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  -webkit-transition: background-color .3s;
-          transition: background-color .3s;
-}
-.site__container {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  padding: 3rem 0;
-}
-
-.form input[type="password"], .form input[type="text"], .form input[type="submit"] {
-  width: 100%;
-}
-.form--login {
-  color: #606468;
-}
-.form--login label,
-.form--login input[type="text"],
-.form--login input[type="password"],
-.form--login input[type="submit"] {
-  border-radius: 0.25rem;
-  padding: 1rem;
-}
-.form--login label {
-  background-color: #363b41;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-.form--login input[type="text"], .form--login input[type="password"] {
-  background-color: #3b4148;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-.form--login input[type="text"]:focus, .form--login input[type="text"]:hover, .form--login input[type="password"]:focus, .form--login input[type="password"]:hover {
-  background-color: #434A52;
-}
-.form--login input[type="submit"] {
-  background-color: #ea4c88;
-  color: #eee;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.form--login input[type="submit"]:focus, .form--login input[type="submit"]:hover {
-  background-color: #d44179;
-}
-.form__field {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 1rem;
-}
-.form__input {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
-.align {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-.grid__container {
-  margin: 0 auto;
-  max-width: 20rem;
-  width: 100%;
-}
+}   
 </style>
 </head>
 <body align ="center">
 
-	<div class="header"><%@include file="../../views/common/header.jsp"%></div>	
+<div class="header"><%@include file="../../views/common/header.jsp"%></div>	
 <center>
-        <div class="contents">
-            <div class="mpMenuItems">
-                         <div class="mpMenuTitle"><h1>My Page</h1></div>
-                 <ul class="mpMenuAll" role="tablist" style="none">
-					<li role="presentation" class="active" id="selfb"><a href="/self">판매내역</a></li>
-					<li role="presentation" class="active" id="buyb"><a href="/buy">구매내역</a></li>
-					<li role="presentation" class="active" id="jjimb"><a href="/jjim">찜한 상품</a></li>
-					<li role="presentation" class="active" id="coub"><a href="/views/member/myCoupon.jsp">내 쿠폰</a></li>
-					<li role="presentation" class="active" id="infob"><a href="/views/member/myInfoQuiz.jsp">내 정보</a></li>
-					<li role="presentation" class="active"><a href="/Grade">등급보기</a></li>
-				</ul>
-            </div>
-            <div class="MenuContents">
-            
-                <div class="MenuConTitle"><H2>내 정보</H2></div>
-<hr>
-<div class="MenuCon1"><!-- 테이블창 -->
- <div class="site__container">
-
-    <div class="grid__container">
-
-      <form action="/Password" method="post" class="form form--login">
-
-        <div class="form__field">
-          <input id="login__password" type="password" class="form__input" placeholder="Password" required name="userPwd" id="userPwd">
-      	</div>
-          <input type="submit" value="확인">
-         </form>
-        </div>
-
-    </div>
-</div></div><div class="MenuCon2"><!-- 안내창 -->
-				<div>
-                	정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인합니다.<br>
-                	<a href="/views/member/myInfo.jsp"> 비번 입력할시 가는창 ^_^</a>
-                </div>
+        <div class="contents"> 
+    		<br><br><br><br><br><br><br><br><br><br>
+    		로그인후 이용하세요
+    	    <br><br>
+    	<a href="/memberLogin">로그인 페이지로</a>
                 </div>
             </div>
-<div class="menu-button">
+ <div class="menu-button">
 				<i class="Qbtn"></i> <a href="/views/manager/managerChat.html"
 					style="background-image: url(/../../img/messageQbtn.png)"> <i
 					class="messageQbtn"></i>
@@ -444,7 +561,7 @@ input {
 					class="sayQbtn"> </i>
 				</a>
 			</div>
-
+  </div>
 
   </center>
 <div class="footer"><center><%@include file="../../views/common/footer.jsp"%></center> </div>

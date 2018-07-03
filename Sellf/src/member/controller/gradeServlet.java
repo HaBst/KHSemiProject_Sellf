@@ -1,7 +1,6 @@
 package member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,22 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
-import member.model.service.MemberService;
 import member.model.service.myInfoService;
+import member.model.vo.Grade;
 import member.model.vo.Member;
-import product.model.vo.Product;
 
 /**
- * Servlet implementation class cashServlet
+ * Servlet implementation class gradeServlet
  */
-@WebServlet(name = "cash", urlPatterns = { "/cash" })
-public class cashServlet extends HttpServlet {
+@WebServlet(name = "grade", urlPatterns = { "/Grade" })
+public class gradeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cashServlet() {
+    public gradeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,28 +38,22 @@ public class cashServlet extends HttpServlet {
 		ServletContext context = getServletContext();
 		String fullPath = context.getRealPath("/WEB-INF/property/driver.properties");
 		JDBCTemplate.setDriverPath(fullPath);
-		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		String id = ((Member)session.getAttribute("login")).getUser_id();//접속중 아이디
-		int ePoint = ((Member)session.getAttribute("login")).getUser_ePoint();//기존 포인트
-		String money[] = request.getParameterValues("money");//충전할 포인트
-		int cash2 = Integer.parseInt(money[0]); //충전할 포인트 숫자화
-		int cash3 = (cash2+ePoint);//기존포인트 + 충전할포인트
-		int result = new myInfoService().cash(id,cash3); //넘겨서 수정 ㄱ 
-		if(result>0)
-		{
-			String queryPath = context.getRealPath("/WEB-INF/property/memberQuery.properties");
-			Member newM = new MemberService().memberLogin(id,((Member)session.getAttribute("login")).getUser_pwd() , queryPath);
-			session.setAttribute("login", newM);
-			response.sendRedirect("/views/member/myInfo.jsp");
-		}
-		else 
-		{
-			response.sendRedirect("/views/member/Error.html");
-		}
+		request.setCharacterEncoding("utf-8");
+		String id = ((Member)session.getAttribute("login")).getUser_user_entire_user_grade_id_fk();
+		Grade g  = new myInfoService().gradeInfo(id);
 		
+		if(g!=null)
+		{
+			RequestDispatcher view = request.getRequestDispatcher("/views/member/myGrade.jsp");
+			request.setAttribute("userGrade", g);
+			view.forward(request, response);
+		}
+		else
+		{
+			response.sendRedirect("/views/error/member/Error.html");
+		}
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
